@@ -1,1 +1,182 @@
+{% load static %}
 {% load render_bundle from webpack_loader %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+
+    <!-- https://paulferrett.com/fontawesome-favicon/ -->
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+
+    <title>
+      
+        ACLARK.NET, LLC
+      
+    </title>
+
+      <link href="https://fonts.googleapis.com/css?family=Lora:400,400italic|Work+Sans:300,400,500,600" rel="stylesheet" type="text/css">
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.css" rel="stylesheet" type="text/css">
+      <link href="{% static 'toolkit-startup.min.css' %}" rel="stylesheet">
+
+    {% block head %}
+
+      <link href="{% static 'application-startup.css' %}" rel="stylesheet">
+
+    {% endblock %}
+
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+
+    {% render_bundle 'main' %}
+
+  </head>
+
+<body>
+
+<div class="stage-shelf stage-shelf-right hidden" id="sidebar">
+  <ul class="nav nav-bordered nav-stacked flex-column">
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'about' %}">About</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'services' %}">Services</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'clients' %}">Clients</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'team' %}">Team</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+    </li>
+  </ul>
+</div>
+<div class="stage" id="stage">
+
+<div class="block block-inverse block-fill-height app-header"
+     style="background-image: url({% static 'startup-1.jpg' %});">
+
+  <div class="container py-4 fixed-top app-navbar">
+  <nav class="navbar navbar-transparent navbar-padded navbar-expand-md">
+
+{% block logo %}
+    <a class="navbar-brand mr-auto" href="{% url 'home' %}">
+      <img src="{% static 'aclarknet-logo.png' %}">
+    </a>
+{% endblock %}
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-target="#stage"
+      data-toggle="stage"
+      data-distance="-250">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+{% include 'nav.html' %}
+
+{% block nav %}
+{% endblock %}
+
+  </nav>
+
+{% include 'messages.html' %}
+
+</div>
+
+{% block db_start %}
+  <img class="app-graph"  src="{% static 'startup-0.svg' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="block-xs-middle pb-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-10 col-lg-6">
+
+          <h1 class="block-titleData frequency">Successfully building web applications with Python&trade; since 2004.</h1>
+          <p class="lead mb-4 text-muted">Create professional web applications efficiently, effectively and economically.</p>
+          <a class="btn btn-primary btn-lg" href="{% url 'contact' %}">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+</div>
+
+{% block db_stop %}
+{% endblock %}
+
+<div class="block block-inverse app-footer">
+ <div class="container">
+    <div class="row">
+      <div class="col-md-5 mb-5">
+        <ul class="list-unstyled list-spaced mb-5">
+          <li class="mb-2"><h6 class="text-uppercase"><a href="{% url 'home' %}">ACLARK.NET, LLC</a></h6></li>
+          <li class="mb-2"><h6 class="text-uppercase">Bethesda, MD USA</h6></li>
+        </ul>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d49623.63474610376!2d-77.15359630582671!3d38.98160471663261!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b7cbb76a24022d%3A0x26b279f76a2bcd0d!2sBethesda%2C+MD!5e0!3m2!1sen!2sus!4v1515847714204" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe> 
+      </div>
+      <div class="col-md-2 ml-auto mb-5">
+        <ul class="list-unstyled list-spaced">
+          <li class="mb-2"><h6 class="text-uppercase"><a href="{% url 'services' %}">Services</a></h6></li>
+          <li class="text-muted"><a href="{% url 'services' %}#consulting">Consulting</a></li>
+          <li class="text-muted"><a href="{% url 'services' %}#development">Development</a></li>
+          <li class="text-muted"><a href="{% url 'services' %}#hosting">Hosting</a></li>
+          <li class="text-muted"><a href="{% url 'services' %}#support">Support</a></li>
+          <li class="text-muted"><a href="{% url 'services' %}#training">Training</a></li>
+          <li class="text-muted"><a href="{% url 'services' %}#tutoring">Tutoring</a></li>
+        </ul>
+        <ul class="list-unstyled list-spaced mt-5">
+          <li class="mb-2"><h6 class="text-uppercase">Staff</h6></li>
+          <li class="text-muted">{% if not request.user.is_anonymous %}<a href="{% url 'dashboard' %}"> Time entry</a></li><li "text-muted"><a href="{% url 'logout' %}?next={% url 'home' %}"> Logout</a>{% else %}<a href="{% url 'dashboard' %}">Login</a>{% endif %}
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-5 mb-5">
+        <ul class="list-unstyled list-spaced">
+          <li class="text-muted mb-5">
+             From Amtrak to USAID and NASA and National Geographic in between, we've helped great companies do great things and we look forward to helping you.
+          </li>
+          <li class="mb-5">
+            <a href="https://facebook.com/aclarknet" target="_blank"><i class="fab fa-facebook fa-2x pr-1"></i></a>
+            <a href="https://github.com/aclarknet" target="_blank"><i class="fab fa-github fa-2x pr-1"></i></a>
+            <a href="https://www.linkedin.com/company/aclarknet" target="_blank"><i class="fab fa-linkedin fa-2x pr-1"></i></a>
+            <a href="https://twitter.com/aclarknet" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
+          </li>
+          <li class="text-muted">&copy; ACLARK.NET, LLC 2018</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+    <script src="{% static 'jquery.min.js' %}"></script>
+    <script src="{% static 'popper.min.js' %}"></script>
+    <script src="{% static 'toolkit.min.js' %}"></script>
+    <script src="{% static 'application.js' %}"></script>
+    <script>
+      // execute/clear BS loaders for docs
+      $(function(){while(window.BS&&window.BS.loader&&window.BS.loader.length){(window.BS.loader.pop())()}})
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112734526-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-112734526-2');
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
+{% include 'tinymce.html' %}
+</body>
+</html>

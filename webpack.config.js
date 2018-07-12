@@ -1,7 +1,18 @@
+var path = require('path');
+var webpack = require('webpack');
+var BundleTracker = require('webpack-bundle-tracker');
+
 module.exports = {
-    entry: './aclark/root/static/index.js',
+    context: __dirname,
+    entry: './aclark/root/static/index',
     output: {
-        path: __dirname + '/aclark/root/static/webpack_bundles',
+        path: path.resolve('./aclark/root/static/webpack_bundles/'),
         filename: "[name]-[hash].js"
     },
+
+    plugins: [
+        new BundleTracker({
+            filename: './webpack-stats.json'
+        })
+    ]
 }
