@@ -393,3 +393,7 @@ PROJECT=aclark
 APP=root
 virtualenv-3-7:
 	virtualenv --python=python3.7 .
+webpack:
+	rm -rf $(PROJECT)/$(APP)/static/webpack_bundles
+	./node_modules/.bin/webpack
+	git add $(PROJECT)/$(APP)/static/webpack_bundles
