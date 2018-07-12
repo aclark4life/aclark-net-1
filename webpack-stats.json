@@ -1,1 +1,1 @@
-{"status":"done","chunks":{"main":[{"name":"main-7b3916c635d8166e79bb.js","path":"/Users/alexclark/Developer/aclark-net/aclark-net-1/aclark/root/static/webpack_bundles/main-7b3916c635d8166e79bb.js"}]}}
+{"status":"error","error":"ModuleNotFoundError","message":"Module not found: Error: Can't resolve 'dist/toolkit.js' in '/Users/alexclark/Developer/aclark-net/aclark-net-1/aclark/root/static'"}
