@@ -28,15 +28,15 @@ router.register(r'testimonials', views_db.TestimonialViewSet)
 router.register(r'profiles', views_db.ProfileViewSet)
 
 urlpatterns = [
-    url(r'^$', www_views.home, name='home'),
-    url(r'^about$', www_views.about, name='about'),
+    url(r'^$', views_root.home, name='home'),
+    url(r'^about$', views_root.about, name='about'),
     url(r'^admin', admin.site.urls),
     url(r'^api/', include(router.urls)),
     url(r'^db/', include(db_urls)),
-    url(r'^blog$', www_views.blog, name='blog'),
-    url(r'^clients$', www_views.clients, name='clients'),
-    url(r'^contact$', www_views.contact, name='contact'),
-    url(r'^services$', www_views.services, name='services'),
-    url(r'^team$', www_views.team, name='team'),
-    url(r'^testimonials$', www_views.testimonials, name='testimonials'),
+    url(r'^blog$', views_root.blog, name='blog'),
+    url(r'^clients$', views_root.clients, name='clients'),
+    url(r'^contact$', views_root.contact, name='contact'),
+    url(r'^services$', views_root.services, name='services'),
+    url(r'^team$', views_root.team, name='team'),
+    url(r'^testimonials$', views_root.testimonials, name='testimonials'),
 ]
