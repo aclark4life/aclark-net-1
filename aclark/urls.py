@@ -13,9 +13,9 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from aclark.db import urls as db_urls
-from aclark.db import views as db_views
-from aclark.www import views as www_views
+from aclark.db import urls as urls_db
+from aclark.db import views as views_db
+from aclark.root import views as views_root
 from django.conf.urls import url
 from django.conf.urls import include
 from django.contrib import admin
