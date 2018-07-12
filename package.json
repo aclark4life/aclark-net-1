@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/aclarknet/aclark-net-1#readme",
   "devDependencies": {
+    "js-beautify": "^1.7.5",
     "webpack": "^4.16.0",
     "webpack-cli": "^3.0.8"
   }
