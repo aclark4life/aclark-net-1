@@ -32,7 +32,7 @@ urlpatterns = [
     url(r'^about$', views_root.about, name='about'),
     url(r'^admin', admin.site.urls),
     url(r'^api/', include(router.urls)),
-    url(r'^db/', include(db_urls)),
+    url(r'^db/', include(urls_db)),
     url(r'^blog$', views_root.blog, name='blog'),
     url(r'^clients$', views_root.clients, name='clients'),
     url(r'^contact$', views_root.contact, name='contact'),
