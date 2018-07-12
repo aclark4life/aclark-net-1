@@ -9,15 +9,13 @@ module.exports = {
         path: path.resolve('./aclark/root/static/webpack_bundles/'),
         filename: "[name]-[hash].js"
     },
-
     plugins: [
         new BundleTracker({
             filename: './webpack-stats.json'
+        }),
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery'
         })
     ]
 }
-
-new webpack.ProvidePlugin({
-    $: 'jquery',
-    jQuery: 'jquery'
-});
