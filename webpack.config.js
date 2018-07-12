@@ -1,1 +1,6 @@
-module.exports = { entry: './app.js', output: { filename: 'bundle.js' } }
+module.exports = {
+    entry: './aclark/root/static/index.js',
+    output: {
+        filename: 'bundle.js' 
+    } 
+}
