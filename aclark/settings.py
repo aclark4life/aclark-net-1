@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'aclark.root',
     'taggit',
     'crispy_forms',
+    'captcha',
 ]
 
 MIDDLEWARE = [
