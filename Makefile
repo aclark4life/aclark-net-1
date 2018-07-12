@@ -394,6 +394,8 @@ APP=root
 virtualenv-3-7:
 	virtualenv --python=python3.7 .
 webpack:
+	./node_modules/js-beautify/js/bin/js-beautify.js -r ./webpack.config.js
+	./node_modules/js-beautify/js/bin/js-beautify.js -r $(PROJECT)/$(APP)/static/index.js
 	rm -rf $(PROJECT)/$(APP)/static/webpack_bundles
 	./node_modules/.bin/webpack
 	git add $(PROJECT)/$(APP)/static/webpack_bundles
