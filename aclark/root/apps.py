@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class RootConfig(AppConfig):
-    name = 'root'
+class WWWConfig(AppConfig):
+    name = 'aclark.www'
