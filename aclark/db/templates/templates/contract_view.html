@@ -1,0 +1,23 @@
+{% extends 'db/base.html' %}
+{% block content %}
+          <div class="row">
+            <div class="col-md-11">
+              <h1 style="border-bottom: none;"><a class="text-dark" href="{% url 'contract_index' %}">Contracts</a> <i class="fa fa-arrow-right"></i> {% if item.title %}{{ item.title }}{% else %}Contract{% endif %} {% if item.client %}<a href="{% url 'client_view' item.client.pk %}"><i class="fa fa-building"></i></a>{% endif %}</h1>
+            </div>
+            <div class="col-md-1">
+              <!-- http://getbootstrap.com/docs/4.0/components/dropdowns/#split-button-dropdowns -->
+              <div class="btn-group">
+                <a class="btn btn-block btn-lg btn-success" href="{% url 'contract_edit' pk=item.pk %}">Edit</a>
+                <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu">
+{% include 'actions.html' %}
+                </div>
+              </div>
+            </div>
+          </div>
+{% include 'copy_form.html' %}
+{% include 'delete_form.html' %}
+{% include 'table_items.html' %}
+{% endblock %}

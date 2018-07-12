@@ -1,0 +1,9 @@
+          <table data-toggle="table" data-striped="true">
+            <tbody>
+            {% for item in items %}
+              {% for key, value in item.fields.items %}
+              <tr><td valign="top"><strong>{{ key }}</strong></td><td>{{ value|default:''|safe }} </td></tr>
+              {% endfor %}
+            {% endfor %}
+            </tbody>
+          </table>
