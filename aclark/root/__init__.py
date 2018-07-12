@@ -1,1 +1,1 @@
-default_app_config = 'aclark.www.apps.WWWConfig'
+default_app_config = 'aclark.root.apps.RootConfig'
