@@ -6,7 +6,7 @@ module.exports = {
     context: __dirname + "/aclark/root/static",
     entry: "./index",
     output: {
-        path: __dirname + "/project/aclark/root/webpack_bundles",
+        path: __dirname + "/aclark/root/static/webpack_bundles",
         filename: "[name]-[hash].js"
     },
     plugins: [
