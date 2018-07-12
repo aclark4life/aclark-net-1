@@ -28,11 +28,6 @@ def about(request):
     return render(request, 'about.html', context)
 
 
-def page(request, slug=None):
-    context = {}
-    return render(request, 'page.html', context)
-
-
 def blog(request):
     return HttpResponseRedirect('http://blog.aclark.net')
 
@@ -70,7 +65,7 @@ def contact(request):
 
 def home(request):
     context = {}
-    return render(request, 'page.html', context)
+    return render(request, 'base.html', context)
 
 
 def services(request):
