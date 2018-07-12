@@ -22,10 +22,10 @@ from django.contrib import admin
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register(r'clients', db_views.ClientViewSet)
-router.register(r'services', db_views.ServiceViewSet)
-router.register(r'testimonials', db_views.TestimonialViewSet)
-router.register(r'profiles', db_views.ProfileViewSet)
+router.register(r'clients', views_db.ClientViewSet)
+router.register(r'services', views_db.ServiceViewSet)
+router.register(r'testimonials', views_db.TestimonialViewSet)
+router.register(r'profiles', views_db.ProfileViewSet)
 
 urlpatterns = [
     url(r'^$', www_views.home, name='home'),
