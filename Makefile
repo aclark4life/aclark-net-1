@@ -391,6 +391,5 @@ pack: webpack  # Alias
 # aclark-net
 PROJECT=aclark
 APP=root
-.DEFAULT_GOAL=git-commit-edit-push
 virtualenv-3-7:
 	virtualenv --python=python3.7 .
