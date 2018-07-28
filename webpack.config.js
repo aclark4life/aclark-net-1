@@ -20,6 +20,10 @@ module.exports = {
             jQuery: 'jquery',
             'window.jQuery': 'jquery',
             Popper: ['popper.js', 'default'],
+        }),
+        new webpack.SourceMapDevToolPlugin({
+            filename: '[name].js.map',
+            exclude: ['bootstrap.js']
         })
     ],
     // https://github.com/webpack-contrib/extract-text-webpack-plugin#usage
