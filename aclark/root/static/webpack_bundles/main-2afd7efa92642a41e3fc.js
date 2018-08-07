@@ -10450,10 +10450,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__docs_assets_css_application_startup_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__docs_assets_css_application_startup_css__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__docs_assets_css_toolkit_startup_css__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__docs_assets_css_toolkit_startup_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__docs_assets_css_toolkit_startup_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__docs_assets_js_application_js__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__docs_assets_js_application_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__docs_assets_js_application_js__);
 
 
 
-// import './dist/toolkit.min.js'
+
 
 
 
@@ -20282,6 +20284,104 @@ module.exports = g;
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {
+// back to top button - docs
+$(function () {
+  if ($('.docs-top').length) {
+    _backToTopButton()
+    $(window).on('scroll', _backToTopButton)
+    function _backToTopButton () {
+      if ($(window).scrollTop() > $(window).height()) {
+        $('.docs-top').fadeIn()
+      } else {
+        $('.docs-top').fadeOut()
+      }
+    }
+  }
+
+  // doc nav js
+  var $toc = $('#markdown-toc')
+  var $window = $(window)
+
+  if ($toc[0]) {
+    $('#markdown-toc li').addClass('nav-item')
+    $('#markdown-toc li > a').addClass('nav-link')
+
+    maybeActivateDocNavigation()
+    $window.on('resize', maybeActivateDocNavigation)
+
+    function maybeActivateDocNavigation () {
+      if ($window.width() > 768) {
+        activateDocNavigation()
+      } else {
+        deactivateDocNavigation()
+      }
+    }
+
+    function deactivateDocNavigation() {
+      $window.off('resize.theme.nav')
+      $window.off('scroll.theme.nav')
+      $toc.css({
+        position: '',
+        left: '',
+        top: ''
+      })
+    }
+
+    function activateDocNavigation() {
+
+      var cache = {}
+
+      function updateCache() {
+        cache.containerTop   = $('.docs-content').offset().top
+        cache.containerRight = $('.docs-content').offset().left + $('.docs-content').width() + 40
+        measure()
+      }
+
+      function measure() {
+        var scrollTop = $window.scrollTop()
+        var distance =  Math.max(scrollTop - cache.containerTop, 0)
+
+        if (!distance) {
+          $($toc.find('li a')[1]).addClass('active')
+          return $toc.css({
+            position: '',
+            left: '',
+            top: ''
+          })
+        }
+
+        $toc.css({
+          position: 'fixed',
+          left: cache.containerRight,
+          top: 0
+        })
+      }
+
+      updateCache()
+
+      $(window)
+        .on('resize.theme.nav', updateCache)
+        .on('scroll.theme.nav', measure)
+
+      $('body').scrollspy({
+        target: '#markdown-toc',
+        children: 'li > a'
+      })
+
+      setTimeout(function () {
+        $('body').scrollspy('refresh')
+      }, 1000)
+    }
+  }
+})
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ })
 /******/ ]);
