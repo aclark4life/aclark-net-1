@@ -399,3 +399,5 @@ webpack:
 	rm -rf $(PROJECT)/$(APP)/static/webpack_bundles
 	./node_modules/.bin/webpack
 	git add $(PROJECT)/$(APP)/static/webpack_bundles
+d:
+	eb deploy
