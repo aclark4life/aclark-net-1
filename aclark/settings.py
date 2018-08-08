@@ -156,6 +156,8 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 GEOIP_PATH = BASE_DIR
 NOCAPTCHA = True
 RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTCHA_PUBLIC_KEY', '')
