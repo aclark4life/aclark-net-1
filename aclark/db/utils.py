@@ -370,7 +370,10 @@ def get_page_items(**kwargs):
             for time in times:
                 message += '- %s, %s hour(s).\n' % (time.log, time.hours)
             context['email_message'] = message
-            context['email_subject'] = '%s for %s' % (doc_type, client_name)
+            if doc_type == 'Task Order':
+                context['email_subject'] = '%s for %s' % (doc_type, company_name)
+            else:
+                context['email_subject'] = '%s for %s' % (doc_type, client_name)
         if model_name == 'file':
             file_obj = get_object_or_404(model, pk=pk)
             context['doc_type'] = model_name
