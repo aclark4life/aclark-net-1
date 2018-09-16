@@ -495,7 +495,7 @@ def note_view(request, pk=None):
             else:
                 filename = 'note-%s.pdf' % pk
             return render_pdf(
-                context, filename=filename, template='table_note.html')
+                context, filename=filename, template='note_export.html')
         return render(request, 'note_view.html', context)
 
 
