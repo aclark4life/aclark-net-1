@@ -488,14 +488,20 @@ def note_view(request, pk=None):
     else:
         context = get_page_items(
             app_settings_model=SettingsApp, model=Note, pk=pk, request=request)
+        title = context['item'].title
         if context['pdf']:
-            title = context['item'].title
             if title:
                 filename = '%s.pdf' % title
             else:
                 filename = 'note-%s.pdf' % pk
             return render_pdf(
                 context, filename=filename, template='note_export.html')
+        elif context['mail']:
+            message = note.note
+            subject = title
+            # doc_type = context['doc_type']
+            mail_send(message=message, subject=subject)
+            messages.add_message(request, messages.INFO, '%s sent!' % doc_type)
         return render(request, 'note_view.html', context)
 
 
