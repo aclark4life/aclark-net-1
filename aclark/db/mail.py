@@ -70,6 +70,10 @@ def mail_send(**kwargs):
     """
     mail_from = kwargs.get('mail_from', 'aclark@aclark.net')
     mail_to = kwargs.get('mail_to', 'aclark@aclark.net')
+    html_message = kwargs.get('html_message', '<h1>Test</h1>')
     message = kwargs.get('message', 'test')
     subject = kwargs.get('subject', 'test')
-    send_mail(subject, message, mail_from, (mail_to, ), fail_silently=False)
+    if html_message:
+        send_mail(subject, message, mail_from, (mail_to, ), fail_silently=False, html_message=html_message)
+    else:
+        send_mail(subject, message, mail_from, (mail_to, ), fail_silently=False)

@@ -8,6 +8,7 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
+from django.template.loader import render_to_string
 from faker import Faker
 from rest_framework import viewsets
 from .forms import AdminProfileForm
@@ -498,9 +499,11 @@ def note_view(request, pk=None):
                 context, filename=filename, template='note_export.html')
         elif context['mail']:
             message = note.note
+            # https://stackoverflow.com/a/16335483
+            html_message = render_to_string('note_view.html', context)
             subject = title
             doc_type = 'note'
-            mail_send(message=message, subject=subject)
+            mail_send(html_message=html_message, message=message, subject=subject)
             messages.add_message(request, messages.INFO, '%s sent!' % doc_type)
         return render(request, 'note_view.html', context)
 
