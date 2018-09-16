@@ -500,7 +500,7 @@ def note_view(request, pk=None):
         elif context['mail']:
             message = note.note
             # https://stackoverflow.com/a/16335483
-            html_message = render_to_string('note_view.html', context)
+            html_message = render_to_string('note_export.html', context)
             subject = title
             doc_type = 'note'
             mail_send(html_message=html_message, message=message, subject=subject)
