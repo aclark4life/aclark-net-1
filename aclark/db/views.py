@@ -499,7 +499,7 @@ def note_view(request, pk=None):
         elif context['mail']:
             message = note.note
             subject = title
-            # doc_type = context['doc_type']
+            doc_type = 'note'
             mail_send(message=message, subject=subject)
             messages.add_message(request, messages.INFO, '%s sent!' % doc_type)
         return render(request, 'note_view.html', context)
