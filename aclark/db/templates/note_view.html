@@ -22,11 +22,7 @@
           {% if item.note %}
           <div class="row">
             <div class="col-md-12">
-              <div class="card">
-                <div class="card-block">
-                  <div class="card-text p-3">{{ item.note|safe }}</div>
-                </div>
-              </div>
+              <p class="p-3">{{ item.note|safe }}</p>
             </div>
           </div>
           {% endif %}
