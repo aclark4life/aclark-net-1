@@ -12,13 +12,13 @@
 {% endblock %}
 
 {% block db_start %}
-{% if not request.user.is_anonymous %} <div class="bg-white text-dark p-3 col-md-10 offset-md-1 mt-5 rounded mt-5"> {% endif %}
+{% if not request.user.is_anonymous %} <div class="p-3 col-md-10 offset-md-1 mt-5 rounded mt-5"> {% endif %}
 {% endblock %}
 
 {% include 'search.html' %}
 
 {% block content %}
-  <div class="block-xs-middle pb-5">
+  <div class="block-xs-middle pb-5"> 
     <div class="container">
       <div class="row">
         <div class="col-sm-10 col-lg-6">
