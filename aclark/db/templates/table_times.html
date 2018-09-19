@@ -37,25 +37,3 @@
               {% endfor %}
             </tbody>
           </table>
-          <div class="row">
-            <div class="col-3 offset-9 mt-3">
-              {% if users or total_hours %}<h4>Hours</h4>{% endif %}
-              {% if users %}
-              <h5>User</h5>
-              <ul style="list-style: none">
-                {% for user in users.items %}
-                  <li><strong><i class="fa fa-arrow-right"></i> {{ user.0 }}</strong>: {{ user.1 }}</li>
-                {% endfor %}
-              {% endif %}
-              </ul>
-              {% if total_hours_by_proj %}
-              <h5>Project</h5>
-              <ul style="list-style: none">
-                {% for project in total_hours_by_proj.values %}
-                  <li><strong><i class="fa fa-arrow-right"></i> {{ project.name }}</strong>: {{ project.hours }}</li>
-                {% endfor %}
-              </ul>
-              <strong>Total:</strong> {{ total_hours }}
-              {% endif %}
-            </div>
-          </div>
