@@ -8,7 +8,7 @@ from functools import reduce
 from operator import or_ as OR
 from .fields import get_fields
 from .form import get_form
-from .geo import get_geo_ip_data
+# from .geo import get_geo_ip_data
 from .mail import mail_send
 from .misc import has_profile
 from .obj import obj_process
@@ -371,9 +371,11 @@ def get_page_items(**kwargs):
                 message += '- %s, %s hour(s).\n' % (time.log, time.hours)
             context['email_message'] = message
             if doc_type == 'Task Order':
-                context['email_subject'] = '%s for %s' % (doc_type, company_name)
+                context['email_subject'] = '%s for %s' % (doc_type,
+                                                          company_name)
             else:
-                context['email_subject'] = '%s for %s' % (doc_type, client_name)
+                context['email_subject'] = '%s for %s' % (doc_type,
+                                                          client_name)
         if model_name == 'file':
             file_obj = get_object_or_404(model, pk=pk)
             context['doc_type'] = model_name
@@ -523,7 +525,7 @@ def get_page_items(**kwargs):
                 context['total_hours_by_proj'] = total_hours_by_proj
                 # Location
                 ip_address = request.META.get('HTTP_X_REAL_IP')
-                context['geo_ip_data'] = get_geo_ip_data(request)
+                # context['geo_ip_data'] = get_geo_ip_data(request)
                 context['ip_address'] = ip_address
     return context
 

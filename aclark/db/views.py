@@ -503,7 +503,8 @@ def note_view(request, pk=None):
             html_message = render_to_string('note_export.html', context)
             subject = title
             doc_type = 'note'
-            mail_send(html_message=html_message, message=message, subject=subject)
+            mail_send(
+                html_message=html_message, message=message, subject=subject)
             messages.add_message(request, messages.INFO, '%s sent!' % doc_type)
         return render(request, 'note_view.html', context)
 
