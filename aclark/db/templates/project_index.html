@@ -9,10 +9,12 @@
             </div>
           </div>
 {% with items=items.projects %}
+{% include 'search.html' %}
 {% include 'pagination.html' %}
 {% endwith %}
 {% include 'table_projects.html' %}
 {% with items=items.projects %}
+{% include 'search.html' %}
 {% include 'pagination.html' %}
 {% endwith %}
 {% endblock %}

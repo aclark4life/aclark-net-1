@@ -9,6 +9,7 @@
             </div>
           </div>
 {% with items=items.tasks %}
+{% include 'search.html' %}
 {% include 'pagination.html' %}
 {% endwith %}
           <table data-toggle="table" data-classes="table table-no-bordered table-hover table-striped">
@@ -38,6 +39,7 @@
             </tbody>
           </table>
 {% with items=items.tasks %}
+{% include 'search.html' %}
 {% include 'pagination.html' %}
 {% endwith %}
 {% endblock %}

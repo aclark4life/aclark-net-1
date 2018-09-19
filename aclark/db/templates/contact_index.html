@@ -10,12 +10,14 @@
           </div>
 
 {% with items=items.contacts %}     
+{% include 'search.html' %}
 {% include 'pagination.html' %}
 {% endwith %}
 
 {% include 'table_contacts.html' %}
 
 {% with items=items.contacts %}     
+{% include 'search.html' %}
 {% include 'pagination.html' %}
 {% endwith %}
 

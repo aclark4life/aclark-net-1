@@ -10,10 +10,12 @@
             </div>
           </div>
 {% with items=items.estimates %}     
+{% include 'search.html' %}
 {% include 'pagination.html' %}
 {% with item_type='estimate' %}
 {% include 'table_invoices.html' %}
 {% endwith %}
+{% include 'search.html' %}
 {% include 'pagination.html' %}
 {% endwith %}
 {% endblock %}
