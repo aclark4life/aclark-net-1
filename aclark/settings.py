@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'captcha',
     'rest_framework',
+    'import_export',
 
 ]
 
