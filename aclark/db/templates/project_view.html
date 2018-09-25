@@ -57,7 +57,7 @@
           <!------------------------------------------------------------------------------------>
           <div class="row">
             <div class="col-12">
-              <h2>Current</h2>
+              <h2>Totals</h2>
 {% include 'table_totals.html' %}
             </div>
           </div>
@@ -95,13 +95,6 @@
             </div>
             <div class="col-12 py-1">
 {% include 'table_users.html' %}
-            </div>
-          </div>
-          <!------------------------------------------------------------------------------------>
-          <div class="row">
-            <div class="col-12 py-1">
-              <h2><a href="{% url 'time_index' %}" class="text-dark">Times</a></h2> 
-{% include 'table_times.html' %}
             </div>
           </div>
 {% endblock %}
