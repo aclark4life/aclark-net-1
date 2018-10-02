@@ -6,8 +6,8 @@
                 {% for project in total_hours_by_proj.values %}
                   <li><strong><i class="fa fa-arrow-right"></i> {{ project.name }}</strong>: {{ project.hours }}</li>
                   <li><ul style="list-style: none">
-                    {% for user, time in project.users.items %}
-                    <li>{{ user }}: {{ time }}</li>
+                    {% for user in project.users.items %}
+                    <li>{{ user.0 }}: {{ user.1 }}</li>
                     {% endfor %}
                     </ul>
                   </li>
