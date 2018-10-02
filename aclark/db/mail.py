@@ -78,7 +78,7 @@ def mail_send(**kwargs):
             subject,
             message,
             mail_from, (mail_to, ),
-            fail_silently=False,
+            fail_silently=True,
             html_message=html_message)
     else:
         send_mail(

@@ -467,7 +467,7 @@ def get_page_items(**kwargs):
                 ], exclude_fields=exclude_fields)  # table_items.html
             context['projects'] = projects
             context['times'] = times
-    else:  # no model or obj (i.e. home)
+    else:  # no model or obj (e.g. home)
         if request:
             if request.user.is_authenticated:
                 # Items
@@ -476,6 +476,9 @@ def get_page_items(**kwargs):
                 projects = project_model.objects.filter(
                     active=True, hidden=False)
                 projects = projects.order_by(*order_by['project'])
+                users = {}
+                for project in projects:
+                    users[project] = user_model.objects.filter(project=project)
                 if filter_by:
                     times = time_model.objects.filter(**filter_by['time'])
                 else:
@@ -485,6 +488,7 @@ def get_page_items(**kwargs):
                 items = set_items('invoice', items=invoices)
                 items = set_items('project', items=projects, _items=items)
                 items = set_items('time', items=times, _items=items)
+                items = set_items('user', items=users, _items=items)
                 context['items'] = items
                 # Paginate items
                 page_num = get_query_string(request, 'page')
@@ -502,7 +506,6 @@ def get_page_items(**kwargs):
                 total_cost = get_total(field='cost', projects=projects)['cost']
                 total_hours = get_total(
                     field='hours', times=times.filter(invoiced=False))['hours']
-
                 # XXX Move to get_total
                 total_hours_by_proj = {}
                 for project in request.user.project_set.values():

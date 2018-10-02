@@ -352,6 +352,7 @@ def home(request):
         project_model=Project,
         time_model=Time,
         report_model=Report,
+        user_model=User,
         request=request)
     return render(request, 'db/home.html', context)
 
