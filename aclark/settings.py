@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'captcha',
     'rest_framework',
     'import_export',
-
 ]
 
 MIDDLEWARE = [

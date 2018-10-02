@@ -512,8 +512,15 @@ def get_page_items(**kwargs):
                     if project['active']:
                         total_hours_by_proj[project_id] = {}
                         total_hours_by_proj[project_id]['name'] = project_name
-                        total_hours_by_proj[project_id]['hours'] = get_total(field='hours', times=times.filter(project=project_id, invoiced=False))['hours']
-                        total_hours_by_proj[project_id]['users'] = get_total(field='hours', times=times.filter(project=project_id), team=user_model.objects.filter(project=project_id))['users']
+                        total_hours_by_proj[project_id]['hours'] = get_total(
+                            field='hours',
+                            times=times.filter(
+                                project=project_id, invoiced=False))['hours']
+                        total_hours_by_proj[project_id]['users'] = get_total(
+                            field='hours',
+                            times=times.filter(project=project_id),
+                            team=user_model.objects.filter(
+                                project=project_id))['users']
                 context['net'] = total_amount - total_cost
                 context['cost'] = total_cost
                 context['gross'] = total_amount
