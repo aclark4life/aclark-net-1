@@ -476,9 +476,6 @@ def get_page_items(**kwargs):
                 projects = project_model.objects.filter(
                     active=True, hidden=False)
                 projects = projects.order_by(*order_by['project'])
-                users = {}
-                for project in projects:
-                    users[project] = user_model.objects.filter(project=project)
                 if filter_by:
                     times = time_model.objects.filter(**filter_by['time'])
                 else:
@@ -488,7 +485,6 @@ def get_page_items(**kwargs):
                 items = set_items('invoice', items=invoices)
                 items = set_items('project', items=projects, _items=items)
                 items = set_items('time', items=times, _items=items)
-                items = set_items('user', items=users, _items=items)
                 context['items'] = items
                 # Paginate items
                 page_num = get_query_string(request, 'page')
@@ -516,11 +512,8 @@ def get_page_items(**kwargs):
                     if project['active']:
                         total_hours_by_proj[project_id] = {}
                         total_hours_by_proj[project_id]['name'] = project_name
-                        total_hours_by_proj[project_id]['hours'] = get_total(
-                            field='hours',
-                            times=times.filter(
-                                project=project_id, invoiced=False))['hours']
-
+                        total_hours_by_proj[project_id]['hours'] = get_total(field='hours', times=times.filter(project=project_id, invoiced=False))['hours']
+                        total_hours_by_proj[project_id]['users'] = get_total(field='hours', times=times.filter(project=project_id), team=user_model.objects.filter(project=project_id))['users']
                 context['net'] = total_amount - total_cost
                 context['cost'] = total_cost
                 context['gross'] = total_amount

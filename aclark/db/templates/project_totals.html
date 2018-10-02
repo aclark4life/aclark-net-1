@@ -1,20 +1,17 @@
          <div class="row">
             <div class="col-3 offset-9 mt-3">
-                {{ items }}
-              {% if items.users or total_hours %}<h4>Hours</h4>{% endif %}
-              {% if items.users %}
-              <h5>User</h5>
-              <ul style="list-style: none">
-                {% for user in items.users.values %}
-                  <li><strong><i class="fa fa-arrow-right"></i> {{ user.0 }}</strong>: {{ user.1 }}</li>
-                {% endfor %}
-              {% endif %}
-              </ul>
+              {{ total_hours_by_proj }}
               {% if total_hours_by_proj %}
               <h5>Project</h5>
               <ul style="list-style: none">
                 {% for project in total_hours_by_proj.values %}
                   <li><strong><i class="fa fa-arrow-right"></i> {{ project.name }}</strong>: {{ project.hours }}</li>
+                  <li><ul style="list-style: none">
+                    {% for user, time in project.users.items %}
+                    <li>{{ user }}: {{ time }}</li>
+                    {% endfor %}
+                    </ul>
+                  </li>
                 {% endfor %}
               </ul>
               <strong>Total:</strong> {{ total_hours }}
