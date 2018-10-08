@@ -3,18 +3,23 @@ from django.db.models import Sum
 from decimal import Decimal
 
 
-def get_total(field=None, invoices=None, projects=None, times=None, team=None):
+def get_total(**kwargs):
     """
-    Get amount, cost, hours based on object and field requested.
+    Given object or field, return total currency or time
     """
+    field = kwargs.get('field')
+    invoices = kwargs.get('invoices')
+    projects = kwargs.get('projects')
+    times = kwargs.get('times')
+    team = kwargs.get('team')
     total = {}
-    if field == 'amount' and invoices:
+    if field == 'amount' and invoices:  # Currency
         amount = invoices.aggregate(amount=Sum(F('amount')))['amount']
         total['amount'] = amount
-    elif field == 'cost' and projects:
+    elif field == 'cost' and projects:  # Currency
         cost = projects.aggregate(cost=Sum(F('cost')))['cost']
         total['cost'] = cost
-    elif field == 'hours' and times:
+    elif field == 'hours' and times:  # Time
         total['hours'] = 0
         total_hours = times.aggregate(hours=Sum(F('hours')))['hours']
         if total_hours:
