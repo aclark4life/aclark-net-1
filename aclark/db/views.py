@@ -251,7 +251,7 @@ def estimate_view(request, pk=None):
         company_name = get_company_name(SettingsCompany)
         filename = '%s_%s_%s.pdf' % (company_name, 'estimate'.upper(), pk)
         return render_pdf(
-            context, filename=filename, template='table_invoice.html')
+            context, filename=filename, template='invoice_export.html')
     elif context['mail']:
         message = context['email_message']
         subject = context['email_subject']
@@ -371,7 +371,7 @@ def invoice_view(request, pk=None):
         company_name = get_company_name(SettingsCompany)
         filename = '%s_%s_%s.pdf' % (company_name, 'invoice'.upper(), pk)
         return render_pdf(
-            context, filename=filename, template='table_invoice.html')
+            context, filename=filename, template='invoice_export.html')
     else:
         return render(request, 'invoice_view.html', context)
 
