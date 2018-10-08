@@ -375,8 +375,12 @@ def get_page_items(**kwargs):
             contacts = contact_model.objects.all()
             estimates = estimate_model.objects.filter(project=project)
             invoices = invoice_model.objects.filter(project=project)
-            times = time_model.objects.filter(
-                estimate=None, project=project, task__isnull=False)
+            times = totals.set_total(
+                time_model.objects.filter(
+                    estimate=None,
+                    project=project,
+                    task__isnull=False,
+                    invoiced=False))
             if order_by:
                 times = times.order_by(*order_by['time'])
                 invoices = invoices.order_by(*order_by['invoice'])
@@ -386,10 +390,10 @@ def get_page_items(**kwargs):
             items = set_items('invoice', items=invoices, _items=items)
             items = set_items('time', items=times, _items=items)
             items = set_items('user', items=users, _items=items)
-            times = totals.set_total(
-                times.filter(invoiced=False), project=project)
-            total_amount = totals.get_total(
-                field='amount', invoices=invoices)['amount']
+            # times = totals.set_total(
+            #     times.filter(invoiced=False), project=project)
+            # total_amount = totals.get_total(
+            #     field='amount', invoices=invoices)['amount']
             context['cost'] = float(project.cost)
             context['gross'] = float(project.amount)
             context['item'] = project
