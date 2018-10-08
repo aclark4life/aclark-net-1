@@ -390,10 +390,6 @@ def get_page_items(**kwargs):
             items = set_items('invoice', items=invoices, _items=items)
             items = set_items('time', items=times, _items=items)
             items = set_items('user', items=users, _items=items)
-            # times = totals.set_total(
-            #     times.filter(invoiced=False), project=project)
-            # total_amount = totals.get_total(
-            #     field='amount', invoices=invoices)['amount']
             context['cost'] = float(project.cost)
             context['gross'] = float(project.amount)
             context['item'] = project
