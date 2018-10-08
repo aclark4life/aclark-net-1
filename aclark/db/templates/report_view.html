@@ -19,7 +19,7 @@
           </div>
 {% include 'delete_form.html' %}
 {% with cost=item.cost gross=item.gross net=item.net %}
-{% include 'table_totals.html' %}
+{% include 'total_table.html' %}
 {% endwith %}
 {% with items=items.invoices view_url='invoice_view' edit_url='invoice_edit' item_type='invoice' %}
 {% include 'invoice_table.html' %}
