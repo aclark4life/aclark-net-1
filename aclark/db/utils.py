@@ -8,7 +8,6 @@ from functools import reduce
 from operator import or_ as OR
 from .fields import get_fields
 from .form import get_form
-# from .geo import get_geo_ip_data
 from .mail import mail_send
 from .misc import has_profile
 from .obj import obj_process
@@ -190,9 +189,6 @@ def get_index_items(**kwargs):
         items = items.order_by(*order_by)
     if not request.user.is_authenticated:  # Don't show items to anon
         items = []
-    # if model_name == 'time':  # Per model extra
-    #     context['total_hours'] = totals.get_total(
-    #         field='hours', times=items)['hours']
     if paginated:  # Paginate if paginated
         page_size = get_setting(request, 'page_size')
         items = paginate(items, page_num=page_num, page_size=page_size)
@@ -353,31 +349,9 @@ def get_page_items(**kwargs):
             if order_by:
                 times = times.order_by(*order_by['time'])
             times = totals.set_total(times, estimate=estimate)
-            # total_hours = totals.get_total(field='hours',
-            # times=times)['hours']
             context['doc_type'] = doc_type
             context['entries'] = times
             context['item'] = estimate
-            # context['total_hours'] = total_hours
-            # task_rate = '0.00'  # Export
-            # client_name = 'Client'
-            # if estimate.task:
-            #     task_rate = estimate.task.rate
-            # if estimate.client:
-            #     client_name = estimate.client.name
-            # message = '%s hours @ %s%s per hour from %s to %s = %s%s.\n\n'
-            # % (
-            #     total_hours, currency_symbol, task_rate, estimate.start_date,
-            #     estimate.end_date, currency_symbol, estimate.amount)
-            # for time in times:
-            #     message += '- %s, %s hour(s).\n' % (time.log, time.hours)
-            # context['email_message'] = message
-            # if doc_type == 'Task Order':
-            #     context['email_subject'] = '%s for %s' % (doc_type,
-            #                                               company_name)
-            # else:
-            #     context['email_subject'] = '%s for %s' % (doc_type,
-            #                                               client_name)
         if model_name == 'file':
             file_obj = get_object_or_404(model, pk=pk)
             context['doc_type'] = model_name
@@ -388,13 +362,11 @@ def get_page_items(**kwargs):
             times = times.order_by(*order_by['time'])
             times = totals.set_total(times, invoice=invoice)
             last_payment_date = invoice.last_payment_date
-            # total_hours = totals.get_total(field='hours', times=times)['hours']
             context['doc_type'] = model_name
             context['entries'] = times
             context['item'] = invoice
             context['invoice'] = True
             context['last_payment_date'] = last_payment_date
-            # context['total_hours'] = total_hours
         elif model_name == 'note':
             item = get_object_or_404(model, pk=pk)
             context['item'] = item
@@ -416,8 +388,6 @@ def get_page_items(**kwargs):
             items = set_items('user', items=users, _items=items)
             times = totals.set_total(
                 times.filter(invoiced=False), project=project)
-            # total_hours = totals.get_total(
-            #     field='hours', times=times, team=users)
             total_amount = totals.get_total(
                 field='amount', invoices=invoices)['amount']
             context['cost'] = float(project.cost)
@@ -425,10 +395,6 @@ def get_page_items(**kwargs):
             context['item'] = project
             context['items'] = items
             context['net'] = float(project.amount) - float(project.cost)
-            # context['total_hours'] = total_hours['hours']
-            # context['total_amount'] = total_amount
-            # if 'users' in total_hours:
-            #     context['users'] = total_hours['users']
         elif model_name == 'report':
             report = get_object_or_404(model, pk=pk)
             reports = model.objects.filter(active=True)
@@ -505,20 +471,11 @@ def get_page_items(**kwargs):
                     field='amount', invoices=invoices)['amount']
                 total_cost = totals.get_total(
                     field='cost', projects=projects)['cost']
-                # total_hours = totals.get_total(
-                #     field='hours',
-                # times=times.filter(invoiced=False))['hours']
-                # total_hours_project = totals.get_total(
-                #     field='hours',
-                # times=times.filter(invoiced=False))['hours']
                 context['net'] = total_amount - total_cost
                 context['cost'] = total_cost
                 context['gross'] = total_amount
-                # context['total_hours'] = total_hours
-                # context['total_hours_project'] = total_hours_project
                 # Location
                 ip_address = request.META.get('HTTP_X_REAL_IP')
-                # context['geo_ip_data'] = get_geo_ip_data(request)
                 context['ip_address'] = ip_address
     return context
 
