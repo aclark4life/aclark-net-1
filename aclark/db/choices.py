@@ -31,7 +31,7 @@ ICON_CHOICES = (
 )
 
 TEMPLATE_CHOICES = (
-    ('html_mail.html', 'Mail'),
+    ('mail_html.html', 'Mail'),
     ('cerberus-fluid.html', 'Fluid'),
     ('cerberus-hybrid.html', 'Hybrid'),
     ('cerberus-responsive.html', 'Responsive'),
