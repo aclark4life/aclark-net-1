@@ -372,6 +372,7 @@ def get_page_items(**kwargs):
             context['item'] = item
         elif model_name == 'project':
             project = get_object_or_404(model, pk=pk)
+            context['item'] = project
             contacts = contact_model.objects.all()
             estimates = estimate_model.objects.filter(project=project)
             invoices = invoice_model.objects.filter(project=project)
@@ -390,10 +391,9 @@ def get_page_items(**kwargs):
             items = set_items('invoice', items=invoices, _items=items)
             items = set_items('time', items=times, _items=items)
             items = set_items('user', items=users, _items=items)
+            context['items'] = items
             context['cost'] = float(project.cost)
             context['gross'] = float(project.amount)
-            context['item'] = project
-            context['items'] = items
             context['net'] = float(project.amount) - float(project.cost)
         elif model_name == 'report':
             report = get_object_or_404(model, pk=pk)
