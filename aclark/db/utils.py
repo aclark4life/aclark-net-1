@@ -388,13 +388,13 @@ def get_page_items(**kwargs):
             times = times.order_by(*order_by['time'])
             times = totals.set_total(times, invoice=invoice)
             last_payment_date = invoice.last_payment_date
-            total_hours = totals.get_total(field='hours', times=times)['hours']
+            # total_hours = totals.get_total(field='hours', times=times)['hours']
             context['doc_type'] = model_name
             context['entries'] = times
             context['item'] = invoice
             context['invoice'] = True
             context['last_payment_date'] = last_payment_date
-            context['total_hours'] = total_hours
+            # context['total_hours'] = total_hours
         elif model_name == 'note':
             item = get_object_or_404(model, pk=pk)
             context['item'] = item
