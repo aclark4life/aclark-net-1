@@ -71,8 +71,12 @@ def set_total(times, **kwargs):
                 for user in hours['users']:
                     rate = user.profile.rate
                     if rate:
-                        project_cost += rate * Decimal(hours['users'][user])
+                        user_hours = Decimal(hours['users'][user])
+                        project_cost += rate * user_hours
+                        user.hours = user_hours
+                        user.save()
         project.amount = '%.2f' % invoice_amount
         project.cost = '%.2f' % project_cost
+        project.hours = hours
         project.save()
     return times

@@ -381,7 +381,8 @@ def get_page_items(**kwargs):
                     estimate=None,
                     project=project,
                     task__isnull=False,
-                    invoiced=False))
+                    invoiced=False),
+                project=project)
             if order_by:
                 times = times.order_by(*order_by['time'])
                 invoices = invoices.order_by(*order_by['invoice'])

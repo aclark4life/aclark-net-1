@@ -7,17 +7,20 @@
                 <th data-field="fullname" data-sortable="true">Full Name</th>
                 <th data-field="email-address" data-sortable="true">Email</th>
                 <th data-field="username" data-sortable="true">Username</th>
+                {% if model_name == 'project' %}<th data-field="hours" data-sortable="true">Hours</th>{% endif %}
               </tr>
             </thead>
             <tbody>
-            {% for item in items.users %}
+            {% for user in item.hours.users %}
               <tr>
-                <td>{% if item.profile %}<form action="{% url 'user_edit' item.pk %}" method="post">{% csrf_token %}<input type="hidden" value="off" name="checkbox-active"><input type="checkbox" value="on" name="checkbox-active" {% if item.profile.active %} checked {% endif %} onChange="this.form.submit()"></form>{% endif %}</td>
-                <td>{{ item.profile.active }}</td>
-                <td>{{ item.pk }}</td>
-                <td>{{ item.get_full_name }}</td>
-                <td>{{ item.email }}</td>
-                <td><a class="text-{{ icon_color }}" href="{% url 'user_view' item.pk %}">{{ item.profile.get_username }}</a> {% if item.profile %}<a class="text-{{ icon_color }}" href="{% url 'user_edit' item.pk %}"><i class="fas fa-pencil-alt fa-{{ icon_size }}" style="vertical-align: middle"></i></a>{% endif %}</td>
+                <td>{% if user.profile %}<form action="{% url 'user_edit' user.pk %}" method="post">{% csrf_token %}<input type="hidden" value="off" name="checkbox-active"><input type="checkbox" value="on" name="checkbox-active" {% if user.profile.active %} checked {% endif %} onChange="this.form.submit()"></form>{% endif %}</td>
+                <td>{{ user.profile.active }}</td>
+                <td>{{ user.pk }}</td>
+                <td>{{ user.get_full_name }}</td>
+                <td>{{ user.email }}</td>
+                <td><a class="text-{{ icon_color }}" href="{% url 'user_view' user.pk %}">{{ user.profile.get_username }}</a> {% if user.profile %}<a class="text-{{ icon_color }}" href="{% url 'user_edit' user.pk %}"><i class="fas fa-pencil-alt fa-{{ icon_size }}" style="vertical-align: middle"></i></a>{% endif %}</td>
+
+                <td>{{ user.hours }}</td>
               </tr>
             {% endfor %}
             </tbody>
