@@ -47,15 +47,16 @@ def set_total(times, **kwargs):
     invoice = kwargs.get('invoice')
     project = kwargs.get('project')
     invoice_amount = 0
-    time_amount = 0
+    entry_amount = 0
+    project_cost = 0
     for time_entry in times:
         hours = time_entry.hours
         if time_entry.task:
             rate = time_entry.task.rate
             if rate:
-                time_amount = rate * hours  # Currency
-        time_entry.amount = '%.2f' % time_amount
-        invoice_amount += time_amount
+                entry_amount = rate * hours  # Currency
+        time_entry.amount = '%.2f' % entry_amount
+        invoice_amount += entry_amount
     if invoice:
         invoice.amount = '%.2f' % invoice_amount
         invoice.save()
@@ -63,7 +64,6 @@ def set_total(times, **kwargs):
         estimate.amount = '%.2f' % invoice_amount
         estimate.save()
     elif project:
-        cost = 0
         team = project.team.all()
         if team:
             hours = get_total(field='hours', times=times, team=team)
@@ -71,8 +71,8 @@ def set_total(times, **kwargs):
                 for user in hours['users']:
                     rate = user.profile.rate
                     if rate:
-                        cost += rate * Decimal(hours['users'][user])
+                        project_cost += rate * Decimal(hours['users'][user])
         project.amount = '%.2f' % invoice_amount
-        project.cost = '%.2f' % cost
+        project.cost = '%.2f' % project_cost
         project.save()
     return times
