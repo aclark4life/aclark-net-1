@@ -691,16 +691,16 @@ def settings_app_edit(request, pk=None):
 
 
 @staff_member_required
-def settings_company(request):
+def company_view(request):
     """
     """
     context = get_page_items(
         app_settings_model=SettingsApp, model=SettingsCompany, request=request)
-    return render(request, 'settings_company.html', context)
+    return render(request, 'company_view.html', context)
 
 
 @staff_member_required
-def settings_company_edit(request, pk=None):
+def company_edit(request, pk=None):
     """
     """
     return edit(

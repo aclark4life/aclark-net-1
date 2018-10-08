@@ -91,11 +91,8 @@ urlpatterns = [
         views.settings_app_edit,
         name='settings_app_edit'),
     url(r'^settings/app$', views.settings_app, name='settings_app'),
-    url(r'^settings/company/edit$',
-        views.settings_company_edit,
-        name='settings_company_edit'),
-    url(r'^settings/company$', views.settings_company,
-        name='settings_company'),
+    url(r'^settings/company/edit$', views.company_edit, name='company_edit'),
+    url(r'^settings/company$', views.company_view, name='company_view'),
     # Social
     url('', include('social_django.urls', namespace='social')),
     # Task
