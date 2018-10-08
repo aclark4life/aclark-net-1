@@ -370,11 +370,3 @@ class TimeForm(forms.ModelForm):
         widgets = {
             'hours': forms.widgets.NumberInput(attrs={'class': 'col-2'}),
         }
-
-    # date = forms.DateField(
-    #     widget=forms.DateInput(attrs={
-    #         'type': 'date',
-    #         'class': 'col-2'
-    #     }),
-    #     required=True,
-    #     initial=timezone.now())
