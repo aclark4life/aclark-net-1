@@ -1,10 +1,10 @@
         <h3>Hours</h3>
          <div class="row">
             <div class="col-3 offset-9 mt-3">
-              {% if total_hours_by_proj %}
+              {% if total_hours.projects %}
               <h5>Project</h5>
               <ul style="list-style: none">
-                {% for project in total_hours_by_proj.values %}
+                {% for project in total_hours.projects.values %}
                   <li><strong><i class="fa fa-arrow-right"></i> {{ project.name }}</strong>: {{ project.hours }}</li>
                   <li><ul style="list-style: none">
                     {% for user in project.users.items %}
@@ -14,7 +14,7 @@
                   </li>
                 {% endfor %}
               </ul>
-              <strong>Total:</strong> {{ total_hours }}
+              <strong>Total:</strong> {{ total_hours.total }}
               {% endif %}
             </div>
           </div>

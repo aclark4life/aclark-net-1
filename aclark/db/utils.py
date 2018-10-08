@@ -190,9 +190,9 @@ def get_index_items(**kwargs):
         items = items.order_by(*order_by)
     if not request.user.is_authenticated:  # Don't show items to anon
         items = []
-    if model_name == 'time':  # Per model extra
-        context['total_hours'] = totals.get_total(
-            field='hours', times=items)['hours']
+    # if model_name == 'time':  # Per model extra
+    #     context['total_hours'] = totals.get_total(
+    #         field='hours', times=items)['hours']
     if paginated:  # Paginate if paginated
         page_size = get_setting(request, 'page_size')
         items = paginate(items, page_num=page_num, page_size=page_size)
