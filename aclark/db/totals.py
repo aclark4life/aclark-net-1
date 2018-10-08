@@ -40,10 +40,13 @@ def get_total(**kwargs):
     return total
 
 
-def set_total(times, estimate=None, invoice=None, project=None):
+def set_total(times, **kwargs):
     """
-    Set amount, cost totals based on object type.
+    Given times and object, set total currency on object
     """
+    estimate = kwargs.get('estimate')
+    invoice = kwargs.get('invoice')
+    project = kwargs.get('project')
     invoice_amount = 0
     time_amount = 0
     for time_entry in times:
@@ -51,7 +54,7 @@ def set_total(times, estimate=None, invoice=None, project=None):
         if time_entry.task:
             rate = time_entry.task.rate
             if rate:
-                time_amount = rate * hours
+                time_amount = rate * hours  # Currency
         time_entry.amount = '%.2f' % time_amount
         invoice_amount += time_amount
     if invoice:
