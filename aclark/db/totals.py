@@ -13,6 +13,9 @@ def get_total(**kwargs):
     times = kwargs.get('times')
     team = kwargs.get('team')
     total = {}
+    total['cost'] = 0
+    total['hours'] = 0
+    total['amount'] = 0
     if field == 'amount' and invoices:  # Currency
         amount = invoices.aggregate(amount=Sum(F('amount')))['amount']
         total['amount'] = amount
@@ -33,10 +36,6 @@ def get_total(**kwargs):
                     hours=Sum(F('hours')))['hours']
                 if hours_user:
                     total['users'][user] = hours_user
-    else:
-        total['cost'] = 0
-        total['hours'] = 0
-        total['amount'] = 0
     return total
 
 
