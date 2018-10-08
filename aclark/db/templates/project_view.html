@@ -56,13 +56,6 @@
 {% include 'delete_form.html' %}
           <!------------------------------------------------------------------------------------>
           <div class="row">
-            <div class="col-12">
-              <h2>Totals</h2>
-{% include 'total_table.html' %}
-            </div>
-          </div>
-          <!------------------------------------------------------------------------------------>
-          <div class="row">
             <div class="col-12 py-1">
               <h2><a href="{% url 'invoice_index' %}" class="text-dark">Invoices</a></h2>
             </div>
@@ -90,6 +83,13 @@
             </div>
             <div class="col-12 py-1">
 {% include 'time_table.html' %}
+            </div>
+          </div>
+          <!------------------------------------------------------------------------------------>
+          <div class="row">
+            <div class="col-12">
+              <h2>Totals</h2>
+{% include 'total_table.html' %}
             </div>
           </div>
 {% endblock %}
