@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from .query import get_query_string
-from .total import get_total
+from .totals import get_total
 
 
 def get_form(**kwargs):

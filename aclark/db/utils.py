@@ -14,8 +14,7 @@ from .misc import has_profile
 from .obj import obj_process
 from .page import paginate
 from .query import get_query_string
-from .total import get_total
-from .total import set_total
+from . import totals
 
 fake = Faker()
 gravatar_url = 'https://www.gravatar.com/avatar/%s'
@@ -192,7 +191,8 @@ def get_index_items(**kwargs):
     if not request.user.is_authenticated:  # Don't show items to anon
         items = []
     if model_name == 'time':  # Per model extra
-        context['total_hours'] = get_total(field='hours', times=items)['hours']
+        context['total_hours'] = totals.get_total(
+            field='hours', times=items)['hours']
     if paginated:  # Paginate if paginated
         page_size = get_setting(request, 'page_size')
         items = paginate(items, page_num=page_num, page_size=page_size)
@@ -352,8 +352,8 @@ def get_page_items(**kwargs):
             times = time_model.objects.filter(estimate=estimate)
             if order_by:
                 times = times.order_by(*order_by['time'])
-            times = set_total(times, estimate=estimate)
-            total_hours = get_total(field='hours', times=times)['hours']
+            times = totals.set_total(times, estimate=estimate)
+            total_hours = totals.get_total(field='hours', times=times)['hours']
             context['doc_type'] = doc_type
             context['entries'] = times
             context['item'] = estimate
@@ -384,9 +384,9 @@ def get_page_items(**kwargs):
             invoice = get_object_or_404(model, pk=pk)
             times = time_model.objects.filter(estimate=None, invoice=invoice)
             times = times.order_by(*order_by['time'])
-            times = set_total(times, invoice=invoice)
+            times = totals.set_total(times, invoice=invoice)
             last_payment_date = invoice.last_payment_date
-            total_hours = get_total(field='hours', times=times)['hours']
+            total_hours = totals.get_total(field='hours', times=times)['hours']
             context['doc_type'] = model_name
             context['entries'] = times
             context['item'] = invoice
@@ -412,9 +412,11 @@ def get_page_items(**kwargs):
             items = set_items('invoice', items=invoices, _items=items)
             items = set_items('time', items=times, _items=items)
             items = set_items('user', items=users, _items=items)
-            times = set_total(times.filter(invoiced=False), project=project)
-            total_hours = get_total(field='hours', times=times, team=users)
-            total_amount = get_total(
+            times = totals.set_total(
+                times.filter(invoiced=False), project=project)
+            total_hours = totals.get_total(
+                field='hours', times=times, team=users)
+            total_amount = totals.get_total(
                 field='amount', invoices=invoices)['amount']
             context['cost'] = float(project.cost)
             context['gross'] = float(project.amount)
@@ -481,7 +483,7 @@ def get_page_items(**kwargs):
                 else:
                     times = time_model.objects.all()
                 times = times.order_by(*order_by['time'])
-                times = set_total(times)
+                times = totals.set_total(times)
                 items = set_items('invoice', items=invoices)
                 items = set_items('project', items=projects, _items=items)
                 items = set_items('time', items=times, _items=items)
@@ -497,10 +499,11 @@ def get_page_items(**kwargs):
                             page_num=page_num,
                             page_size=page_size)
                 # Totals
-                total_amount = get_total(
+                total_amount = totals.get_total(
                     field='amount', invoices=invoices)['amount']
-                total_cost = get_total(field='cost', projects=projects)['cost']
-                total_hours = get_total(
+                total_cost = totals.get_total(
+                    field='cost', projects=projects)['cost']
+                total_hours = totals.get_total(
                     field='hours', times=times.filter(invoiced=False))['hours']
                 # XXX Move to get_total
                 total_hours_by_proj = {}
@@ -512,15 +515,18 @@ def get_page_items(**kwargs):
                     if project['active']:
                         total_hours_by_proj[project_id] = {}
                         total_hours_by_proj[project_id]['name'] = project_name
-                        total_hours_by_proj[project_id]['hours'] = get_total(
-                            field='hours',
-                            times=times.filter(
-                                project=project_id, invoiced=False))['hours']
-                        total_hours_by_proj[project_id]['users'] = get_total(
-                            field='hours',
-                            times=times.filter(project=project_id),
-                            team=user_model.objects.filter(
-                                project=project_id))['users']
+                        total_hours_by_proj[project_id][
+                            'hours'] = totals.get_total(
+                                field='hours',
+                                times=times.filter(
+                                    project=project_id,
+                                    invoiced=False))['hours']
+                        total_hours_by_proj[project_id][
+                            'users'] = totals.get_total(
+                                field='hours',
+                                times=times.filter(project=project_id),
+                                team=user_model.objects.filter(
+                                    project=project_id))['users']
                 context['net'] = total_amount - total_cost
                 context['cost'] = total_cost
                 context['gross'] = total_amount
