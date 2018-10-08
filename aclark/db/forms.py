@@ -15,10 +15,10 @@ from .models import SettingsApp
 from .models import SettingsCompany
 from .models import Task
 from .models import Time
-from .models import DASHBOARD_ITEMS
 from django import forms
 from taggit.models import Tag
 from django.utils import timezone
+from . import choices
 
 
 class AdminProfileForm(forms.ModelForm):
@@ -32,7 +32,7 @@ class AdminProfileForm(forms.ModelForm):
         }
 
     dashboard_items = forms.MultipleChoiceField(
-        choices=DASHBOARD_ITEMS,
+        choices=choices.DASHBOARD_ITEMS,
         label='Dashboard Items',
         required=False,
         widget=forms.SelectMultiple(attrs={

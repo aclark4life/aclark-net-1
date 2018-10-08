@@ -8,58 +8,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 from solo.models import SingletonModel
 from taggit.managers import TaggableManager
 from uuid import uuid4
-
-# https://github.com/goinnn/django-multiselectfield
-COLOR_CHOICES = (
-    ('primary', 'Primary'),
-    ('secondary', 'Secondary'),
-    ('success', 'Success'),
-    ('danger', 'Danger'),
-    ('warning', 'Warning'),
-    ('info', 'Info'),
-    ('light', 'Light'),
-    ('dark', 'Dark'),
-    ('muted', 'Muted'),
-    ('white', 'White'),
-)
-
-DASHBOARD_ITEMS = (
-    ('times', 'Times'),
-    ('totals', 'Totals'),
-)
-
-EDITOR_CHOICES = (
-    ('ckeditor', 'CKEditor'),
-    ('tinymce', 'TinyMCE'),
-)
-
-ICON_CHOICES = (
-    ('1x', 'Small'),
-    ('2x', 'Medium'),
-    ('3x', 'Large'),
-    ('4x', 'XL'),
-    ('5x', 'XXL'),
-)
-
-TEMPLATE_CHOICES = (
-    ('html_mail.html', 'Mail'),
-    ('cerberus-fluid.html', 'Fluid'),
-    ('cerberus-hybrid.html', 'Hybrid'),
-    ('cerberus-responsive.html', 'Responsive'),
-)
-
-PAYMENT_CHOICES = (
-    ('', '---'),
-    ('check', 'Check'),
-    ('paypal', 'PayPal'),
-    ('wire', 'Wire'),
-)
-
-ESTIMATE_TYPES = (
-    ('', '---'),
-    ('is_sow', 'Statement of Work'),
-    ('is_to', 'Task Order'),
-)
+from . import choices
 
 # Create your models here.
 
@@ -74,9 +23,9 @@ class BaseModel(models.Model):
     icon_name = models.CharField(
         "Font Awesome Icon", max_length=25, blank=True, null=True)
     icon_size = models.CharField(
-        max_length=255, blank=True, null=True, choices=ICON_CHOICES)
+        max_length=255, blank=True, null=True, choices=choices.ICON_CHOICES)
     icon_color = models.CharField(
-        max_length=255, blank=True, null=True, choices=COLOR_CHOICES)
+        max_length=255, blank=True, null=True, choices=choices.COLOR_CHOICES)
 
     class Meta:
         abstract = True
@@ -245,7 +194,7 @@ class Estimate(BaseModel):
     estimate_type = models.CharField(
         'Estimate Type',
         max_length=300,
-        choices=ESTIMATE_TYPES,
+        choices=choices.ESTIMATE_TYPES,
         null=True,
         blank=True)
     task = models.ForeignKey(
@@ -382,7 +331,7 @@ class Newsletter(BaseModel):
     template_choices = models.CharField(
         'Template',
         max_length=300,
-        choices=TEMPLATE_CHOICES,
+        choices=choices.TEMPLATE_CHOICES,
         null=True,
         blank=True)
     text = models.TextField(blank=True, null=True)
@@ -427,9 +376,12 @@ class Profile(BaseModel):
     notify = models.BooleanField(default=True)
     published = models.BooleanField(default=False)
     dashboard_items = MultiSelectField(
-        'Dashboard Items', choices=DASHBOARD_ITEMS, null=True, blank=True)
+        'Dashboard Items',
+        choices=choices.DASHBOARD_ITEMS,
+        null=True,
+        blank=True)
     editor = models.CharField(
-        max_length=8, choices=EDITOR_CHOICES, null=True, blank=True)
+        max_length=8, choices=choices.EDITOR_CHOICES, null=True, blank=True)
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -459,7 +411,7 @@ class Profile(BaseModel):
         max_length=255,
         blank=True,
         null=True,
-        choices=PAYMENT_CHOICES)
+        choices=choices.PAYMENT_CHOICES)
 
     def __str__(self):
         if self.user:
@@ -671,7 +623,7 @@ class Task(BaseModel):
     name = models.CharField(max_length=300, blank=True, null=True)
     # https://stackoverflow.com/a/31131029
     color = models.CharField(
-        blank=True, choices=COLOR_CHOICES, max_length=7, null=True)
+        blank=True, choices=choices.COLOR_CHOICES, max_length=7, null=True)
     rate = models.DecimalField(
         blank=True, null=True, max_digits=12, decimal_places=2)
     unit = models.DecimalField(
