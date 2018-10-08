@@ -69,3 +69,26 @@ def set_total(times, estimate=None, invoice=None, project=None):
         project.cost = '%.2f' % cost
         project.save()
     return times
+
+
+# total_hours_project = {}
+# for project in request.user.project_set.values():
+#     project_id = project['id']
+#     project_name = 'project-%s' % project_id
+#     if project['name']:
+#         project_name = project['name']
+#     if project['active']:
+#         total_hours_project[project_id] = {}
+#         total_hours_project[project_id]['name'] = project_name
+#         total_hours_project[project_id][
+#             'hours'] = totals.get_total(
+#                 field='hours',
+#                 times=times.filter(
+#                     project=project_id,
+#                     invoiced=False))['hours']
+#         total_hours_project[project_id][
+#             'users'] = totals.get_total(
+#                 field='hours',
+#                 times=times.filter(project=project_id),
+#                 team=user_model.objects.filter(
+#                     project=project_id))['users']

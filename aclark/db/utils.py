@@ -505,33 +505,13 @@ def get_page_items(**kwargs):
                     field='cost', projects=projects)['cost']
                 total_hours = totals.get_total(
                     field='hours', times=times.filter(invoiced=False))['hours']
-                # XXX Move to get_total
-                total_hours_by_proj = {}
-                for project in request.user.project_set.values():
-                    project_id = project['id']
-                    project_name = 'project-%s' % project_id
-                    if project['name']:
-                        project_name = project['name']
-                    if project['active']:
-                        total_hours_by_proj[project_id] = {}
-                        total_hours_by_proj[project_id]['name'] = project_name
-                        total_hours_by_proj[project_id][
-                            'hours'] = totals.get_total(
-                                field='hours',
-                                times=times.filter(
-                                    project=project_id,
-                                    invoiced=False))['hours']
-                        total_hours_by_proj[project_id][
-                            'users'] = totals.get_total(
-                                field='hours',
-                                times=times.filter(project=project_id),
-                                team=user_model.objects.filter(
-                                    project=project_id))['users']
+                total_hours_project = totals.get_total(
+                    field='hours', times=times.filter(invoiced=False))['hours']
                 context['net'] = total_amount - total_cost
                 context['cost'] = total_cost
                 context['gross'] = total_amount
                 context['total_hours'] = total_hours
-                context['total_hours_by_proj'] = total_hours_by_proj
+                context['total_hours_project'] = total_hours_project
                 # Location
                 ip_address = request.META.get('HTTP_X_REAL_IP')
                 # context['geo_ip_data'] = get_geo_ip_data(request)
