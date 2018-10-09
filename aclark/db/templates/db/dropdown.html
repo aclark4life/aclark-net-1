@@ -13,8 +13,8 @@
               {% if not request.user.is_anonymous %}<a class="dropdown-item" href="{% url 'user_view' request.user.pk %}"><i class="fa fa-user"></i> Profile</a>{% endif %}
               {% if is_staff %}
               <a class="dropdown-item" href="{% url 'settings_app' %}"><i class="fa fa-cog"></i> Settings</a>
-              <a class="dropdown-item" href="{% url 'admin:index' %}" target="_blank"><i class="fa fa-cog"></i> Admin</a>
               <a class="dropdown-item" href="{% url 'user_index' %}"><i class="fa fa-users"></i> Users</a>
+              <a class="dropdown-item" href="{% url 'admin:index' %}" target="_blank"><i class="fab fa-python"></i> Admin</a>
               <a class="dropdown-item" href="/api" target="_blank"><i class="fa fa-code"></i> API</a>
               <div class="dropdown-divider"></div>
               {% endif %}
