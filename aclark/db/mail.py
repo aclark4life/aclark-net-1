@@ -50,7 +50,7 @@ def mail_create(obj, **kwargs):
 
 def mail_proc(obj, request, **kwargs):
     """
-    Iterate over recipients, create message, send to each
+    Iterate over recipients, create & send message.
     """
     hostname = request.META.get('HTTP_HOST')
     recipients = get_recipients(obj)
@@ -70,9 +70,9 @@ def mail_send(**kwargs):
     """
     mail_from = kwargs.get('mail_from', 'aclark@aclark.net')
     mail_to = kwargs.get('mail_to', 'aclark@aclark.net')
-    html_message = kwargs.get('html_message', '<h1>Test</h1>')
-    message = kwargs.get('message', 'test')
-    subject = kwargs.get('subject', 'test')
+    html_message = kwargs.get('html_message')
+    message = kwargs.get('message', 'Test')
+    subject = kwargs.get('subject', 'Test')
     if html_message:
         send_mail(
             subject,
