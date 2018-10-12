@@ -472,9 +472,12 @@ def get_page_items(**kwargs):
                     field='amount', invoices=invoices)['amount']
                 total_cost = totals.get_total(
                     field='cost', projects=projects)['cost']
+                total_hours = totals.get_total(
+                    field='hours', times=times)['hours']
                 context['net'] = total_amount - total_cost
                 context['cost'] = total_cost
                 context['gross'] = total_amount
+                context['hours'] = total_hours
                 # Location
                 ip_address = request.META.get('HTTP_X_REAL_IP')
                 context['ip_address'] = ip_address

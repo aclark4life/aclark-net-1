@@ -264,7 +264,7 @@ class ProfileForm(forms.ModelForm):
         }
 
     dashboard_items = forms.MultipleChoiceField(
-        choices=(('times', 'Times'), ),  # Limit choices
+        choices=(('times', 'Times'), ('totals', 'Totals')),  # Limit choices
         label='Dashboard Items',
         required=False,
         widget=forms.SelectMultiple(attrs={

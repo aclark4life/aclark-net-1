@@ -81,5 +81,4 @@ def mail_send(**kwargs):
             fail_silently=True,
             html_message=html_message)
     else:
-        send_mail(
-            subject, message, mail_from, (mail_to, ), fail_silently=False)
+        send_mail(subject, message, mail_from, (mail_to, ), fail_silently=True)
