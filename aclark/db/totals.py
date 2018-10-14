@@ -49,6 +49,7 @@ def set_total(times, **kwargs):
     invoice_amount = 0
     entry_amount = 0
     project_cost = 0
+    hours = 0
     for time_entry in times:
         hours = time_entry.hours
         if time_entry.task:
