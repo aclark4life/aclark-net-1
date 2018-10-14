@@ -590,8 +590,9 @@ def project_index(request, pk=None):
         },
         model=Project,
         order_by=(
-            '-active',
-            '-updated',
+            'name',
+            # '-active',
+            # '-updated',
         ),
         request=request,
         search_fields=('id', 'name'))
