@@ -2,18 +2,23 @@
 {% load static %}
 
 {% block logo %}
-    <a class="navbar-brand mr-auto" href="{% url 'dashboard' %}">
+    <a class="navbar-brand mr-auto bg-dark" href="{% url 'dashboard' %}">
       <img src="{% static 'aclarknet-logo.png' %}">
     </a>
 {% endblock %}
 
 {% block nav %}
+{% with nav_css="text-dark" %}
 {% include 'nav.html' %}
 {% include 'db/dropdown.html' %}
+{% endwith %}
 {% endblock %}
 
-{% block db_start %}
-{% if not request.user.is_anonymous %} <div class="bg-light text-dark p-3 col-md-10 offset-md-1 mt-5 mt-5"> {% endif %}
+{% block database_background_color %}
+<div class="block block-secondary app-iphone-block text-dark"> 
+{% endblock %}
+
+{% block database_background_image %}
 {% endblock %}
 
 {% block content %}
@@ -30,8 +35,4 @@
     </div>
   </div>
 
-{% endblock %}
-
-{% block db_stop %}
-{% if not request.user.is_anonymous %}</div> {% endif %}
 {% endblock %}
