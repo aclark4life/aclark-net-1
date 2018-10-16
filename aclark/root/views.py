@@ -25,6 +25,7 @@ def about(request):
     context = {}
     testimonials = requests.get(TESTIMONIAL_URL).json()
     context['testimonial'] = random.choice(testimonials)
+    context['is_staff'] = request.user.is_staff
     return render(request, 'about.html', context)
 
 
@@ -38,6 +39,7 @@ def clients(request):
     context['clients'] = clients
     testimonials = requests.get(TESTIMONIAL_URL).json()
     context['testimonial'] = random.choice(testimonials)
+    context['is_staff'] = request.user.is_staff
     return render(request, 'clients.html', context)
 
 
@@ -59,6 +61,7 @@ def contact(request):
     else:
         form = ContactForm()
     context['form'] = form
+    context['is_staff'] = request.user.is_staff
     return render(request, 'contact.html', context)
 
 
@@ -72,6 +75,7 @@ def services(request):
     context = {}
     services = requests.get(SERVICE_URL).json()
     context['services'] = services
+    context['is_staff'] = request.user.is_staff
     return render(request, 'services.html', context)
 
 
@@ -79,6 +83,7 @@ def testimonials(request):
     context = {}
     testimonials = requests.get(TESTIMONIAL_URL).json()
     context['testimonials'] = testimonials
+    context['is_staff'] = request.user.is_staff
     return render(request, 'testimonials.html', context)
 
 
@@ -86,4 +91,5 @@ def team(request):
     context = {}
     profiles = requests.get(PROFILE_URL).json()
     context['profiles'] = profiles
+    context['is_staff'] = request.user.is_staff
     return render(request, 'team.html', context)
