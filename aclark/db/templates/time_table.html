@@ -10,7 +10,7 @@
                 {% if is_staff %}<th data-field="client" data-sortable="true" data-visible="false">Client</th>{% endif %}
                 <th data-field="project" data-sort-name="hidden-project" data-sortable="true" data-visible="true">Project</th>
                 <th data-field="hidden-project" data-sortable="true" data-visible="false">Hidden Project</th>
-                {% if is_staff %}<th data-field="task" data-sortable="true" data-visible="true">Task</th>{% endif %}
+                {% if is_staff %}<th data-field="task" data-sortable="true" data-visible="false">Task</th>{% endif %}
                 {% if is_staff %}<th data-field="invoice" data-sortable="true" data-visible="{{ columns_visible.time.invoice }}">Invoice</th>{% endif %}
                 {% if is_staff %}<th data-field="estimate" data-sortable="true" data-visible="false">Estimate</th>{% endif %}
                 {% if is_staff %}<th data-field="user" data-sortable="true" data-visible="true">User</th>{% endif %}
