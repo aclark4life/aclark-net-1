@@ -438,7 +438,7 @@ def get_page_items(**kwargs):
                 ], exclude_fields=exclude_fields)  # table_items.html
             context['projects'] = projects
             context['times'] = times
-    else:  # no model or obj (e.g. home)
+    else:  # no model or obj
         if request:
             if request.user.is_authenticated:
                 # Items

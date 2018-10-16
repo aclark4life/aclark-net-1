@@ -64,6 +64,7 @@ def contact(request):
 
 def home(request):
     context = {}
+    context['is_staff'] = request.user.is_staff
     return render(request, 'base.html', context)
 
 
