@@ -13,6 +13,7 @@ COLOR_CHOICES = (
 )
 
 DASHBOARD_ITEMS = (
+    ('tools', 'Tools'),
     ('times', 'Times'),
     ('totals', 'Totals'),
 )
