@@ -1,3 +1,7 @@
 .fixed-table-loading {
     display: none;
 }
+
+#accordionExample a:hover {
+    text-decoration: none;
+}
