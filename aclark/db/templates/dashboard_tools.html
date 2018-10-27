@@ -10,11 +10,8 @@
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
       <div class="card-body">
         <div class="row">
-          <div class="col-2" style="text-align: center">
-            <a href="{% url 'invoice_index' %}"><i class="fas fa-file-invoice fa-5x text-dark"></i><p class="mt-1 text-dark">Invoices</p></a>
-          </div>
           <div class="col-2 offset-1" style="text-align: center">
-            <a href="{% url 'time_index' %}"><i class="fas fa-business-time fa-5x text-dark"></i><p class="mt-1 text-dark">Times</p></a>
+            <a href="{% url 'invoice_index' %}"><i class="fas fa-file-invoice fa-5x text-dark"></i><p class="mt-1 text-dark">Invoices</p></a>
           </div>
           <div class="col-2" style="text-align: center">
             <a href="{% url 'project_index' %}"><i class="fas fa-toolbox fa-5x text-dark"></i><p class="mt-1 text-dark">Projects</p></a>
@@ -58,11 +55,14 @@
     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
       <div class="card-body">
         <div class="row">
-          <div class="col-2 offset-1" style="text-align: center">
+          <div class="col-2" style="text-align: center">
             <a href="{% url 'note_index' %}"><i class="fas fa-sticky-note fa-5x text-dark"></i><p class="mt-1 text-dark">Notes</p></a>
           </div>
           <div class="col-2" style="text-align: center">
             <a href="{% url 'task_index' %}"><i class="fa fa-tasks fa-5x text-dark"></i><p class="mt-1 text-dark">Tasks</p></a>
+          </div>
+          <div class="col-2" style="text-align: center">
+            <a href="{% url 'time_index' %}"><i class="fas fa-business-time fa-5x text-dark"></i><p class="mt-1 text-dark">Times</p></a>
           </div>
           <div class="col-2" style="text-align: center">
             <a href="{% url 'report_index' %}"><i class="fas fa-chart-line fa-5x text-dark"></i><p class="mt-1 text-dark">Reports</p></a>
