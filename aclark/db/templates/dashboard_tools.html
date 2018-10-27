@@ -20,9 +20,6 @@
             <a href="{% url 'project_index' %}"><i class="fas fa-toolbox fa-5x text-dark"></i><p class="mt-1 text-dark">Projects</p></a>
           </div>
           <div class="col-2" style="text-align: center">
-            <a href="{% url 'contact_index' %}"><i class="fas fa-address-card fa-5x text-dark"></i><p class="mt-1 text-dark">Contacts</p></a>
-          </div>
-          <div class="col-2" style="text-align: center">
             <a href="{% url 'client_index' %}"><i class="fas fa-building fa-5x text-dark"></i><p class="mt-1 text-dark">Clients</p></a>
           </div>
         </div>
@@ -33,21 +30,18 @@
     <div class="card-header" id="headingTwo">
       <h5 class="mb-0">
         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          CRM
+          Client
         </button>
       </h5>
     </div>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
       <div class="card-body">
         <div class="row">
-          <div class="col-2" style="text-align: center">
-            <a href="{% url 'report_index' %}"><i class="fas fa-chart-line fa-5x text-dark"></i><p class="mt-1 text-dark">Reports</p></a>
+          <div class="col-2 offset-1" style="text-align: center">
+            <a href="{% url 'contact_index' %}"><i class="fas fa-address-card fa-5x text-dark"></i><p class="mt-1 text-dark">Contacts</p></a>
           </div>
           <div class="col-2" style="text-align: center">
-            <a href="{% url 'note_index' %}"><i class="fas fa-sticky-note fa-5x text-dark"></i><p class="mt-1 text-dark">Notes</p></a>
-          </div>
-          <div class="col-2">
-            <a href="{% url 'estimate_index' %}"><i class="fa fa-file-pdf fa-5x text-dark"></i></a>
+            <a href="{% url 'estimate_index' %}"><i class="fa fa-file-pdf fa-5x text-dark"></i><p class="mt-1 text-dark">Estimates</p></a>
           </div>
         </div>
       </div>
@@ -64,14 +58,20 @@
     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
       <div class="card-body">
         <div class="row">
-          <div class="col-3 offset-2">
-            <a href="{% url 'task_index' %}"><i class="fa fa-tasks fa-5x text-dark"></i></a>
+          <div class="col-2 offset-1" style="text-align: center">
+            <a href="{% url 'note_index' %}"><i class="fas fa-sticky-note fa-5x text-dark"></i><p class="mt-1 text-dark">Notes</p></a>
           </div>
-          <div class="col-3">
-            <a href="{% url 'user_index' %}"><i class="fa fa-users fa-5x text-dark"></i></a>
+          <div class="col-2" style="text-align: center">
+            <a href="{% url 'task_index' %}"><i class="fa fa-tasks fa-5x text-dark"></i><p class="mt-1 text-dark">Tasks</p></a>
           </div>
-          <div class="col-3">
-            <a href="{% url 'settings_app' %}"><i class="fa fa-cog fa-5x text-dark"></i></a>
+          <div class="col-2" style="text-align: center">
+            <a href="{% url 'report_index' %}"><i class="fas fa-chart-line fa-5x text-dark"></i><p class="mt-1 text-dark">Reports</p></a>
+          </div>
+          <div class="col-2" style="text-align: center">
+            <a href="{% url 'user_index' %}"><i class="fa fa-users fa-5x text-dark"></i><p class="mt-1 text-dark">Users</p></a>
+          </div>
+          <div class="col-2" style="text-align: center">
+            <a href="{% url 'settings_app' %}"><i class="fa fa-cog fa-5x text-dark"></i><p class="mt-1 text-dark">Settings</p></a>
           </div>
         </div>
       </div>
@@ -88,14 +88,14 @@
     <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
       <div class="card-body">
         <div class="row">
-          <div class="col-3 offset-2">
-            <a href="{% url 'admin:index' %}" target="_blank"><i class="fab fa-python fa-5x text-dark"></i></a>
+          <div class="col-2 offset-1" style="text-align: center">
+            <a href="{% url 'admin:index' %}" target="_blank"><i class="fab fa-python fa-5x text-dark"></i><p class="mt-1 text-dark">Admin</p></a>
           </div>
-          <div class="col-3">
-            <a href="/api" target="_blank"><i class="fa fa-code fa-5x text-dark"></i></a>
+          <div class="col-2" style="text-align: center">
+            <a href="/api" target="_blank"><i class="fa fa-code fa-5x text-dark"></i><p class="mt-1 text-dark">API</p></a>
           </div>
-          <div class="col-3">
-            <a href="https://github.com/aclark-net/aclark-net-1" target="_blank"><i class="fab fa-github fa-5x text-dark"></i></a>
+          <div class="col-2" style="text-align: center">
+            <a href="https://github.com/aclark-net/aclark-net-1" target="_blank"><i class="fab fa-github fa-5x text-dark"></i><p class="mt-1 text-dark">GitHub</p></a>
           </div>
         </div>
       </div>
