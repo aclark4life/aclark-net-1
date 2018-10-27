@@ -1,3 +1,4 @@
+{% load l10n %}
                   <!-- http://getbootstrap.com/docs/4.0/components/dropdowns/#menu-headers -->
                   <h6 class="dropdown-header">Add</h6>
                   {% if model_name == 'client' %}
@@ -5,6 +6,14 @@
                   <a class="dropdown-item" href="{% url 'estimate_edit' %}?client={{ item.pk }}"><i class="fa fa-plus"></i> Estimate</a>
                   <a class="dropdown-item" href="{% url 'project_edit' %}?client={{ item.pk }}"><i class="fa fa-plus"></i> Project</a>
                   <a class="dropdown-item" href="{% url 'note_edit' %}?client={{ item.pk }}"><i class="fa fa-plus"></i> Note</a>
+                  {% endif %}
+                  {% if model_name == 'invoice' %}
+                  <a class="dropdown-item" href="{% url 'note_edit' %}?invoice={{ item.pk }}"><i class="fa fa-plus"></i> Note</a>
+                  <a class="dropdown-item" href="{% url 'time_edit' %}?invoice={{ item.pk|unlocalize }}"><i class="fa fa-plus"></i> Time</a>
+                  <div class="dropdown-divider"></div>
+                  <h6 class="dropdown-header">Status</h6>
+                  <a class="dropdown-item" href="" data-toggle="modal" data-target=".bd-invoiced-true-modal-sm"><i class="far fa-check-square"></i> Sent</a>
+                  <a class="dropdown-item" href="" data-toggle="modal" data-target=".bd-invoiced-false-modal-sm"><i class="far fa-square"></i> Not sent</a>
                   {% endif %}
                   {% if model_name == 'project' %}
                   <a class="dropdown-item" href="{% url 'invoice_edit' %}?client={{ item.client.pk }}&project={{ item.pk }}"><i class="fa fa-plus"></i> Invoice</a>

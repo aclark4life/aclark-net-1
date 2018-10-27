@@ -1,5 +1,4 @@
 {% extends 'db/base.html' %}
-{% load l10n %}
 {% block content %}
           <div class="row">
             <div class="col-10">
@@ -13,12 +12,6 @@
                   <span class="sr-only">Toggle Dropdown</span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right">
-                  <a class="dropdown-item" href="{% url 'time_edit' %}?invoice={{ item.pk|unlocalize }}"><i class="fa fa-plus"></i> Time</a>
-                  <a class="dropdown-item" href="{% url 'note_edit' %}?invoice={{ item.pk }}"><i class="fa fa-plus"></i> Note</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="" data-toggle="modal" data-target=".bd-invoiced-true-modal-sm"><i class="far fa-check-square"></i> Invoiced</a>
-                  <a class="dropdown-item" href="" data-toggle="modal" data-target=".bd-invoiced-false-modal-sm"><i class="far fa-square"></i> Invoiced</a>
-                  <div class="dropdown-divider"></div>
 {% include 'actions.html' %}
                 </div>
               </div>
