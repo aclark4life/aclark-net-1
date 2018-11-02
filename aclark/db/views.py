@@ -407,8 +407,8 @@ def invoice_index(request):
             },
         },
         order_by=(
-            '-last_payment_date',
-            '-issue_date',
+            '-active',
+            'name',
         ),
         request=request,
         search_fields=search_fields)
