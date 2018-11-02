@@ -408,7 +408,7 @@ def invoice_index(request):
         },
         order_by=(
             '-active',
-            'name',
+            'subject',
         ),
         request=request,
         search_fields=search_fields)
