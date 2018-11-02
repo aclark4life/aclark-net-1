@@ -407,7 +407,7 @@ def invoice_index(request):
             },
         },
         order_by=(
-            '-active',
+            '-last_payment_date',
             'subject',
         ),
         request=request,
@@ -592,7 +592,6 @@ def project_index(request, pk=None):
         order_by=(
             '-active',
             'name',
-            # '-updated',
         ),
         request=request,
         search_fields=('id', 'name'))
