@@ -6,7 +6,7 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav">  <!-- http://stackoverflow.com/a/25044880/185820 -->
           <li class="nav-item dropdown">
-            <a class="bg-dark dropdown-toggle nav-link rounded" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-circle text-light"></i></a>
+            <a class="bg-success dropdown-toggle nav-link rounded" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-circle text-light"></i></a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
               {% if request.user.is_anonymous %}<a class="dropdown-item" href="{% url 'login'  %}"><i class="fas fa-sign-in-alt"></i> Sign in</a>{% endif %}
               {% if request.user.is_anonymous %}<a class="dropdown-item" href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}"><i class="fas fa-sign-in-alt"></i> Login with Google</a>{% endif %}
