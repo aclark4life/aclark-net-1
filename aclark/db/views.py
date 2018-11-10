@@ -548,6 +548,7 @@ def project_view(request, pk=None):
         contact_model=Contact,
         estimate_model=Estimate,
         invoice_model=Invoice,
+        note_model=Note,
         user_model=User,
         columns_visible={
             'invoices': {

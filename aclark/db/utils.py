@@ -387,11 +387,13 @@ def get_page_items(**kwargs):
                 times = times.order_by(*order_by['time'])
                 invoices = invoices.order_by(*order_by['invoice'])
             users = user_model.objects.filter(project=project)
+            notes = note_model.objects.filter(project=project)
             items = set_items('contact', items=contacts)
             items = set_items('estimate', items=estimates, _items=items)
             items = set_items('invoice', items=invoices, _items=items)
             items = set_items('time', items=times, _items=items)
             items = set_items('user', items=users, _items=items)
+            items = set_items('note', items=notes, _items=items)
             context['items'] = items
             context['cost'] = float(project.cost)
             context['gross'] = float(project.amount)
