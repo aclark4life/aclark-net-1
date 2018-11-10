@@ -276,10 +276,7 @@ class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
         fields = ('active', 'hidden', 'name', 'start_date', 'end_date',
-                  'notes', 'client', 'task', 'team')
-        widgets = {
-            'notes': forms.widgets.TextInput(attrs={'class': 'tinymce'}),
-        }
+                  'client', 'task', 'team')
 
     start_date = forms.DateField(
         widget=forms.DateInput(attrs={
@@ -347,9 +344,6 @@ class SettingsCompanyForm(forms.ModelForm):
     class Meta:
         model = SettingsCompany
         fields = '__all__'
-        widgets = {
-            'notes': forms.widgets.TextInput(attrs={'class': 'tinymce'}),
-        }
 
 
 class TaskForm(forms.ModelForm):

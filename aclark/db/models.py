@@ -78,7 +78,6 @@ class Contact(BaseModel):
     office_phone = PhoneNumberField('Office Phone', blank=True, null=True)
     fax = PhoneNumberField(blank=True, null=True)
     address = models.TextField(blank=True, null=True)
-    notes = models.TextField(blank=True, null=True)
     uuid = models.UUIDField('UUID', max_length=300, default=uuid4)
 
     def __str__(self):
@@ -463,7 +462,6 @@ class Project(BaseModel):
     start_date = models.DateField(blank=True, null=True)
     end_date = models.DateField(blank=True, null=True)
     code = models.IntegerField("Project Code", blank=True, null=True)
-    notes = models.TextField(blank=True, null=True)
     total_hours = models.FloatField(blank=True, null=True)
     billable_hours = models.FloatField(blank=True, null=True)
     amount = models.DecimalField(
