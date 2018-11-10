@@ -275,7 +275,7 @@ class ProfileForm(forms.ModelForm):
 class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
-        fields = ('active', 'hidden', 'name', 'start_date', 'end_date',
+        fields = ('active', 'hidden', 'name', 'start_date', 'end_date', 'note',
                   'client', 'task', 'team')
 
     start_date = forms.DateField(

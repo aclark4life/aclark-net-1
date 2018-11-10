@@ -435,7 +435,7 @@ class Profile(BaseModel):
 
 class Project(BaseModel):
     """
-    Client, Project, Project Code, Start Date, End Date, Project Notes,
+    Client, Project, Project Code, Start Date, End Date,
     Total Hours, Billable Hours, Billable Amount, Budget, Budget Spent,
     Budget Remaining, Total Costs, Team Costs, Expenses
     """
@@ -650,7 +650,7 @@ class Task(BaseModel):
 
 class Time(BaseModel):
     """
-    Date, Client, Project, Project Code, Task, Notes, Hours, Billable?,
+    Date, Client, Project, Project Code, Task, Hours, Billable?,
     Invoiced?, First Name, Last Name, Department, Employee?, Billable
     Rate, Billable Amount, Cost Rate, Cost Amount, Currency,
     External Reference URL
