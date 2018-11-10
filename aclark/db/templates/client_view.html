@@ -31,6 +31,16 @@
 {% include 'contact_table.html' %}
             </div>
           </div>
+          <!-------------------------------------------------------------------------------->
+          <div class="row">
+            <div class="col-md-12 my-1">
+              <h2 class="my-1"><a href="{% url 'estimate_index' %}" class="text-dark">Estimates</a></h2>
+{% with items=items.estimates view_url='estimate_view' edit_url='estimate_edit' item_type='estimate' %}
+{% include 'invoice_table.html' %}
+{% endwith %}
+            </div>
+          </div>
+          <!-------------------------------------------------------------------------------->
           <div class="row">
             <div class="col-md-12 my-1">
               <h2 class="my-1"><a href="{% url 'invoice_index' %}" class="text-dark">Invoices</a></h2>
@@ -39,30 +49,18 @@
 {% endwith %}
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-12 my-1">
-              <h2 class="my-1"><a href="{% url 'project_index' %}" class="text-dark">Projects</a></h2>
-{% include 'project_table.html' %}
-            </div>
-          </div>
+          <!-------------------------------------------------------------------------------->
           <div class="row">
             <div class="col-md-12 my-1">
               <h2 class="my-1"><a href="{% url 'note_index' %}" class="text-dark">Notes</a></h2>
 {% include 'note_table.html' %}
             </div>
           </div>
+          <!-------------------------------------------------------------------------------->
           <div class="row">
             <div class="col-md-12 my-1">
-              <h2 class="my-1"><a href="{% url 'contract_index' %}" class="text-dark">Contracts</a></h2>
-{% include 'contract_table.html' %}
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12 my-1">
-              <h2 class="my-1"><a href="{% url 'estimate_index' %}" class="text-dark">Estimates</a></h2>
-{% with items=items.estimates view_url='estimate_view' edit_url='estimate_edit' item_type='estimate' %}
-{% include 'invoice_table.html' %}
-{% endwith %}
+              <h2 class="my-1"><a href="{% url 'project_index' %}" class="text-dark">Projects</a></h2>
+{% include 'project_table.html' %}
             </div>
           </div>
 {% endblock %}
