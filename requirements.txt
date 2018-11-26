@@ -1,4 +1,4 @@
--e git+https://github.com/aclarknet/django-xhtml2pdf.git@ca6fae09f70856d701124583cacb9e5a83e7ac26#egg=django_xhtml2pdf
+-e git+https://github.com/aclark4life/django-xhtml2pdf.git@ca6fae09f70856d701124583cacb9e5a83e7ac26#egg=django_xhtml2pdf
 Babel==2.6.0
 Django==2.1.2
 Faker==0.8.16
