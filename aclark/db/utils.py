@@ -97,11 +97,11 @@ def edit(request, **kwargs):
                 if not obj.user:  # for new user
                     obj.user = new_user
                     obj.save()
-            if model_name == 'time' and new_time:  # Send mail
-                email_message = '%s/%s/edit' % ('https://aclark.net/db/time',
-                                                obj.pk)
-                email_subject = 'New time entered by %s' % request.user
-                mail_send(message=email_message, subject=email_subject)
+            # if model_name == 'time' and new_time:  # Send mail
+            #     email_message = '%s/%s/edit' % ('https://aclark.net/db/time',
+            #                                     obj.pk)
+            #     email_subject = 'New time entered by %s' % request.user
+            #     mail_send(message=email_message, subject=email_subject)
             set_ref(
                 obj,
                 request,
