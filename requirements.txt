@@ -5,7 +5,7 @@ Faker==0.8.16
 Pillow==5.2.0
 PyJWT==1.6.4
 PyPDF2==1.26.0
-PyYAML==3.13
+PyYAML==4.2b4
 certifi==2018.4.16
 chardet==3.0.4
 cycler==0.10.0
