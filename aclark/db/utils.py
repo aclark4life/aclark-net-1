@@ -8,7 +8,7 @@ from functools import reduce
 from operator import or_ as OR
 from .fields import get_fields
 from .form import get_form
-from .mail import mail_send
+# from .mail import mail_send
 from .misc import has_profile
 from .obj import obj_process
 from .page import paginate
@@ -36,7 +36,7 @@ def edit(request, **kwargs):
     project_model = kwargs.get('project_model')
     user_model = kwargs.get('user_model')
     model_name = None
-    new_time = False
+    # new_time = False
     if model:
         model_name = model._meta.verbose_name
         context['active_nav'] = model_name
@@ -65,8 +65,8 @@ def edit(request, **kwargs):
                 username = fake.text()[:150]
                 new_user = model.objects.create_user(username=username)
             form = form_model(request.POST)
-            if model_name == 'time':  # Send mail
-                new_time = True
+        # if model_name == 'time':  # Send mail
+        #         new_time = True
         else:
             copy = get_query_string(request, 'copy')  # Copy or delete
             delete = get_query_string(request, 'delete')
