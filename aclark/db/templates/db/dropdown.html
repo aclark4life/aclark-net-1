@@ -1,20 +1,15 @@
 {% load staticfiles %}
     <nav class="navbar navbar-dark">
-      <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav">  <!-- http://stackoverflow.com/a/25044880/185820 -->
-          <li class="nav-item dropdown">
-            <a class="bg-dark dropdown-toggle nav-link rounded" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-circle text-light"></i></a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown01">
-              {% if request.user.is_anonymous %}<a class="dropdown-item" href="{% url 'login'  %}"><i class="fas fa-sign-in-alt"></i> Sign in</a>{% endif %}
-              {% if request.user.is_anonymous %}<a class="dropdown-item" href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}"><i class="fas fa-sign-in-alt"></i> Login with Google</a>{% endif %}
-              {% if not request.user.is_anonymous %}<a class="dropdown-item" href="{% url 'dashboard' %}"><i class="fas fa-tachometer-alt"></i> Dashboard</a>{% endif %}
-              {% if not request.user.is_anonymous %}<a class="dropdown-item" href="{% url 'user_view' request.user.pk %}"><i class="fa fa-user"></i> Profile</a>{% endif %}
-              {% if not request.user.is_anonymous  %}<div class="dropdown-divider"></div><a class="dropdown-item" href="{% url 'logout' %}?next={% url 'home' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>{% endif %}
-            </div>
-          </li>
-        </ul>
-      </div>
+      <ul class="navbar-nav">  <!-- http://stackoverflow.com/a/25044880/185820 -->
+        <li class="nav-item dropdown">
+          <a class="{{ nav_css }}" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bars"></i></a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown01">
+            {% if request.user.is_anonymous %}<a class="dropdown-item" href="{% url 'login'  %}"><i class="fas fa-sign-in-alt"></i> Sign in</a>{% endif %}
+            {% if request.user.is_anonymous %}<a class="dropdown-item" href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}"><i class="fas fa-sign-in-alt"></i> Login with Google</a>{% endif %}
+            {% if not request.user.is_anonymous %}<a class="dropdown-item" href="{% url 'dashboard' %}"><i class="fas fa-tachometer-alt"></i> Dashboard</a>{% endif %}
+            {% if not request.user.is_anonymous %}<a class="dropdown-item" href="{% url 'user_view' request.user.pk %}"><i class="fa fa-user"></i> Profile</a>{% endif %}
+            {% if not request.user.is_anonymous  %}<div class="dropdown-divider"></div><a class="dropdown-item" href="{% url 'logout' %}?next={% url 'home' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>{% endif %}
+          </div>
+        </li>
+      </ul>
     </nav>
