@@ -3,6 +3,7 @@
                 <table data-toggle="table" data-classes="table table-no-bordered table-hover table-striped"> 
                   <thead>
                     <tr>
+                      <th data-field="counter" data-sortable="true">#</th>
                       <th data-align="center" data-toggle="tooltip" data-placement="right" title="Invoice sent" data-field="invoiced" data-sortable="true" data-visible="{{ columns_visible.invoices.sent }}">Sent</th>
                       <th data-sort-name="hidden-issue-date" data-sortable="true">Issue Date</th>
                       <th data-field="hidden-issue-date" data-sortable="true" data-visible="false">Hidden Issue Date</th>
@@ -17,6 +18,7 @@
                   <tbody>
                   {% for item in items %}
                     <tr>
+                      <td>{{ forloop.counter }}</td>
                       <td>{% if item.last_payment_date or item.accepted_date %}<i data-toggle="tooltip" data-placement="right" title="Invoice sent" class="fa fa-check"></i>{% endif %}</td>
                       <td>{{ item.issue_date|date:'Y-m-d'|default:'' }}</td>
                       <td>{{ item.issue_date|date:'U'|default:'' }}</td>
