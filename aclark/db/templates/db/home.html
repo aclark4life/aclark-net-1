@@ -12,13 +12,10 @@
 {% include 'dashboard.html' %}
           {% else %}
 
-  <div class="block-xs-middle pb-5">
-    <div class="container">
       <div class="row">
-        <div class="col-sm-10 col-lg-6">
-
+        <div class="col-3 mx-auto my-5">
           <h1 class="block-titleData frequency">Staff</h1>
-          <p class="lead mb-4 text-muted">Please login to continue</p>
+          <p class="lead mb-4 text-muted">Please sign in to continue</p>
 
           <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
             <a class="btn btn-primary btn-lg" href="/db/login/google-oauth2/?next=/db/">Sign in with Google</a>
@@ -35,8 +32,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
 
           {% endif %}
 {% endblock %}
