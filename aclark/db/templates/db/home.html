@@ -6,7 +6,11 @@
               <h1 style="border-bottom: none;">Dashboard</h1>
             </div>
             <div class="col-md-3"> 
+              {% if request.user.is_staff %}
+              <button class="btn btn-block btn-lg btn-success" href="{% url 'time_edit' %}" disabled> Add Time</button>
+              {% else %}
               <a class="btn btn-block btn-lg btn-success" href="{% url 'time_edit' %}"> Add Time</a>
+              {% endif %}
             </div>
           </div>
 {% include 'dashboard.html' %}
