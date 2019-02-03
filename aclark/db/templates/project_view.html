@@ -76,7 +76,9 @@
               <h2><a href="{% url 'user_index' %}" class="text-dark">Team</a></h2>
             </div>
             <div class="col-12 py-1">
+{% with users=item.hours.users %}
 {% include 'user_table.html' %}
+{% endwith %}
             </div>
           </div>
           <!------------------------------------------------------------------------------------>

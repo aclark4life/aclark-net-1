@@ -8,11 +8,9 @@
               <button class="btn btn-block btn-lg btn-success" href="{% url 'project_edit' %}" disabled>Add Project</button>
             </div>
           </div>
-{% with users=item.hours.users %}
 {% include 'search.html' %}
 {% include 'pagination.html' %}
 {% include 'project_table.html' %}
 {% include 'search.html' %}
 {% include 'pagination.html' %}
-{% endwith %}
 {% endblock %}
