@@ -8,12 +8,10 @@
               <button class="btn btn-block btn-lg btn-success" href="{% url 'user_edit' %}" disabled>Add User</button>
             </div>
           </div>
-{% with items=items.users %}
+{% with users=items.users %}
 {% include 'search.html' %}
 {% include 'pagination.html' %}
-{% endwith %}
 {% include 'user_table.html' %}
-{% with items=items.users %}
 {% include 'search.html' %}
 {% include 'pagination.html' %}
 {% endwith %}
