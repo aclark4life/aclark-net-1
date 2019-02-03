@@ -1,10 +1,9 @@
 aclark-net
 ================================================================================
 
-- Website
+- Marketing site
 - Time tracking
 - Invoicing
-
 
 Notes
 -----
