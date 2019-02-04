@@ -10,12 +10,12 @@
             {% if not request.user.is_anonymous %}<a class="dropdown-item" href="{% url 'user_view' request.user.pk %}"><i class="fa fa-user"></i> Profile</a>{% endif %}
             {% if is_staff %}<div class="dropdown-divider"></div><a class="dropdown-item" href="{% url 'invoice_index' %}"><i class="fas fa-file-invoice"></i> Invoices</a>{% endif %}
             {% if is_staff %}<a class="dropdown-item" href="{% url 'time_index' %}"><i class="fas fa-business-time"></i> Times</a>{% endif %}
-            {% if is_staff %}<a class="dropdown-item" href="{% url 'project_index' %}"><i class="fa fa-tasks"></i> Projects</a>{% endif %}
-            {% if is_staff %}<a class="dropdown-item" href="{% url 'client_index' %}"><i class="fa fa-building"></i> Clients</a>{% endif %}
-            {% if is_staff %}<a class="dropdown-item" href="{% url 'contact_index' %}"><i class="fa fa-address-card"></i> Contacts</a>{% endif %}
+            {% if is_staff %}<a class="dropdown-item" href="{% url 'project_index' %}"><i class="fas fa-toolbox"></i> Projects</a>{% endif %}
+            {% if is_staff %}<a class="dropdown-item" href="{% url 'client_index' %}"><i class="fas fa-building"></i> Clients</a>{% endif %}
+            {% if is_staff %}<a class="dropdown-item" href="{% url 'contact_index' %}"><i class="fas fa-address-card"></i> Contacts</a>{% endif %}
             {% if is_staff %}<a class="dropdown-item" href="{% url 'estimate_index' %}"><i class="fa fa-file-pdf"></i> Estimates</a>{% endif %}
-            {% if is_staff %}<a class="dropdown-item" href="{% url 'note_index' %}"><i class="fa fa-clipboard-check"></i> Notes</a>{% endif %}
-            {% if is_staff %}<a class="dropdown-item" href="{% url 'report_index' %}"><i class="fa fa-signal"></i> Reports</a>{% endif %}
+            {% if is_staff %}<a class="dropdown-item" href="{% url 'note_index' %}"><i class="fas fa-sticky-note"></i> Notes</a>{% endif %}
+            {% if is_staff %}<a class="dropdown-item" href="{% url 'report_index' %}"><i class="fas fa-chart-line"></i> Reports</a>{% endif %}
             {% if is_staff %}<a class="dropdown-item" href="{% url 'settings_app' %}"><i class="fa fa-cog"></i> Settings</a>{% endif %}
             {% if is_staff %}<a class="dropdown-item" href="{% url 'task_index' %}"><i class="fa fa-tasks"></i> Tasks</a>{% endif %}
             {% if is_staff %}<a class="dropdown-item" href="{% url 'user_index' %}"><i class="fa fa-users"></i> Users</a>{% endif %}
