@@ -8,7 +8,7 @@
             {% if request.user.is_anonymous %}<a class="dropdown-item" href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}"><i class="fas fa-sign-in-alt"></i> Login with Google</a>{% endif %}
             {% if not request.user.is_anonymous %}<a class="dropdown-item" href="{% url 'dashboard' %}"><i class="fas fa-tachometer-alt"></i> Dashboard</a>{% endif %}
             {% if not request.user.is_anonymous %}<a class="dropdown-item" href="{% url 'user_view' request.user.pk %}"><i class="fa fa-user"></i> Profile</a>{% endif %}
-            {% if is_staff %}<div class="dropdown-divider"></div><a class="dropdown-item" href="{% url 'invoice_index' %}"><i class="fa fa-file-pdf"></i> Invoices</a>{% endif %}
+            {% if is_staff %}<div class="dropdown-divider"></div><a class="dropdown-item" href="{% url 'invoice_index' %}"><i class="fas fa-file-invoice"></i> Invoices</a>{% endif %}
             {% if is_staff %}<a class="dropdown-item" href="{% url 'time_index' %}"><i class="fas fa-business-time"></i> Times</a>{% endif %}
             {% if is_staff %}<a class="dropdown-item" href="{% url 'project_index' %}"><i class="fa fa-tasks"></i> Projects</a>{% endif %}
             {% if is_staff %}<a class="dropdown-item" href="{% url 'client_index' %}"><i class="fa fa-building"></i> Clients</a>{% endif %}
