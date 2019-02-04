@@ -8,7 +8,7 @@
       </h5>
     </div>
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-      <div class="card-body">
+      <div class="card-body mx-auto">
         <div class="row">
           <div class="col-3" style="text-align: center">
             <a href="{% url 'invoice_index' %}"><i class="fas fa-file-invoice fa-5x text-dark"></i><p class="mt-1 text-dark">Invoices</p></a>
@@ -19,6 +19,8 @@
           <div class="col-3" style="text-align: center">
             <a href="{% url 'project_index' %}"><i class="fas fa-toolbox fa-5x text-dark"></i><p class="mt-1 text-dark">Projects</p></a>
           </div>
+        </div>
+        <div class="row">
           <div class="col-3" style="text-align: center">
             <a href="{% url 'client_index' %}"><i class="fas fa-building fa-5x text-dark"></i><p class="mt-1 text-dark">Clients</p></a>
           </div>
@@ -28,6 +30,8 @@
           <div class="col-3" style="text-align: center">
             <a href="{% url 'estimate_index' %}"><i class="fa fa-file-pdf fa-5x text-dark"></i><p class="mt-1 text-dark">Estimates</p></a>
           </div>
+        </div>
+        <div class="row">
           <div class="col-3" style="text-align: center">
             <a href="{% url 'note_index' %}"><i class="fas fa-sticky-note fa-5x text-dark"></i><p class="mt-1 text-dark">Notes</p></a>
           </div>
@@ -37,6 +41,8 @@
           <div class="col-3" style="text-align: center">
             <a href="{% url 'settings_app' %}"><i class="fa fa-cog fa-5x text-dark"></i><p class="mt-1 text-dark">Settings</p></a>
           </div>
+        </div>
+        <div class="row">
           <div class="col-3" style="text-align: center">
             <a href="{% url 'task_index' %}"><i class="fa fa-tasks fa-5x text-dark"></i><p class="mt-1 text-dark">Tasks</p></a>
           </div>
@@ -46,6 +52,8 @@
           <div class="col-3" style="text-align: center">
             <a href="/api" target="_blank"><i class="fa fa-code fa-5x text-dark"></i><p class="mt-1 text-dark">API</p></a>
           </div>
+        </div>
+        <div class="row">
           <div class="col-3" style="text-align: center">
             <a href="{% url 'admin:index' %}" target="_blank"><i class="fab fa-python fa-5x text-dark"></i><p class="mt-1 text-dark">Admin</p></a>
           </div>
