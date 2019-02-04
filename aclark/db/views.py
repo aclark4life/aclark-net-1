@@ -863,5 +863,6 @@ def user_index(request):
         contact_model=Contact,
         model=User,
         order_by=('-profile__active', 'last_name', 'first_name'),
-        request=request)
+        request=request,
+        search_fields=('first_name', 'last_name', 'id', 'email', 'username'))
     return render(request, 'user_index.html', context)
