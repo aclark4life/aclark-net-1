@@ -1,8 +1,6 @@
 {% load staticfiles %}
-    <nav class="navbar navbar-dark">
-      <ul class="navbar-nav">  <!-- http://stackoverflow.com/a/25044880/185820 -->
-        <li class="nav-item dropdown">
-          <a class="{{ nav_css }}" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bars"></i></a>
+        <li class="nav-item dropdown px-1">
+          <a class="{{ nav_css }} nav-link" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bars"></i></a>
           <div style="text-transform: capitalize;" class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown01">
             {% if request.user.is_anonymous %}<a class="dropdown-item" href="{% url 'login'  %}"><i class="fas fa-sign-in-alt"></i> Sign in</a>{% endif %}
             {% if request.user.is_anonymous %}<a class="dropdown-item" href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}"><i class="fas fa-sign-in-alt"></i> Login with Google</a>{% endif %}
@@ -25,5 +23,3 @@
             {% if not request.user.is_anonymous  %}<div class="dropdown-divider"></div><a class="dropdown-item" href="{% url 'logout' %}?next={% url 'home' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>{% endif %}
           </div>
         </li>
-      </ul>
-    </nav>
