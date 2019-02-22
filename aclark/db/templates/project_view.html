@@ -53,6 +53,19 @@
           <!------------------------------------------------------------------------------------>
           <div class="row">
             <div class="col-12 py-1">
+              <h2><a href="{% url 'estimate_index' %}" class="text-dark">Estimates</a></h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 py-1">
+{% with items=items.estimates view_url='estimate_view' edit_url='estimate_edit' item_type='estimate' %}
+{% include 'invoice_table.html' %}
+{% endwith %}
+            </div>
+          </div>
+          <!------------------------------------------------------------------------------------>
+          <div class="row">
+            <div class="col-12 py-1">
               <h2><a href="{% url 'invoice_index' %}" class="text-dark">Invoices</a></h2>
             </div>
           </div>

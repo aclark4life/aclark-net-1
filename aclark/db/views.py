@@ -121,6 +121,7 @@ def get_company_name(model):
 def client_view(request, pk=None):
     order_by = {
         'project': ('-updated', ),
+        'estimate': ('-issue_date', ),
         'invoice': ('-issue_date', ),
     }
     context = get_page_items(
