@@ -203,6 +203,11 @@ class Estimate(BaseModel):
         limit_choices_to={'active': True},
         on_delete=models.CASCADE,
     )
+    note = models.ManyToManyField(
+        'Note',
+        blank=True,
+        limit_choices_to={'active': True},
+    )
 
     def __str__(self):
         return 'estimate-%s' % self.pk
