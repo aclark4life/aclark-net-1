@@ -111,6 +111,7 @@ class EstimateForm(forms.ModelForm):
             'accepted_date',
             'issue_date',
             'estimate_type',
+            'note',
         )
 
     issue_date = forms.DateField(
