@@ -90,9 +90,9 @@ def obj_process(obj,
         if query_invoiced['state'] == 'true':
             now = timezone.now()
             obj.last_payment_date = now
-            messages.add_message(request, messages.INFO, 'Invoiced!')
+            messages.add_message(request, messages.INFO, 'Sent!')
         elif query_invoiced['state'] == 'false':
-            messages.add_message(request, messages.INFO, 'Not invoiced!')
+            messages.add_message(request, messages.INFO, 'Not sent!')
             obj.last_payment_date = None
         obj.save()
         return HttpResponseRedirect(http_ref)
