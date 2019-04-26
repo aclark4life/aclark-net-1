@@ -111,19 +111,16 @@
 
     <div class="d-none d-md-block text-uppercase">
       <ul class="navbar-nav">
-        <li class="nav-item px-1 ">
+        <li class="nav-item px-1">
           <a class="nav-link {{ nav_css }}" href="{% url 'about' %}">About</a>
         </li>
-        <li class="nav-item px-1 ">
+        <li class="nav-item px-1">
+          <a class="nav-link {{ nav_css }}" href="{% url 'services' %}">Products</a>
+        </li>
+        <li class="nav-item px-1">
           <a class="nav-link {{ nav_css }}" href="{% url 'services' %}">Services</a>
         </li>
-        <li class="nav-item px-1 ">
-          <a class="nav-link {{ nav_css }}" href="{% url 'clients' %}">Clients</a>
-        </li>
-        <li class="nav-item px-1 ">
-          <a class="nav-link {{ nav_css }}" href="{% url 'team' %}">Team</a>
-        </li>
-        <li class="nav-item px-1 ">
+        <li class="nav-item px-1">
           <a class="nav-link {{ nav_css }}" href="{% url 'contact' %}">Contact</a>
         </li>
       </ul>
@@ -168,20 +165,18 @@
       </div>
       <div class="col-md-2 ml-auto mb-5">
         <ul class="list-unstyled list-spaced">
-          <li class="mb-2"><h6 class="text-uppercase">Product</h6></li>
-          <li class="text-muted">Features</li>
-          <li class="text-muted">Examples</li>
-          <li class="text-muted">Tour</li>
-          <li class="text-muted">Gallery</li>
+          <li class="mb-2"><h6 class="text-uppercase"><a href="{% url 'services' %}">Products</a></h6></li>
+          <li class="text-muted">Hosting</li>
+          <li class="text-muted">Training</li>
+          <li class="text-muted">Tutoring</li>
         </ul>
       </div>
       <div class="col-md-2 mb-5">
         <ul class="list-unstyled list-spaced">
-          <li class="mb-2"><h6 class="text-uppercase">Apis</h6></li>
-          <li class="text-muted">Rich data</li>
-          <li class="text-muted">Simple data</li>
-          <li class="text-muted">Real time</li>
-          <li class="text-muted">Social</li>
+          <li class="mb-2"><h6 class="text-uppercase"><a href="{% url 'services' %}">Services</a></h6></li>
+          <li class="text-muted">Consulting</li>
+          <li class="text-muted">Development</li>
+          <li class="text-muted">Support</li>
         </ul>
       </div>
       <div class="col-md-2 mb-5">

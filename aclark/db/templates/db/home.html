@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
               {% if request.user.is_authenticated %}
                 {% if user.profile.dashboard_items %}
                   {% for dashboard in user.profile.dashboard_items %}  <!-- https://stackoverflow.com/a/4524851/185820 -->
