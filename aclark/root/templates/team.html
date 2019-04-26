@@ -12,31 +12,7 @@
   </div>
 </div>
 <div class="block block-secondary app-iphone-block"> 
-  <div class="container">
-    <div class="row app-align-center">
-      <div class="col-sm-5 d-none d-md-block">
-        <div class="row"> 
-          <h5 class="text-muted text-uppercase">Blog</h5>
-          <p>
-          Alex Clark has been blogging <a href="http://blog.aclark.net/2007/03/16/first-post/index.html" target="_blank">since 2007</a> and enjoys writing about a variety of technical and other topics.
-          </p>
-          <h6>Popular Articles</h6>
-          <ul> 
-            <li><a href="http://blog.aclark.net/2013/02/23/trading-places-trading-scene-explained/index.html" target="_blank">Trading Places Trading Scene Explained</a></li>
-            <li><a href="http://blog.aclark.net/2016/12/15/shout-out-to-shout-irc/index.html" target="_blank">A Shout Out to Shout IRC</a></li>
-            <li><a href="http://blog.aclark.net/2015/02/10/please-do-my-homework/index.html" target="_blank">Please Do My Homework</a></li>
-          </ul>
-        </div>
-        <div class="row"> 
-          <h5 class="text-muted text-uppercase">Book</h5>
-          <p>Written by Alex Clark and based on Plone 3.3, this book will help you learn how to create, deploy and maintain all versions of Plone. The approach presented within this book was continued through Plone 5 as part of the Plock project.</p>
-          <h6>Plone 3.3 Site Administration</h6>
-          <ul class="list-unstyled list-spaced mb-5">
-            <li class="mb-2"><a target="_blank" href="https://www.packtpub.com/web-development/plone-33-site-administration">Buy a copy today</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-md-6 col-sm-12 ml-auto" id="team">
+      <div class="col-12" id="team">
         <h5 class="text-muted text-uppercase">Team</h5>
           {% for profile in profiles %}
           <div class="row" id="{{profile.get_username }}">
