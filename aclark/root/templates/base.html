@@ -1,8 +1,5 @@
-
 {% load static %}
 {% load render_bundle from webpack_loader %}
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,14 +19,10 @@
         ACLARK.NET, LLC
       
     </title>
-
     
-      <link href='https://fonts.googleapis.com/css?family=Lora:400,400italic|Work+Sans:300,400,500,600' rel='stylesheet' type='text/css'>
-      <link href="{% static 'assets/css/toolkit-startup.css' %}" rel="stylesheet">
-      <link href="{% static 'assets/css/application-startup.css' %}" rel="stylesheet">
-    
-
-    
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,400italic|Work+Sans:300,400,500,600' rel='stylesheet' type='text/css'>
+    <link href="{% static 'assets/css/toolkit-startup.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/application-startup.css' %}" rel="stylesheet">
 
     <style>
       /* note: this is a hack for ios iframe for bootstrap themes shopify page */
@@ -52,7 +45,6 @@
 
     {% render_bundle 'main' 'css' %}
 
-
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 
     {% block head %}
@@ -60,11 +52,7 @@
 
   </head>
 
-
 <body>
-  
-
-
 
 <div class="stage-shelf stage-shelf-right hidden" id="sidebar">
   <ul class="nav nav-bordered nav-stacked flex-column">
