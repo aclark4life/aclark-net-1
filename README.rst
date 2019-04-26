@@ -1,4 +1,4 @@
-aclark-net
+aclarknet
 ================================================================================
 
 - https://github.com/pygraphviz/pygraphviz/issues/100#issuecomment-237560404
