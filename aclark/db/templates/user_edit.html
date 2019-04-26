@@ -1,17 +1,23 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-              <div class="row">
-                <div class="col-md-12">
-                  <h1>Profile</h1>
-                  <h4 style="border-bottom: none;">{% if is_staff %}<a class="text-dark" href="{% url 'user_index' %}">Users</a>{% else %}Users{% endif %} <i class="fa fa-arrow-right"></i> <a class="text-dark" href="{% url 'user_view' pk=item.user.pk %}">{{ item.user.get_full_name|default:item.user }}</a> <i class="fa fa-arrow-right"></i> Edit</h4>
-                </div>
-              </div>
-              <form action="" method="post">{% csrf_token %}
-                {{ form|crispy }}
-                <input class="btn btn-lg btn-success" type="submit" value="Save User">
-                <a class="btn btn-lg btn-secondary" href="{{ request.META.HTTP_REFERER }}">Cancel</a>  <!-- http://stackoverflow.com/a/4406484 -->
-              </form>
+
+  <div class="block-xs-middle pb-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-10 col-lg-6">
+          <h1>Profile</h1>
+          <h4 style="border-bottom: none;">{% if is_staff %}<a class="text-dark" href="{% url 'user_index' %}">Users</a>{% else %}Users{% endif %} <i class="fa fa-arrow-right"></i> <a class="text-dark" href="{% url 'user_view' pk=item.user.pk %}">{{ item.user.get_full_name|default:item.user }}</a> <i class="fa fa-arrow-right"></i> Edit</h4>
+          <form action="" method="post">{% csrf_token %}
+            {{ form|crispy }}
+            <input class="btn btn-lg btn-success" type="submit" value="Save User">
+            <a class="btn btn-lg btn-secondary" href="{{ request.META.HTTP_REFERER }}">Cancel</a>  <!-- http://stackoverflow.com/a/4406484 -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
 {% endblock %}
 {% block js %}
 {% include 'tinymce.html' %}
