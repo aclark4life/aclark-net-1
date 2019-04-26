@@ -55,7 +55,7 @@ social-auth-core==1.7.0
 tablib==0.12.1
 text-unidecode==1.2
 unicodecsv==0.14.1
-urllib3==1.23
+urllib3==1.25.1
 webencodings==0.5.1
 xhtml2pdf==0.2.2
 xlrd==1.1.0
