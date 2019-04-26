@@ -126,7 +126,6 @@
         <li class="nav-item px-1 ">
           <a class="nav-link {{ nav_css }}" href="{% url 'contact' %}">Contact</a>
         </li>
-{% if not request.user.is_anonymous %}{% include 'db/dropdown.html' %}{% endif %}
       </ul>
     </div>
   </nav>
@@ -380,7 +379,7 @@
       <div class="col-md-2 mb-5">
         <ul class="list-unstyled list-spaced">
           <li class="mb-2"><h6 class="text-uppercase">Staff</h6></li>
-          <li class="text-muted"><a href="{% url 'login' %}">Login</a></li>
+          <li class="text-muted">{% if not request.user.is_anonymous %}<a href="{% url 'dashboard' %}">Dashboard</a>{% else %}<a href="{% url 'login' %}">Login</a>{% endif %}</li>
         </ul>
       </div>
       <span class="mx-auto mt-5 text-muted">&copy; ACLARK.NET, LLC 2019</span>
