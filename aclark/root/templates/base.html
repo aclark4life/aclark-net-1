@@ -109,21 +109,21 @@
         </li>
         <li class="nav-item dropdown">
           <!-- https://stackoverflow.com/a/29668214/185820 -->
-          <a class="nav-link dropdown-toggle" href="{% url 'about' %}" id="navbarDropdown" role="button" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link" href="{% url 'about' %}" id="navbarDropdown" role="button" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
             About
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="nav-link {{ nav_css }}" href="{% url 'team' %}"><i class="fa fa-users"></i> Team</a>
+            <a class="nav-link" href="{% url 'team' %}"><i class="fa fa-users"></i> Team</a>
           </div>
         </li>
         <li class="nav-item px-1">
-          <a class="nav-link {{ nav_css }}" href="{% url 'services' %}">Services</a>
+          <a class="nav-link" href="{% url 'services' %}">Services</a>
         </li>
         <li class="nav-item px-1">
-          <a class="nav-link {{ nav_css }}" href="{% url 'clients' %}">Clients</a>
+          <a class="nav-link" href="{% url 'clients' %}">Clients</a>
         </li>
         <li class="nav-item px-1">
-          <a class="nav-link {{ nav_css }}" href="{% url 'contact' %}">Contact</a>
+          <a class="nav-link" href="{% url 'contact' %}">Contact</a>
         </li>
       </ul>
     </div>
