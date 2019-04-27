@@ -1,30 +1,19 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-  <div class="block-xs-middle pb-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-10 col-lg-6">
-          <h1 class="block-titleData frequency">Our team offers extensive experience in the development, deployment and maintenance of modern web applications.</h1>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="block block-secondary app-iphone-block"> 
-      <div class="col-12" id="team">
-        <h5 class="text-muted text-uppercase">Team</h5>
+    <h1 class="block-titleData frequency">Our Team</h1><!-- offers extensive experience in the development, deployment and maintenance of modern web applications.</h1> -->
+        <h5 class="text-muted text-uppercase" id="team">Team</h5>
+        <div class="container">
+        <div class="row">
           {% for profile in profiles %}
-          <div class="row" id="{{profile.get_username }}">
-            <div class="col-md-12 mb-5">
-              <img class="img-thumbnail" src="{{ profile.get_avatar_url }}" style="margin: 0 1em 1em 0">
-              <h2>{{ profile.user.first_name }} {{ profile.user.last_name }}</h2>
-              <p class="lead">{{ profile.bio|safe|default:'' }}</p>
-            </div>
+          <div class="col-md-6 mb-5" id="{{profile.get_username }}">
+            <img class="img-thumbnail" src="{{ profile.get_avatar_url }}" style="margin: 0 1em 1em 0">
+            <h2>{{ profile.user.first_name }} {{ profile.user.last_name }}</h2>
+            <p class="lead">{{ profile.bio|safe|default:'' }}</p>
           </div>
           {% endfor %}
-      </div>
-    </div>
-  </div>
+        </div>
+        </div>
+
 </div>
 {% endblock %}
