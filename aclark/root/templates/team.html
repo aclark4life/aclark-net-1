@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <h1 class="block-titleData frequency">Our Team</h1><!-- offers extensive experience in the development, deployment and maintenance of modern web applications.</h1> -->
-        <h5 class="text-muted text-uppercase" id="team">Team</h5>
         <div class="container">
+        <h1 class="block-titleData frequency">Our Team</h1><!-- offers extensive experience in the development, deployment and maintenance of modern web applications.</h1> -->
+        <h5 class="text-muted text-uppercase" id="team">Team</h5>
         <div class="row">
           {% for profile in profiles %}
           <div class="col-md-6 mb-5" id="{{profile.get_username }}">
