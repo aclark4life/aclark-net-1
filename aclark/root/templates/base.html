@@ -113,7 +113,7 @@
             About
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="nav-link {{ nav_css }}" href="{% url 'team' %}">Team</a>
+            <a class="nav-link {{ nav_css }}" href="{% url 'team' %}"><i class="fa fa-users"></i> Team</a>
           </div>
         </li>
         <li class="nav-item px-1">
@@ -166,25 +166,25 @@
       </div>
       <div class="col-md-2 ml-auto mb-5">
         <ul class="list-unstyled list-spaced">
-          <li class="mb-2"><h6 class="text-uppercase"><a href="{% url 'about' %}">About</a></h6></li>
-          <li class="text-muted"><a href="{% url 'team' %}">Team</a></li>
+          <li class="mb-2"><h6 class="text-uppercase"><a style="text-decoration: none" href="{% url 'about' %}">About</a></h6></li>
+          <li class="text-muted"><a style="text-decoration: none" href="{% url 'team' %}">Team</a></li>
         </ul>
       </div>
       <div class="col-md-2 mb-5">
         <ul class="list-unstyled list-spaced">
-          <li class="mb-2"><h6 class="text-uppercase"><a href="{% url 'services' %}">Services</a></h6></li>
-          <li class="text-muted"><a href="{% url 'services' %}#consulting">Consulting</a></li>
-          <li class="text-muted"><a href="{% url 'services' %}#development">Development</a></li>
-          <li class="text-muted"><a href="{% url 'services' %}#hosting">Hosting</a></li>
-          <li class="text-muted"><a href="{% url 'services' %}#support">Support</a></li>
-          <li class="text-muted"><a href="{% url 'services' %}#training">Training</a></li>
-          <li class="text-muted"><a href="{% url 'services' %}#tutoring">Tutoring</a></li>
+          <li class="mb-2"><h6 class="text-uppercase"><a style="text-decoration: none" href="{% url 'services' %}">Services</a></h6></li>
+          <li class="text-muted"><a style="text-decoration: none" href="{% url 'services' %}#consulting">Consulting</a></li>
+          <li class="text-muted"><a style="text-decoration: none" href="{% url 'services' %}#development">Development</a></li>
+          <li class="text-muted"><a style="text-decoration: none" href="{% url 'services' %}#hosting">Hosting</a></li>
+          <li class="text-muted"><a style="text-decoration: none" href="{% url 'services' %}#support">Support</a></li>
+          <li class="text-muted"><a style="text-decoration: none" href="{% url 'services' %}#training">Training</a></li>
+          <li class="text-muted"><a style="text-decoration: none" href="{% url 'services' %}#tutoring">Tutoring</a></li>
         </ul>
       </div>
       <div class="col-md-2 mb-5">
         <ul class="list-unstyled list-spaced">
-          <li class="mb-2"><h6 class="text-uppercase">Staff</h6></li>
-          <li class="text-muted">{% if not request.user.is_anonymous %}<a href="{% url 'dashboard' %}">Time tracking</a>{% else %}<a href="{% url 'login' %}">Login</a>{% endif %}</li>
+          <li class="mb-2"><h6 class="text-uppercase">{% if not request.user.is_anonymous %}<a style="text-decoration: none" href="{% url 'dashboard' %}">Staff</a>{% else %}<a href="{% url 'login' %}">Staff</a>{% endif %}</h6></li>
+          <li class="text-muted">{% if not request.user.is_anonymous %}<a style="text-decoration: none" href="{% url 'dashboard' %}">Time tracking</a>{% else %}<a href="{% url 'login' %}">Login</a>{% endif %}</li>
         </ul>
       </div>
       <span class="mx-auto mt-5 text-muted">&copy; ACLARK.NET, LLC 2019</span>
