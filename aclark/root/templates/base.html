@@ -47,6 +47,7 @@
       /* https://stackoverflow.com/a/42183824/185820 */
       .dropdown:hover>.dropdown-menu {
         display: block;
+        background: black;
       }
 
       /* https://bootstrapthemes.co/demo/resource/bootstrap-4-multi-dropdown-hover-navbar/ */
@@ -55,12 +56,14 @@
           margin: 0 0 0; 
           border: 0px solid transition !important;
           border: 0px solid rgba(0,0,0,.15);	
-          border-radius: 0px;
+          border-radius: 2px;
           -webkit-box-shadow: none !important;
           box-shadow: none !important;
 
       }
-
+      .dropdown-menu a {
+        color: white; 
+      }
     </style>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
@@ -103,8 +106,9 @@
   <div class="container py-4 fixed-top app-navbar">
   <nav class="navbar navbar-transparent navbar-padded navbar-expand-md">
     <a class="navbar-brand mr-auto" href="{% url 'home' %}">
-      <!-- <strong style="background: #fff; padding: 12px; border-radius: 4px; color: #28669F;">ACLARK.NET, LLC</strong> -->
+      <strong style="background: #000; padding: 12px; border-radius: 4px; color: #28669F;">
       <img src="{% static 'aclarknet-logo.png' %}">
+      </strong>
     </a>
     <button
       class="navbar-toggler"
