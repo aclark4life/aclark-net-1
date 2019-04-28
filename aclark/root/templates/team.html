@@ -16,7 +16,7 @@
           <div class="p-2 bg-dark">
               <h1><img class="m-5 rounded-0 border border-info" src="{{ profile.get_avatar_url }}"></h1>
               <h3>{{ profile.user.first_name }} {{ profile.user.last_name }}</h3>
-              <p>{{ client.description|striptags }}</p>
+              <p>{{ profile.bio|safe }}</p>
             </div>
           </div>
           {% endfor %}
@@ -25,6 +25,9 @@
       </div>
     </div>
   </div>
+
+
+
 
 </div>
 {% endblock %}
