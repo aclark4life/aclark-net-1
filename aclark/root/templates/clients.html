@@ -13,7 +13,8 @@
     <div class="row">
       {% for client in clients %}
       <div class="col-md-4 px-4 pb-2 mb-5"> 
-        <div class="px-2">
+        <div class="p-2 bg-dark">
+            <h1><i class="fa fa-building"></i></h1>
             <h3>{{ client.name }}</h3>
             <p>{{ client.description|striptags }}</p>
           </div>
