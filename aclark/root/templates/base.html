@@ -24,6 +24,8 @@
     <link href="{% static 'assets/css/toolkit-startup.css' %}" rel="stylesheet">
     <link href="{% static 'assets/css/application-startup.css' %}" rel="stylesheet">
 
+    {% render_bundle 'main' 'css' %}
+
     <style>
       /* note: this is a hack for ios iframe for bootstrap themes shopify page */
       /* this chunk of css is not part of the toolkit :) */
@@ -47,29 +49,24 @@
         display: block;
       }
 
-    </style>
+      /* https://bootstrapthemes.co/demo/resource/bootstrap-4-multi-dropdown-hover-navbar/ */
+      .dropdown-menu {
+          padding: 0px 0; 
+          margin: 0 0 0; 
+          border: 0px solid transition !important;
+          border: 0px solid rgba(0,0,0,.15);	
+          border-radius: 0px;
+          -webkit-box-shadow: none !important;
+          box-shadow: none !important;
 
-    {% render_bundle 'main' 'css' %}
+      }
+
+    </style>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 
     {% block head %}
     {% endblock %}
-
-    <style>
-
-    /* https://bootstrapthemes.co/demo/resource/bootstrap-4-multi-dropdown-hover-navbar/ */
-    .dropdown-menu {
-        padding: 0px 0; 
-        margin: 0 0 0; 
-        border: 0px solid transition !important;
-        border: 0px solid rgba(0,0,0,.15);	
-        border-radius: 0px;
-        -webkit-box-shadow: none !important;
-        box-shadow: none !important;
-
-    }
-    </style>
 
   </head>
 
@@ -128,7 +125,7 @@
             About
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="nav-link" href="{% url 'contact' %}"><i class="fa fa-users"></i> Contact Us</a>
+            <a class="nav-link" href="{% url 'contact' %}"><i class="fa fa-envelope"></i> Contact Us</a>
             <a class="nav-link" href="{% url 'team' %}"><i class="fa fa-users"></i> Team</a>
           </div>
         </li>
