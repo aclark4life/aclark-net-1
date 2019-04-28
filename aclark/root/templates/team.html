@@ -2,7 +2,6 @@
 {% load static %}
 {% block content %}
 
-
   <div id="clients">
     <div class="container text-center">
       <div class="row m-5 justify-content-center">
@@ -15,8 +14,8 @@
         {% for profile in profiles %}
         <div class="col-md-4 px-4 pb-2 mb-5">
           <div class="p-2 bg-dark">
-              <h1><i class="fa fa-user"></i></h1>
-              <h3>{{ client.name }}</h3>
+              <h1><img class="m-5 rounded-0 border border-info" src="{{ profile.get_avatar_url }}"></h1>
+              <h3>{{ profile.user.first_name }} {{ profile.user.last_name }}</h3>
               <p>{{ client.description|striptags }}</p>
             </div>
           </div>
@@ -26,10 +25,6 @@
       </div>
     </div>
   </div>
-
-
-
-
 
 </div>
 {% endblock %}
