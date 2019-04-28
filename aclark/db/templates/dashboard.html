@@ -3,13 +3,10 @@
 {% block content %}
 {% if request.user.is_authenticated %}
   {% if user.profile.dashboard_items %}
-
-
-  <div class="container text-center">
-    <div class="row m-5 justify-content-center">
+  <div class="container">
+    <div class="row my-5">
       <div class="col-12">
-        <h1>About Us</h1>
-        <h3>We empower you through Python™ and related technologies.</h3>
+        <h1>Dashboard</h1>
       </div>
     </div>
     {% for dashboard in user.profile.dashboard_items %}  <!-- https://stackoverflow.com/a/4524851/185820 -->
