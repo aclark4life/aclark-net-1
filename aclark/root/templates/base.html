@@ -209,6 +209,7 @@
       <div class="col-md-2 mb-5">
         <ul class="list-unstyled list-spaced">
           <li class="mb-2"><h6 class="text-uppercase"><a style="text-decoration: none" href="{% url 'dashboard' %}">Staff</a></h6></li>
+          <li class="text-muted">{% if not request.user.is_anonymous %}<a style="text-decoration: none" href="{% url 'user_view' request.user.id %}">Profile</a>{% endif %}</li>
           <li class="text-muted">{% if not request.user.is_anonymous %}<a style="text-decoration: none" href="{% url 'dashboard' %}">Time tracking</a>{% else %}<a href="{% url 'dashboard' %}">Sign in</a>{% endif %}</li>
           <li class="text-muted">{% if not request.user.is_anonymous %}<a style="text-decoration: none" href="{% url 'logout' %}?next={% url 'home' %}">Sign out</a>{% endif %}</li>
         </ul>
