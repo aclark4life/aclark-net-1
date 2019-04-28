@@ -355,7 +355,7 @@ def home(request):
         report_model=Report,
         user_model=User,
         request=request)
-    return render(request, 'db/home.html', context)
+    return render(request, 'dashboard.html', context)
 
 
 @staff_member_required
