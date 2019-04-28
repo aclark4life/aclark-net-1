@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
+
+{% block add_graph %}
+{% endblock %}
+
 {% block content %}
-          <div class="row">
-            <div class="col-md-9">
-              <h1 style="border-bottom: none;">Users</h1>
-            </div>
-            <div class="col-md-3">
-              <button class="btn btn-block btn-lg btn-success" href="{% url 'user_edit' %}" disabled>Add User</button>
-            </div>
-          </div>
+
+  <div class="container">
+    <div class="row my-5">
+      <div class="col-12 card text-dark">
+        <h1>Users</h1>
 {% with users=items.users %}
 {% include 'search.html' %}
 {% include 'pagination.html' %}
@@ -15,4 +16,8 @@
 {% include 'search.html' %}
 {% include 'pagination.html' %}
 {% endwith %}
+      </div>
+    </div>
+  </div>
+
 {% endblock %}
