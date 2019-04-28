@@ -57,8 +57,12 @@
     <div class="row m-5 justify-content-center">
       <div class="col-12 app-high-praise block text-light" style="background-image: url(/static/startup-3.jpg);">
         <h2>Testimonials</h2>
-        <p class="lead">{{ testimonial.description }}</p>
-        <p>{{ testimonial.name }}, {{ testimonial.title }}</p>
+        <div class="row">
+          <div class="offset-6 col-6 bg-dark p-5">
+            <p class="lead">{{ testimonial.description }}</p>
+            <p>{{ testimonial.name }}, {{ testimonial.title }}</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
