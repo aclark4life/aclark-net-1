@@ -1,4 +1,4 @@
-<h2 class="mt-5">{% if request.user.is_staff %}<a class="text-white" href="{% url 'time_index' %}"> Times</a>{% else %} Times{% endif %}</h2>
+<h2 class="mt-5">{% if request.user.is_staff %}<a style="text-decoration: none" class="text-white" href="{% url 'time_index' %}"> Times</a>{% else %} Times{% endif %}</h2>
 <div class="card">
 {% with items=items.times %}
 {% include 'pagination.html' %}
