@@ -16,7 +16,7 @@
           <div class="p-2 bg-dark">
               <h1><i class="fa fa-cog"></i></h1>
               <h3>{{ service.name }}</h3>
-              <p>{{ service.description|striptags }}</p>
+              <p>{{ service.description|safe }}</p>
             </div>
           </div>
           {% endfor %}
