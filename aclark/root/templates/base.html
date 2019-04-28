@@ -56,8 +56,6 @@
     {% block head %}
     {% endblock %}
 
-    <link href="{% static 'assets/css/bootstrap-4-navbar.css' %}" rel="stylesheet">
-
     <style>
 
 .dropdown-menu {
@@ -220,8 +218,6 @@
   // execute/clear BS loaders for docs
   $(function(){while(window.BS&&window.BS.loader&&window.BS.loader.length){(window.BS.loader.pop())()}})
 </script>
-
-<script src="{% static 'assets/js/bootstrap-4-navbar.js' %}"></script>
 
 {% render_bundle 'main' 'js' %}
 
