@@ -56,6 +56,23 @@
     {% block head %}
     {% endblock %}
 
+    <link href="{% static 'assets/css/bootstrap-4-navbar.css' %}" rel="stylesheet">
+
+    <style>
+
+.dropdown-menu {
+    padding: 0px 0; 
+    margin: 0 0 0; 
+    border: 0px solid transition !important;
+    border: 0px solid rgba(0,0,0,.15);	
+    border-radius: 0px;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+
+}
+</style>
+
+
   </head>
 
 <body>
@@ -203,6 +220,9 @@
   // execute/clear BS loaders for docs
   $(function(){while(window.BS&&window.BS.loader&&window.BS.loader.length){(window.BS.loader.pop())()}})
 </script>
+
+<script src="{% static 'assets/js/bootstrap-4-navbar.js' %}"></script>
+
 {% render_bundle 'main' 'js' %}
 
 </body>
