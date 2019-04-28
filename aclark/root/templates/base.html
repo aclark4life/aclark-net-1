@@ -210,6 +210,7 @@
         <ul class="list-unstyled list-spaced">
           <li class="mb-2"><h6 class="text-uppercase">{% if not request.user.is_anonymous %}<a style="text-decoration: none" href="{% url 'dashboard' %}">Staff</a>{% else %}<a href="{% url 'login' %}">Staff</a>{% endif %}</h6></li>
           <li class="text-muted">{% if not request.user.is_anonymous %}<a style="text-decoration: none" href="{% url 'dashboard' %}">Time tracking</a>{% else %}<a href="{% url 'login' %}">Login</a>{% endif %}</li>
+          <li class="text-muted">{% if not request.user.is_anonymous %}<a style="text-decoration: none" href="{% url 'logout' %}">Log out</a>{% endif %}</li>
         </ul>
       </div>
       <span class="mx-auto mt-5 text-muted">&copy; ACLARK.NET, LLC 2019</span>
