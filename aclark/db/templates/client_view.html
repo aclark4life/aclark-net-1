@@ -14,13 +14,11 @@
             <span class="sr-only">Toggle Dropdown</span>
           </button>
           <div class="dropdown-menu dropdown-menu-right">
-            {% include 'actions.html' %}
+{% include 'actions.html' %}
           </div>
         </div>
       </div>
     </div>
-{% include 'copy_form.html' %}
-{% include 'delete_form.html' %}
     <div class="row">
       <div class="col-md-12 my-1 card text-dark">
         <h2>Address</h2>
@@ -32,7 +30,7 @@
     <div class="row">
       <div class="col-md-12 my-1 card">
         <h2 class="my-1"><a href="{% url 'contact_index' %}" class="text-dark">Contacts</a></h2>
-          {% include 'contact_table.html' %}
+{% include 'contact_table.html' %}
       </div>
     </div>
     <!-------------------------------------------------------------------------------->
@@ -40,7 +38,7 @@
       <div class="col-md-12 my-1 card">
         <h2 class="my-1"><a href="{% url 'estimate_index' %}" class="text-dark">Estimates</a></h2>
           {% with items=items.estimates view_url='estimate_view' edit_url='estimate_edit' item_type='estimate' %}
-          {% include 'invoice_table.html' %}
+{% include 'invoice_table.html' %}
           {% endwith %}
       </div>
     </div>
@@ -49,7 +47,7 @@
       <div class="col-md-12 my-1 card">
         <h2 class="my-1"><a href="{% url 'invoice_index' %}" class="text-dark">Invoices</a></h2>
           {% with items=items.invoices view_url='invoice_view' edit_url='invoice_edit' item_type='invoice' %}
-          {% include 'invoice_table.html' %}
+{% include 'invoice_table.html' %}
           {% endwith %}
       </div>
     </div>
@@ -57,15 +55,17 @@
     <div class="row">
       <div class="col-md-12 my-1 card">
         <h2 class="my-1"><a href="{% url 'note_index' %}" class="text-dark">Notes</a></h2>
-          {% include 'note_table.html' %}
+{% include 'note_table.html' %}
       </div>
     </div>
     <!-------------------------------------------------------------------------------->
     <div class="row">
       <div class="col-md-12 my-1 card">
         <h2 class="my-1"><a href="{% url 'project_index' %}" class="text-dark">Projects</a></h2>
-          {% include 'project_table.html' %}
+{% include 'project_table.html' %}
       </div>
     </div>
   </div>
+{% include 'copy_form.html' %}
+{% include 'delete_form.html' %}
 {% endblock %}

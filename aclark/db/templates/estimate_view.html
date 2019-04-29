@@ -17,7 +17,7 @@
           <div class="dropdown-menu dropdown-menu-right">
             <a class="dropdown-item" href="{% url 'time_edit' %}?client={{ item.client.pk }}&estimate={{ item.pk }}&project={{ item.project.pk }}"><i class="fa fa-plus"></i> Add Time</a>
             <div class="dropdown-divider"></div>
-          {% include 'actions.html' %}
+{% include 'actions.html' %}
           </div>
         </div>
       </div>
@@ -28,8 +28,7 @@
       </div>
     </div>
   </div>
-{% endblock %}
-
 {% include 'copy_form.html' %}
 {% include 'delete_form.html' %}
 {% include 'invoice_sent.html' %}
+{% endblock %}
