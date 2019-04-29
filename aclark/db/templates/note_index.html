@@ -1,13 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
-          <div class="row">
-            <div class="col-md-9">
-              <h1 style="border-bottom: none;">Notes</h1>
-            </div>
-            <div class="col-md-3 ml-auto">
-              <a class="btn btn-block btn-lg btn-success" href="{% url 'note_edit' %}">Add Note</a>
-            </div>
-          </div>
+
+  <div class="container">
+    <div class="row my-5">
+      <div class="col-10">
+        <h1><a class="text-dark" href="{% url 'dashboard' %}">Dashboard</a> &rarr; Notes</h1>
+      </div>
+      <div class="col-2">
+        <a class="btn btn-block btn-lg btn-success" href="{% url 'note_edit' %}">Add Note</a>
+      </div>
+    </div>
+    <div class="row my-5">
+      <div class="col-12 card text-dark">
 {% with items=items.notes %}
 {% include 'search.html' %}
 {% include 'pagination.html' %}
@@ -17,4 +21,7 @@
 {% include 'search.html' %}
 {% include 'pagination.html' %}
 {% endwith %}
+      </div>
+    </div>
+  </div>
 {% endblock %}
