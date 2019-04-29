@@ -257,9 +257,8 @@ def estimate_view(request, pk=None):
     elif context['mail']:
         message = context['email_message']
         subject = context['email_subject']
-        doc_type = context['doc_type']
         mail_send(message=message, subject=subject)
-        messages.add_message(request, messages.INFO, '%s sent!' % doc_type)
+        messages.add_message(request, messages.INFO, 'Estimate sent!')
         return render(request, 'estimate_view.html', context)
     else:
         return render(request, 'estimate_view.html', context)
@@ -495,19 +494,21 @@ def note_view(request, pk=None):
         title = context['item'].title
         if title:
             title = slugify(title)
-        filename = '%s.%s' % (title, doc_type)
+        file_ext = None
+        filename = '%s.%s' % (title, file_ext)
         if context['doc']:
+            file_ext = 'docx'
             return render_doc(context, filename=filename)
         elif context['mail']:
             message = note.note
             # https://stackoverflow.com/a/16335483
             html_message = render_to_string('note_export.html', context)
             subject = title
-            doc_type = 'note'
             mail_send(
                 html_message=html_message, message=message, subject=subject)
-            messages.add_message(request, messages.INFO, '%s sent!' % doc_type)
+            messages.add_message(request, messages.INFO, 'Note sent!')
         elif context['pdf']:
+            file_ext = 'pdf'
             return render_pdf(
                 context, filename=filename, template='note_export.html')
         return render(request, 'note_view.html', context)
