@@ -21,6 +21,9 @@
     </div>
     <div class="row my-5">
       <div class="col-12 card text-dark">
+        {% if item.title %}
+        <h1>{{ item.title }}</h1>
+        {% endif %}
         {% if item.note %}
         <div class="row">
           <div class="col-md-12">
