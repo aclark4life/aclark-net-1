@@ -36,7 +36,5 @@ urlpatterns = [
     url(r'^blog$', views_root.blog, name='blog'),
     url(r'^clients$', views_root.clients, name='clients'),
     url(r'^contact$', views_root.contact, name='contact'),
-    url(r'^services$', views_root.services, name='services'),
     url(r'^team$', views_root.team, name='team'),
-    url(r'^testimonials$', views_root.testimonials, name='testimonials'),
 ]
