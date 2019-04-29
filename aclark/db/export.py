@@ -7,7 +7,7 @@ from lxml import etree
 
 import os
 
-DOC = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+docx = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
 
 # https://python-docx.readthedocs.io/en/latest/#what-it-can-do
 
@@ -87,7 +87,7 @@ def render_doc(context, **kwargs):
 
     document.add_page_break()
 
-    response = HttpResponse(content_type=DOC)
+    response = HttpResponse(content_type=docx)
     response['Content-Disposition'] = 'attachment; filename=%s' % filename
     document.save(response)
     return response
