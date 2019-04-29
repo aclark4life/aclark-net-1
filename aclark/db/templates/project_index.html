@@ -1,16 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
-          <div class="row">
-            <div class="col-md-9">
-              <h1 style="border-bottom: none;">Projects</h1>
-            </div>
-            <div class="col-md-3">
-              <button class="btn btn-block btn-lg btn-success" href="{% url 'project_edit' %}" disabled>Add Project</button>
-            </div>
-          </div>
+
+  <div class="container">
+    <div class="row my-5">
+      <div class="col-12">
+        <h1>Projects</h1>
+      </div>
+    </div>
+    <div class="row my-5">
+      <div class="col-12 card text-dark">
 {% include 'search.html' %}
 {% include 'pagination.html' %}
 {% include 'project_table.html' %}
 {% include 'search.html' %}
 {% include 'pagination.html' %}
+      </div>
+    </div>
+  </div>
 {% endblock %}
