@@ -6,10 +6,23 @@
 {% block content %}
 {% if request.user.is_authenticated %}
   {% if user.profile.dashboard_items %}
+
   <div class="container">
     <div class="row my-5">
-      <div class="col-12">
+      <div class="col-8">
         <h1>Dashboard</h1>
+      </div>
+      <div class="col-4">
+        <!-- http://getbootstrap.com/docs/4.0/components/dropdowns/#split-button-dropdowns -->
+        <div class="btn-group float-right dropdown">
+          <a class="btn btn-lg btn-success" href="{% url 'time_edit' %}">Add Time</a>
+          <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="sr-only">Toggle Dropdown</span>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right">
+            {% if is_staff %}<a class="dropdown-item" href="{% url 'geo-loc' %}"><i class="fa fa-globe"></i> Geolocate me</a>{% endif %}
+          </div>
+        </div>
       </div>
     </div>
     {% for dashboard in user.profile.dashboard_items %}  <!-- https://stackoverflow.com/a/4524851/185820 -->
