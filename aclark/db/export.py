@@ -12,6 +12,8 @@ DOC = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
 def render_doc(context, **kwargs):
     """
     """
+    filename = kwargs.get('filename')
+
     # # https://stackoverflow.com/a/24122313/185820
     # document = Document()
     # # Head
@@ -62,8 +64,6 @@ def render_doc(context, **kwargs):
         'first item in ordered list', style='List Number'
     )
 
-    # document.add_picture('monty-truth.png', width=Inches(1.25))
-
     records = (
         (3, '101', 'Spam'),
         (7, '422', 'Eggs'),
@@ -83,10 +83,8 @@ def render_doc(context, **kwargs):
 
     document.add_page_break()
 
-    # document.save('demo.docx')
-
     response = HttpResponse(content_type=DOC)
-    response['Content-Disposition'] = 'attachment; filename=demo.docx'
+    response['Content-Disposition'] = 'attachment; filename=%s' % filename
     document.save(response)
     return response
 

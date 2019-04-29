@@ -255,9 +255,9 @@ def estimate_view(request, pk=None):
         return render_pdf(
             context, filename=filename, template='invoice_export.html')
     elif context['mail']:
-        message = context['email_message']
-        subject = context['email_subject']
-        mail_send(message=message, subject=subject)
+        message_plain = context['email_message']
+        message_subject = context['email_subject']
+        mail_send(message=message_plain, subject=message_subject)
         messages.add_message(request, messages.INFO, 'Estimate sent!')
         return render(request, 'estimate_view.html', context)
     else:
@@ -494,21 +494,20 @@ def note_view(request, pk=None):
         title = context['item'].title
         if title:
             title = slugify(title)
-        file_ext = None
-        filename = '%s.%s' % (title, file_ext)
+        filename = title
         if context['doc']:
-            file_ext = 'docx'
+        
+            filename = '.'.join([filename, 'docx'])
             return render_doc(context, filename=filename)
-        elif context['mail']:
-            message = note.note
-            # https://stackoverflow.com/a/16335483
-            html_message = render_to_string('note_export.html', context)
-            subject = title
+        elif context['mail']:  # https://stackoverflow.com/a/16335483
+            message_plain = note.note
+            message_html = render_to_string('note_export.html', context)
+            message_subject = title
             mail_send(
-                html_message=html_message, message=message, subject=subject)
+                html_message=message_html, message=message_plain, subject=message_subject)
             messages.add_message(request, messages.INFO, 'Note sent!')
         elif context['pdf']:
-            file_ext = 'pdf'
+            filename = '.'.join([filename, 'pdf'])
             return render_pdf(
                 context, filename=filename, template='note_export.html')
         return render(request, 'note_view.html', context)
