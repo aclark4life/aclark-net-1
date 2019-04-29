@@ -496,7 +496,6 @@ def note_view(request, pk=None):
             title = slugify(title)
         filename = title
         if context['doc']:
-        
             filename = '.'.join([filename, 'docx'])
             return render_doc(context, filename=filename)
         elif context['mail']:  # https://stackoverflow.com/a/16335483
