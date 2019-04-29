@@ -5,23 +5,27 @@
 
 {% block content %}
   <div class="container">
-    <div class="row my-5">
+    <div class="row mt-5">
       <div class="col-10">
         <h1><a class="text-dark" href="{% url 'dashboard' %}">Dashboard</a> &rarr; Settings</h1>
       </div>
       <div class="col-2 ml-auto">
         <a class="btn btn-lg btn-block btn-success" href="{% url 'company_edit' %}">Edit</a>
       </div>
-      <ul class="nav nav-tabs">
-        <li class="nav-item">
-          <a class="nav-link {% if active_nav == 'Settings App' %}active{% endif %}" href="{% url 'app_view' %} ">App</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {% if active_nav == 'Settings Company' %}active{% endif %}" href="{% url 'company_view' %}">Company</a>
-        </li>
-      </ul>
     </div>
-    <div class="row my-5">
+    <div class="row mt-5">
+      <div class="col-12">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="text-dark nav-link {% if active_nav == 'Settings App' %}active{% endif %}" href="{% url 'app_view' %} ">App</a>
+          </li>
+          <li class="nav-item">
+            <a class="text-dark nav-link {% if active_nav == 'Settings Company' %}active{% endif %}" href="{% url 'company_view' %}">Company</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
       <div class="col-12 card text-dark">
         {% include 'item_table.html' %}
       </div>
