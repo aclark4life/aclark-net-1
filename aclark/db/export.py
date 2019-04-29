@@ -49,7 +49,7 @@ def render_doc(context, **kwargs):
 
     document = Document()
 
-    logo = os.path.join(os.environ.get('PWD'), 'aclark', 'root', 'static', 'aclarknet-logo.png')
+    logo = os.path.join(os.environ.get('PWD'), 'aclark', 'root', 'static', 'aclarknet-header.png')
     document.add_picture(logo)
     document.add_heading('Document Title', 0)
 
