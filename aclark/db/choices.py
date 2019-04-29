@@ -54,7 +54,7 @@ ESTIMATE_TYPES = (
 # Not really a choice, but close enough.
 
 URL_NAMES = {
-    'Settings App': ('settings_app', 'settings_app_edit', ''),
+    'Settings App': ('app_view', 'app_edit', ''),
     'Settings Company': ('company_view', 'company_edit', ''),
     'client': ('client_view', 'client_edit', 'client_index'),
     'contact': ('contact_view', 'contact_edit', 'contact_index'),

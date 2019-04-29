@@ -89,8 +89,8 @@ urlpatterns = [
     # Settings
     url(r'^settings/app/edit$',
         views.settings_app_edit,
-        name='settings_app_edit'),
-    url(r'^settings/app$', views.settings_app, name='settings_app'),
+        name='app_edit'),
+    url(r'^settings/app$', views.settings_app, name='app_view'),
     url(r'^settings/company/edit$', views.company_edit, name='company_edit'),
     url(r'^settings/company$', views.company_view, name='company_view'),
     # Social
