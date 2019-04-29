@@ -1,29 +1,37 @@
 {% extends 'base.html' %}
 {% block content %}
-          <div class="row">
-            <div class="col-md-8">
-              <h1 style="border-bottom: none;"><a class="text-dark" href="{% url 'note_index' %}">Notes</a> <i class="fa fa-arrow-right"></i> {% if item.title %}{{ item.title }}{% else %}Note{% endif %}</h1>
-            </div>
-            <div class="col-md-4 mb-3">
-              <!-- http://getbootstrap.com/docs/4.0/components/dropdowns/#split-button-dropdowns -->
-              <div class="btn-group float-right">
-                <a class="btn btn-lg btn-success" href="{% url 'note_edit' pk=item.pk %}">Edit</a>
-                <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <span class="sr-only">Toggle Dropdown</span>
-                </button>
-                <div class="dropdown-menu dropdown-menu-right">
-{% include 'actions.html' %}
-                </div>
-              </div>
-            </div>
+
+  <div class="container">
+    <div class="row my-5">
+      <div class="col-10">
+        <h1><a class="text-dark" href="{% url 'note_index' %}">Notes</a> &rarr; Note</h1>
+      </div>
+      <div class="col-2">
+        <!-- http://getbootstrap.com/docs/4.0/components/dropdowns/#split-button-dropdowns -->
+        <div class="btn-group dropdown float-right">
+          <a class="btn btn-lg btn-success" href="{% url 'note_edit' pk=item.pk %}">Edit</a>
+          <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="sr-only">Toggle Dropdown</span>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right">
+          {% include 'actions.html' %}
           </div>
+        </div>
+      </div>
+    </div>
+    <div class="row my-5">
+      <div class="col-12 card text-dark">
+        {% if item.note %}
+        <div class="row">
+          <div class="col-md-12">
+            <p class="p-3">{{ item.note|safe }}</p>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
 {% include 'copy_form.html' %}
 {% include 'delete_form.html' %}
-          {% if item.note %}
-          <div class="row">
-            <div class="col-md-12">
-              <p class="p-3">{{ item.note|safe }}</p>
-            </div>
-          </div>
-          {% endif %}
-{% endblock %}
