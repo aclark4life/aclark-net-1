@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.utils.text import slugify
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
@@ -494,6 +495,7 @@ def note_view(request, pk=None):
         title = context['item'].title
         if context['pdf']:
             if title:
+                title = slugify(title)
                 filename = '%s.pdf' % title
             else:
                 filename = 'note-%s.pdf' % pk
