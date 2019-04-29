@@ -43,49 +43,49 @@ def render_doc(context, **kwargs):
     # document.save(response)
     # return response
 
-
-
     document = Document()
 
     filename = kwargs.get('filename')
-    logo = kwargs.get('logo')
 
-    document.add_picture(logo, height=Inches(0.33))
-    document.add_heading('Document Title', 0)
+    # logo = kwargs.get('logo')
+    # document.add_picture(logo, height=Inches(0.33))
 
-    p = document.add_paragraph('A plain paragraph having some ')
-    p.add_run('bold').bold = True
-    p.add_run(' and some ')
-    p.add_run('italic.').italic = True
+    item = context['item']
+    document.add_heading(item.title, 0)
 
-    document.add_heading('Heading, level 1', level=1)
-    document.add_paragraph('Intense quote', style='Intense Quote')
+    p = document.add_paragraph(item.note)
 
-    document.add_paragraph(
-        'first item in unordered list', style='List Bullet'
-    )
-    document.add_paragraph(
-        'first item in ordered list', style='List Number'
-    )
+    # p.add_run('bold').bold = True
+    # p.add_run(' and some ')
+    # p.add_run('italic.').italic = True
 
-    records = (
-        (3, '101', 'Spam'),
-        (7, '422', 'Eggs'),
-        (4, '631', 'Spam, spam, eggs, and spam')
-    )
+    # document.add_heading('Heading, level 1', level=1)
+    # document.add_paragraph('Intense quote', style='Intense Quote')
 
-    table = document.add_table(rows=1, cols=3)
-    hdr_cells = table.rows[0].cells
-    hdr_cells[0].text = 'Qty'
-    hdr_cells[1].text = 'Id'
-    hdr_cells[2].text = 'Desc'
-    for qty, id, desc in records:
-        row_cells = table.add_row().cells
-        row_cells[0].text = str(qty)
-        row_cells[1].text = id
-        row_cells[2].text = desc
+    # document.add_paragraph(
+    #     'first item in unordered list', style='List Bullet'
+    # )
+    # document.add_paragraph(
+    #     'first item in ordered list', style='List Number'
+    # )
 
-    document.add_page_break()
+    # records = (
+    #     (3, '101', 'Spam'),
+    #     (7, '422', 'Eggs'),
+    #     (4, '631', 'Spam, spam, eggs, and spam')
+    # )
+
+    # table = document.add_table(rows=1, cols=3)
+    # hdr_cells = table.rows[0].cells
+    # hdr_cells[0].text = 'Qty'
+    # hdr_cells[1].text = 'Id'
+    # hdr_cells[2].text = 'Desc'
+    # for qty, id, desc in records:
+    #     row_cells = table.add_row().cells
+    #     row_cells[0].text = str(qty)
+    #     row_cells[1].text = id
+    #     row_cells[2].text = desc
+    # document.add_page_break()
 
     response = HttpResponse(content_type=docx)
     response['Content-Disposition'] = 'attachment; filename=%s' % filename
