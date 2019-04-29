@@ -4,7 +4,7 @@
   <div class="container">
     <div class="row my-5">
       <div class="col-10">
-        <h1><a class="text-dark" href="{% url 'client_index' %}">Clients</a> <i class="fa fa-arrow-right"></i> {% if item.url %}<a href="{{ item.url }}" target="_blank">{{ item.name|default:'Client' }}</a>{% else %}{{ item.name|default:'Client' }}{% endif %}</h1>
+        <h1><a class="text-dark" href="{% url 'client_index' %}">Clients</a> &rarr; {% if item.url %}<a href="{{ item.url }}" target="_blank">{{ item.name|default:'Client' }}</a>{% else %}{{ item.name|default:'Client' }}{% endif %}</h1>
       </div>
       <div class="col-2">
         <!-- http://getbootstrap.com/docs/4.0/components/dropdowns/#split-button-dropdowns -->
