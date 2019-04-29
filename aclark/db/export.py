@@ -2,9 +2,10 @@ from django.http import HttpResponse
 from django_xhtml2pdf.utils import generate_pdf
 from docx import Document
 from docx.enum.text import WD_ALIGN_PARAGRAPH
+from docx import Document
+from docx.shared import Inches
 from io import StringIO
 from lxml import etree
-
 import os
 
 docx = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
@@ -14,7 +15,6 @@ docx = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
 def render_doc(context, **kwargs):
     """
     """
-    filename = kwargs.get('filename')
 
     # # https://stackoverflow.com/a/24122313/185820
     # document = Document()
@@ -44,8 +44,8 @@ def render_doc(context, **kwargs):
     # document.save(response)
     # return response
 
-    from docx import Document
-    from docx.shared import Inches
+
+    filename = kwargs.get('filename')
 
     document = Document()
 
