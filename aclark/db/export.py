@@ -45,11 +45,13 @@ def render_doc(context, **kwargs):
     # return response
 
 
-    filename = kwargs.get('filename')
 
     document = Document()
 
+    filename = kwargs.get('filename')
+
     logo = os.path.join(os.environ.get('PWD'), 'aclark', 'root', 'static', 'aclarknet-header.png')
+
     document.add_picture(logo, height=Inches(0.50))
     document.add_heading('Document Title', 0)
 
