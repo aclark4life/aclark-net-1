@@ -19,10 +19,13 @@
         </div>
       </div>
     </div>
+    <div class="row my-5">
+      <div class="col-12 card text-dark">
+        {% include 'invoice_export.html' %}
+      </div>
+    </div>
   </div>
 {% include 'copy_form.html' %}
 {% include 'delete_form.html' %}
 {% include 'invoice_sent.html' %}
-{% include 'invoice_export.html' %}
-
 {% endblock %}
