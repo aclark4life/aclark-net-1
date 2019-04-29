@@ -62,7 +62,7 @@ def render_doc(context, **kwargs):
         'first item in ordered list', style='List Number'
     )
 
-    document.add_picture('monty-truth.png', width=Inches(1.25))
+    # document.add_picture('monty-truth.png', width=Inches(1.25))
 
     records = (
         (3, '101', 'Spam'),
@@ -83,7 +83,12 @@ def render_doc(context, **kwargs):
 
     document.add_page_break()
 
-    document.save('demo.docx')
+    # document.save('demo.docx')
+
+    response = HttpResponse(content_type=DOC)
+    response['Content-Disposition'] = 'attachment; filename=demo.docx'
+    document.save(response)
+    return response
 
 
 def render_pdf(context, **kwargs):
