@@ -5,6 +5,8 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 from io import StringIO
 from lxml import etree
 
+import os
+
 DOC = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
 
 # https://python-docx.readthedocs.io/en/latest/#what-it-can-do
@@ -47,6 +49,8 @@ def render_doc(context, **kwargs):
 
     document = Document()
 
+    logo = os.path.join(os.environ.get('PWD'), 'aclark', 'root', 'static', 'aclarknet-logo.png')
+    document.add_picture(logo)
     document.add_heading('Document Title', 0)
 
     p = document.add_paragraph('A plain paragraph having some ')
