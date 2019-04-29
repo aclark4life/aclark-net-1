@@ -94,7 +94,7 @@ def render_doc(context, **kwargs):
 
 
 def render_pdf(context, **kwargs):
-    filename = kwargs.get('filename') 
+    filename = kwargs.get('filename')
     template = kwargs.get('template')
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'filename=%s' % filename
