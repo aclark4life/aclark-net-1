@@ -1,24 +1,28 @@
 {% extends 'base.html' %}
 {% block content %}
-          <div class="row">
-            <div class="col-10">
-              <h1 style="border-bottom: none;"><a class="text-dark" href="{% url 'invoice_index' %}">Invoices</a> <i class="fa fa-arrow-right"></i> {{ item.name|default:'Invoice' }}</h1>
-            </div>
-            <div class="col-md-12 mb-3 mr-auto">
-              <!-- http://getbootstrap.com/docs/4.0/components/dropdowns/#split-button-dropdowns -->
-              <div class="btn-group float-right">
-                <a class="btn btn-lg btn-success" href="{% url 'invoice_edit' pk=item.pk %}">Edit</a>
-                <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <span class="sr-only">Toggle Dropdown</span>
-                </button>
-                <div class="dropdown-menu dropdown-menu-right">
-{% include 'actions.html' %}
-                </div>
-              </div>
-            </div>
+
+  <div class="container">
+    <div class="row my-5">
+      <div class="col-10">
+        <h1><a class="text-dark" href="{% url 'invoice_index' %}">Invoices</a> <i class="fa fa-arrow-right"></i> {{ item.name|default:'Invoice' }}</h1>
+      </div>
+      <div class="col-2">
+        <!-- http://getbootstrap.com/docs/4.0/components/dropdowns/#split-button-dropdowns -->
+        <div class="btn-group float-right dropdown">
+          <a class="btn btn-lg btn-success" href="{% url 'invoice_edit' pk=item.pk %}">Edit</a>
+          <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="sr-only">Toggle Dropdown</span>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right">
+          {% include 'actions.html' %}
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
 {% include 'copy_form.html' %}
 {% include 'delete_form.html' %}
 {% include 'invoice_sent.html' %}
 {% include 'invoice_export.html' %}
+
 {% endblock %}
