@@ -4,7 +4,9 @@
   <div class="container">
     <div class="row my-5">
       <div class="col-10">
-        <h1>{% if is_staff %}<a class="text-dark" href="{% url 'time_index' %}">Times</a> <i class="fa fa-arrow-right"></i> {% endif %}Time Entry</h1>
+
+        <h1><a class="text-dark" href="{% if is_staff %}{% url 'time_index' %}{% else %}{% url 'dashboard' %}{% endif %}">Times</a> &rarr; Time</h1>
+
       </div>
       <div class="col-2 mb-3">
         <!-- http://getbootstrap.com/docs/4.0/components/dropdowns/#split-button-dropdowns -->
