@@ -1,4 +1,8 @@
 {% extends 'base.html' %}
+
+{% block app_graph %}
+{% endblock %}
+
 {% block content %}
   <div class="container">
     <div class="row my-5">
@@ -17,12 +21,9 @@
         </li>
       </ul>
     </div>
-  </div>
-
-  <div class="container">
     <div class="row my-5">
       <div class="col-12 card text-dark">
-{% include 'item_table.html' %}
+        {% include 'item_table.html' %}
       </div>
     </div>
   </div>
