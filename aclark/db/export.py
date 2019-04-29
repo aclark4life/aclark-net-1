@@ -6,7 +6,6 @@ from docx import Document
 from docx.shared import Inches
 from io import StringIO
 from lxml import etree
-import os
 
 docx = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
 
@@ -49,8 +48,7 @@ def render_doc(context, **kwargs):
     document = Document()
 
     filename = kwargs.get('filename')
-
-    logo = os.path.join(os.environ.get('PWD'), 'aclark', 'root', 'static', 'aclarknet-header.png')
+    logo = kwargs.get('logo')
 
     document.add_picture(logo, height=Inches(0.33))
     document.add_heading('Document Title', 0)

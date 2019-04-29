@@ -63,6 +63,7 @@ from .serializers import TestimonialSerializer
 from .utils import edit
 from .utils import get_index_items
 from .utils import get_page_items
+import os
 
 fake = Faker()
 FOUR_O_3 = "Sorry, you are not allowed to see that."
@@ -495,9 +496,10 @@ def note_view(request, pk=None):
         if title:
             title = slugify(title)
         filename = title
+        logo = os.path.join(os.environ.get('PWD'), 'aclark', 'root', 'static', 'aclarknet-header.png')
         if context['doc']:
             filename = '.'.join([filename, 'docx'])
-            return render_doc(context, filename=filename)
+            return render_doc(context, filename=filename, logo=logo)
         elif context['mail']:  # https://stackoverflow.com/a/16335483
             message_plain = note.note
             message_html = render_to_string('note_export.html', context)
