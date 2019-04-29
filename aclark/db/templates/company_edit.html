@@ -6,7 +6,14 @@
     <div class="row my-5">
       <div class="col-12">
         <h1>Company</h1>
-{% include 'settings_nav.html' %}
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link {% if active_nav == 'Settings App' %}active{% endif %}" href="{% url 'settings_app' %} ">App</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if active_nav == 'Settings Company' %}active{% endif %}" href="{% url 'company_view' %}">Company</a>
+          </li>
+        </ul>
         <form action="" method="post">{% csrf_token %}
         {{ form|crispy }}
         <input class="btn btn-lg btn-success" type="submit" value="Save">
