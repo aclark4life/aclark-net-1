@@ -52,7 +52,7 @@ def render_doc(context, **kwargs):
 
     logo = os.path.join(os.environ.get('PWD'), 'aclark', 'root', 'static', 'aclarknet-header.png')
 
-    document.add_picture(logo, height=Inches(0.50))
+    document.add_picture(logo, height=Inches(0.33))
     document.add_heading('Document Title', 0)
 
     p = document.add_paragraph('A plain paragraph having some ')
