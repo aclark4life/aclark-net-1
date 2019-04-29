@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
+import dj_database_url
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -140,16 +141,14 @@ AUTH_PASSWORD_VALIDATORS = [
         'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-import dj_database_url
 DATABASES = {
     'default':
-    dj_database_url.config(
-        default=os.environ.get(
-            'DATABASE_URL', 'postgres://%s:%s@%s:%s/%s' %
-            (os.environ.get('DB_USER', ''), os.environ.get('DB_PASS', ''),
-             os.environ.get('DB_HOST', 'localhost'),
-             os.environ.get('DB_PORT', '5432'),
-             os.environ.get('DB_NAME', 'project_app'))))
+    dj_database_url.config(default=os.environ.get(
+        'DATABASE_URL', 'postgres://%s:%s@%s:%s/%s' %
+        (os.environ.get('DB_USER', ''), os.environ.get('DB_PASS', ''),
+         os.environ.get('DB_HOST', 'localhost'),
+         os.environ.get('DB_PORT', '5432'),
+         os.environ.get('DB_NAME', 'project_app'))))
 }
 
 # aclark-net
