@@ -171,3 +171,5 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get(
 SOCIAL_AUTH_REDIRECT_IS_HTTPS = True
 LOGIN_URL = '/db'
 DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
+
+EMAIL_BACKEND = 'django_amazon_ses.EmailBackend'
