@@ -291,6 +291,7 @@ def get_page_items(**kwargs):
     pk = kwargs.get('pk')
     time_model = kwargs.get('time_model')
     user_model = kwargs.get('user_model')
+    order_model = kwargs.get('order_model')
     filter_by = kwargs.get('filter_by')
     page_size = kwargs.get('page_size')
     context = {}
