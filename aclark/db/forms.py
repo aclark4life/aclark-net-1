@@ -15,7 +15,7 @@ from .models import SettingsApp
 from .models import SettingsCompany
 from .models import Task
 from .models import Time
-from .models import WorkOrder
+from .models import Order
 from django import forms
 from taggit.models import Tag
 from django.utils import timezone
@@ -367,7 +367,7 @@ class TimeForm(forms.ModelForm):
         }
 
 
-class WorkOrderForm(forms.ModelForm):
+class OrderForm(forms.ModelForm):
     class Meta:
-        model = WorkOrder
+        model = Order
         fields = '__all__'

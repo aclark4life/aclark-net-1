@@ -720,7 +720,7 @@ class Time(BaseModel):
         return '%s/%s' % (hostname, reverse('time_view', args=[str(self.id)]))
 
 
-class WorkOrder(BaseModel):
+class Order(BaseModel):
     """
     """
 

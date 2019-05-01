@@ -31,7 +31,7 @@ from .forms import SettingsAppForm
 from .forms import SettingsCompanyForm
 from .forms import TaskForm
 from .forms import TimeForm
-from .forms import WorkOrderForm
+from .forms import OrderForm
 from .models import Client
 from .models import Contact
 from .models import Contract
@@ -51,7 +51,7 @@ from .models import SettingsCompany
 from .models import Testimonial
 from .models import Task
 from .models import Time
-from .models import WorkOrder
+from .models import Order
 from .export import render_doc
 from .export import render_pdf
 from .mail import mail_proc
@@ -717,13 +717,13 @@ def company_edit(request, pk=None):
 
 @staff_member_required
 def order_edit(request, pk=None):
-    return edit(request, form_model=WorkOrderForm, model=WorkOrder, pk=pk)
+    return edit(request, form_model=OrderForm, model=Order, pk=pk)
 
 
 @staff_member_required
 def order_index(request):
     context = get_index_items(
-        model=WorkOrder,
+        model=Order,
         app_settings_model=SettingsApp,
         order_by=(
             '-active',
@@ -739,7 +739,7 @@ def order_view(request, pk=None):
     """
     """
     context = get_page_items(
-        model=WorkOrder,
+        model=Order,
         pk=pk,
         request=request)
     return render(request, 'order_view.html', context)
