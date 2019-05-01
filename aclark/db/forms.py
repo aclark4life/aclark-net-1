@@ -110,7 +110,6 @@ class EstimateForm(forms.ModelForm):
             'end_date',
             'accepted_date',
             'issue_date',
-            # 'estimate_type',
             'note',
         )
 

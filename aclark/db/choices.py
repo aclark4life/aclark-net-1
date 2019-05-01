@@ -45,12 +45,6 @@ PAYMENT_CHOICES = (
     ('wire', 'Wire'),
 )
 
-ESTIMATE_TYPES = (
-    ('', '---'),
-    ('is_sow', 'Statement of Work'),
-    ('is_to', 'Task Order'),
-)
-
 # Not really a choice, but close enough.
 
 URL_NAMES = {
