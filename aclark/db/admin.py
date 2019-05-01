@@ -15,6 +15,7 @@ from .models import Location
 from .models import Log
 from .models import Newsletter
 from .models import Note
+from .models import Order
 from .models import Profile
 from .models import Project
 from .models import Proposal
@@ -237,6 +238,12 @@ class NewsletterAdmin(ImportExportModelAdmin):
 
 @admin.register(Note)
 class NoteAdmin(ImportExportModelAdmin):
+    """
+    """
+
+
+@admin.register(Order)
+class OrderAdmin(ImportExportModelAdmin):
     """
     """
 
