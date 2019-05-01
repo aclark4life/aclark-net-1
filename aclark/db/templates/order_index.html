@@ -11,12 +11,12 @@
     </div>
     <div class="row my-5">
       <div class="col-12 card text-dark">
-{% with items=items.tasks %}
+{% with items=items.orders %}
 {% include 'search.html' %}
 {% include 'pagination.html' %}
 {% endwith %}
-{% include 'task_table.html' %}
-{% with items=items.tasks %}
+{% include 'item_table.html' %}
+{% with items=items.orders %}
 {% include 'search.html' %}
 {% include 'pagination.html' %}
 {% endwith %}
