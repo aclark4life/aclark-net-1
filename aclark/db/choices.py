@@ -61,4 +61,5 @@ URL_NAMES = {
     'task': ('task_view', 'task_edit', 'task_index'),
     'time': ('time_view', 'time_edit', 'time_index'),
     'user': ('user_view', 'user_edit', 'user_index'),
+    'work order': ('order_view', 'order_edit', 'order_index'),
 }

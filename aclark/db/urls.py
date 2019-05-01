@@ -111,5 +111,8 @@ urlpatterns = [
     url(r'^user/add$', views.user_edit, name='user_edit'),
     url(r'^user$', views.user_index, name='user_index'),
     # Work Orders
+    url(r'^order/(?P<pk>\d+)$', views.order_view, name='order_view'),
+    url(r'^order/(?P<pk>\d+)/edit$', views.order_edit, name='order_edit'),
+    url(r'^order/add$', views.order_edit, name='order_edit'),
     url(r'^order$', views.order_index, name='order_index'),
 ]

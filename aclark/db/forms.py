@@ -15,6 +15,7 @@ from .models import SettingsApp
 from .models import SettingsCompany
 from .models import Task
 from .models import Time
+from .models import WorkOrder
 from django import forms
 from taggit.models import Tag
 from django.utils import timezone
@@ -364,3 +365,9 @@ class TimeForm(forms.ModelForm):
         widgets = {
             'hours': forms.widgets.NumberInput(attrs={'class': 'col-2'}),
         }
+
+
+class WorkOrderForm(forms.ModelForm):
+    class Meta:
+        model = WorkOrder
+        fields = '__all__'
