@@ -256,8 +256,8 @@ def estimate_view(request, pk=None):
         return render_pdf(
             context, filename=filename, template='invoice_export.html')
     elif context['mail']:
-        message_plain = context['email_message']
-        message_subject = context['email_subject']
+        message_plain = "Title"
+        message_subject = "Subject"
         mail_send(message=message_plain, subject=message_subject)
         messages.add_message(request, messages.INFO, 'Estimate sent!')
         return render(request, 'estimate_view.html', context)
