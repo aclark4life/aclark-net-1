@@ -717,7 +717,6 @@ def order_index(request):
                               app_settings_model=SettingsApp,
                               order_by=(
                                   '-active',
-                                  'name',
                               ),
                               request=request,
                               search_fields=('name', ))
