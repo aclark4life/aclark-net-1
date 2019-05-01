@@ -407,12 +407,6 @@ def get_page_items(**kwargs):
                 estimate = get_object_or_404(model, pk=pk)
             else:
                 estimate = obj
-            if estimate.estimate_type:
-                estimate_type = estimate.estimate_type
-                if estimate_type == 'is_sow':
-                    doc_type = 'Statement of Work'
-                elif estimate_type == 'is_to':
-                    doc_type = 'Task Order'
             times = time_model.objects.filter(estimate=estimate)
             if order_by:
                 times = times.order_by(*order_by['time'])
