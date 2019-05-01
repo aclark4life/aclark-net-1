@@ -50,6 +50,7 @@ from .models import SettingsCompany
 from .models import Testimonial
 from .models import Task
 from .models import Time
+from .models import WorkOrder
 from .export import render_doc
 from .export import render_pdf
 from .mail import mail_proc
@@ -711,6 +712,20 @@ def company_edit(request, pk=None):
     """
     return edit(
         request, form_model=SettingsCompanyForm, model=SettingsCompany, pk=1)
+
+
+@staff_member_required
+def order_index(request):
+    context = get_index_items(
+        model=WorkOrder,
+        app_settings_model=SettingsApp,
+        order_by=(
+            '-active',
+            'name',
+        ),
+        request=request,
+        search_fields=('name', ))
+    return render(request, 'task_index.html', context)
 
 
 @staff_member_required
