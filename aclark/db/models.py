@@ -190,12 +190,12 @@ class Estimate(BaseModel):
         null=True,
         on_delete=models.CASCADE,
         limit_choices_to={'profile__active': True})
-    estimate_type = models.CharField(
-        'Estimate Type',
-        max_length=300,
-        choices=choices.ESTIMATE_TYPES,
-        null=True,
-        blank=True)
+    # estimate_type = models.CharField(
+    #     'Estimate Type',
+    #     max_length=300,
+    #     choices=choices.ESTIMATE_TYPES,
+    #     null=True,
+    #     blank=True)
     task = models.ForeignKey(
         'Task',
         blank=True,

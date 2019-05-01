@@ -402,7 +402,7 @@ pack: webpack  # Alias
 
 # aclark-net
 PROJECT=aclark
-APP=root
+APP=db
 virtualenv-3-7:
 	virtualenv --python=python3.7 .
 webpack:
