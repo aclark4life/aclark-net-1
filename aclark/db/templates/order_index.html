@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load l10n %}
+{% block content %}
+
+  <div class="container">
+    <div class="row my-5">
+      <div class="col-10">
+        <h1><a class="text-dark" href="{% url 'dashboard' %}">Dashboard</a> &rarr; Work Orders</h1>
+      </div>
+      <div class="col-2">
+        <a class="btn btn-block btn-lg btn-success" href="{% url 'task_edit' %}">Add Work Order</a>
+      </div>
+    </div>
+    <div class="row my-5">
+      <div class="col-12 card text-dark">
+{% with items=items.invoices %}
+{% include 'search.html' %}
+{% include 'pagination.html' %}
+{% with item_type='estimate' %}
+ 
+{% include 'invoice_table.html' %}
+{% endwith %}
+{% include 'search.html' %}
+{% include 'pagination.html' %}
+{% endwith %}
+
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

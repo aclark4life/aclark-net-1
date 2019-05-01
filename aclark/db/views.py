@@ -725,7 +725,7 @@ def order_index(request):
         ),
         request=request,
         search_fields=('name', ))
-    return render(request, 'task_index.html', context)
+    return render(request, 'order_index.html', context)
 
 
 @staff_member_required
