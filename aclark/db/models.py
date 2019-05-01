@@ -720,6 +720,10 @@ class Time(BaseModel):
         return '%s/%s' % (hostname, reverse('time_view', args=[str(self.id)]))
 
 
+class WorkOrder(BaseModel):
+    """
+    """
+
 # https://docs.djangoproject.com/en/1.11/ref/contrib/gis/model-api/
 class Zipcode(BaseModel):
     code = models.CharField(max_length=5)
