@@ -87,9 +87,7 @@ urlpatterns = [
     #    url(r'^service/(?P<pk>\d+)/edit$', views.service_edit,
     #        name='service_edit'),
     # Settings
-    url(r'^settings/app/edit$',
-        views.settings_app_edit,
-        name='app_edit'),
+    url(r'^settings/app/edit$', views.settings_app_edit, name='app_edit'),
     url(r'^settings/app$', views.settings_app, name='app_view'),
     url(r'^settings/company/edit$', views.company_edit, name='company_edit'),
     url(r'^settings/company$', views.company_view, name='company_view'),

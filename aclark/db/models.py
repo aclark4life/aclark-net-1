@@ -20,12 +20,18 @@ class BaseModel(models.Model):
     updated = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True)
     hidden = models.BooleanField(default=False)
-    icon_name = models.CharField(
-        "Font Awesome Icon", max_length=25, blank=True, null=True)
-    icon_size = models.CharField(
-        max_length=255, blank=True, null=True, choices=choices.ICON_CHOICES)
-    icon_color = models.CharField(
-        max_length=255, blank=True, null=True, choices=choices.COLOR_CHOICES)
+    icon_name = models.CharField("Font Awesome Icon",
+                                 max_length=25,
+                                 blank=True,
+                                 null=True)
+    icon_size = models.CharField(max_length=255,
+                                 blank=True,
+                                 null=True,
+                                 choices=choices.ICON_CHOICES)
+    icon_color = models.CharField(max_length=255,
+                                  blank=True,
+                                  null=True,
+                                  choices=choices.COLOR_CHOICES)
 
     class Meta:
         abstract = True
@@ -99,12 +105,11 @@ class Contract(BaseModel):
     """
     """
     title = models.CharField(max_length=300, blank=True, null=True)
-    client = models.ForeignKey(
-        'Client',
-        blank=True,
-        null=True,
-        limit_choices_to={'active': True},
-        on_delete=models.CASCADE)
+    client = models.ForeignKey('Client',
+                               blank=True,
+                               null=True,
+                               limit_choices_to={'active': True},
+                               on_delete=models.CASCADE)
     project = models.ForeignKey(
         "Project",
         blank=True,
@@ -146,8 +151,10 @@ class Estimate(BaseModel):
     Discount, Tax, Tax2, Currency, Accepted Date, Declined Date
     """
     subject = models.CharField(max_length=300, blank=True, null=True)
-    issue_date = models.DateField(
-        "Issue Date", blank=True, null=True, default=timezone.now)
+    issue_date = models.DateField("Issue Date",
+                                  blank=True,
+                                  null=True,
+                                  default=timezone.now)
     client = models.ForeignKey(
         Client,
         blank=True,
@@ -155,12 +162,11 @@ class Estimate(BaseModel):
         limit_choices_to={'active': True},
         on_delete=models.CASCADE,
     )
-    amount = models.DecimalField(
-        "Estimate Amount",
-        blank=True,
-        null=True,
-        max_digits=12,
-        decimal_places=2)
+    amount = models.DecimalField("Estimate Amount",
+                                 blank=True,
+                                 null=True,
+                                 max_digits=12,
+                                 decimal_places=2)
     discount = models.IntegerField(blank=True, null=True)
     tax = models.IntegerField(blank=True, null=True)
     tax2 = models.IntegerField(blank=True, null=True)
@@ -172,10 +178,14 @@ class Estimate(BaseModel):
     )
     accepted_date = models.DateField(blank=True, null=True)
     declined_date = models.DateField(blank=True, null=True)
-    start_date = models.DateField(
-        "Start Date", blank=True, default=timezone.now, null=True)
-    end_date = models.DateField(
-        "End Date", blank=True, default=timezone.now, null=True)
+    start_date = models.DateField("Start Date",
+                                  blank=True,
+                                  default=timezone.now,
+                                  null=True)
+    end_date = models.DateField("End Date",
+                                blank=True,
+                                default=timezone.now,
+                                null=True)
     project = models.ForeignKey(
         "Project",
         blank=True,
@@ -184,12 +194,11 @@ class Estimate(BaseModel):
         limit_choices_to={'active': True},
     )
     contacts = models.ManyToManyField('Contact', blank=True)
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        blank=True,
-        null=True,
-        on_delete=models.CASCADE,
-        limit_choices_to={'profile__active': True})
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             blank=True,
+                             null=True,
+                             on_delete=models.CASCADE,
+                             limit_choices_to={'profile__active': True})
     task = models.ForeignKey(
         'Task',
         blank=True,
@@ -222,21 +231,28 @@ class Invoice(BaseModel):
     Currency, Currency Symbol, Document Type
     """
     subject = models.CharField(max_length=300, blank=True, null=True)
-    issue_date = models.DateField(
-        "Issue Date", blank=True, default=timezone.now, null=True)
+    issue_date = models.DateField("Issue Date",
+                                  blank=True,
+                                  default=timezone.now,
+                                  null=True)
     due_date = models.DateField("Due", blank=True, null=True)
     last_payment_date = models.DateField(blank=True, null=True)
-    start_date = models.DateField(
-        "Start Date", blank=True, default=timezone.now, null=True)
-    end_date = models.DateField(
-        "End Date", blank=True, default=timezone.now, null=True)
-    po_number = models.CharField(
-        "PO Number", max_length=300, blank=True, null=True)
-    sa_number = models.CharField(
-        "Subcontractor Agreement Number",
-        max_length=300,
-        blank=True,
-        null=True)
+    start_date = models.DateField("Start Date",
+                                  blank=True,
+                                  default=timezone.now,
+                                  null=True)
+    end_date = models.DateField("End Date",
+                                blank=True,
+                                default=timezone.now,
+                                null=True)
+    po_number = models.CharField("PO Number",
+                                 max_length=300,
+                                 blank=True,
+                                 null=True)
+    sa_number = models.CharField("Subcontractor Agreement Number",
+                                 max_length=300,
+                                 blank=True,
+                                 null=True)
     client = models.ForeignKey(
         Client,
         blank=True,
@@ -244,18 +260,23 @@ class Invoice(BaseModel):
         on_delete=models.CASCADE,
         limit_choices_to={'active': True},
     )
-    amount = models.DecimalField(
-        "Invoice Amount",
-        blank=True,
-        null=True,
-        max_digits=12,
-        decimal_places=2)
-    paid_amount = models.DecimalField(
-        blank=True, null=True, max_digits=12, decimal_places=2)
-    balance = models.DecimalField(
-        blank=True, null=True, max_digits=12, decimal_places=2)
-    subtotal = models.DecimalField(
-        blank=True, null=True, max_digits=12, decimal_places=2)
+    amount = models.DecimalField("Invoice Amount",
+                                 blank=True,
+                                 null=True,
+                                 max_digits=12,
+                                 decimal_places=2)
+    paid_amount = models.DecimalField(blank=True,
+                                      null=True,
+                                      max_digits=12,
+                                      decimal_places=2)
+    balance = models.DecimalField(blank=True,
+                                  null=True,
+                                  max_digits=12,
+                                  decimal_places=2)
+    subtotal = models.DecimalField(blank=True,
+                                   null=True,
+                                   max_digits=12,
+                                   decimal_places=2)
     discount = models.IntegerField(blank=True, null=True)
     tax = models.IntegerField(blank=True, null=True)
     tax2 = models.IntegerField(blank=True, null=True)
@@ -266,13 +287,14 @@ class Invoice(BaseModel):
         on_delete=models.CASCADE,
         limit_choices_to={'active': True},
     )
-    currency = models.CharField(
-        default="United States Dollar - USD",
-        max_length=300,
-        blank=True,
-        null=True)
-    currency_symbol = models.CharField(
-        default="$", max_length=300, blank=True, null=True)
+    currency = models.CharField(default="United States Dollar - USD",
+                                max_length=300,
+                                blank=True,
+                                null=True)
+    currency_symbol = models.CharField(default="$",
+                                       max_length=300,
+                                       blank=True,
+                                       null=True)
     note = models.ManyToManyField(
         'Note',
         blank=True,
@@ -326,12 +348,11 @@ class Newsletter(BaseModel):
     """
     """
     subject = models.CharField(max_length=300, blank=True, null=True)
-    template_choices = models.CharField(
-        'Template',
-        max_length=300,
-        choices=choices.TEMPLATE_CHOICES,
-        null=True,
-        blank=True)
+    template_choices = models.CharField('Template',
+                                        max_length=300,
+                                        choices=choices.TEMPLATE_CHOICES,
+                                        null=True,
+                                        blank=True)
     text = models.TextField(blank=True, null=True)
     contacts = models.ManyToManyField('Contact', blank=True)
 
@@ -351,12 +372,11 @@ class Note(BaseModel):
     tags = TaggableManager(blank=True, help_text='')
     note = models.TextField(blank=True, null=True)
     contacts = models.ManyToManyField('Contact', blank=True)
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        blank=True,
-        null=True,
-        on_delete=models.CASCADE,
-        limit_choices_to={'profile__active': True})
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             blank=True,
+                             null=True,
+                             on_delete=models.CASCADE,
+                             limit_choices_to={'profile__active': True})
 
     def __str__(self):
         if self.title:
@@ -373,43 +393,42 @@ class Profile(BaseModel):
     is_contact = models.BooleanField(default=False)
     notify = models.BooleanField(default=True)
     published = models.BooleanField(default=False)
-    dashboard_items = MultiSelectField(
-        'Dashboard Items',
-        choices=choices.DASHBOARD_ITEMS,
-        null=True,
-        blank=True)
-    editor = models.CharField(
-        max_length=8, choices=choices.EDITOR_CHOICES, null=True, blank=True)
-    user = models.OneToOneField(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        blank=True,
-        null=True)
+    dashboard_items = MultiSelectField('Dashboard Items',
+                                       choices=choices.DASHBOARD_ITEMS,
+                                       null=True,
+                                       blank=True)
+    editor = models.CharField(max_length=8,
+                              choices=choices.EDITOR_CHOICES,
+                              null=True,
+                              blank=True)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL,
+                                on_delete=models.CASCADE,
+                                blank=True,
+                                null=True)
     page_size = models.PositiveIntegerField(blank=True, null=True)
-    preferred_username = models.CharField(
-        'Preferred Username', max_length=150, blank=True, null=True)
-    rate = models.DecimalField(
-        'Hourly Rate (United States Dollar - USD)',
-        blank=True,
-        null=True,
-        max_digits=12,
-        decimal_places=2)
-    unit = models.DecimalField(
-        "Unit",
-        default=1.0,
-        blank=True,
-        null=True,
-        max_digits=12,
-        decimal_places=2)
+    preferred_username = models.CharField('Preferred Username',
+                                          max_length=150,
+                                          blank=True,
+                                          null=True)
+    rate = models.DecimalField('Hourly Rate (United States Dollar - USD)',
+                               blank=True,
+                               null=True,
+                               max_digits=12,
+                               decimal_places=2)
+    unit = models.DecimalField("Unit",
+                               default=1.0,
+                               blank=True,
+                               null=True,
+                               max_digits=12,
+                               decimal_places=2)
     avatar_url = models.URLField("Avatar URL", blank=True, null=True)
     bio = models.TextField(blank=True, null=True)
     address = models.TextField(blank=True, null=True)
-    payment_method = models.CharField(
-        'Preferred Payment Method',
-        max_length=255,
-        blank=True,
-        null=True,
-        choices=choices.PAYMENT_CHOICES)
+    payment_method = models.CharField('Preferred Payment Method',
+                                      max_length=255,
+                                      blank=True,
+                                      null=True,
+                                      choices=choices.PAYMENT_CHOICES)
 
     def __str__(self):
         if self.user:
@@ -445,8 +464,10 @@ class Project(BaseModel):
         on_delete=models.CASCADE,
         limit_choices_to={'active': True},
     )
-    name = models.CharField(
-        "Project Name", max_length=300, blank=True, null=True)
+    name = models.CharField("Project Name",
+                            max_length=300,
+                            blank=True,
+                            null=True)
     task = models.ForeignKey(
         "Task",
         blank=True,
@@ -454,31 +475,46 @@ class Project(BaseModel):
         on_delete=models.CASCADE,
         limit_choices_to={'active': True},
     )
-    team = models.ManyToManyField(
-        settings.AUTH_USER_MODEL,
-        blank=True,
-        limit_choices_to={'profile__active': True})
+    team = models.ManyToManyField(settings.AUTH_USER_MODEL,
+                                  blank=True,
+                                  limit_choices_to={'profile__active': True})
     start_date = models.DateField(blank=True, null=True)
     end_date = models.DateField(blank=True, null=True)
     code = models.IntegerField("Project Code", blank=True, null=True)
     total_hours = models.FloatField(blank=True, null=True)
     billable_hours = models.FloatField(blank=True, null=True)
-    amount = models.DecimalField(
-        blank=True, null=True, max_digits=12, decimal_places=2)
-    budget = models.DecimalField(
-        blank=True, null=True, max_digits=12, decimal_places=2)
-    budget_spent = models.DecimalField(
-        blank=True, null=True, max_digits=12, decimal_places=2)
-    budget_remaining = models.DecimalField(
-        blank=True, null=True, max_digits=12, decimal_places=2)
-    total_costs = models.DecimalField(
-        blank=True, null=True, max_digits=12, decimal_places=2)
-    team_costs = models.DecimalField(
-        blank=True, null=True, max_digits=12, decimal_places=2)
-    cost = models.DecimalField(
-        blank=True, null=True, max_digits=12, decimal_places=2)
-    expenses = models.DecimalField(
-        blank=True, null=True, max_digits=12, decimal_places=2)
+    amount = models.DecimalField(blank=True,
+                                 null=True,
+                                 max_digits=12,
+                                 decimal_places=2)
+    budget = models.DecimalField(blank=True,
+                                 null=True,
+                                 max_digits=12,
+                                 decimal_places=2)
+    budget_spent = models.DecimalField(blank=True,
+                                       null=True,
+                                       max_digits=12,
+                                       decimal_places=2)
+    budget_remaining = models.DecimalField(blank=True,
+                                           null=True,
+                                           max_digits=12,
+                                           decimal_places=2)
+    total_costs = models.DecimalField(blank=True,
+                                      null=True,
+                                      max_digits=12,
+                                      decimal_places=2)
+    team_costs = models.DecimalField(blank=True,
+                                     null=True,
+                                     max_digits=12,
+                                     decimal_places=2)
+    cost = models.DecimalField(blank=True,
+                               null=True,
+                               max_digits=12,
+                               decimal_places=2)
+    expenses = models.DecimalField(blank=True,
+                                   null=True,
+                                   max_digits=12,
+                                   decimal_places=2)
     note = models.ManyToManyField(
         'Note',
         blank=True,
@@ -499,12 +535,11 @@ class Project(BaseModel):
 class Proposal(BaseModel):
     """
     """
-    client = models.ForeignKey(
-        'Client',
-        blank=True,
-        null=True,
-        limit_choices_to={'active': True},
-        on_delete=models.CASCADE)
+    client = models.ForeignKey('Client',
+                               blank=True,
+                               null=True,
+                               limit_choices_to={'active': True},
+                               on_delete=models.CASCADE)
     project = models.ForeignKey(
         "Project",
         blank=True,
@@ -541,12 +576,18 @@ class Report(BaseModel):
     active = models.BooleanField(default=True)
     name = models.CharField(max_length=300, blank=True, null=True)
     date = models.DateField(default=timezone.now)
-    cost = models.DecimalField(
-        blank=True, null=True, max_digits=12, decimal_places=2)
-    gross = models.DecimalField(
-        blank=True, null=True, max_digits=12, decimal_places=2)
-    net = models.DecimalField(
-        blank=True, null=True, max_digits=12, decimal_places=2)
+    cost = models.DecimalField(blank=True,
+                               null=True,
+                               max_digits=12,
+                               decimal_places=2)
+    gross = models.DecimalField(blank=True,
+                                null=True,
+                                max_digits=12,
+                                decimal_places=2)
+    net = models.DecimalField(blank=True,
+                              null=True,
+                              max_digits=12,
+                              decimal_places=2)
     invoices = models.ManyToManyField('Invoice', blank=True)
 
     def __str__(self):
@@ -584,8 +625,11 @@ class SettingsCompany(SingletonModel):
     """
     name = models.CharField(max_length=255, blank=True, null=True)
     address = models.TextField(blank=True, null=True)
-    currency_symbol = models.CharField(
-        "Currency Symbol", default="$", max_length=300, blank=True, null=True)
+    currency_symbol = models.CharField("Currency Symbol",
+                                       default="$",
+                                       max_length=300,
+                                       blank=True,
+                                       null=True)
     note = models.ManyToManyField('Note', blank=True)
 
     class Meta:
@@ -607,8 +651,10 @@ class Testimonial(BaseModel):
     slug = models.SlugField(blank=True, null=True)
     title = models.CharField(max_length=300, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
-    issue_date = models.DateField(
-        "Issue Date", blank=True, null=True, default=timezone.now)
+    issue_date = models.DateField("Issue Date",
+                                  blank=True,
+                                  null=True,
+                                  default=timezone.now)
 
     def __str__(self):
         if self.name:
@@ -624,17 +670,20 @@ class Task(BaseModel):
     billable = models.BooleanField(default=True)
     name = models.CharField(max_length=300, blank=True, null=True)
     # https://stackoverflow.com/a/31131029
-    color = models.CharField(
-        blank=True, choices=choices.COLOR_CHOICES, max_length=7, null=True)
-    rate = models.DecimalField(
-        blank=True, null=True, max_digits=12, decimal_places=2)
-    unit = models.DecimalField(
-        "Unit",
-        default=1.0,
-        blank=True,
-        null=True,
-        max_digits=12,
-        decimal_places=2)
+    color = models.CharField(blank=True,
+                             choices=choices.COLOR_CHOICES,
+                             max_length=7,
+                             null=True)
+    rate = models.DecimalField(blank=True,
+                               null=True,
+                               max_digits=12,
+                               decimal_places=2)
+    unit = models.DecimalField("Unit",
+                               default=1.0,
+                               blank=True,
+                               null=True,
+                               max_digits=12,
+                               decimal_places=2)
 
     def __str__(self):
         if self.name:
@@ -678,35 +727,38 @@ class Time(BaseModel):
         on_delete=models.CASCADE,
         limit_choices_to={'active': True},
     )
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
-        limit_choices_to={'profile__active': True})
-    estimate = models.ForeignKey(
-        Estimate, blank=True, null=True, on_delete=models.SET_NULL)
-    invoice = models.ForeignKey(
-        Invoice,
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
-        limit_choices_to={'last_payment_date': None})
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             blank=True,
+                             null=True,
+                             on_delete=models.SET_NULL,
+                             limit_choices_to={'profile__active': True})
+    estimate = models.ForeignKey(Estimate,
+                                 blank=True,
+                                 null=True,
+                                 on_delete=models.SET_NULL)
+    invoice = models.ForeignKey(Invoice,
+                                blank=True,
+                                null=True,
+                                on_delete=models.SET_NULL,
+                                limit_choices_to={'last_payment_date': None})
     date = models.DateField(default=timezone.now)
-    hours = models.DecimalField(
-        "Hours",
-        default=1.0,
-        blank=True,
-        null=True,
-        max_digits=12,
-        decimal_places=2)
+    hours = models.DecimalField("Hours",
+                                default=1.0,
+                                blank=True,
+                                null=True,
+                                max_digits=12,
+                                decimal_places=2)
     first_name = models.CharField(max_length=300, blank=True, null=True)
     last_name = models.CharField(max_length=300, blank=True, null=True)
     department = models.CharField(max_length=300, blank=True, null=True)
-    cost_rate = models.DecimalField(
-        blank=True, null=True, max_digits=12, decimal_places=2)
-    cost_amount = models.DecimalField(
-        blank=True, null=True, max_digits=12, decimal_places=2)
+    cost_rate = models.DecimalField(blank=True,
+                                    null=True,
+                                    max_digits=12,
+                                    decimal_places=2)
+    cost_amount = models.DecimalField(blank=True,
+                                      null=True,
+                                      max_digits=12,
+                                      decimal_places=2)
     currency = models.CharField(max_length=300, blank=True, null=True)
     external_reference_url = models.URLField(blank=True, null=True)
     project_code = models.IntegerField(blank=True, null=True)
@@ -723,6 +775,7 @@ class Time(BaseModel):
 class Order(BaseModel):
     """
     """
+
 
 # https://docs.djangoproject.com/en/1.11/ref/contrib/gis/model-api/
 class Zipcode(BaseModel):

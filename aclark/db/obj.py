@@ -45,13 +45,17 @@ def obj_process(obj,
         kwargs = {}
         kwargs['pk'] = dup.pk
         model_name = obj._meta.verbose_name
-        url_name = obj_process(
-            obj, model_name=model_name, page_type='copy', task='url')
+        url_name = obj_process(obj,
+                               model_name=model_name,
+                               page_type='copy',
+                               task='url')
         return HttpResponseRedirect(reverse(url_name, kwargs=kwargs))
     elif task == 'redir':
         model_name = obj._meta.verbose_name
-        template_name, url_name = obj_process(
-            obj, model_name=model_name, page_type='view', task='url')
+        template_name, url_name = obj_process(obj,
+                                              model_name=model_name,
+                                              page_type='view',
+                                              task='url')
         kwargs = {}
         if pk:  # Exists
             kwargs['pk'] = pk
@@ -70,11 +74,15 @@ def obj_process(obj,
     elif task == 'remove':
         model_name = obj._meta.verbose_name
         if model_name == 'time':  # Only admin can see index
-            url_name = obj_process(
-                obj, model_name=model_name, page_type='dashboard', task='url')
+            url_name = obj_process(obj,
+                                   model_name=model_name,
+                                   page_type='dashboard',
+                                   task='url')
         else:  # Admin can see index
-            url_name = obj_process(
-                obj, model_name=model_name, page_type='index', task='url')
+            url_name = obj_process(obj,
+                                   model_name=model_name,
+                                   page_type='index',
+                                   task='url')
         if model_name == 'profile':
             obj.user.delete()
         else:

@@ -59,13 +59,12 @@ class AdminTimeForm(forms.ModelForm):
             'hours': forms.widgets.NumberInput(attrs={'class': 'col-2'}),
         }
 
-    date = forms.DateField(
-        widget=forms.DateInput(attrs={
-            'type': 'date',
-            'class': 'col-2'
-        }),
-        required=False,
-        initial=timezone.now())
+    date = forms.DateField(widget=forms.DateInput(attrs={
+        'type': 'date',
+        'class': 'col-2'
+    }),
+                           required=False,
+                           initial=timezone.now())
 
 
 class ClientForm(forms.ModelForm):
@@ -114,37 +113,33 @@ class EstimateForm(forms.ModelForm):
             'note',
         )
 
-    issue_date = forms.DateField(
-        widget=forms.DateInput(attrs={
-            'type': 'date',
-            'class': 'col-2'
-        }),
-        required=False,
-        initial=timezone.now())
+    issue_date = forms.DateField(widget=forms.DateInput(attrs={
+        'type': 'date',
+        'class': 'col-2'
+    }),
+                                 required=False,
+                                 initial=timezone.now())
 
-    accepted_date = forms.DateField(
-        widget=forms.DateInput(attrs={
-            'type': 'date',
-            'class': 'col-2'
-        }),
-        required=False,
-        initial=timezone.now())
+    accepted_date = forms.DateField(widget=forms.DateInput(attrs={
+        'type': 'date',
+        'class': 'col-2'
+    }),
+                                    required=False,
+                                    initial=timezone.now())
 
-    start_date = forms.DateField(
-        widget=forms.DateInput(attrs={
-            'type': 'date',
-            'class': 'col-2'
-        }),
-        required=False,
-        initial=timezone.now())
+    start_date = forms.DateField(widget=forms.DateInput(attrs={
+        'type': 'date',
+        'class': 'col-2'
+    }),
+                                 required=False,
+                                 initial=timezone.now())
 
-    end_date = forms.DateField(
-        widget=forms.DateInput(attrs={
-            'type': 'date',
-            'class': 'col-2'
-        }),
-        required=False,
-        initial=timezone.now())
+    end_date = forms.DateField(widget=forms.DateInput(attrs={
+        'type': 'date',
+        'class': 'col-2'
+    }),
+                               required=False,
+                               initial=timezone.now())
 
 
 class FileForm(forms.ModelForm):
@@ -177,45 +172,40 @@ class InvoiceForm(forms.ModelForm):
             'note',
         )
 
-    issue_date = forms.DateField(
-        widget=forms.DateInput(attrs={
-            'type': 'date',
-            'class': 'col-2'
-        }),
-        required=False,
-        initial=timezone.now())
+    issue_date = forms.DateField(widget=forms.DateInput(attrs={
+        'type': 'date',
+        'class': 'col-2'
+    }),
+                                 required=False,
+                                 initial=timezone.now())
 
-    last_payment_date = forms.DateField(
-        widget=forms.DateInput(attrs={
-            'type': 'date',
-            'class': 'col-2'
-        }),
-        required=False,
-        initial=timezone.now())
+    last_payment_date = forms.DateField(widget=forms.DateInput(attrs={
+        'type': 'date',
+        'class': 'col-2'
+    }),
+                                        required=False,
+                                        initial=timezone.now())
 
-    start_date = forms.DateField(
-        widget=forms.DateInput(attrs={
-            'type': 'date',
-            'class': 'col-2'
-        }),
-        required=False,
-        initial=timezone.now())
+    start_date = forms.DateField(widget=forms.DateInput(attrs={
+        'type': 'date',
+        'class': 'col-2'
+    }),
+                                 required=False,
+                                 initial=timezone.now())
 
-    end_date = forms.DateField(
-        widget=forms.DateInput(attrs={
-            'type': 'date',
-            'class': 'col-2'
-        }),
-        required=False,
-        initial=timezone.now())
+    end_date = forms.DateField(widget=forms.DateInput(attrs={
+        'type': 'date',
+        'class': 'col-2'
+    }),
+                               required=False,
+                               initial=timezone.now())
 
-    due_date = forms.DateField(
-        widget=forms.DateInput(attrs={
-            'type': 'date',
-            'class': 'col-2'
-        }),
-        required=False,
-        initial=timezone.now())
+    due_date = forms.DateField(widget=forms.DateInput(attrs={
+        'type': 'date',
+        'class': 'col-2'
+    }),
+                               required=False,
+                               initial=timezone.now())
 
 
 class NewsletterForm(forms.ModelForm):
@@ -279,21 +269,19 @@ class ProjectForm(forms.ModelForm):
         fields = ('active', 'hidden', 'name', 'start_date', 'end_date', 'note',
                   'client', 'task', 'team')
 
-    start_date = forms.DateField(
-        widget=forms.DateInput(attrs={
-            'type': 'date',
-            'class': 'col-2'
-        }),
-        required=False,
-        initial=timezone.now())
+    start_date = forms.DateField(widget=forms.DateInput(attrs={
+        'type': 'date',
+        'class': 'col-2'
+    }),
+                                 required=False,
+                                 initial=timezone.now())
 
-    end_date = forms.DateField(
-        widget=forms.DateInput(attrs={
-            'type': 'date',
-            'class': 'col-2'
-        }),
-        required=False,
-        initial=timezone.now())
+    end_date = forms.DateField(widget=forms.DateInput(attrs={
+        'type': 'date',
+        'class': 'col-2'
+    }),
+                               required=False,
+                               initial=timezone.now())
 
 
 class ProposalForm(forms.ModelForm):
@@ -317,13 +305,12 @@ class ReportForm(forms.ModelForm):
     invoices = forms.ModelMultipleChoiceField(
         required=False, queryset=Invoice.objects.all().order_by('-issue_date'))
 
-    date = forms.DateField(
-        widget=forms.DateInput(attrs={
-            'type': 'date',
-            'class': 'col-2'
-        }),
-        required=False,
-        initial=timezone.now())
+    date = forms.DateField(widget=forms.DateInput(attrs={
+        'type': 'date',
+        'class': 'col-2'
+    }),
+                           required=False,
+                           initial=timezone.now())
 
 
 class ServiceForm(forms.ModelForm):

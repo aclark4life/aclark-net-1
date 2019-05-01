@@ -42,24 +42,22 @@ def edit(request, **kwargs):
         model_name = model._meta.verbose_name
         context['active_nav'] = model_name
     if pk is None:  # New
-        form = get_form(
-            client_model=client_model,
-            contract_settings_model=contract_settings_model,
-            form_model=form_model,
-            invoice_model=invoice_model,
-            model=model,
-            project_model=project_model,
-            user_model=user_model,
-            request=request)
+        form = get_form(client_model=client_model,
+                        contract_settings_model=contract_settings_model,
+                        form_model=form_model,
+                        invoice_model=invoice_model,
+                        model=model,
+                        project_model=project_model,
+                        user_model=user_model,
+                        request=request)
     else:  # Existing
         obj = get_object_or_404(model, pk=pk)
         if model_name == 'user':  # One-off to edit user profile
             obj = obj.profile
-        form = get_form(
-            form_model=form_model,
-            obj=obj,
-            project_model=project_model,
-            request=request)
+        form = get_form(form_model=form_model,
+                        obj=obj,
+                        project_model=project_model,
+                        request=request)
     if request.method == 'POST':
         if pk is None:
             if model_name == 'user':  # One-off to create user
@@ -78,19 +76,17 @@ def edit(request, **kwargs):
             query_checkbox = get_query_string(request,
                                               'checkbox')  # Check boxes
             if query_checkbox['condition']:
-                return obj_process(
-                    obj,
-                    query_checkbox=query_checkbox,
-                    app_settings_model=app_settings_model,
-                    request=request,
-                    task='check')
+                return obj_process(obj,
+                                   query_checkbox=query_checkbox,
+                                   app_settings_model=app_settings_model,
+                                   request=request,
+                                   task='check')
             query_invoiced = get_query_string(request, 'invoiced')
             if query_invoiced['condition']:
-                return obj_process(
-                    obj,
-                    request=request,
-                    query_invoiced=query_invoiced,
-                    task='invoiced')
+                return obj_process(obj,
+                                   request=request,
+                                   query_invoiced=query_invoiced,
+                                   task='invoiced')
             form = form_model(request.POST, instance=obj)
         if form.is_valid():
             obj = form.save()
@@ -103,15 +99,14 @@ def edit(request, **kwargs):
                                                 obj.pk)
                 email_subject = "Hey, looks like %s added time!" % request.user
                 mail_send(message=email_message, subject=email_subject)
-            set_ref(
-                obj,
-                request,
-                client_model=client_model,
-                company_model=company_model,
-                estimate_model=estimate_model,
-                invoice_model=invoice_model,
-                model=model,
-                project_model=project_model)
+            set_ref(obj,
+                    request,
+                    client_model=client_model,
+                    company_model=company_model,
+                    estimate_model=estimate_model,
+                    invoice_model=invoice_model,
+                    model=model,
+                    project_model=project_model)
             return obj_process(obj, pk=pk, task='redir')
     context['form'] = form
     context['is_staff'] = request.user.is_staff
@@ -129,8 +124,10 @@ def edit(request, **kwargs):
         model_name = contact_model._meta.verbose_name
     elif note_model:
         model_name = note_model._meta.verbose_name
-    template_name = obj_process(
-        obj, model_name=model_name, page_type='edit', task='url')
+    template_name = obj_process(obj,
+                                model_name=model_name,
+                                page_type='edit',
+                                task='url')
     return render(request, template_name, context)
 
 
@@ -238,16 +235,15 @@ def get_index_items(**kwargs):
         if search == u'':  # Empty search returns none
             return context
         else:
-            return get_search_results(
-                context,
-                model,
-                search_fields,
-                search,
-                app_settings_model=app_settings_model,
-                edit_url=edit_url,
-                view_url=view_url,
-                order_by=order_by,
-                request=request)
+            return get_search_results(context,
+                                      model,
+                                      search_fields,
+                                      search,
+                                      app_settings_model=app_settings_model,
+                                      edit_url=edit_url,
+                                      view_url=view_url,
+                                      order_by=order_by,
+                                      request=request)
     # Return filtered or all index items
     if filter_by:
         items = model.objects.filter(**filter_by[model_name])
@@ -297,6 +293,7 @@ def get_page_items(**kwargs):
     page_size = kwargs.get('page_size')
     context = {}
     items = {}
+
     if request:  # Applies to all page items
         context['is_staff'] = request.user.is_staff  # Perms
         context['icon_color'] = get_setting(request, app_settings_model,
@@ -310,6 +307,7 @@ def get_page_items(**kwargs):
         context['mail'] = mail
         context['pdf'] = pdf
         context['request'] = request  # Include request
+
     if company_model:
         company = company_model.get_solo()
         company_name = company.name
@@ -318,18 +316,23 @@ def get_page_items(**kwargs):
         context['company_name'] = company_name
         context['company_address'] = company_address
         context['currency_symbol'] = currency_symbol
+
     if columns_visible:
         context['columns_visible'] = columns_visible
+
     model_name = None
+
     if model or obj:
         if model:
             model_name = model._meta.verbose_name
         elif obj:
             model_name = obj._meta.verbose_name
+
         context['model_name'] = model_name
         context['active_nav'] = model_name
         context['edit_url'] = '%s_edit' % model_name
         context['view_url'] = '%s_view' % model_name
+
         if model_name == 'Settings App':
             exclude_fields = ('id', )
             app_settings = app_settings_model.get_solo()
@@ -416,10 +419,6 @@ def get_page_items(**kwargs):
             context['doc_type'] = doc_type
             context['entries'] = times
             context['item'] = estimate
-        if model_name == 'file':
-            file_obj = get_object_or_404(model, pk=pk)
-            context['doc_type'] = model_name
-            context['item'] = file_obj
         elif model_name == 'invoice':
             invoice = get_object_or_404(model, pk=pk)
             times = time_model.objects.filter(estimate=None, invoice=invoice)
@@ -431,22 +430,18 @@ def get_page_items(**kwargs):
             context['item'] = invoice
             context['invoice'] = True
             context['last_payment_date'] = last_payment_date
-        elif model_name == 'note':
-            item = get_object_or_404(model, pk=pk)
-            context['item'] = item
         elif model_name == 'project':
             project = get_object_or_404(model, pk=pk)
             context['item'] = project
             contacts = contact_model.objects.all()
             estimates = estimate_model.objects.filter(project=project)
             invoices = invoice_model.objects.filter(project=project)
-            times = totals.set_total(
-                time_model.objects.filter(
-                    estimate=None,
-                    project=project,
-                    task__isnull=False,
-                    invoiced=False),
-                project=project)
+            times = totals.set_total(time_model.objects.filter(
+                estimate=None,
+                project=project,
+                task__isnull=False,
+                invoiced=False),
+                                     project=project)
             if order_by:
                 times = times.order_by(*order_by['time'])
                 invoices = invoices.order_by(*order_by['invoice'])
@@ -488,13 +483,14 @@ def get_page_items(**kwargs):
                               'editor', 'icon_size', 'icon_color',
                               'preferred_username', 'unit', 'avatar_url')
             user = get_object_or_404(model, pk=pk)
-            projects = project_model.objects.filter(
-                team__in=[
-                    user,
-                ], active=True)
+            projects = project_model.objects.filter(team__in=[
+                user,
+            ],
+                                                    active=True)
             projects = projects.order_by(*order_by['project'])
-            times = time_model.objects.filter(
-                estimate=None, invoiced=False, user=user)
+            times = time_model.objects.filter(estimate=None,
+                                              invoiced=False,
+                                              user=user)
             times = times.order_by(*order_by['time'])
             contacts = contact_model.objects.all()
             context['item'] = user
@@ -504,14 +500,17 @@ def get_page_items(**kwargs):
                 ], exclude_fields=exclude_fields)  # table_items.html
             context['projects'] = projects
             context['times'] = times
+        else:
+            item = get_object_or_404(model, pk=pk)
+            context['item'] = item
     else:  # no model or obj
         if request:
             if request.user.is_authenticated:
                 # Items
                 invoices = invoice_model.objects.filter(last_payment_date=None)
                 invoices = invoices.order_by(*order_by['invoice'])
-                projects = project_model.objects.filter(
-                    active=True, hidden=False)
+                projects = project_model.objects.filter(active=True,
+                                                        hidden=False)
                 projects = projects.order_by(*order_by['project'])
                 if filter_by:
                     times = time_model.objects.filter(**filter_by['time'])
@@ -529,17 +528,16 @@ def get_page_items(**kwargs):
                 if paginated:  # Paginate if paginated
                     page_size = get_setting(request, 'page_size')
                     if 'times' in items:
-                        items['times'] = paginate(
-                            items['times'],
-                            page_num=page_num,
-                            page_size=page_size)
+                        items['times'] = paginate(items['times'],
+                                                  page_num=page_num,
+                                                  page_size=page_size)
                 # Totals
-                total_amount = totals.get_total(
-                    field='amount', invoices=invoices)['amount']
-                total_cost = totals.get_total(
-                    field='cost', projects=projects)['cost']
-                total_hours = totals.get_total(
-                    field='hours', times=times)['hours']
+                total_amount = totals.get_total(field='amount',
+                                                invoices=invoices)['amount']
+                total_cost = totals.get_total(field='cost',
+                                              projects=projects)['cost']
+                total_hours = totals.get_total(field='hours',
+                                               times=times)['hours']
                 context['net'] = total_amount - total_cost
                 context['cost'] = total_cost
                 context['gross'] = total_amount
