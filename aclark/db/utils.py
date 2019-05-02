@@ -407,7 +407,6 @@ def get_page_items(**kwargs):
                 ], exclude_fields=exclude_fields)  # table_items.html
             context['item'] = contract
         elif model_name == 'estimate':  # handle obj or model
-            doc_type = 'Estimate'
             if not obj:
                 estimate = get_object_or_404(model, pk=pk)
             else:
@@ -416,9 +415,21 @@ def get_page_items(**kwargs):
             if order_by:
                 times = times.order_by(*order_by['time'])
             times = totals.set_total(times, estimate=estimate)
-            context['doc_type'] = doc_type
+            context['doc_type'] = model_name
             context['entries'] = times
             context['item'] = estimate
+        elif model_name == 'order':  # handle obj or model
+            if not obj:
+                order = get_object_or_404(model, pk=pk)
+            else:
+                order = obj
+            times = time_model.objects.filter(order=order)
+            if order_by:
+                times = times.order_by(*order_by['time'])
+            times = totals.set_total(times, order=order)
+            context['doc_type'] = 'Statement of Work'
+            context['entries'] = times
+            context['item'] = order
         elif model_name == 'invoice':
             invoice = get_object_or_404(model, pk=pk)
             times = time_model.objects.filter(estimate=None, invoice=invoice)

@@ -736,6 +736,10 @@ class Time(BaseModel):
                                  blank=True,
                                  null=True,
                                  on_delete=models.SET_NULL)
+    order = models.ForeignKey("Order",
+                                 blank=True,
+                                 null=True,
+                                 on_delete=models.SET_NULL)
     invoice = models.ForeignKey(Invoice,
                                 blank=True,
                                 null=True,

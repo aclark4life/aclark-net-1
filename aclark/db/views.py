@@ -715,9 +715,7 @@ def order_edit(request, pk=None):
 def order_index(request):
     context = get_index_items(model=Order,
                               app_settings_model=SettingsApp,
-                              order_by=(
-                                  '-active',
-                              ),
+                              order_by=('-active', ),
                               request=request,
                               search_fields=('name', ))
     return render(request, 'order_index.html', context)
@@ -727,7 +725,10 @@ def order_index(request):
 def order_view(request, pk=None):
     """
     """
-    context = get_page_items(model=Order, pk=pk, request=request)
+    context = get_page_items(model=Order,
+                             pk=pk,
+                             request=request,
+                             time_model=Time)
     return render(request, 'order_view.html', context)
 
 

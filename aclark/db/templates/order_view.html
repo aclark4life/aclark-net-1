@@ -3,10 +3,12 @@
 
   <div class="container">
     <div class="row my-5">
-      <div class="col-12">
-        <h1><a class="text-dark" href="{% url 'order_index' %}">Work Orders</a> &rarr; Work Order</h1>
+      <div class="col-10">
+        <h1><a class="text-dark" href="{% url 'order_index' %}">Work Orders</a> &rarr; {{ item.name|default:'Work Order' }}</h1>
+      </div>
+      <div class="col-2">
         <!-- http://getbootstrap.com/docs/4.0/components/dropdowns/#split-button-dropdowns -->
-        <div class="btn-group dropdown float-right">
+        <div class="btn-group float-right dropdown">
           <a class="btn btn-lg btn-success" href="{% url 'order_edit' pk=item.pk %}">Edit</a>
           <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="sr-only">Toggle Dropdown</span>
@@ -15,9 +17,14 @@
 {% include 'actions.html' %}
           </div>
         </div>
-{% include 'copy_form.html' %}
-{% include 'delete_form.html' %}
+      </div>
+    </div>
+    <div class="row my-5">
+      <div class="col-12 card text-dark">
+{% include 'invoice_export.html' %}
       </div>
     </div>
   </div>
+{% include 'copy_form.html' %}
+{% include 'delete_form.html' %}
 {% endblock %}
