@@ -20,6 +20,8 @@ gravatar_url = 'https://www.gravatar.com/avatar/%s'
 
 
 def edit(request, **kwargs):
+    """
+    """
     context = {}
     obj = None
     app_settings_model = kwargs.get('app_settings_model')
@@ -38,10 +40,12 @@ def edit(request, **kwargs):
     order_model = kwargs.get('order_model')
     model_name = None
     new_time = False
+
     if model:
         model_name = model._meta.verbose_name
         context['active_nav'] = model_name
-    if pk is None:  # New
+
+    if pk is None:  # New obj
         form = get_form(client_model=client_model,
                         contract_settings_model=contract_settings_model,
                         form_model=form_model,
@@ -50,7 +54,7 @@ def edit(request, **kwargs):
                         project_model=project_model,
                         user_model=user_model,
                         request=request)
-    else:  # Existing
+    else:  # Existing obj
         obj = get_object_or_404(model, pk=pk)
         if model_name == 'user':  # One-off to edit user profile
             obj = obj.profile
@@ -59,22 +63,35 @@ def edit(request, **kwargs):
                         project_model=project_model,
                         request=request)
 
+    if company_model:
+        company = company_model.get_solo()
+        company_name = company.name
+        company_address = company.address
+        currency_symbol = company.currency_symbol
+        context['company_name'] = company_name
+        context['company_address'] = company_address
+        context['currency_symbol'] = currency_symbol
+    elif contact_model:
+        model_name = contact_model._meta.verbose_name
+    elif note_model:
+        model_name = note_model._meta.verbose_name
+
     if request.method == 'POST':
-
-        if pk is None:
-            form = form_model(request.POST)
-        else:  # Existing
-            form = form_model(request.POST, instance=obj)
-
-        copy = get_query_string(request, 'copy')  # Copy or delete
+        copy = get_query_string(request, 'copy')
         delete = get_query_string(request, 'delete')
+        query_checkbox = get_query_string(request, 'checkbox')
+        query_invoiced = get_query_string(request, 'invoiced')
+
+        if pk is None:  # New obj
+            form = form_model(request.POST)
+        else:  # Existing obj
+            form = form_model(request.POST, instance=obj)
 
         if copy:
             return obj_process(obj, task='copy')
+
         if delete:
             return obj_process(obj, task='remove')
-
-        query_checkbox = get_query_string(request, 'checkbox')  # Check boxes
 
         if query_checkbox['condition']:
             return obj_process(obj,
@@ -82,8 +99,6 @@ def edit(request, **kwargs):
                                app_settings_model=app_settings_model,
                                request=request,
                                task='check')
-
-        query_invoiced = get_query_string(request, 'invoiced')
 
         if query_invoiced['condition']:
             return obj_process(obj,
@@ -111,26 +126,17 @@ def edit(request, **kwargs):
                     model=model,
                     project_model=project_model)
             return obj_process(obj, pk=pk, task='redir')
-    context['form'] = form
-    context['is_staff'] = request.user.is_staff
-    context['item'] = obj
-    context['pk'] = pk
-    if company_model:
-        company = company_model.get_solo()
-        company_name = company.name
-        company_address = company.address
-        currency_symbol = company.currency_symbol
-        context['company_name'] = company_name
-        context['company_address'] = company_address
-        context['currency_symbol'] = currency_symbol
-    elif contact_model:
-        model_name = contact_model._meta.verbose_name
-    elif note_model:
-        model_name = note_model._meta.verbose_name
+
     template_name = obj_process(obj,
                                 model_name=model_name,
                                 page_type='edit',
                                 task='url')
+
+    context['form'] = form
+    context['is_staff'] = request.user.is_staff
+    context['item'] = obj
+    context['pk'] = pk
+
     return render(request, template_name, context)
 
 
