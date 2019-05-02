@@ -58,36 +58,39 @@ def edit(request, **kwargs):
                         obj=obj,
                         project_model=project_model,
                         request=request)
+
     if request.method == 'POST':
+
         if pk is None:
-            if model_name == 'user':  # One-off to create user
-                username = fake.text()[:150]
-                new_user = model.objects.create_user(username=username)
             form = form_model(request.POST)
-        if model_name == 'time':  # Send mail
-            new_time = True
-        else:
-            copy = get_query_string(request, 'copy')  # Copy or delete
-            delete = get_query_string(request, 'delete')
-            if copy:
-                return obj_process(obj, task='copy')
-            if delete:
-                return obj_process(obj, task='remove')
-            query_checkbox = get_query_string(request,
-                                              'checkbox')  # Check boxes
-            if query_checkbox['condition']:
-                return obj_process(obj,
-                                   query_checkbox=query_checkbox,
-                                   app_settings_model=app_settings_model,
-                                   request=request,
-                                   task='check')
-            query_invoiced = get_query_string(request, 'invoiced')
-            if query_invoiced['condition']:
-                return obj_process(obj,
-                                   request=request,
-                                   query_invoiced=query_invoiced,
-                                   task='invoiced')
+        else:  # Existing
             form = form_model(request.POST, instance=obj)
+
+        copy = get_query_string(request, 'copy')  # Copy or delete
+        delete = get_query_string(request, 'delete')
+
+        if copy:
+            return obj_process(obj, task='copy')
+        if delete:
+            return obj_process(obj, task='remove')
+
+        query_checkbox = get_query_string(request, 'checkbox')  # Check boxes
+
+        if query_checkbox['condition']:
+            return obj_process(obj,
+                               query_checkbox=query_checkbox,
+                               app_settings_model=app_settings_model,
+                               request=request,
+                               task='check')
+
+        query_invoiced = get_query_string(request, 'invoiced')
+
+        if query_invoiced['condition']:
+            return obj_process(obj,
+                               request=request,
+                               query_invoiced=query_invoiced,
+                               task='invoiced')
+
         if form.is_valid():
             obj = form.save()
             if model_name == 'user':  # One-off to create profile
