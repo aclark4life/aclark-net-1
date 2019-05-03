@@ -37,7 +37,6 @@ def edit(request, **kwargs):
     pk = kwargs.get('pk')
     project_model = kwargs.get('project_model')
     user_model = kwargs.get('user_model')
-    order_model = kwargs.get('order_model')
     model_name = None
     new_time = False
 
@@ -84,6 +83,8 @@ def edit(request, **kwargs):
 
         if pk is None:  # New obj
             form = form_model(request.POST)
+            if model_name == 'time':
+                new_time = True
         else:  # Existing obj
             form = form_model(request.POST, instance=obj)
 
@@ -108,10 +109,6 @@ def edit(request, **kwargs):
 
         if form.is_valid():
             obj = form.save()
-            if model_name == 'user':  # One-off to create profile
-                if not obj.user:  # for new user
-                    obj.user = new_user
-                    obj.save()
             if model_name == 'time' and new_time:  # Send mail
                 email_message = '%s/%s/edit' % ('https://aclark.net/db/time',
                                                 obj.pk)
