@@ -4,7 +4,6 @@ from .models import Contract
 from .models import Estimate
 from .models import File
 from .models import Invoice
-from .models import Newsletter
 from .models import Note
 from .models import Profile
 from .models import Project
@@ -206,22 +205,6 @@ class InvoiceForm(forms.ModelForm):
     }),
                                required=False,
                                initial=timezone.now())
-
-
-class NewsletterForm(forms.ModelForm):
-    class Meta:
-        model = Newsletter
-        fields = ('template_choices', 'contacts', 'subject', 'text')
-        widgets = {
-            'text': forms.widgets.TextInput(attrs={'class': 'tinymce'}),
-        }
-
-    contacts = forms.ModelMultipleChoiceField(
-        queryset=Contact.objects.filter(subscribed=True).exclude(
-            email=None).order_by('first_name'),
-        label='Recipients',
-        widget=forms.SelectMultiple(attrs={'size': '50'}),
-        required=False)
 
 
 class NoteForm(forms.ModelForm):

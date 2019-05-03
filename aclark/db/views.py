@@ -20,7 +20,6 @@ from .forms import ContractForm
 from .forms import EstimateForm
 from .forms import FileForm
 from .forms import InvoiceForm
-from .forms import NewsletterForm
 from .forms import NoteForm
 from .forms import ProfileForm
 from .forms import ProjectForm
@@ -39,7 +38,6 @@ from .models import Estimate
 from .models import File
 from .models import Invoice
 from .models import Log
-from .models import Newsletter
 from .models import Note
 from .models import Profile
 from .models import Project
@@ -439,36 +437,6 @@ def log_index(request):
                               request=request,
                               search_fields=('entry', ))
     return render(request, 'log_index.html', context)
-
-
-@staff_member_required
-def newsletter_view(request, pk=None):
-    """
-    """
-    context = get_page_items(app_settings_model=SettingsApp,
-                             model=Newsletter,
-                             pk=pk,
-                             request=request)
-    return render(request, 'newsletter_view.html', context)
-
-
-@staff_member_required
-def newsletter_edit(request, pk=None):
-    """
-    """
-    return edit(request, form_model=NewsletterForm, model=Newsletter, pk=pk)
-
-
-@staff_member_required
-def newsletter_index(request, pk=None):
-    """
-    """
-    context = get_index_items(app_settings_model=SettingsApp,
-                              model=Newsletter,
-                              order_by=('-updated', ),
-                              request=request,
-                              search_fields=('text', ))
-    return render(request, 'newsletter_index.html', context)
 
 
 @login_required

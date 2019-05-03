@@ -31,13 +31,6 @@ ICON_CHOICES = (
     ('5x', 'XXL'),
 )
 
-TEMPLATE_CHOICES = (
-    ('mail_html.html', 'Mail'),
-    ('cerberus-fluid.html', 'Fluid'),
-    ('cerberus-hybrid.html', 'Hybrid'),
-    ('cerberus-responsive.html', 'Responsive'),
-)
-
 PAYMENT_CHOICES = (
     ('', '---'),
     ('check', 'Check'),

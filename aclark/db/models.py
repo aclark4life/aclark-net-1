@@ -344,25 +344,6 @@ class Log(BaseModel):
             return '-'.join([self._meta.verbose_name, str(self.pk)])
 
 
-class Newsletter(BaseModel):
-    """
-    """
-    subject = models.CharField(max_length=300, blank=True, null=True)
-    template_choices = models.CharField('Template',
-                                        max_length=300,
-                                        choices=choices.TEMPLATE_CHOICES,
-                                        null=True,
-                                        blank=True)
-    text = models.TextField(blank=True, null=True)
-    contacts = models.ManyToManyField('Contact', blank=True)
-
-    def __str__(self):
-        if self.name:
-            return self.name
-        else:
-            return '-'.join([self._meta.verbose_name, str(self.pk)])
-
-
 class Note(BaseModel):
     """
     """

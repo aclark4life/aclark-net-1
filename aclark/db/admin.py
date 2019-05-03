@@ -13,7 +13,6 @@ from .models import Estimate
 from .models import Invoice
 from .models import Location
 from .models import Log
-from .models import Newsletter
 from .models import Note
 from .models import Order
 from .models import Profile
@@ -226,12 +225,6 @@ class LocationAdmin(geo_admin.OSMGeoAdmin):
 
 @admin.register(Log)
 class LogAdmin(ImportExportModelAdmin):
-    """
-    """
-
-
-@admin.register(Newsletter)
-class NewsletterAdmin(ImportExportModelAdmin):
     """
     """
 

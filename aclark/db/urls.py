@@ -49,15 +49,6 @@ urlpatterns = [
     url(r'^geo-loc$', views.geo_view, name='geo-loc'),
     # Logs
     url(r'^log$', views.log_index, name='log_index'),
-    # Newsletter
-    url(r'^newsletter/(?P<pk>\d+)$',
-        views.newsletter_view,
-        name='newsletter_view'),
-    url(r'^newsletter/(?P<pk>\d+)/edit$',
-        views.newsletter_edit,
-        name='newsletter_edit'),
-    url(r'^newsletter/add$', views.newsletter_edit, name='newsletter_edit'),
-    url(r'^newsletter$', views.newsletter_index, name='newsletter_index'),
     # Note
     url(r'^note/(?P<pk>\d+)$', views.note_view, name='note_view'),
     url(r'^note/(?P<pk>\d+)/edit$', views.note_edit, name='note_edit'),
