@@ -215,6 +215,11 @@ class Estimate(BaseModel):
     def __str__(self):
         return 'estimate-%s' % self.pk
 
+    estimate_type = models.CharField(max_length=255,
+                                     blank=True,
+                                     null=True,
+                                     choices=choices.ICON_CHOICES)
+
 
 class File(BaseModel):
     """
