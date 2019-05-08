@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
+
+{% block app_graph %}
+{% endblock %}
+
 {% block content %}
 
   <div id="clients">
@@ -15,11 +19,28 @@
           <h1>Management Team</h1>
         </div>
       </div>
+      <div class="row bg-white text-dark text-center pb-5">
+        {% for profile in profiles %}
+        {% if profile.get_username == 'aclark' or profile.get_username == 'amy' %}
+        <div class="col-6"> 
+          <div class="p-2">
+              <h1><img class="m-5 rounded-0 border border-info" src="{{ profile.get_avatar_url }}"></h1>
+              <h3>{{ profile.user.first_name }} {{ profile.user.last_name }}</h3>
+              <p>{{ profile.bio|safe }}</p>
+          </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+      <div class="row bg-white text-dark text-center">
+        <div class="col-12"> 
+          <h1>Development &amp; Support Team</h1>
+        </div>
+      </div>
       <div class="row bg-white text-dark text-center">
         {% for profile in profiles %}
-        {% if profile %}
-        {{ profile }}
-        <div class="col-4 px-4 py-2 my-5">
+        {% if profile.get_username != 'aclark' and profile.get_username != 'amy' %}
+        <div class="col-6 px-4 py-2 my-5">
           <div class="p-2">
               <h1><img class="m-5 rounded-0 border border-info" src="{{ profile.get_avatar_url }}"></h1>
               <h3>{{ profile.user.first_name }} {{ profile.user.last_name }}</h3>
