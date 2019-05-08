@@ -436,6 +436,11 @@ class Profile(BaseModel):
         else:
             return '-'.join([self._meta.verbose_name, str(self.pk)])
 
+    def is_staff(self):
+        if self.user:
+            if self.user.is_staff:
+                return True
+
 
 class Project(BaseModel):
     """

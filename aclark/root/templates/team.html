@@ -10,18 +10,24 @@
           <h2>Our team offers extensive experience in the development, deployment and maintenance of modern web applications.</h2>
         </div>
       </div>
-      <div class="row">
+      <div class="row bg-white text-dark text-center">
+        <div class="col-12 px-4 py-2 my-5">
+          <h1>Management Team</h1>
+        </div>
+      </div>
+      <div class="row bg-white text-dark text-center">
         {% for profile in profiles %}
-        <div class="col-md-4 px-4 pb-2 mb-5">
-          <div class="p-2 bg-dark">
+        {% if profile %}
+        {{ profile }}
+        <div class="col-4 px-4 py-2 my-5">
+          <div class="p-2">
               <h1><img class="m-5 rounded-0 border border-info" src="{{ profile.get_avatar_url }}"></h1>
               <h3>{{ profile.user.first_name }} {{ profile.user.last_name }}</h3>
               <p>{{ profile.bio|safe }}</p>
-            </div>
-          </div>
-          {% endfor %}
           </div>
         </div>
+        {% endif %}
+        {% endfor %}
       </div>
     </div>
   </div>

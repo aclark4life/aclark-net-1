@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block app_graph %}
+{% endblock %}
+
 {% block content %}
   <div id="services">
     <div class="container text-center">
@@ -10,12 +13,11 @@
           <h2>We offer a variety of professional technical services including software development, systems administration and more.</h2>
         </div>
       </div>
-      <div class="row">
+      <div class="row bg-white text-dark">
         {% for service in services %}
-        <div class="col-md-4 px-4 pb-2 mb-5">
-          <div class="p-2 bg-dark">
-              <h1><i class="fa fa-cog"></i></h1>
-              <h3>{{ service.name }}</h3>
+        <div class="col-4 px-4 py-2 my-5">
+          <div class="p-2">
+              <h1>{{ service.name }}</h1>
               <p>{{ service.description|safe }}</p>
             </div>
           </div>
