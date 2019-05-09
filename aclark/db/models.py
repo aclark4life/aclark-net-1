@@ -50,6 +50,7 @@ class Client(BaseModel):
         blank=True,
         limit_choices_to={'active': True},
     )
+    tags = TaggableManager(blank=True, help_text='')
 
     def __str__(self):
         if self.name:
@@ -605,7 +606,6 @@ class SettingsApp(SingletonModel):
     """
     auto_hide = models.BooleanField(default=True)
     exclude_hidden = models.BooleanField(default=True)
-    tags = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         verbose_name = "Settings App"
