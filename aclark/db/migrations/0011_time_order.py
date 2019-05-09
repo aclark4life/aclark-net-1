@@ -6,14 +6,17 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('db', '0010_auto_20190501_2031'),
-    ]
+    dependencies = [("db", "0010_auto_20190501_2031")]
 
     operations = [
         migrations.AddField(
-            model_name='time',
-            name='order',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='db.Order'),
-        ),
+            model_name="time",
+            name="order",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to="db.Order",
+            ),
+        )
     ]

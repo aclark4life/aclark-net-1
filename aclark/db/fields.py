@@ -7,7 +7,7 @@ def get_fields(items, exclude_fields=[]):
         item.fields = OrderedDict()
         for field in fields:
             if not field.is_relation and field.name not in exclude_fields:
-                field_name = field.name.title().replace('_', ' ')
+                field_name = field.name.title().replace("_", " ")
                 value = getattr(item, field.name)
                 if value:
                     try:

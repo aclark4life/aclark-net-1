@@ -5,12 +5,6 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('db', '0011_time_order'),
-    ]
+    dependencies = [("db", "0011_time_order")]
 
-    operations = [
-        migrations.DeleteModel(
-            name='Newsletter',
-        ),
-    ]
+    operations = [migrations.DeleteModel(name="Newsletter")]

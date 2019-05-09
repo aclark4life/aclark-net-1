@@ -6,14 +6,18 @@ import multiselectfield.db.fields
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('db', '0003_auto_20181020_1246'),
-    ]
+    dependencies = [("db", "0003_auto_20181020_1246")]
 
     operations = [
         migrations.AlterField(
-            model_name='profile',
-            name='dashboard_items',
-            field=multiselectfield.db.fields.MultiSelectField(blank=True, choices=[('tools', 'Tools'), ('times', 'Times'), ('totals', 'Totals')], max_length=18, null=True, verbose_name='Dashboard Items'),
-        ),
+            model_name="profile",
+            name="dashboard_items",
+            field=multiselectfield.db.fields.MultiSelectField(
+                blank=True,
+                choices=[("tools", "Tools"), ("times", "Times"), ("totals", "Totals")],
+                max_length=18,
+                null=True,
+                verbose_name="Dashboard Items",
+            ),
+        )
     ]

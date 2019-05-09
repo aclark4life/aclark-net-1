@@ -22,20 +22,20 @@ from django.contrib import admin
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register(r'clients', views_db.ClientViewSet)
-router.register(r'services', views_db.ServiceViewSet)
-router.register(r'testimonials', views_db.TestimonialViewSet)
-router.register(r'profiles', views_db.ProfileViewSet)
+router.register(r"clients", views_db.ClientViewSet)
+router.register(r"services", views_db.ServiceViewSet)
+router.register(r"testimonials", views_db.TestimonialViewSet)
+router.register(r"profiles", views_db.ProfileViewSet)
 
 urlpatterns = [
-    url(r'^$', views_root.home, name='home'),
-    url(r'^about$', views_root.about, name='about'),
-    url(r'^admin', admin.site.urls),
-    url(r'^api/', include(router.urls)),
-    url(r'^db/', include(urls_db)),
-    url(r'^blog$', views_root.blog, name='blog'),
-    url(r'^clients$', views_root.clients, name='clients'),
-    url(r'^contact$', views_root.contact, name='contact'),
-    url(r'^team$', views_root.team, name='team'),
-    url(r'^services$', views_root.services, name='services'),
+    url(r"^$", views_root.home, name="home"),
+    url(r"^about$", views_root.about, name="about"),
+    url(r"^admin", admin.site.urls),
+    url(r"^api/", include(router.urls)),
+    url(r"^db/", include(urls_db)),
+    url(r"^blog$", views_root.blog, name="blog"),
+    url(r"^clients$", views_root.clients, name="clients"),
+    url(r"^contact$", views_root.contact, name="contact"),
+    url(r"^team$", views_root.team, name="team"),
+    url(r"^services$", views_root.services, name="services"),
 ]

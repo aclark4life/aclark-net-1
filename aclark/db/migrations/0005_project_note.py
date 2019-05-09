@@ -5,14 +5,14 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('db', '0004_auto_20181020_1247'),
-    ]
+    dependencies = [("db", "0004_auto_20181020_1247")]
 
     operations = [
         migrations.AddField(
-            model_name='project',
-            name='note',
-            field=models.ManyToManyField(blank=True, limit_choices_to={'active': True}, to='db.Note'),
-        ),
+            model_name="project",
+            name="note",
+            field=models.ManyToManyField(
+                blank=True, limit_choices_to={"active": True}, to="db.Note"
+            ),
+        )
     ]

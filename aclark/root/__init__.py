@@ -1,1 +1,1 @@
-default_app_config = 'aclark.root.apps.RootConfig'
+default_app_config = "aclark.root.apps.RootConfig"

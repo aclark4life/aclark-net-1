@@ -5,13 +5,6 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('db', '0007_estimate_note'),
-    ]
+    dependencies = [("db", "0007_estimate_note")]
 
-    operations = [
-        migrations.RemoveField(
-            model_name='estimate',
-            name='estimate_type',
-        ),
-    ]
+    operations = [migrations.RemoveField(model_name="estimate", name="estimate_type")]

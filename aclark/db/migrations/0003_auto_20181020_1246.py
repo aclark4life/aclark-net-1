@@ -6,19 +6,34 @@ import multiselectfield.db.fields
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('db', '0002_auto_20180925_1339'),
-    ]
+    dependencies = [("db", "0002_auto_20180925_1339")]
 
     operations = [
         migrations.AlterField(
-            model_name='newsletter',
-            name='template_choices',
-            field=models.CharField(blank=True, choices=[('mail_html.html', 'Mail'), ('cerberus-fluid.html', 'Fluid'), ('cerberus-hybrid.html', 'Hybrid'), ('cerberus-responsive.html', 'Responsive')], max_length=300, null=True, verbose_name='Template'),
+            model_name="newsletter",
+            name="template_choices",
+            field=models.CharField(
+                blank=True,
+                choices=[
+                    ("mail_html.html", "Mail"),
+                    ("cerberus-fluid.html", "Fluid"),
+                    ("cerberus-hybrid.html", "Hybrid"),
+                    ("cerberus-responsive.html", "Responsive"),
+                ],
+                max_length=300,
+                null=True,
+                verbose_name="Template",
+            ),
         ),
         migrations.AlterField(
-            model_name='profile',
-            name='dashboard_items',
-            field=multiselectfield.db.fields.MultiSelectField(blank=True, choices=[('times', 'Times'), ('totals', 'Totals'), ('tools', 'Tools')], max_length=18, null=True, verbose_name='Dashboard Items'),
+            model_name="profile",
+            name="dashboard_items",
+            field=multiselectfield.db.fields.MultiSelectField(
+                blank=True,
+                choices=[("times", "Times"), ("totals", "Totals"), ("tools", "Tools")],
+                max_length=18,
+                null=True,
+                verbose_name="Dashboard Items",
+            ),
         ),
     ]

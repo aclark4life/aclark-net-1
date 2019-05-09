@@ -9,13 +9,13 @@ from rest_framework import serializers
 class ClientSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Client
-        fields = ('name', 'description')
+        fields = ("name", "description")
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('first_name', 'last_name')
+        fields = ("first_name", "last_name")
 
 
 class ProfileSerializer(serializers.ModelSerializer):
@@ -25,16 +25,16 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         depth = 1
-        fields = ('get_avatar_url', 'get_username', 'bio', 'user', 'is_staff')
+        fields = ("get_avatar_url", "get_username", "bio", "user", "is_staff")
 
 
 class ServiceSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Service
-        fields = ('name', 'description')
+        fields = ("name", "description")
 
 
 class TestimonialSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Testimonial
-        fields = ('name', 'slug', 'title', 'description', 'issue_date')
+        fields = ("name", "slug", "title", "description", "issue_date")
