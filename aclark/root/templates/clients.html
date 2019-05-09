@@ -14,14 +14,12 @@
         </div>
       </div>
       <div class="row bg-white text-dark">
-        {% for client in clients %}
         <div class="col-4 px-4 py-2 my-5"> 
-          <div class="p-2">
-              <h1>{{ client.name }}</h1>
-            </div>
-          </div>
-          {% endfor %}
-          </div>
+        <ul>
+        {% for client in clients %}
+          <li>{{ client.name }}</li>
+        {% endfor %}
+        </ul>
         </div>
       </div>
     </div>
