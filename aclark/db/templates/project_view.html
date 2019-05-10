@@ -25,18 +25,18 @@
 {% include 'copy_form.html' %}
 {% include 'delete_form.html' %}
     <!------------------------------------------------------------------------------------>
-    <div class="row">
+    <div class="row my5">
       <div class="col-12 py-1 card text-dark">
         <h2><a href="{% url 'estimate_index' %}" class="text-dark">Estimates</a></h2>
       </div>
-    </div> <div class="row"> <div class="col-12 py-1 card text-dark">
+    </div>
+    <div class="row"> <div class="col-12 py-1 card text-dark">
       {% with items=items.estimates view_url='estimate_view' edit_url='estimate_edit' item_type='estimate' %}
 {% include 'invoice_table.html' %}
       {% endwith %}
-      </div>
     </div>
     <!------------------------------------------------------------------------------------>
-    <div class="row">
+    <div class="row my5">
       <div class="col-12 py-1 card text-dark">
         <h2><a href="{% url 'invoice_index' %}" class="text-dark">Invoices</a></h2>
       </div>
@@ -49,14 +49,14 @@
       </div>
     </div>
     <!------------------------------------------------------------------------------------>
-    <div class="row">
+    <div class="row my5">
       <div class="col-12 py-1 card text-dark">
         <h2>Notes</h2>
 {% include 'note_table.html' %}
       </div>
     </div>
     <!------------------------------------------------------------------------------------>
-    <div class="row">
+    <div class="row my5">
       <div class="col-12 py-1 card text-dark">
         <h2><a href="{% url 'user_index' %}" class="text-dark">Team</a></h2>
       </div>
@@ -67,7 +67,7 @@
       </div>
     </div>
     <!------------------------------------------------------------------------------------>
-    <div class="row">
+    <div class="row my5">
       <div class="col-12 py-1 card text-dark">
         <h2><a href="{% url 'user_index' %}" class="text-dark">Times</a></h2>
       </div>
@@ -76,7 +76,7 @@
       </div>
     </div>
     <!------------------------------------------------------------------------------------>
-    <div class="row">
+    <div class="row my5">
       <div class="col-12 py-1 card text-dark">
         <h2>Totals</h2>
 {% include 'total_table.html' %}
