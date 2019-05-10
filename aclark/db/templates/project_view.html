@@ -30,10 +30,12 @@
         <h2><a href="{% url 'estimate_index' %}" class="text-dark">Estimates</a></h2>
       </div>
     </div>
-    <div class="row"> <div class="col-12 py-1 card text-dark">
+    <div class="row">
+      <div class="col-12 py-1 card text-dark">
       {% with items=items.estimates view_url='estimate_view' edit_url='estimate_edit' item_type='estimate' %}
 {% include 'invoice_table.html' %}
       {% endwith %}
+      </div>
     </div>
     <!------------------------------------------------------------------------------------>
     <div class="row my5">
