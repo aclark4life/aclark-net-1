@@ -34,8 +34,8 @@ def blog(request):
 
 def clients(request):
     context = {}
-    clients = Client.objects.filter(tags__name__in=["government",])
-    context['clients'] = clients
+    clients_gov = Client.objects.filter(tags__name__in=["government",])
+    context['clients_gov'] = clients_gov
     return render(request, "clients.html", context)
 
 
