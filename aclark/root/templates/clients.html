@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="row bg-white text-dark">
-        <div class="col-4 px-4 py-2 my-5"> 
+        <div class="col-3 px-4 py-2 my-5"> 
           <h3>Government</h3>
           <ul class="text-left mt-1">
           {% for client in clients_government %}
@@ -22,7 +22,7 @@
           {% endfor %}
           </ul>
         </div>
-        <div class="col-4 px-4 py-2 my-5"> 
+        <div class="col-3 px-4 py-2 my-5"> 
           <h3>Non-Profit</h3>
           <ul class="text-left mt-1">
           {% for client in clients_non_profit %}
@@ -30,10 +30,18 @@
           {% endfor %}
           </ul>
         </div>
-        <div class="col-4 px-4 py-2 my-5"> 
+        <div class="col-3 px-4 py-2 my-5"> 
           <h3>Private Sector</h3>
           <ul class="text-left mt-1">
           {% for client in clients_private_sector %}
+            <li>{{ client }}</li>
+          {% endfor %}
+          </ul>
+        </div>
+        <div class="col-3 px-4 py-2 my-5"> 
+          <h3>Colleges & Universities</h3>
+          <ul class="text-left mt-1">
+          {% for client in clients_colleges_universities %}
             <li>{{ client }}</li>
           {% endfor %}
           </ul>
