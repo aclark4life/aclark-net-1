@@ -5,8 +5,6 @@
 
 {% block content %}
 {% if request.user.is_authenticated %}
-  {% if user.profile.dashboard_items %}
-
   <div class="container">
     <div class="row my-5">
       <div class="col-8">
@@ -19,14 +17,17 @@
         </div>
       </div>
     </div>
+  {% if user.profile.dashboard_items %}
     {% for dashboard in user.profile.dashboard_items %}  <!-- https://stackoverflow.com/a/4524851/185820 -->
         {% with "dashboard_"|add:dashboard|add:".html" as dashboard_html %}
 {% include dashboard_html %}
         {% endwith %}
     {% endfor %}
-  </div>
   {% else %}
-  <p>Please <a href="{% url 'user_edit' user.pk %}">edit your profile</a> to add items to the dashboard.</p>
+    <div class="alert alert-primary" role="alert">
+      Please <a href="{% url 'user_edit' user.pk %}">edit your profile</a> to add dashboard items.
+    </div>
+  </div>
   {% endif %}
 {% else %}
   <div class="block-xs-middle pb-5">
