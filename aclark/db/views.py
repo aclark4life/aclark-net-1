@@ -99,7 +99,8 @@ class ProfileViewSet(viewsets.ModelViewSet):
     """
     """
 
-    queryset = Profile.objects.filter(published=True).order_by("user__first_name")
+    queryset = Profile.objects.filter(
+        published=True).order_by("user__first_name")
     serializer_class = ProfileSerializer
 
 
@@ -125,9 +126,9 @@ def get_company_name(model):
 @staff_member_required
 def client_view(request, pk=None):
     order_by = {
-        "project": ("-updated",),
-        "estimate": ("-issue_date",),
-        "invoice": ("-issue_date",),
+        "project": ("-updated", ),
+        "estimate": ("-issue_date", ),
+        "invoice": ("-issue_date", ),
     }
     context = get_page_items(
         app_settings_model=SettingsApp,
@@ -164,9 +165,10 @@ def client_index(request):
 
 @staff_member_required
 def contact_view(request, pk=None):
-    context = get_page_items(
-        app_settings_model=SettingsApp, model=Contact, pk=pk, request=request
-    )
+    context = get_page_items(app_settings_model=SettingsApp,
+                             model=Contact,
+                             pk=pk,
+                             request=request)
     return render(request, "contact_view.html", context)
 
 
@@ -209,7 +211,9 @@ def contract_view(request, pk=None):
     if context["doc"]:
         company_name = get_company_name(SettingsCompany)
         filename = "%s_%s_%s.pdf" % (company_name, "contract".upper(), pk)
-        return render_doc(context, filename=filename, template="table_contract.html")
+        return render_doc(context,
+                          filename=filename,
+                          template="table_contract.html")
     else:
         return render(request, "contract_view.html", context)
 
@@ -218,9 +222,11 @@ def contract_view(request, pk=None):
 def contract_edit(request, pk=None):
     """
     """
-    return edit(
-        request, form_model=ContractForm, model=Contract, client_model=Client, pk=pk
-    )
+    return edit(request,
+                form_model=ContractForm,
+                model=Contract,
+                client_model=Client,
+                pk=pk)
 
 
 @staff_member_required
@@ -231,7 +237,7 @@ def contract_index(request):
         app_settings_model=SettingsApp,
         model=Contract,
         request=request,
-        order_by=("-updated",),
+        order_by=("-updated", ),
     )
     return render(request, "contract_index.html", context)
 
@@ -244,7 +250,7 @@ def error(request):
 
 @staff_member_required
 def estimate_view(request, pk=None):
-    order_by = {"time": ("updated",)}
+    order_by = {"time": ("updated", )}
     context = get_page_items(
         app_settings_model=SettingsApp,
         company_model=SettingsCompany,
@@ -258,7 +264,9 @@ def estimate_view(request, pk=None):
     if context["pdf"]:
         company_name = get_company_name(SettingsCompany)
         filename = "%s_%s_%s.pdf" % (company_name, "estimate".upper(), pk)
-        return render_pdf(context, filename=filename, template="invoice_export.html")
+        return render_pdf(context,
+                          filename=filename,
+                          template="invoice_export.html")
     elif context["mail"]:
         message_plain = "Title"
         message_subject = "Subject"
@@ -288,8 +296,8 @@ def estimate_index(request):
     context = get_index_items(
         app_settings_model=SettingsApp,
         model=Estimate,
-        order_by=("-issue_date",),
-        search_fields=("subject",),
+        order_by=("-issue_date", ),
+        search_fields=("subject", ),
         request=request,
     )
     return render(request, "estimate_index.html", context)
@@ -309,9 +317,11 @@ def file_view(request, pk=None):
 
 @staff_member_required
 def file_edit(request, pk=None):
-    return edit(
-        request, form_model=FileForm, model=File, company_model=SettingsCompany, pk=pk
-    )
+    return edit(request,
+                form_model=FileForm,
+                model=File,
+                company_model=SettingsCompany,
+                pk=pk)
 
 
 @staff_member_required
@@ -319,7 +329,7 @@ def file_index(request):
     context = get_index_items(
         app_settings_model=SettingsApp,
         model=File,
-        order_by=("-updated",),
+        order_by=("-updated", ),
         request=request,
     )
     return render(request, "file_index.html", context)
@@ -335,15 +345,24 @@ def home(request):
         app_settings_model=SettingsApp,
         company_model=SettingsCompany,
         columns_visible={
-            "note": {"due": "false", "hidden": "false", "note": "false"},
-            "invoices": {"sent": "false"},
+            "note": {
+                "due": "false",
+                "hidden": "false",
+                "note": "false"
+            },
+            "invoices": {
+                "sent": "false"
+            },
         },
-        filter_by={"time": {"estimate": None, "user": request.user}},
+        filter_by={"time": {
+            "estimate": None,
+            "user": request.user
+        }},
         invoice_model=Invoice,
         order_by={
-            "invoice": ("-issue_date",),
-            "project": ("-updated",),
-            "time": ("-date",),
+            "invoice": ("-issue_date", ),
+            "project": ("-updated", ),
+            "time": ("-date", ),
         },
         project_model=Project,
         time_model=Time,
@@ -368,7 +387,9 @@ def invoice_view(request, pk=None):
     if context["pdf"]:
         company_name = get_company_name(SettingsCompany)
         filename = "%s_%s_%s.pdf" % (company_name, "invoice".upper(), pk)
-        return render_pdf(context, filename=filename, template="invoice_export.html")
+        return render_pdf(context,
+                          filename=filename,
+                          template="invoice_export.html")
     else:
         return render(request, "invoice_view.html", context)
 
@@ -388,11 +409,14 @@ def invoice_edit(request, pk=None):
 
 @staff_member_required
 def invoice_index(request):
-    search_fields = ("client__name", "id", "issue_date", "project__name", "subject")
+    search_fields = ("client__name", "id", "issue_date", "project__name",
+                     "subject")
     context = get_index_items(
         app_settings_model=SettingsApp,
         model=Invoice,
-        columns_visible={"invoices": {"sent": "true"}},
+        columns_visible={"invoices": {
+            "sent": "true"
+        }},
         order_by=("-last_payment_date", "subject"),
         request=request,
         search_fields=search_fields,
@@ -423,9 +447,9 @@ def log_index(request):
     context = get_index_items(
         app_settings_model=SettingsApp,
         model=Log,
-        order_by=("-created",),
+        order_by=("-created", ),
         request=request,
-        search_fields=("entry",),
+        search_fields=("entry", ),
     )
     return render(request, "log_index.html", context)
 
@@ -436,22 +460,22 @@ def note_view(request, pk=None):
     if not request.user.is_staff and not note.user:  # No user
         messages.add_message(request, messages.WARNING, FOUR_O_3)
         return HttpResponseRedirect(reverse("home"))
-    elif (
-        not request.user.is_staff and not note.user.username == request.user.username
-    ):  # Time entry user does not match user
+    elif (not request.user.is_staff
+          and not note.user.username == request.user.username
+          ):  # Time entry user does not match user
         messages.add_message(request, messages.WARNING, FOUR_O_3)
         return HttpResponseRedirect(reverse("home"))
     else:
-        context = get_page_items(
-            app_settings_model=SettingsApp, model=Note, pk=pk, request=request
-        )
+        context = get_page_items(app_settings_model=SettingsApp,
+                                 model=Note,
+                                 pk=pk,
+                                 request=request)
         title = context["item"].title
         if title:
             title = slugify(title)
         filename = title
-        logo = os.path.join(
-            os.environ.get("PWD"), "aclark", "root", "static", "aclarknet-header.png"
-        )
+        logo = os.path.join(os.environ.get("PWD"), "aclark", "root", "static",
+                            "aclarknet-header.png")
         if context["doc"]:
             filename = ".".join([filename, "docx"])
             return render_doc(context, filename=filename, logo=logo)
@@ -467,7 +491,9 @@ def note_view(request, pk=None):
             messages.add_message(request, messages.INFO, "Note sent!")
         elif context["pdf"]:
             filename = ".".join([filename, "pdf"])
-            return render_pdf(context, filename=filename, template="note_export.html")
+            return render_pdf(context,
+                              filename=filename,
+                              template="note_export.html")
         return render(request, "note_view.html", context)
 
 
@@ -513,11 +539,13 @@ def project_view(request, pk=None):
         invoice_model=Invoice,
         note_model=Note,
         user_model=User,
-        columns_visible={"invoices": {"sent": "true"}},
+        columns_visible={"invoices": {
+            "sent": "true"
+        }},
         order_by={
-            "time": ("-date",),
-            "invoice": ("-issue_date",),
-            "estimate": ("-issue_date",),
+            "time": ("-date", ),
+            "invoice": ("-issue_date", ),
+            "estimate": ("-issue_date", ),
         },
         time_model=Time,
         pk=pk,
@@ -533,16 +561,20 @@ def project_view(request, pk=None):
 
 @staff_member_required
 def project_edit(request, pk=None):
-    return edit(
-        request, form_model=ProjectForm, model=Project, client_model=Client, pk=pk
-    )
+    return edit(request,
+                form_model=ProjectForm,
+                model=Project,
+                client_model=Client,
+                pk=pk)
 
 
 @staff_member_required
 def project_index(request, pk=None):
     context = get_index_items(
         app_settings_model=SettingsApp,
-        columns_visible={"project": {"notes": "true"}},
+        columns_visible={"project": {
+            "notes": "true"
+        }},
         model=Project,
         order_by=("-active", "name"),
         request=request,
@@ -581,7 +613,7 @@ def proposal_index(request, pk=None):
     context = get_index_items(
         app_settings_model=SettingsApp,
         model=Proposal,
-        order_by=("-updated",),
+        order_by=("-updated", ),
         request=request,
     )
     return render(request, "proposal_index.html", context)
@@ -589,9 +621,10 @@ def proposal_index(request, pk=None):
 
 @staff_member_required
 def report_view(request, pk=None):
-    context = get_page_items(
-        model=Report, app_settings_model=SettingsApp, pk=pk, request=request
-    )
+    context = get_page_items(model=Report,
+                             app_settings_model=SettingsApp,
+                             pk=pk,
+                             request=request)
     if context["mail"]:
         message = context["email_message"]
         subject = context["email_subject"]
@@ -619,7 +652,7 @@ def report_index(request):
     context = get_index_items(
         model=Report,
         app_settings_model=SettingsApp,
-        order_by=("-date",),
+        order_by=("-date", ),
         request=request,
         search_fields=("id", "name", "gross", "net"),
     )
@@ -640,9 +673,9 @@ def service_edit(request, pk=None):
 
 @staff_member_required
 def settings_app(request):
-    context = get_page_items(
-        model=SettingsApp, app_settings_model=SettingsApp, request=request
-    )
+    context = get_page_items(model=SettingsApp,
+                             app_settings_model=SettingsApp,
+                             request=request)
     return render(request, "app_view.html", context)
 
 
@@ -655,9 +688,9 @@ def settings_app_edit(request, pk=None):
 def company_view(request):
     """
     """
-    context = get_page_items(
-        app_settings_model=SettingsApp, model=SettingsCompany, request=request
-    )
+    context = get_page_items(app_settings_model=SettingsApp,
+                             model=SettingsCompany,
+                             request=request)
     return render(request, "company_view.html", context)
 
 
@@ -665,7 +698,10 @@ def company_view(request):
 def company_edit(request, pk=None):
     """
     """
-    return edit(request, form_model=SettingsCompanyForm, model=SettingsCompany, pk=1)
+    return edit(request,
+                form_model=SettingsCompanyForm,
+                model=SettingsCompany,
+                pk=1)
 
 
 @staff_member_required
@@ -678,9 +714,9 @@ def order_index(request):
     context = get_index_items(
         model=Order,
         app_settings_model=SettingsApp,
-        order_by=("-active",),
+        order_by=("-active", ),
         request=request,
-        search_fields=("name",),
+        search_fields=("name", ),
     )
     return render(request, "order_index.html", context)
 
@@ -689,15 +725,19 @@ def order_index(request):
 def order_view(request, pk=None):
     """
     """
-    context = get_page_items(model=Order, pk=pk, request=request, time_model=Time)
+    context = get_page_items(model=Order,
+                             pk=pk,
+                             request=request,
+                             time_model=Time)
     return render(request, "order_view.html", context)
 
 
 @staff_member_required
 def task_view(request, pk=None):
-    context = get_page_items(
-        model=Task, app_settings_model=SettingsApp, pk=pk, request=request
-    )
+    context = get_page_items(model=Task,
+                             app_settings_model=SettingsApp,
+                             pk=pk,
+                             request=request)
     return render(request, "task_view.html", context)
 
 
@@ -713,7 +753,7 @@ def task_index(request):
         app_settings_model=SettingsApp,
         order_by=("-active", "name"),
         request=request,
-        search_fields=("name",),
+        search_fields=("name", ),
     )
     return render(request, "task_index.html", context)
 
@@ -728,16 +768,16 @@ def time_view(request, pk=None):
     if not request.user.is_staff and not time_entry.user:  # No user
         messages.add_message(request, messages.WARNING, FOUR_O_3)
         return HttpResponseRedirect(reverse("home"))
-    elif (
-        not request.user.is_staff
-        and not time_entry.user.username == request.user.username
-    ):  # Time entry user does not match user
+    elif (not request.user.is_staff
+          and not time_entry.user.username == request.user.username
+          ):  # Time entry user does not match user
         messages.add_message(request, messages.WARNING, FOUR_O_3)
         return HttpResponseRedirect(reverse("home"))
     else:
-        context = get_page_items(
-            app_settings_model=SettingsApp, model=Time, pk=pk, request=request
-        )
+        context = get_page_items(app_settings_model=SettingsApp,
+                                 model=Time,
+                                 pk=pk,
+                                 request=request)
         return render(request, "time_view.html", context)
 
 
@@ -752,10 +792,9 @@ def time_edit(request, pk=None):
         if not request.user.is_staff and not time_entry.user:  # No user
             messages.add_message(request, messages.WARNING, FOUR_O_3)
             return HttpResponseRedirect(reverse("home"))
-        elif (
-            not request.user.is_staff
-            and not time_entry.user.username == request.user.username
-        ):  # Time entry user does not match user
+        elif (not request.user.is_staff
+              and not time_entry.user.username == request.user.username
+              ):  # Time entry user does not match user
             messages.add_message(request, messages.WARNING, FOUR_O_3)
             return HttpResponseRedirect(reverse("home"))
     if request.user.is_staff:
@@ -792,10 +831,17 @@ def time_index(request):
         model=Time,
         app_settings_model=SettingsApp,
         columns_visible={
-            "time": {"invoice": "true", "estimate": "true", "log": "false"}
+            "time": {
+                "invoice": "true",
+                "estimate": "true",
+                "log": "false"
+            }
         },
-        filter_by={"time": {"estimate": None, "user__isnull": False}},
-        order_by=("-date",),
+        filter_by={"time": {
+            "estimate": None,
+            "user__isnull": False
+        }},
+        order_by=("-date", ),
         request=request,
         search_fields=search_fields,
     )
@@ -808,7 +854,7 @@ def user_view(request, pk=None):
         messages.add_message(request, messages.WARNING, FOUR_O_3)
         return HttpResponseRedirect(reverse("home"))
     else:
-        order_by = {"time": ("-updated",), "project": ("-updated",)}
+        order_by = {"time": ("-updated", ), "project": ("-updated", )}
         context = get_page_items(
             contact_model=Contact,
             model=User,
@@ -833,9 +879,11 @@ def user_edit(request, pk=None):
         profile_form = AdminProfileForm
     else:
         profile_form = ProfileForm
-    return edit(
-        request, form_model=profile_form, model=User, pk=pk, profile_model=Profile
-    )
+    return edit(request,
+                form_model=profile_form,
+                model=User,
+                pk=pk,
+                profile_model=Profile)
 
 
 @staff_member_required

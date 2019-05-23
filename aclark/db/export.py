@@ -18,7 +18,7 @@ def render_doc(context, **kwargs):
     filename = kwargs.get("filename")
     item = context["item"]
     document.add_heading(item.title, 0)
-    p = document.add_paragraph(item.note)
+    # p = document.add_paragraph(item.note)
     response = HttpResponse(content_type=docx)
     response["Content-Disposition"] = "attachment; filename=%s" % filename
     document.save(response)

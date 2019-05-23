@@ -6,15 +6,15 @@ from . import choices
 
 
 def obj_process(
-    obj,
-    app_settings_model=None,
-    pk=None,
-    request=None,
-    task=None,
-    model_name=None,
-    page_type=None,
-    query_checkbox=None,
-    query_invoiced=None,
+        obj,
+        app_settings_model=None,
+        pk=None,
+        request=None,
+        task=None,
+        model_name=None,
+        page_type=None,
+        query_checkbox=None,
+        query_invoiced=None,
 ):
     """
     Process object based on task, typically performing some task followed by
@@ -47,13 +47,17 @@ def obj_process(
         kwargs = {}
         kwargs["pk"] = dup.pk
         model_name = obj._meta.verbose_name
-        url_name = obj_process(obj, model_name=model_name, page_type="copy", task="url")
+        url_name = obj_process(obj,
+                               model_name=model_name,
+                               page_type="copy",
+                               task="url")
         return HttpResponseRedirect(reverse(url_name, kwargs=kwargs))
     elif task == "redir":
         model_name = obj._meta.verbose_name
-        template_name, url_name = obj_process(
-            obj, model_name=model_name, page_type="view", task="url"
-        )
+        template_name, url_name = obj_process(obj,
+                                              model_name=model_name,
+                                              page_type="view",
+                                              task="url")
         kwargs = {}
         if pk:  # Exists
             kwargs["pk"] = pk
@@ -72,13 +76,15 @@ def obj_process(
     elif task == "remove":
         model_name = obj._meta.verbose_name
         if model_name == "time":  # Only admin can see index
-            url_name = obj_process(
-                obj, model_name=model_name, page_type="dashboard", task="url"
-            )
+            url_name = obj_process(obj,
+                                   model_name=model_name,
+                                   page_type="dashboard",
+                                   task="url")
         else:  # Admin can see index
-            url_name = obj_process(
-                obj, model_name=model_name, page_type="index", task="url"
-            )
+            url_name = obj_process(obj,
+                                   model_name=model_name,
+                                   page_type="index",
+                                   task="url")
         if model_name == "profile":
             obj.user.delete()
         else:
@@ -102,9 +108,8 @@ def obj_process(
         return HttpResponseRedirect(http_ref)
     elif task == "check":
         model_name = obj._meta.verbose_name
-        if (
-            query_checkbox["active"] == "on" or query_checkbox["active"] == "off"
-        ):  # Active
+        if (query_checkbox["active"] == "on"
+                or query_checkbox["active"] == "off"):  # Active
             if query_checkbox["active"] == "on":
                 obj.active = True
                 obj.hidden = False
@@ -114,9 +119,8 @@ def obj_process(
                     app_settings = app_settings_model.get_solo()
                     if app_settings.auto_hide:  # Auto-hide
                         obj.hidden = True
-        elif (
-            query_checkbox["subscribe"] == "on" or query_checkbox["subscribe"] == "off"
-        ):  # Subscribe
+        elif (query_checkbox["subscribe"] == "on"
+              or query_checkbox["subscribe"] == "off"):  # Subscribe
             if query_checkbox["active"] == "on":
                 obj.subscribed = True
             else:

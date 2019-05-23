@@ -9,11 +9,11 @@ from django.utils import timezone
 import os
 import random
 import requests
+from aclark.db.models import Client
 
 # Create your views here.
 
 BASE_URL = "https://%s" % os.environ.get("API_HOST", "aclark.net")
-CLIENT_URL = "%s/api/clients/?format=json" % BASE_URL
 SERVICE_URL = "%s/api/services/?format=json" % BASE_URL
 TESTIMONIAL_URL = "%s/api/testimonials/?format=json" % BASE_URL
 PROFILE_URL = "%s/api/profiles/?format=json" % BASE_URL
@@ -25,7 +25,6 @@ def about(request):
     context = {}
     testimonials = requests.get(TESTIMONIAL_URL).json()
     context["testimonial"] = random.choice(testimonials)
-    context["is_staff"] = request.user.is_staff
     return render(request, "about.html", context)
 
 
@@ -35,11 +34,8 @@ def blog(request):
 
 def clients(request):
     context = {}
-    clients = requests.get(CLIENT_URL).json()
-    context["clients"] = clients
-    testimonials = requests.get(TESTIMONIAL_URL).json()
-    context["testimonial"] = random.choice(testimonials)
-    context["is_staff"] = request.user.is_staff
+    clients = Client.objects.filter(tags__name__in=["government",])
+    context['clients'] = clients
     return render(request, "clients.html", context)
 
 
@@ -61,13 +57,11 @@ def contact(request):
     else:
         form = ContactForm()
     context["form"] = form
-    context["is_staff"] = request.user.is_staff
     return render(request, "contact.html", context)
 
 
 def home(request):
     context = {}
-    context["is_staff"] = request.user.is_staff
     return render(request, "base.html", context)
 
 
@@ -75,7 +69,6 @@ def services(request):
     context = {}
     services = requests.get(SERVICE_URL).json()
     context["services"] = services
-    context["is_staff"] = request.user.is_staff
     return render(request, "services.html", context)
 
 
@@ -83,7 +76,6 @@ def testimonials(request):
     context = {}
     testimonials = requests.get(TESTIMONIAL_URL).json()
     context["testimonials"] = testimonials
-    context["is_staff"] = request.user.is_staff
     return render(request, "testimonials.html", context)
 
 
@@ -91,5 +83,4 @@ def team(request):
     context = {}
     profiles = requests.get(PROFILE_URL).json()
     context["profiles"] = profiles
-    context["is_staff"] = request.user.is_staff
     return render(request, "team.html", context)

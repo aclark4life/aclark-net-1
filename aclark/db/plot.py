@@ -13,15 +13,18 @@ def get_plot(request):  # http://stackoverflow.com/a/5515994/185820
     """
     demo = get_query_string(request, "demo")
     if demo:
-        costs = [[3000, "2018-01-01"], [4000, "2018-02-01"], [3000, "2018-03-01"]]
+        costs = [[3000, "2018-01-01"], [4000, "2018-02-01"],
+                 [3000, "2018-03-01"]]
     else:
         costs = get_query_string(request, "costs")
     if demo:
-        grosses = [[10000, "2018-01-01"], [30000, "2018-02-01"], [20000, "2018-03-01"]]
+        grosses = [[10000, "2018-01-01"], [30000, "2018-02-01"],
+                   [20000, "2018-03-01"]]
     else:
         grosses = get_query_string(request, "grosses")
     if demo:
-        nets = [[25000, "2018-01-01"], [26000, "2018-02-01"], [27000, "2018-03-01"]]
+        nets = [[25000, "2018-01-01"], [26000, "2018-02-01"],
+                [27000, "2018-03-01"]]
     else:
         nets = get_query_string(request, "nets")
 
@@ -31,7 +34,9 @@ def get_plot(request):  # http://stackoverflow.com/a/5515994/185820
     ]
     y1 = [i[0] for i in costs]
     # Gross
-    x2 = [date2num(timezone.datetime.strptime(i[1], "%Y-%m-%d")) for i in grosses]
+    x2 = [
+        date2num(timezone.datetime.strptime(i[1], "%Y-%m-%d")) for i in grosses
+    ]
     y2 = [i[0] for i in grosses]
     # Net
     x3 = [date2num(timezone.datetime.strptime(i[1], "%Y-%m-%d")) for i in nets]

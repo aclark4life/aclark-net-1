@@ -61,10 +61,15 @@ class AdminTimeForm(forms.ModelForm):
             "task",
             "invoiced",
         )
-        widgets = {"hours": forms.widgets.NumberInput(attrs={"class": "col-2"})}
+        widgets = {
+            "hours": forms.widgets.NumberInput(attrs={"class": "col-2"})
+        }
 
     date = forms.DateField(
-        widget=forms.DateInput(attrs={"type": "date", "class": "col-2"}),
+        widget=forms.DateInput(attrs={
+            "type": "date",
+            "class": "col-2"
+        }),
         required=False,
         initial=timezone.now(),
     )
@@ -116,25 +121,37 @@ class EstimateForm(forms.ModelForm):
         )
 
     issue_date = forms.DateField(
-        widget=forms.DateInput(attrs={"type": "date", "class": "col-2"}),
+        widget=forms.DateInput(attrs={
+            "type": "date",
+            "class": "col-2"
+        }),
         required=False,
         initial=timezone.now(),
     )
 
     accepted_date = forms.DateField(
-        widget=forms.DateInput(attrs={"type": "date", "class": "col-2"}),
+        widget=forms.DateInput(attrs={
+            "type": "date",
+            "class": "col-2"
+        }),
         required=False,
         initial=timezone.now(),
     )
 
     start_date = forms.DateField(
-        widget=forms.DateInput(attrs={"type": "date", "class": "col-2"}),
+        widget=forms.DateInput(attrs={
+            "type": "date",
+            "class": "col-2"
+        }),
         required=False,
         initial=timezone.now(),
     )
 
     end_date = forms.DateField(
-        widget=forms.DateInput(attrs={"type": "date", "class": "col-2"}),
+        widget=forms.DateInput(attrs={
+            "type": "date",
+            "class": "col-2"
+        }),
         required=False,
         initial=timezone.now(),
     )
@@ -171,31 +188,46 @@ class InvoiceForm(forms.ModelForm):
         )
 
     issue_date = forms.DateField(
-        widget=forms.DateInput(attrs={"type": "date", "class": "col-2"}),
+        widget=forms.DateInput(attrs={
+            "type": "date",
+            "class": "col-2"
+        }),
         required=False,
         initial=timezone.now(),
     )
 
     last_payment_date = forms.DateField(
-        widget=forms.DateInput(attrs={"type": "date", "class": "col-2"}),
+        widget=forms.DateInput(attrs={
+            "type": "date",
+            "class": "col-2"
+        }),
         required=False,
         initial=timezone.now(),
     )
 
     start_date = forms.DateField(
-        widget=forms.DateInput(attrs={"type": "date", "class": "col-2"}),
+        widget=forms.DateInput(attrs={
+            "type": "date",
+            "class": "col-2"
+        }),
         required=False,
         initial=timezone.now(),
     )
 
     end_date = forms.DateField(
-        widget=forms.DateInput(attrs={"type": "date", "class": "col-2"}),
+        widget=forms.DateInput(attrs={
+            "type": "date",
+            "class": "col-2"
+        }),
         required=False,
         initial=timezone.now(),
     )
 
     due_date = forms.DateField(
-        widget=forms.DateInput(attrs={"type": "date", "class": "col-2"}),
+        widget=forms.DateInput(attrs={
+            "type": "date",
+            "class": "col-2"
+        }),
         required=False,
         initial=timezone.now(),
     )
@@ -204,7 +236,8 @@ class InvoiceForm(forms.ModelForm):
 class NoteForm(forms.ModelForm):
     class Meta:
         model = Note
-        fields = ("active", "hidden", "title", "tags", "note", "due_date", "contacts")
+        fields = ("active", "hidden", "title", "tags", "note", "due_date",
+                  "contacts")
         widgets = {"note": forms.widgets.TextInput(attrs={"class": "tinymce"})}
 
     tags = forms.ModelMultipleChoiceField(
@@ -214,9 +247,8 @@ class NoteForm(forms.ModelForm):
     )
 
     contacts = forms.ModelMultipleChoiceField(
-        queryset=Contact.objects.filter(active=True)
-        .exclude(email=None)
-        .order_by("first_name"),
+        queryset=Contact.objects.filter(active=True).exclude(
+            email=None).order_by("first_name"),
         required=False,
         widget=forms.SelectMultiple(attrs={"size": "5"}),
     )
@@ -260,13 +292,19 @@ class ProjectForm(forms.ModelForm):
         )
 
     start_date = forms.DateField(
-        widget=forms.DateInput(attrs={"type": "date", "class": "col-2"}),
+        widget=forms.DateInput(attrs={
+            "type": "date",
+            "class": "col-2"
+        }),
         required=False,
         initial=timezone.now(),
     )
 
     end_date = forms.DateField(
-        widget=forms.DateInput(attrs={"type": "date", "class": "col-2"}),
+        widget=forms.DateInput(attrs={
+            "type": "date",
+            "class": "col-2"
+        }),
         required=False,
         initial=timezone.now(),
     )
@@ -285,11 +323,13 @@ class ReportForm(forms.ModelForm):
         exclude = ("icon_name", "icon_size", "icon_color")
 
     invoices = forms.ModelMultipleChoiceField(
-        required=False, queryset=Invoice.objects.all().order_by("-issue_date")
-    )
+        required=False, queryset=Invoice.objects.all().order_by("-issue_date"))
 
     date = forms.DateField(
-        widget=forms.DateInput(attrs={"type": "date", "class": "col-2"}),
+        widget=forms.DateInput(attrs={
+            "type": "date",
+            "class": "col-2"
+        }),
         required=False,
         initial=timezone.now(),
     )
@@ -299,7 +339,9 @@ class ServiceForm(forms.ModelForm):
     class Meta:
         model = Service
         fields = "__all__"
-        widgets = {"description": forms.widgets.TextInput(attrs={"class": "tinymce"})}
+        widgets = {
+            "description": forms.widgets.TextInput(attrs={"class": "tinymce"})
+        }
 
 
 class SettingsAppForm(forms.ModelForm):
@@ -324,7 +366,9 @@ class TimeForm(forms.ModelForm):
     class Meta:
         model = Time
         fields = ("date", "project", "hours", "log")
-        widgets = {"hours": forms.widgets.NumberInput(attrs={"class": "col-2"})}
+        widgets = {
+            "hours": forms.widgets.NumberInput(attrs={"class": "col-2"})
+        }
 
 
 class OrderForm(forms.ModelForm):

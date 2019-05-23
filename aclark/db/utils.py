@@ -59,9 +59,10 @@ def edit(request, **kwargs):
         obj = get_object_or_404(model, pk=pk)
         if model_name == "user":  # One-off to edit user profile
             obj = obj.profile
-        form = get_form(
-            form_model=form_model, obj=obj, project_model=project_model, request=request
-        )
+        form = get_form(form_model=form_model,
+                        obj=obj,
+                        project_model=project_model,
+                        request=request)
 
     if company_model:
         company = company_model.get_solo()
@@ -105,14 +106,16 @@ def edit(request, **kwargs):
             )
 
         if query_invoiced["condition"]:
-            return obj_process(
-                obj, request=request, query_invoiced=query_invoiced, task="invoiced"
-            )
+            return obj_process(obj,
+                               request=request,
+                               query_invoiced=query_invoiced,
+                               task="invoiced")
 
         if form.is_valid():
             obj = form.save()
             if model_name == "time" and new_time:  # Send mail
-                email_message = "%s/%s/edit" % ("https://aclark.net/db/time", obj.pk)
+                email_message = "%s/%s/edit" % ("https://aclark.net/db/time",
+                                                obj.pk)
                 email_subject = "Hey, looks like %s added time!" % request.user
                 mail_send(message=email_message, subject=email_subject)
             set_ref(
@@ -127,9 +130,10 @@ def edit(request, **kwargs):
             )
             return obj_process(obj, pk=pk, task="redir")
 
-    template_name = obj_process(
-        obj, model_name=model_name, page_type="edit", task="url"
-    )
+    template_name = obj_process(obj,
+                                model_name=model_name,
+                                page_type="edit",
+                                task="url")
 
     context["form"] = form
     context["is_staff"] = request.user.is_staff
@@ -269,8 +273,10 @@ def get_index_items(**kwargs):
         items = paginate(items, page_num=page_num, page_size=page_size)
     context["edit_url"] = edit_url
     context["view_url"] = view_url
-    context["icon_size"] = get_setting(request, app_settings_model, "icon_size")
-    context["icon_color"] = get_setting(request, app_settings_model, "icon_color")
+    context["icon_size"] = get_setting(request, app_settings_model,
+                                       "icon_size")
+    context["icon_color"] = get_setting(request, app_settings_model,
+                                        "icon_color")
     context["page"] = page_num
     context["paginated"] = paginated
     items = set_items(model_name, items=items)
@@ -296,7 +302,6 @@ def get_page_items(**kwargs):
     pk = kwargs.get("pk")
     time_model = kwargs.get("time_model")
     user_model = kwargs.get("user_model")
-    order_model = kwargs.get("order_model")
     filter_by = kwargs.get("filter_by")
     page_size = kwargs.get("page_size")
     context = {}
@@ -304,10 +309,10 @@ def get_page_items(**kwargs):
 
     if request:  # Applies to all page items
         context["is_staff"] = request.user.is_staff  # Perms
-        context["icon_color"] = get_setting(
-            request, app_settings_model, "icon_color"
-        )  # Prefs
-        context["icon_size"] = get_setting(request, app_settings_model, "icon_size")
+        context["icon_color"] = get_setting(request, app_settings_model,
+                                            "icon_color")  # Prefs
+        context["icon_size"] = get_setting(request, app_settings_model,
+                                           "icon_size")
         doc = get_query_string(request, "doc")  # Export
         mail = get_query_string(request, "mail")  # Export
         pdf = get_query_string(request, "pdf")  # Export
@@ -342,23 +347,23 @@ def get_page_items(**kwargs):
         context["view_url"] = "%s_view" % model_name
 
         if model_name == "Settings App":
-            exclude_fields = ("id",)
+            exclude_fields = ("id", )
             app_settings = app_settings_model.get_solo()
             context["items"] = get_fields(
-                [app_settings], exclude_fields=exclude_fields
-            )  # table_items.html
+                [app_settings],
+                exclude_fields=exclude_fields)  # table_items.html
         elif model_name == "Settings Company":
-            exclude_fields = ("id",)
+            exclude_fields = ("id", )
             company_settings = model.get_solo()
             context["items"] = get_fields(
-                [company_settings], exclude_fields=exclude_fields
-            )  # table_items.html
+                [company_settings],
+                exclude_fields=exclude_fields)  # table_items.html
         elif model_name == "Settings Contract":
-            exclude_fields = ("id",)
+            exclude_fields = ("id", )
             contract_settings = model.get_solo()
             context["items"] = get_fields(
-                [contract_settings], exclude_fields=exclude_fields
-            )  # table_items.html
+                [contract_settings],
+                exclude_fields=exclude_fields)  # table_items.html
         elif model_name == "client":
             client = get_object_or_404(model, pk=pk)
             contacts = contact_model.objects.filter(client=client)
@@ -391,8 +396,7 @@ def get_page_items(**kwargs):
                 "uuid",
             )
             context["items"] = get_fields(
-                [contact], exclude_fields=exclude_fields
-            )  # table_items.html
+                [contact], exclude_fields=exclude_fields)  # table_items.html
             context["item"] = contact
         elif model_name == "contract":
             contract = get_object_or_404(model, pk=pk)
@@ -406,8 +410,7 @@ def get_page_items(**kwargs):
                 "updated",
             )
             context["items"] = get_fields(
-                [contract], exclude_fields=exclude_fields
-            )  # table_items.html
+                [contract], exclude_fields=exclude_fields)  # table_items.html
             context["item"] = contract
         elif model_name == "estimate":  # handle obj or model
             if not obj:
@@ -451,9 +454,10 @@ def get_page_items(**kwargs):
             estimates = estimate_model.objects.filter(project=project)
             invoices = invoice_model.objects.filter(project=project)
             times = totals.set_total(
-                time_model.objects.filter(
-                    estimate=None, project=project, task__isnull=False, invoiced=False
-                ),
+                time_model.objects.filter(estimate=None,
+                                          project=project,
+                                          task__isnull=False,
+                                          invoiced=False),
                 project=project,
             )
             if order_by:
@@ -513,15 +517,18 @@ def get_page_items(**kwargs):
                 "avatar_url",
             )
             user = get_object_or_404(model, pk=pk)
-            projects = project_model.objects.filter(team__in=[user], active=True)
+            projects = project_model.objects.filter(team__in=[user],
+                                                    active=True)
             projects = projects.order_by(*order_by["project"])
-            times = time_model.objects.filter(estimate=None, invoiced=False, user=user)
+            times = time_model.objects.filter(estimate=None,
+                                              invoiced=False,
+                                              user=user)
             times = times.order_by(*order_by["time"])
             contacts = contact_model.objects.all()
             context["item"] = user
             context["items"] = get_fields(
-                [user.profile], exclude_fields=exclude_fields
-            )  # table_items.html
+                [user.profile],
+                exclude_fields=exclude_fields)  # table_items.html
             context["projects"] = projects
             context["times"] = times
         else:
@@ -533,7 +540,8 @@ def get_page_items(**kwargs):
                 # Items
                 invoices = invoice_model.objects.filter(last_payment_date=None)
                 invoices = invoices.order_by(*order_by["invoice"])
-                projects = project_model.objects.filter(active=True, hidden=False)
+                projects = project_model.objects.filter(active=True,
+                                                        hidden=False)
                 projects = projects.order_by(*order_by["project"])
                 if filter_by:
                     times = time_model.objects.filter(**filter_by["time"])
@@ -551,15 +559,16 @@ def get_page_items(**kwargs):
                 if paginated:  # Paginate if paginated
                     page_size = get_setting(request, "page_size")
                     if "times" in items:
-                        items["times"] = paginate(
-                            items["times"], page_num=page_num, page_size=page_size
-                        )
+                        items["times"] = paginate(items["times"],
+                                                  page_num=page_num,
+                                                  page_size=page_size)
                 # Totals
-                total_amount = totals.get_total(field="amount", invoices=invoices)[
-                    "amount"
-                ]
-                total_cost = totals.get_total(field="cost", projects=projects)["cost"]
-                total_hours = totals.get_total(field="hours", times=times)["hours"]
+                total_amount = totals.get_total(field="amount",
+                                                invoices=invoices)["amount"]
+                total_cost = totals.get_total(field="cost",
+                                              projects=projects)["cost"]
+                total_hours = totals.get_total(field="hours",
+                                               times=times)["hours"]
                 context["net"] = total_amount - total_cost
                 context["cost"] = total_cost
                 context["gross"] = total_amount
@@ -571,15 +580,15 @@ def get_page_items(**kwargs):
 
 
 def get_search_results(
-    context,
-    model,
-    search_fields,
-    search,
-    app_settings_model=None,
-    edit_url=None,
-    view_url=None,
-    order_by=None,
-    request=None,
+        context,
+        model,
+        search_fields,
+        search,
+        app_settings_model=None,
+        edit_url=None,
+        view_url=None,
+        order_by=None,
+        request=None,
 ):
     query = []
     model_name = model._meta.verbose_name
@@ -589,8 +598,10 @@ def get_search_results(
     context["active_nav"] = model_name
     context["edit_url"] = edit_url
     context["view_url"] = view_url
-    context["icon_size"] = get_setting(request, app_settings_model, "icon_size")
-    context["icon_color"] = get_setting(request, app_settings_model, "icon_color")
+    context["icon_size"] = get_setting(request, app_settings_model,
+                                       "icon_size")
+    context["icon_color"] = get_setting(request, app_settings_model,
+                                        "icon_color")
     if order_by is not None:
         items = items.order_by(*order_by)
     items = set_items(model_name, items=items)
