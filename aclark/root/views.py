@@ -34,8 +34,12 @@ def blog(request):
 
 def clients(request):
     context = {}
-    clients_gov = Client.objects.filter(tags__name__in=["government",])
-    context['clients_gov'] = clients_gov
+    clients_government = Client.objects.filter(tags__name__in=["government",])
+    clients_non_profit = Client.objects.filter(tags__name__in=["non-profit",])
+    clients_private_sector = Client.objects.filter(tags__name__in=["private-sector",])
+    context['clients_government'] = clients_government
+    context['clients_non_profit'] = clients_non_profit
+    context['clients_private_sector'] = clients_private_sector
     return render(request, "clients.html", context)
 
 
