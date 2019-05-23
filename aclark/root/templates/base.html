@@ -79,9 +79,6 @@
   <ul class="nav nav-bordered nav-stacked flex-column">
     <li class="nav-header"><a style="text-decoration: none" href="{% url 'about' %}">About</a></li>
     <li class="nav-item">
-      <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
-    </li>
-    <li class="nav-item">
       <a class="nav-link" href="{% url 'team' %}">Team</a>
     </li>
     <li class="nav-divider"></li>
@@ -149,8 +146,9 @@
         <li class="nav-item px-1">
           <a class="nav-link" href="{% url 'clients' %}">Clients</a>
         </li>
-        <li class="nav-item px-1">
-          <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+        <li class="nav-item ml-3 px-1 bg-light rounded">
+          <a class="nav-link text-dark" href="{% url 'contact' %}"><i class="fa fa-bullhorn"></i> Contact Us</a>
+          
         </li>
       </ul>
     </div>
