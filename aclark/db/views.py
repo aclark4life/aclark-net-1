@@ -191,7 +191,7 @@ def contact_index(request):
         model=Contact,
         order_by=("-active", "last_name", "first_name"),
         request=request,
-        search_fields=("first_name", "last_name", "email", "notes", "pk"),
+        search_fields=("first_name", "last_name", "email", "pk"),
     )
     return render(request, "contact_index.html", context)
 
