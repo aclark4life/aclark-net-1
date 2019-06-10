@@ -1,6 +1,20 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block marketing %}
+    <div class="row m-0 justify-content-center">
+      <div class="col-12 app-high-praise block text-light" style="background-image: url(/static/startup-3.jpg);">
+        <div class="row">
+          <div class="offset-6 col-6 bg-dark">
+            <h1 class="text-uppercase text-white">Testimonials</h1>
+            <p class="lead">&quot;{{ testimonial.description }}&quot;</p>
+            <p>{{ testimonial.name }}, {{ testimonial.title }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+
 {% block content %}
   <div class="container text-center">
     <div class="row m-5 justify-content-center">
@@ -50,17 +64,6 @@
               <h1><img class="border border-sm p-1 bg-white" src="/static/Zope.png" style="width: 50%;"></h1>
               <p><a style="text-decoration: none" href="http://www.zope.org" class="text-primary" target="_blank">Zope</a> is a community project concerned with a free and open-source, object-oriented web application server written in the Python programming language. Zope has been recognized as a Python killer app, an application that helped put Python in the spotlight.</p>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row m-0 justify-content-center">
-      <div class="col-12 app-high-praise block text-light" style="background-image: url(/static/startup-3.jpg);">
-        <h2 class="m-5">Testimonials</h2>
-        <div class="row">
-          <div class="offset-6 col-6 bg-dark">
-            <p class="lead">&quot;{{ testimonial.description }}&quot;</p>
-            <p>{{ testimonial.name }}, {{ testimonial.title }}</p>
           </div>
         </div>
       </div>
