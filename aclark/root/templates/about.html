@@ -16,15 +16,11 @@
       </div>
     </div>
   </div>
-
   <div class="container text-xs-center">
     <a href="https://dcpython.org" target="_blank"><img class="col-3" src="/static/dcpython.png"></a>
     <img class="col-3" src="/static/ploneconf.png">
     <img class="col-3" src="/static/pillow-logo.png">
   </div>
-
-</div>
-
 {% endblock %}
 
 {% block marketing %}
@@ -67,16 +63,19 @@
         </div>
       </div>
     </div>
-    <div class="row m-0 justify-content-center">
-      <div class="col-12 app-high-praise block text-light" style="background-image: url(/static/startup-3.jpg);">
-        <div class="row">
-          <div class="offset-6 col-6 bg-dark">
-            <h1 class="text-uppercase text-white">Testimonials</h1>
-            <p class="lead">&quot;{{ testimonial.description }}&quot;</p>
-            <p>{{ testimonial.name }}, {{ testimonial.title }}</p>
+
+    <div class="block block-inverse app-high-praise"
+         style="background-image: url(/static/startup-3.jpg);">
+        <div class="container">
+          <div class="row app-align-center py-3 justify-content-end">
+            <div class="col-sm-7 col-md-5 py-5">
+              <h6 class="text-muted text-uppercase mb-2">Testimonials</h6>
+              <h2 class="mb-4">&quot;{{ testimonial.description }}&quot;</h2>
+              <p class="mb-4 text-muted">{{ testimonial.name }}, {{ testimonial.title }}</p>
+            </div>
           </div>
-        </div>
       </div>
     </div>
+
 {% endblock %}
 
