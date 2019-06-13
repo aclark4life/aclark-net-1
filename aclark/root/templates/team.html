@@ -5,6 +5,14 @@
 {% endblock %}
 
 {% block content %}
+{% endblock %}
+
+{% block block_fill_height %}
+<div class="block block-inverse app-header" 
+     style="background-image: url({% static 'startup-1.jpg' %}); padding: 70px">
+{% endblock %}
+
+{% block marketing %}
 
   <div id="clients">
     <div class="container text-center">
@@ -13,12 +21,12 @@
           <h1>Our Team</h1>
         </div>
       </div>
-      <div class="row text-white text-center">
+      <div class="row text-center">
         <div class="col-12 px-4 py-2 my-5">
           <h1>Management Team</h1>
         </div>
       </div>
-      <div class="row text-white text-center pb-5">
+      <div class="row text-center pb-5">
         {% for profile in profiles %}
         {% if profile.get_username == 'aclark' or profile.get_username == 'amy' %}
         <div class="col-6"> 
@@ -31,12 +39,12 @@
         {% endif %}
         {% endfor %}
       </div>
-      <div class="row text-white text-center">
+      <div class="row text-center">
         <div class="col-12"> 
           <h1>Development &amp; Support Team</h1>
         </div>
       </div>
-      <div class="row text-white text-center">
+      <div class="row text-center">
         {% for profile in profiles %}
         {% if profile.get_username != 'aclark' and profile.get_username != 'amy' %}
         <div class="col-6 px-4 py-2 my-5">
