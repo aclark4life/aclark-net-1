@@ -4,22 +4,49 @@
 {% block app_graph %}
 {% endblock %}
 
+{% block block_fill_height %}
+
+<div class="block block-inverse app-header" 
+     style="background-image: url({% static 'startup-1.jpg' %}); padding: 70px">
+
+{% endblock %}
+
+
 {% block content %}
 
-  <div class="block-xs-middle pb-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-10 col-lg-6">
-          <h1 class="block-titleData frequency">About Us</h1>
-          <p class="lead mb-4 text-muted">We empower you through Python&trade; and related technologies.</p>
-        </div>
-      </div>
-    </div>
-  </div>
 
 {% endblock %}
 
 {% block marketing %}
+
+    <div class="block block-secondary app-iphone-block">
+      <div class="container">
+        <div class="row app-align-center">
+
+          <div class="col-sm-5 d-none d-md-block">
+            <img class="app-iphone" src="/static/assets/img/startup-2.jpg" style="width: 100%;">
+          </div>
+
+          <div class="col-md-6 col-sm-12 ml-auto">
+            <h6 class="text-muted text-uppercase">Rich Information</h6>
+            <h2>Make informed decisions with historical &amp; real time data.</h2>
+            <p class="lead mb-4">We combine immediate real time events with rich historical data to help answer the toughest questions about retention, growth, and engagement.</p>
+            <div class="row d-none d-md-flex">
+              <div class="col-sm-6 mb-3">
+                <h5>Data frequency</h5>
+                <p>We poll for data on a millisecond basis. You can react to new information in seconds rather than days. <a href="#" class="text-primary">Learn more.</a></p>
+              </div>
+              <div class="col-sm-6">
+                <h5>Reliability &amp; uptime</h5>
+                <p>We process our data across a massively distributed network of reliable servers to ensure 99.99% uptime, always. <a href="#" class="text-primary">Learn more</a>.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
 
 
     <div class="block block-inverse block-secondary app-code-block">

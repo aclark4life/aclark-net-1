@@ -109,8 +109,12 @@
 
 {% include 'messages.html' %}
 
+{% block block_fill_height %}
+
 <div class="block block-inverse block-fill-height app-header"
      style="background-image: url({% static 'startup-1.jpg' %});">
+
+{% endblock %}
 
   <div class="container py-4 fixed-top app-navbar">
   <nav class="navbar navbar-transparent navbar-padded navbar-expand-md" style="padding-left: 0">
