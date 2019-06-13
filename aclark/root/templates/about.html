@@ -21,46 +21,6 @@
 
 {% block marketing %}
 
-    <div class="block block-secondary app-block-marketing-grid">
-      <div class="container text-xs-center">
-
-        <div class="row mb-5 justify-content-center">
-          <div class="col-10 col-sm-8 col-lg-6">
-            <h6 class="text-muted text-uppercase mb-2">Technology</h6>
-            <h2 class="mb-4">It’s not hard to see how we make your life easier every day.</h2>
-          </div>
-        </div>
-
-        <div class="row app-marketing-grid">
-          <div class="col-md-4 px-4 mb-5">
-            <img class="mb-1" style="width: 250px" src="/static/django-logo-positive.png">
-            <p><strong>24/7 support.</strong> We’re always here for you no matter what time of day.</p>
-          </div>
-          <div class="col-md-4 px-4 mb-5">
-            <img class="mb-1" style="width: 250px" src="/static/pillow-logo.png">
-            <p><strong>E-commerce.</strong> We automatically handle all sales analytics.</p>
-          </div>
-          <div class="col-md-4 px-4 mb-5">
-            <img class="mb-1" style="width: 250px" src="/static/plone-logo-256.png">
-            <p><strong>Turnaround.</strong> Our data analysis is distributed, so it processes in seconds.</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="block block-inverse app-high-praise"
-         style="background-image: url(/static/startup-3.jpg);">
-        <div class="container">
-          <div class="row app-align-center py-3 justify-content-end">
-            <div class="col-sm-7 col-md-5 py-5">
-              <h6 class="text-muted text-uppercase mb-2">Testimonials</h6>
-              <h2 class="mb-4">&quot;{{ testimonial.description }}&quot;</h2>
-              <p class="mb-4 text-muted">{{ testimonial.name }}, {{ testimonial.title }}</p>
-            </div>
-          </div>
-      </div>
-    </div>
 
     <div class="block block-inverse block-secondary app-code-block">
       <div class="container">
@@ -89,6 +49,20 @@
       </div>
     </div>
 
+
+    <div class="block block-inverse app-high-praise"
+         style="background-image: url(/static/startup-3.jpg);">
+        <div class="container">
+          <div class="row app-align-center py-3 justify-content-end">
+            <div class="col-sm-7 col-md-5 py-5">
+              <h6 class="text-muted text-uppercase mb-2">Testimonials</h6>
+              <h2 class="mb-4">&quot;{{ testimonial.description }}&quot;</h2>
+              <p class="mb-4 text-muted">{{ testimonial.name }}, {{ testimonial.title }}</p>
+            </div>
+          </div>
+      </div>
+    </div>
+
     <div class="block app-ribbon py-4">
       <div class="container text-xs-center"> 
         <img class="col-2" src="/static/amtrak-logo__white.svg">
@@ -96,6 +70,34 @@
         <img class="col-2" src="/static/National_Geographic_Logo_2016.png">
         <img class="col-2" src="/static/Horizontal_RGB_294.png">
         <a class="text-white" href="{% url 'clients' %}"><i class="fas fa-angle-right fa-5x"></i></a>
+      </div>
+    </div>
+
+    <div class="block block-secondary app-block-marketing-grid">
+      <div class="container text-xs-center">
+
+        <div class="row mb-5 justify-content-center">
+          <div class="col-10 col-sm-8 col-lg-6">
+            <h6 class="text-muted text-uppercase mb-2">Technology</h6>
+            <h2 class="mb-4">It’s not hard to see how we make your life easier every day.</h2>
+          </div>
+        </div>
+
+        <div class="row app-marketing-grid">
+          <div class="col-md-4 px-4 mb-5">
+            <img class="mb-1" style="width: 250px" src="/static/django-logo-positive.png">
+            <p><strong>24/7 support.</strong> We’re always here for you no matter what time of day.</p>
+          </div>
+          <div class="col-md-4 px-4 mb-5">
+            <img class="mb-1" style="width: 250px" src="/static/pillow-logo.png">
+            <p><strong>E-commerce.</strong> We automatically handle all sales analytics.</p>
+          </div>
+          <div class="col-md-4 px-4 mb-5">
+            <img class="mb-1" style="width: 250px" src="/static/plone-logo-256.png">
+            <p><strong>Turnaround.</strong> Our data analysis is distributed, so it processes in seconds.</p>
+          </div>
+        </div>
+
       </div>
     </div>
 
