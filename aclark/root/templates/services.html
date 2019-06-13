@@ -4,10 +4,18 @@
 {% block app_graph %}
 {% endblock %}
 
-{% block marketing %}
+{% block block_fill_height %}
+
+<div class="block block-inverse app-header" 
+     style="background-image: url({% static 'startup-1.jpg' %}); padding: 70px">
+
 {% endblock %}
 
 {% block content %}
+{% endblock %}
+
+{% block marketing %}
+
   <div id="services">
     <div class="container text-center">
       <div class="row m-5 justify-content-center">
@@ -15,7 +23,7 @@
           <h1>Our Services</h1>
         </div>
       </div>
-      <div class="row text-white">
+      <div class="row">
         {% for service in services %}
         <div class="col-4 px-4 py-2 my-5">
           <div class="p-2">
