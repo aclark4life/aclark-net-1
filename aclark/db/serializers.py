@@ -25,7 +25,8 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         depth = 1
-        fields = ("get_avatar_url", "get_username", "bio", "user", "is_staff")
+        fields = ("get_avatar_url", "get_username", "bio", "user", "is_staff",
+                  "job_title")
 
 
 class ServiceSerializer(serializers.HyperlinkedModelSerializer):
