@@ -32,18 +32,14 @@
             <div class="px-2 mb-2">
               <h6 class="text-muted text-uppercase mb-4">{{ profile.job_title }}</h6>
               <img class="mb-4" src="{{ profile.get_avatar_url }}">
-              <p class="pb-2">Plenty of processing power for any personal projects, big or small.</p>
+              <p class="pb-2">{{ profile.bio|safe }}</p>
             </div>
 
             <ul class="list-unstyled list-bordered text-xs-left my-4">
-              <li class="py-4"><strong>10k</strong> monthly requests</li>
-              <li class="py-4"><strong>9am-5pm</strong> technical supprt</li>
-              <li class="py-4"><strong>Public</strong> API access</li>
+              <li class="py-4"><strong>Email</strong> {{ profile.email_address }}</li>
             </ul>
 
-            <button class="btn btn-lg btn-primary btn-block">
-              Start <span class="d-none d-xl-inline">a personal account</span>
-            </button>
+            <a href="{{ profile.twitter }}"><i class="fab fa-twitter-square fa-5x"></i></a>
           </div>
           {% endif %}
           {% endfor %}
