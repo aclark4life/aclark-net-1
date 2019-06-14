@@ -426,7 +426,7 @@ class Profile(BaseModel):
         null=True,
         choices=choices.PAYMENT_CHOICES,
     )
-    job_title = models.TextField(blank=True, null=True)
+    job_title = models.CharField(max_length=150, blank=True, null=True)
 
     def __str__(self):
         if self.user:
