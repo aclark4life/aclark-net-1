@@ -15,50 +15,71 @@
 {% endblock %}
 
 {% block marketing %}
-  <div id="clients">
-    <div class="container text-center">
-      <div class="row m-5 justify-content-center">
-        <div class="col-12"> 
-          <h1>Our Clients</h1>
+    <div class="block app-price-plans">
+      <div class="container text-center">
+
+        <div class="row mb-5 justify-content-center">
+          <div class="col-10 col-md-8 col-lg-6">
+            <h6 class="text-muted text-uppercase mb-2">Our Clients</h6>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-3 px-4 py-2 my-5"> 
-          <h3>Government</h3>
-          <ul class="text-left mt-1" style="list-style-type: square">
-          {% for client in clients_government %}
-            <li>{{ client }}</li>
-          {% endfor %}
-          </ul>
+
+        <div class="row">
+          <div class="col-md-4 px-4 pb-2 mb-5">
+            <div class="px-2 mb-2">
+              <h6 class="text-muted text-uppercase mb-4">Government</h6>
+              <img class="mb-4" src="assets/img/startup-15.svg">
+              <p class="pb-2">Plenty of processing power for any personal projects, big or small.</p>
+            </div>
+
+            <ul class="list-unstyled list-bordered text-xs-left my-4">
+            {% for client in clients_government %}
+              <li class="py-4"><strong>{{ client }}</strong></li>
+            {% endfor %}
+            </ul>
+
+          </div>
+
+          <div class="col-md-4 px-4 pb-2 mb-5">
+            <div class="px-2">
+              <h6 class="text-muted text-uppercase mb-4">Business</h6>
+              <img class="mb-4" src="assets/img/startup-16.svg">
+              <p class="pb-2">The perfect sized plan for small businesses to get started.</p>
+            </div>
+
+            <ul class="list-unstyled list-bordered text-xs-left my-4">
+              <li class="py-4"><strong>100k</strong> monthly requests</li>
+              <li class="py-4"><strong>24/7</strong> technical supprt</li>
+              <li class="py-4"><strong>Public</strong> API access</li>
+            </ul>
+
+          </div>
+
+          <div class="col-md-4 px-4 pb-1 mb-5">
+            <div class="px-2">
+              <h6 class="text-muted text-uppercase mb-4">Corporate</h6>
+              <img class="mb-4" src="assets/img/startup-17.svg">
+              <p class="pb-2">An unlimited plan that will scale infinitely to any size project.</p>
+            </div>
+
+            <ul class="list-unstyled list-bordered text-xs-left my-4">
+              <li class="py-4"><strong>Unlimited</strong> monthly requests</li>
+              <li class="py-4"><strong>24/7</strong> technical supprt</li>
+              <li class="py-4"><strong>Public &amp; Private</strong> API access</li>
+            </ul>
+
+          </div>
         </div>
-        <div class="col-3 px-4 py-2 my-5"> 
-          <h3>Nonprofit</h3>
-          <ul class="text-left mt-1" style="list-style-type: square">
-          {% for client in clients_non_profit %}
-            <li>{{ client }}</li>
-          {% endfor %}
-          </ul>
-        </div>
-        <div class="col-3 px-4 py-2 my-5"> 
-          <h3>Corporate</h3>
-          <ul class="text-left mt-1" style="list-style-type: square">
-          {% for client in clients_private_sector %}
-            <li>{{ client }}</li>
-          {% endfor %}
-          </ul>
-        </div>
-        <div class="col-3 px-4 py-2 my-5"> 
-          <h3>Education</h3>
-          <ul class="text-left mt-1" style="list-style-type: square">
-          {% for client in clients_colleges_universities %}
-            <li>{{ client }}</li>
-          {% endfor %}
-          </ul>
-        </div>
+
       </div>
     </div>
-  </div>
-</div>
+
+          {% for client in clients_non_profit %}
+          {% endfor %}
+          {% for client in clients_private_sector %}
+          {% endfor %}
+          {% for client in clients_colleges_universities %}
+          {% endfor %}
 
 
 {% endblock %}
