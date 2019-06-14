@@ -28,8 +28,6 @@
           <div class="col-md-4 px-4 pb-2 mb-5">
             <div class="px-2 mb-2">
               <h6 class="text-muted text-uppercase mb-4">Government</h6>
-              <img class="mb-4" src="assets/img/startup-15.svg">
-              <p class="pb-2">Plenty of processing power for any personal projects, big or small.</p>
             </div>
 
             <ul class="list-unstyled list-bordered text-xs-left my-4">
@@ -42,15 +40,13 @@
 
           <div class="col-md-4 px-4 pb-2 mb-5">
             <div class="px-2">
-              <h6 class="text-muted text-uppercase mb-4">Business</h6>
-              <img class="mb-4" src="assets/img/startup-16.svg">
-              <p class="pb-2">The perfect sized plan for small businesses to get started.</p>
+              <h6 class="text-muted text-uppercase mb-4">Nonprofit</h6>
             </div>
 
             <ul class="list-unstyled list-bordered text-xs-left my-4">
-              <li class="py-4"><strong>100k</strong> monthly requests</li>
-              <li class="py-4"><strong>24/7</strong> technical supprt</li>
-              <li class="py-4"><strong>Public</strong> API access</li>
+            {% for client in clients_non_profit %}
+              <li class="py-4"><strong>{{ client }}</strong></li>
+            {% endfor %}
             </ul>
 
           </div>
@@ -74,8 +70,6 @@
       </div>
     </div>
 
-          {% for client in clients_non_profit %}
-          {% endfor %}
           {% for client in clients_private_sector %}
           {% endfor %}
           {% for client in clients_colleges_universities %}
