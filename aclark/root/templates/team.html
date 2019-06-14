@@ -64,8 +64,9 @@
             <ul class="list-unstyled list-bordered text-xs-left my-4">
               <li class="py-4"><strong>Email</strong> {{ profile.email_address }}</li>
             </ul>
-
-            <a href="{{ profile.twitter }}"><i class="fab fa-twitter-square fa-5x"></i></a>
+            {% if profile.twitter_username %}
+            <a href="https://twitter.com/{{ profile.twitter_username }}"><i class="fab fa-twitter-square fa-5x"></i></a>
+            {% endif %}
           </div>
           {% endif %}
           {% endfor %}
