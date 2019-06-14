@@ -427,6 +427,7 @@ class Profile(BaseModel):
         choices=choices.PAYMENT_CHOICES,
     )
     job_title = models.CharField(max_length=150, blank=True, null=True)
+    twitter_username = models.CharField(max_length=150, blank=True, null=True)
 
     def __str__(self):
         if self.user:
