@@ -31,15 +31,10 @@
             <div class="px-2 mb-2">
               <h6 class="text-muted text-uppercase mb-4">{{ profile.job_title }}</h6>
               <img class="mb-4 img-thumbnail" src="{{ profile.get_avatar_url }}">
-              <p class="pb-2">{{ profile.bio|safe }}</p>
             </div>
-
             <ul class="list-unstyled list-bordered text-xs-left my-4">
-              <li class="py-4"><strong>Email</strong> {{ profile.email_address }}</li>
+              <li class="py-4">{{ profile.bio|safe }}</li>
             </ul>
-            {% if profile.twitter_username %}
-            <a href="https://twitter.com/{{ profile.twitter_username }}"><i class="fab fa-twitter-square fa-5x"></i></a>
-            {% endif %}
           </div>
           {% endif %}
           {% endfor %}
@@ -58,15 +53,11 @@
             <div class="px-2 mb-2">
               <h6 class="text-muted text-uppercase mb-4">{{ profile.job_title }}</h6>
               <img class="mb-4 img-thumbnail" src="{{ profile.get_avatar_url }}">
-              <p class="pb-2">{{ profile.bio|safe }}</p>
             </div>
 
             <ul class="list-unstyled list-bordered text-xs-left my-4">
-              <li class="py-4"><strong>Email</strong> {{ profile.email_address }}</li>
+              <li class="py-4">{{ profile.bio|safe }}</li>
             </ul>
-            {% if profile.twitter_username %}
-            <a href="https://twitter.com/{{ profile.twitter_username }}"><i class="fab fa-twitter-square fa-5x"></i></a>
-            {% endif %}
           </div>
           {% endif %}
           {% endfor %}
