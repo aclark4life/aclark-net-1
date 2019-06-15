@@ -34,6 +34,12 @@
               <div class="col-12 text-left">
                 <ul class="list-unstyled list-bordered text-xs-left my-4">
                   <li class="py-4"><p>{{ profile.bio|safe }}</p></li>
+<!--
+                  <li class="py-4 text-center">
+                    {% if profile.twitter_username %}<a target="_blank" href="https://twitter.com/{{ profile.twitter_username }}"><i class="fab fa-twitter-square fa-2x"></i></a>{% endif %}
+                    {% if profile.twitter_username %}<a target="_blank" href="https://www.linkedin.com/in/{{ profile.twitter_username }}"><i class="fab fa-linkedin fa-2x"></i></a>{% endif %}
+                  </li>
+-->
                 </ul>
               </div>
             </div>
