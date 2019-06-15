@@ -38,7 +38,7 @@
 
         <div class="row mb-5 justify-content-center">
           {% for profile in profiles %}
-            {% if profile.get_username != 'aclark' or profile.get_username != 'amy' %}
+            {% if profile.get_username != 'aclark' and profile.get_username != 'amy' %}
           <div class="col-lg-4">
             <h6 class="text-muted text-uppercase mb-3">{{ profile.job_title|default:'Team Member' }}</h6>
             <img class="mb-4 rounded" src="{{ profile.get_avatar_url }}">
