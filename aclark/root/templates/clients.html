@@ -28,13 +28,13 @@
           <div class="col-md-3 px-4 pb-2 mb-5">
             <div class="px-2 mb-2">
               <ul class="list-unstyled list-bordered mb-5">
-                <li><h6 class="text-muted text-uppercase p-3">Government</h6></li>
+                <li><h6 class="text-uppercase p-3 text-dark">Government</h6></li>
               </ul>
             </div>
 
             <ul class="list-unstyled text-xs-left">
             {% for client in clients_government %}
-              <li class="py-1"><strong>{{ client }}</strong></li>
+              <li class="py-1">{{ client }}</li>
             {% endfor %}
             </ul>
 
@@ -43,13 +43,13 @@
           <div class="col-md-3 px-4 pb-2 mb-5">
             <div class="px-2">
               <ul class="list-unstyled list-bordered mb-5">
-                <li><h6 class="text-muted text-uppercase p-3">Nonprofit</h6></li>
+                <li><h6 class="text-uppercase p-3 text-dark">Nonprofit</h6></li>
               </ul>
             </div>
 
             <ul class="list-unstyled text-xs-left">
             {% for client in clients_non_profit %}
-              <li class="py-1"><strong>{{ client }}</strong></li>
+              <li class="py-1">{{ client }}</li>
             {% endfor %}
             </ul>
 
@@ -58,12 +58,12 @@
           <div class="col-md-3 px-4 pb-1 mb-5">
             <div class="px-2">
               <ul class="list-unstyled list-bordered mb-5">
-                <li><h6 class="text-muted text-uppercase p-3">Corporate</h6></li>
+                <li><h6 class="text-uppercase p-3 text-dark">Corporate</h6></li>
             </div>
 
             <ul class="list-unstyled text-xs-left">
             {% for client in clients_private_sector %}
-              <li class="py-1"><strong>{{ client }}</strong></li>
+              <li class="py-1">{{ client }}</li>
             {% endfor %}
             </ul>
 
@@ -72,13 +72,13 @@
           <div class="col-md-3 px-4 pb-1 mb-5">
             <div class="px-2">
               <ul class="list-unstyled list-bordered mb-5">
-                <li><h6 class="text-muted text-uppercase p-3">Education</h6></li>
+                <li><h6 class="text-uppercase p-3 text-dark">Education</h6></li>
               </ul>
             </div>
 
             <ul class="list-unstyled text-xs-left">
             {% for client in clients_colleges_universities %}
-              <li class="py-1"><strong>{{ client }}</strong></li>
+              <li class="py-1">{{ client }}</li>
             {% endfor %}
             </ul>
 
