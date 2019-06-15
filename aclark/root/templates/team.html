@@ -28,7 +28,7 @@
             {% if profile.get_username == 'aclark' or profile.get_username == 'amy' %}
           <div class="col-6">
             <h6 class="text-muted text-uppercase mb-4">{{ profile.job_title|default:'Team Member' }}</h6>
-            <img class="mb-4 rounded" src="{{ profile.get_avatar_url }}">
+            <img class="mb-4 rounded border border-dark p-1" src="{{ profile.get_avatar_url }}">
             <h2>{{ profile.user.first_name }}&nbsp;{{ profile.user.last_name}}</h2>
             <div class="row ml-5 mr-1">
               <div class="col-12 text-left">
@@ -51,7 +51,7 @@
             {% if profile.get_username != 'aclark' and profile.get_username != 'amy' %}
           <div class="col-6 mb-5">
             <h6 class="text-muted text-uppercase mb-4">{{ profile.job_title|default:'Team Member' }}</h6>
-            <img class="mb-4 rounded" src="{{ profile.get_avatar_url }}">
+            <img class="mb-4 rounded border border-dark p-1" src="{{ profile.get_avatar_url }}">
             <h2>{{ profile.user.first_name }}&nbsp;{{ profile.user.last_name}}</h2>
             <div class="row ml-5">
               <div class="col-12 text-left">
