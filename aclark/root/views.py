@@ -25,6 +25,7 @@ def about(request):
     context = {}
     testimonials = requests.get(TESTIMONIAL_URL).json()
     context["testimonial"] = random.choice(testimonials)
+    context["about_nav"] = True
     return render(request, "about.html", context)
 
 
@@ -42,6 +43,7 @@ def clients(request):
     context['clients_non_profit'] = clients_non_profit
     context['clients_private_sector'] = clients_private_sector
     context['clients_colleges_universities'] = clients_colleges_universities
+    context['clients_nav'] = True
     return render(request, "clients.html", context)
 
 
@@ -75,6 +77,7 @@ def services(request):
     context = {}
     services = requests.get(SERVICE_URL).json()
     context["services"] = services
+    context['services_nav'] = True
     return render(request, "services.html", context)
 
 
@@ -89,4 +92,5 @@ def team(request):
     context = {}
     profiles = requests.get(PROFILE_URL).json()
     context["profiles"] = profiles
+    context["about_nav"] = True
     return render(request, "team.html", context)
