@@ -16,9 +16,6 @@
 
 {% block marketing %}
 
-
-
-
 <div class="block app-price-plans">
   <div class="container text-center">
 
@@ -33,9 +30,10 @@
       <div class="col-md-4 px-4 pb-2 mb-5">
         <div class="px-2 mb-2">
           <h2 class="mb-4">{{ service.name }}</h2>
-          <p class="pb-2">{{ service.description|safe }}</p>
+          <ul class="list-unstyled list-bordered text-xs-left my-4">
+            <li class="py-4"><p class="pb-2">{{ service.description|safe }}</p></li>
+          </ul>
         </div>
-
       </div>
       {% endfor %}
 
