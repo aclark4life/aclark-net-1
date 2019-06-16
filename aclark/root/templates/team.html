@@ -16,6 +16,7 @@
 
     <div class="block app-price-plans">
       <div class="container text-center">
+
         <div class="row mb-5 justify-content-center">
           <div class="col-10 col-md-8 col-lg-6">
             <h6 class="text-muted text-uppercase mb-2">Our Team</h6>
@@ -24,28 +25,32 @@
         </div>
 
         <div class="row mb-5 justify-content-center">
-          {% for profile in profiles %}
-            {% if profile.get_username == 'aclark' or profile.get_username == 'amy' %}
-          <div class="col-6">
-            <h6 class="text-muted text-uppercase mb-4">{{ profile.job_title|default:'Team Member' }}</h6>
-            <img class="mb-4 border border-muted p-4" src="{{ profile.get_avatar_url }}">
-            <h2>{{ profile.user.first_name }}&nbsp;{{ profile.user.last_name}}</h2>
+          <div class="col-md-6">
+            <h6 class="text-muted text-uppercase mb-4">President</h6>
+            <img class="mb-4 border border-muted p-4" src="https://aclark.net/static/aclark-jobs-75-100.jpg">
+            <h2>Alex&nbsp;Clark</h2>
             <div class="row ml-5 mr-1">
               <div class="col-12 text-left">
                 <ul class="list-unstyled list-bordered text-xs-left my-4">
-                  <li class="py-4"><p>{{ profile.bio|safe }}</p></li>
-<!--
-                  <li class="py-4 text-center">
-                    {% if profile.twitter_username %}<a target="_blank" href="https://twitter.com/{{ profile.twitter_username }}"><i class="fab fa-twitter-square fa-2x"></i></a>{% endif %}
-                    {% if profile.twitter_username %}<a target="_blank" href="https://www.linkedin.com/in/{{ profile.twitter_username }}"><i class="fab fa-linkedin fa-2x"></i></a>{% endif %}
-                  </li>
--->
+                  <li class="py-4"><p><p>Alex Clark is President of ACLARK.NET, LLC, a technical service provider in Bethesda, MD, USA, serving the greater DC/MD/VA area and global client base since 2004.</p><p>He is also the President of ZPUGDC, INC. / DC Python, a non-profit organization he co-founded in 2008 to promote and support the use of Python software in DC.</p></p></li>
                 </ul>
               </div>
             </div>
           </div>
-            {% endif %}
-          {% endfor %}
+            
+          <div class="col-md-6">
+            <h6 class="text-muted text-uppercase mb-4">Business Coordinator</h6>
+            <img class="mb-4 border border-muted p-4" src="https://aclark.net/static/amy.png">
+            <h2>Amy&nbsp;Clark</h2>
+            <div class="row ml-5 mr-1">
+              <div class="col-12 text-left">
+                <ul class="list-unstyled list-bordered text-xs-left my-4">
+                  <li class="py-4"><p><p>Experienced Executive, Business Developer, Project/Team/Event Organizer and Manager.</p><p>She is also the Secretary and Treasurer of ZPUGDC, INC. / DC Python, a non-profit organization she co-founded in 2008 to promote and support the use of Python software in DC.</p></p></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <div class="row mb-5 justify-content-center">
@@ -55,28 +60,80 @@
         </div>
 
         <div class="row mb-5 justify-content-center">
-          {% for profile in profiles %}
-            {% if profile.get_username != 'aclark' and profile.get_username != 'amy' %}
-          <div class="col-6 mb-5">
-            <h6 class="text-muted text-uppercase mb-4">{{ profile.job_title|default:'Team Member' }}</h6>
-            <img class="mb-4 border border-muted p-4" src="{{ profile.get_avatar_url }}">
-            <h2>{{ profile.user.first_name }}&nbsp;{{ profile.user.last_name}}</h2>
+            
+          <div class="col-md-6 mb-5">
+            <h6 class="text-muted text-uppercase mb-4">Team Member</h6>
+            <img class="mb-4 border border-muted p-4" src="https://get-some-cold-cuts.aclark.net/static/alan.jpg">
+            <h2>Alan&nbsp;Swenson</h2>
             <div class="row ml-5">
               <div class="col-12 text-left">
 
                 <ul class="list-unstyled list-bordered text-xs-left my-4">
-                  <li class="py-4"><p>{{ profile.bio|safe }}</p></li>
+                  <li class="py-4"><p>Professional in Audio Post Production with 11 years experience. Working on leveling up with Python, Flask, Postgres, Zappa, Lambda and Rust</p></li>
                 </ul>
 
               </div>
             </div>
           </div>
-            {% endif %}
-          {% endfor %}
-        </div>
+            
+          <div class="col-md-6 mb-5">
+            <h6 class="text-muted text-uppercase mb-4">Team Member</h6>
+            <img class="mb-4 border border-muted p-4" src="https://aclark.net/static/eric%20head.jpg">
+            <h2>Eric&nbsp;Soroos</h2>
+            <div class="row ml-5">
+              <div class="col-12 text-left">
 
+                <ul class="list-unstyled list-bordered text-xs-left my-4">
+                  <li class="py-4"><p>Eric is a developer and system administrator located near Dublin, Ireland with recent experence in the fintech/payments industry. As a maintainer of the of the Pillow Project, he has experience with all levels of the Python stack.&nbsp; He has been working with the Python ecosystem for over 15 years.</p></li>
+                </ul>
+
+              </div>
+            </div>
+          </div>
+            
+          <div class="col-md-6 mb-5">
+            <h6 class="text-muted text-uppercase mb-4">Team Member</h6>
+            <img class="mb-4 border border-muted p-4" src="https://aclark.net/static/steveb.jpeg">
+            <h2>Steve&nbsp;Barber</h2>
+            <div class="row ml-5">
+              <div class="col-12 text-left">
+
+                <ul class="list-unstyled list-bordered text-xs-left my-4">
+                  <li class="py-4"><p><p>Steve Barber has a Bachelor of Science in Computer Science; he has been a Computer Scientist at the National Institute of Standards and Technology (NIST) since 1995, where he provides infrastructure support for over 500 scientists performing various kinds of research.</p></p></li>
+                </ul>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-5">
+            <h6 class="text-muted text-uppercase mb-4">Team Member</h6>
+            <img class="mb-4 border border-muted p-4" src="https://get-some-cold-cuts.aclark.net/static/quincey.png">
+            <h2>Quincey&nbsp;Clark</h2>
+            <div class="row ml-5">
+              <div class="col-12 text-left">
+
+                <ul class="list-unstyled list-bordered text-xs-left my-4">
+                  <li class="py-4"><p>Quincey is the first Python programming dog. He is our designated PPP (Python Programming Pomeranian.)</p></li>
+                </ul>
+
+              </div>
+            </div>
+          </div>
+          
+        </div>
 
       </div>
     </div>
 
 {% endblock %}
+
+            
+          
+            
+          
+            
+          
+            
+          
+
