@@ -76,6 +76,7 @@
 
 <div class="stage-shelf stage-shelf-right hidden" id="sidebar">
   <ul class="nav nav-bordered nav-stacked flex-column">
+    <li class="nav-header"><a style="text-decoration: none" href="{% url 'home' %}">Home</a></li>
     <li class="nav-header"><a style="text-decoration: none" href="{% url 'about' %}">About</a></li>
     <li class="nav-item">
       <a class="nav-link" href="{% url 'team' %}">Team</a>
@@ -127,6 +128,7 @@
     <div class="d-none d-md-block text-uppercase">
       <ul class="navbar-nav">
         <li class="nav-item px-1">
+          <a class="nav-link {% if home_nav %}border-bottom {% endif %}" href="{% url 'home' %}">Home</a>
         </li>
         <li class="nav-item dropdown">
           <!-- https://stackoverflow.com/a/29668214/185820 -->

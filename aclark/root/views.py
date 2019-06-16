@@ -70,6 +70,7 @@ def contact(request):
 
 def home(request):
     context = {}
+    context['home_nav'] = True
     return render(request, "base.html", context)
 
 
