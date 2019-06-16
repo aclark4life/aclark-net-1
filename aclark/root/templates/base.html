@@ -80,6 +80,12 @@
     <li class="nav-item">
       <a class="nav-link" href="{% url 'team' %}">Team</a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'about' %}#technology">Technology</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'about' %}#testimonials">Testimonials</a>
+    </li>
     <li class="nav-divider"></li>
     <li class="nav-header"><a style="text-decoration: none" href="{% url 'services' %}">Services</a></li>
     <li class="nav-item">
@@ -129,6 +135,8 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="nav-link" href="{% url 'team' %}">Team</a>
+            <a class="nav-link" href="{% url 'about' %}#technology">Technology</a>
+            <a class="nav-link" href="{% url 'about' %}#testimonials">Testimonials</a>
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -191,6 +199,8 @@
         <ul class="list-unstyled list-spaced">
           <li class="mb-2"><h6 class="text-uppercase"><a style="text-decoration: none" href="{% url 'about' %}">About</a></h6></li>
           <li class="text-muted"><a style="text-decoration: none" href="{% url 'team' %}">Team</a></li>
+          <li class="text-muted"><a style="text-decoration: none" href="{% url 'about' %}#technology">Technology</a></li>
+          <li class="text-muted"><a style="text-decoration: none" href="{% url 'about' %}#testimonials">Testimonials</a></li>
         </ul>
       </div>
       <div class="col-md-2 mb-5">
