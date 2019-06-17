@@ -4,6 +4,13 @@
     <link href="{% static 'signin.css' %}" rel="stylesheet">
 {% endblock %}
 
+{% block block_fill_height %}
+
+<div class="block block-inverse app-header" 
+     style="background-image: url({% static 'startup-1.jpg' %}); background-position: top; padding: 50px">
+
+{% endblock %}
+
 <form class="form-signin" action="{% url 'login' %}" method="POST">{% csrf_token %}
   <img class="mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
   <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
