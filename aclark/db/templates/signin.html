@@ -1,15 +1,29 @@
-<form class="form-signin">
+{% load static %}
+
+{% block head %}
+    <link href="{% static 'signin.css' %}" rel="stylesheet">
+{% endblock %}
+
+<form class="form-signin" action="{% url 'login' %}" method="POST">{% csrf_token %}
   <img class="mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
   <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-  <label for="inputEmail" class="sr-only">Email address</label>
-  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+  <label for="inputEmail" class="sr-only">Username</label>
+  <input type="text" id="inputEmail" name="username" class="form-control" placeholder="Username" required autofocus>
   <label for="inputPassword" class="sr-only">Password</label>
-  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+  <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
   <div class="checkbox mb-3">
     <label>
       <input type="checkbox" value="remember-me"> Remember me
     </label>
   </div>
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-  <p class="mt-5 mb-3 text-muted">&copy; 2017-2019</p>
+  <div class="btn-group dropdown">
+    <button class="btn btn-lg btn-primary mt-4 mr-2" type="submit">Sign in</button>
+    <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <span class="sr-only">Toggle Dropdown</span>
+    </button>
+    <div class="dropdown-menu dropdown-menu-right">
+    <a class="" href="/db/login/google-oauth2/?next=/db/">Sign in with Google</a>
+      <a class="dropdown-item" href="{% url 'password_reset' %}"><i class="fas fa-sign-in-alt"></i> Password reset</a>
+    </div>
+  </div>
 </form>
