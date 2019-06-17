@@ -200,41 +200,42 @@
 <div class="block block-inverse app-footer">
  <div class="container">
     <div class="row">
-      <div class="col-md-5 mb-5">
+      <div class="col-md-5">
+        <h6 class="text-uppercase">Mission</h6>
         <ul class="list-unstyled list-spaced">
           <li class="text-muted">
            <p>Seamlessly matrix leveraged process improvements and competitive interfaces. Monotonectally leverage other's proactive scenarios after goal-oriented human capital.</p>
           </li>
         </ul>
-        <a class="btn btn-secondary btn-lg text-dark" href="{% url 'contact' %}">Contact Us</a>
+        <a class="btn btn-transparent border-light btn-lg text-light" href="{% url 'contact' %}">Contact Us</a>
         
 
       </div>
       <div class="col-md-2 ml-auto mb-5">
         <ul class="list-unstyled list-spaced">
           <li class="mb-2"><h6 class="text-uppercase"><a style="text-decoration: none" href="{% url 'about' %}">About</a></h6></li>
-          <li class="text-muted"><a style="text-decoration: none" href="{% url 'about' %}#pillow">Pillow</a></li>
-          <li class="text-muted"><a style="text-decoration: none" href="{% url 'team' %}">Team</a></li>
-          <li class="text-muted"><a style="text-decoration: none" href="{% url 'about' %}#technology">Technology</a></li>
-          <li class="text-muted"><a style="text-decoration: none" href="{% url 'about' %}#testimonials">Testimonials</a></li>
+          <li><a class="text-muted" style="text-decoration: none" href="{% url 'about' %}#pillow">Pillow</a></li>
+          <li><a class="text-muted" style="text-decoration: none" href="{% url 'team' %}">Team</a></li>
+          <li><a class="text-muted" style="text-decoration: none" href="{% url 'about' %}#technology">Technology</a></li>
+          <li><a class="text-muted" style="text-decoration: none" href="{% url 'about' %}#testimonials">Testimonials</a></li>
         </ul>
       </div>
       <div class="col-md-2 mb-5">
         <ul class="list-unstyled list-spaced">
           <li class="mb-2"><h6 class="text-uppercase"><a style="text-decoration: none" href="{% url 'services' %}">Services</a></h6></li>
-          <li class="text-muted"><a style="text-decoration: none" href="{% url 'services' %}#software-development">Software Development</a></li>
-          <li class="text-muted"><a style="text-decoration: none" href="{% url 'services' %}#infrastructure-operations">Infrastructure Operations</a></li>
+          <li><a class="text-muted" style="text-decoration: none" href="{% url 'services' %}#software-development">Software Development</a></li>
+          <li><a class="text-muted" style="text-decoration: none" href="{% url 'services' %}#infrastructure-operations">Infrastructure Operations</a></li>
         </ul>
       </div>
       <div class="col-md-2 mb-5">
         <ul class="list-unstyled list-spaced">
           <li class="mb-2"><h6 class="text-uppercase"><a style="text-decoration: none" href="{% url 'dashboard' %}">Staff</a></h6></li>
-          <li class="text-muted">{% if not request.user.is_anonymous %}<a style="text-decoration: none" href="{% url 'dashboard' %}">Dashboard</a>{% else %}<a href="{% url 'dashboard' %}">Sign in</a>{% endif %}</li>
-          <li class="text-muted">{% if not request.user.is_anonymous %}<a style="text-decoration: none" href="{% url 'user_view' request.user.id %}">Profile</a>{% endif %}</li>
-          <li class="text-muted">{% if not request.user.is_anonymous %}<a style="text-decoration: none" href="{% url 'logout' %}?next={% url 'home' %}">Sign out</a>{% endif %}</li>
+          <li>{% if not request.user.is_anonymous %}<a class="text-muted" style="text-decoration: none" href="{% url 'dashboard' %}">Dashboard</a>{% else %}<a class="text-muted" style="text-decoration: none" href="{% url 'dashboard' %}">Sign in</a>{% endif %}</li>
+          <li>{% if not request.user.is_anonymous %}<a class="text-muted" style="text-decoration: none" href="{% url 'user_view' request.user.id %}">Profile</ class="text-muted"a>{% endif %}</li>
+          <li>{% if not request.user.is_anonymous %}<a class="text-muted" style="text-decoration: none" href="{% url 'logout' %}?next={% url 'home' %}">Sign out</a>{% endif %}</li>
         </ul>
       </div>
-      <span class="mx-auto mt-5 text-muted">&copy; ACLARK.NET, LLC 2019</span>
+      <span class="mx-auto text-muted">&copy; ACLARK.NET, LLC 2019</span>
     </div>
   </div>
 
