@@ -109,6 +109,7 @@
     </li>
     <li class="nav-divider"></li>
     <li class="nav-header"><a style="text-decoration: none" href="{% url 'clients' %}">Clients</a></li>
+    <li class="nav-header"><a style="text-decoration: none" href="{% url 'contact' %}">Contact Us</a></li>
   </ul>
 </div>
 
@@ -164,9 +165,12 @@
         <li class="nav-item px-1">
           <a class="nav-link {% if clients_nav %}border-bottom {% endif %}" href="{% url 'clients' %}">Clients</a>
         </li>
-        <li class="nav-item ml-3 px-1 bg-light rounded">
-          <a class="nav-link text-dark" href="{% url 'contact' %}"><i class="far fa-comment d-none d-lg-inline"></i> Contact Us</a>
-          
+        <li class="nav-item ml-3 px-1 d-none d-lg-inline">
+          <a class="nav-link" style="border-bottom: none" href="{% url 'contact' %}">
+            <strong style="background: #fff; padding: 12px; border-radius: 4px; color: #28669F;">
+            Contact&nbsp;Us
+            </strong>
+          </a>
         </li>
       </ul>
     </div>
