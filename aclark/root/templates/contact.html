@@ -16,19 +16,25 @@
       <div class="container pb-5">
         <div class="row app-align-center">
           <div class="col-md-6 col-sm-12 mr-auto">
-            <h6 class="text-muted text-uppercase">Contact Us</h6>
-            <h2>Thank you for your interest in ACLARK.NET, LLC.</h2>
-            <p class="lead">Please use this form to contact us, we look forward to discussing your needs.</p>
+            <h6 class="text-muted text-uppercase text-center">Contact Us</h6>
+            <h2 class="text-center">Thank you for your interest in ACLARK.NET, LLC.</h2>
+            <p class="lead mt-5">Please use this form to contact us. We look forward to discussing your needs!</p>
             <form action="" method="post" class="text-left">{% csrf_token %}{{ form|crispy }}
               <button class="btn btn-lg btn-primary" type="submit">Submit</button>
             </form>
           </div>
 
           <div class="col-sm-5 d-none d-md-block mb-5">
-            <img class="app-iphone border border-muted p-4" src="{% static 'aclarknet-background2.jpg' %}" style="width: 100%;">
+            <p>
+              <img class="app-iphone border border-muted p-4" src="{% static 'aclarknet-background2.jpg' %}" style="width: 100%;">
+            </p>
+            <ul class="list-unstyled p-5">
+              <li class="p-3"><h2><a style="text-decoration: none" target="_blank" href="https://goo.gl/maps/nDtEgV4ppX5MDCuh8"><i class="fas fa-map-marker-alt fa-2x" style="vertical-align: middle"></i><span class="text-dark ml-3">Bethesda, MD, USA</span></a></h2></li>
+              <li class="p-3"><h2><a style="text-decoration: none" href="mailto:aclark@aclark.net"><i class="fas fa-envelope-square fa-2x" style="vertical-align: middle"></i><span class="text-dark ml-3">info@aclark.net</a></span></h2></li>
+            </ul>
           </div>
-
         </div>
+
       </div>
     </div>
 
