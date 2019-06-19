@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block app_graph %}
+{% endblock %}
+
+{% block block_fill_height %}
+{% include 'block_fill_height.html' %}
+{% endblock %}
+
+{% block content %}
+{% endblock %}
+
+{% block marketing %}
+
+<div class="block block-secondary app-block-marketing-grid">
+  <div class="container text-xs-center">
+
+    <div class="row mb-3 justify-content-center">
+      <div class="col-10 col-sm-8 col-lg-6">
+        <h6 class="text-muted text-uppercase">Testimonials</h6>
+      </div>
+    </div>
+
+    <div class="row app-marketing-grid">
+      {% for testimonial in testimonials %}
+      <div class="col-md-4 px-4 mb-5">
+        <h2 class="mb-4">
+            {{ testimonial.name }}, {{ testimonial.title }}
+        </h2>
+        <p class="mb-4 lead">
+            &quot;{{ testimonial.description }}&quot;
+        </p>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</div>
+
+
+{% endblock %}
