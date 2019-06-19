@@ -4,10 +4,16 @@ from captcha.widgets import ReCaptchaV3
 
 
 class ContactForm(forms.Form):
+    first_name = forms.CharField(
+        label="First Name"
+    )
+    last_name = forms.CharField(
+        label="Last Name"
+    )
     email = forms.CharField(
-        label="Your email address", widget=forms.EmailInput(attrs={"class": "email"})
+        label="Email", widget=forms.EmailInput(attrs={"class": "email"})
     )
     message = forms.CharField(
-        label="How can we help?", widget=forms.Textarea(attrs={"class": "message"})
+        label="How can we help you?", widget=forms.Textarea(attrs={"class": "message"})
     )
     captcha = ReCaptchaField(label="Protected by reCAPTCHA v3", widget=ReCaptchaV3)
