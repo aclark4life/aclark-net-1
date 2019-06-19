@@ -15,19 +15,19 @@
     <div class="block block-secondary app-iphone-block">
       <div class="container">
         <div class="row app-align-center">
-
-          <div class="col-sm-5 d-none d-md-block mb-5">
-            <img class="app-iphone border border-muted p-4" src="{% static 'aclark-doe.jpg' %}" style="width: 100%;">
-          </div>
-
-          <div class="col-md-6 col-sm-12 ml-auto">
+          <div class="col-md-6 col-sm-12 mr-auto">
             <h6 class="text-muted text-uppercase">Contact Us</h6>
             <h2>Thank you for your interest in ACLARK.NET, LLC.</h2>
             <p class="lead">Please use this form to contact our team, we look forward to discussing your needs.</p>
             <form action="" method="post" class="text-left">{% csrf_token %}{{ form|crispy }}
-              <button class="btn btn-lg btn-primary" type="submit">Send</button>
+              <button class="btn btn-lg btn-primary mb-5" type="submit">Send</button>
             </form>
           </div>
+
+          <div class="col-sm-5 d-none d-md-block mb-5">
+            <img class="app-iphone border border-muted p-4" src="{% static 'aclarknet-background2.jpg' %}" style="width: 100%;">
+          </div>
+
         </div>
       </div>
     </div>
