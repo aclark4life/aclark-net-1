@@ -17,6 +17,7 @@ body {
 /* Carousel base class */
 .carousel {
   margin-bottom: 4rem;
+  background: white;
 }
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {

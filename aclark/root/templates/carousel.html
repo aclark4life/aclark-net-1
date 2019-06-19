@@ -5,7 +5,7 @@
 {% endblock %}
 
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
+    <ol class="carousel-indicators bg-dark">
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
       <li data-target="#myCarousel" data-slide-to="1"></li>
       <li data-target="#myCarousel" data-slide-to="2"></li>
@@ -13,7 +13,7 @@
     <div class="carousel-inner">
       <div class="carousel-item active">
         <div class="container">
-          <div class="carousel-caption text-left">
+          <div class="carousel-caption text-dark text-left">
             <h1>IT Consulting.</h1>
             <p>We are technology subject matter experts whose expertise includes open source software &amp; related technologies.</p>
             <p><a class="btn btn-lg btn-primary" href="{% url 'services' %}#it-consulting" role="button">Learn more</a></p>
@@ -22,7 +22,7 @@
       </div>
       <div class="carousel-item">
         <div class="container">
-          <div class="carousel-caption">
+          <div class="carousel-caption text-dark">
             <h1>Software Development.</h1>
             <p>We excel at developing custom software and delivering exceptional results.</p>
             <p><a class="btn btn-lg btn-primary" href="{% url 'services' %}#software-development" role="button">Learn more</a></p>
@@ -31,7 +31,7 @@
       </div>
       <div class="carousel-item">
         <div class="container">
-          <div class="carousel-caption text-right">
+          <div class="carousel-caption text-dark text-right">
             <h1>System &amp; Network Administration</h1>
             <p>We distill all the dizzying decisions required to choose a technical service provider into much more digestible options.</p>
             <p><a class="btn btn-lg btn-primary" href="{% url 'services' %}#system-network-administration" role="button">Learn more</a></p>
