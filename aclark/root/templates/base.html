@@ -99,13 +99,13 @@
     <li class="nav-divider"></li>
     <li class="nav-header"><a style="text-decoration: none" href="{% url 'services' %}">Services</a></li>
     <li class="nav-item">
-      <a class="nav-link" href="{% url 'services' %}#consulting">Consulting</a>
-    </li>
-    <li class="nav-item">
       <a class="nav-link" href="{% url 'services' %}#software">Software</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="{% url 'services' %}#infrastructure">Infrastructure</a>
+      <a class="nav-link" href="{% url 'services' %}#strategy">Strategy</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'services' %}#systems">Systems</a>
     </li>
     <li class="nav-divider"></li>
     <li class="nav-header"><a style="text-decoration: none" href="{% url 'clients' %}">Clients</a></li>
@@ -156,9 +156,9 @@
         <li class="nav-item px-1 dropdown">
           <a class="nav-link {% if services_nav %}border-bottom {% endif %}" href="{% url 'services' %}">Services</a>
           <div class="dropdown-menu text-capitalize" aria-labelledby="navbarDropdown">
-            <a class="nav-link" href="{% url 'services' %}#it-consulting-outsourcing">IT Consulting &amp; Outsourcing</a>
-            <a class="nav-link" href="{% url 'services' %}#software-development-engineering">Software Development &amp; Engineering</a>
-            <a class="nav-link" href="{% url 'services' %}#system-network-administration">System &amp; Network Administration</a>
+            <a class="nav-link" href="{% url 'services' %}#software">Software</a>
+            <a class="nav-link" href="{% url 'services' %}#strategy">Strategy</a>
+            <a class="nav-link" href="{% url 'services' %}#systems">Systems</a>
           </div>
         </li>
         <li class="nav-item px-1">
@@ -222,9 +222,9 @@
       <div class="col-md-2 mb-5">
         <ul class="list-unstyled list-spaced">
           <li class="mb-2"><h6 class="text-uppercase"><a style="text-decoration: none" href="{% url 'services' %}">Services</a></h6></li>
-          <li><a class="text-muted" style="text-decoration: none" href="{% url 'services' %}#it-services">IT Consulting &amp; Outsourcing</a></li>
-          <li><a class="text-muted" style="text-decoration: none" href="{% url 'services' %}#software-development">Software Development &amp; Engineering</a></li>
-          <li><a class="text-muted" style="text-decoration: none" href="{% url 'services' %}#system-network-administration">System &amp; Network Administration</a></li>
+          <li><a class="text-muted" style="text-decoration: none" href="{% url 'services' %}#software">Software</a></li>
+          <li><a class="text-muted" style="text-decoration: none" href="{% url 'services' %}#strategy">Strategy</a></li>
+          <li><a class="text-muted" style="text-decoration: none" href="{% url 'services' %}#systems">Systems</a></li>
         </ul>
       </div>
       <div class="col-md-2 mb-5">

@@ -11,15 +11,6 @@
       <li data-target="#myCarousel" data-slide-to="2"></li>
     </ol>
     <div class="carousel-inner">
-      <div class="carousel-item active">
-        <div class="container">
-          <div class="carousel-caption text-left">
-            <h1>Consulting.</h1>
-            <p>We are technology subject matter experts whose expertise includes open source software &amp; related technologies.</p>
-            <p><a class="btn btn-lg btn-primary" href="{% url 'services' %}#consulting" role="button">Learn more</a></p>
-          </div>
-        </div>
-      </div>
       <div class="carousel-item">
         <div class="container">
           <div class="carousel-caption">
@@ -29,12 +20,21 @@
           </div>
         </div>
       </div>
+      <div class="carousel-item active">
+        <div class="container">
+          <div class="carousel-caption text-left">
+            <h1>Strategy.</h1>
+            <p>We are technology subject matter experts whose expertise includes open source software &amp; related technologies.</p>
+            <p><a class="btn btn-lg btn-primary" href="{% url 'services' %}#strategy" role="button">Learn more</a></p>
+          </div>
+        </div>
+      </div>
       <div class="carousel-item">
         <div class="container">
           <div class="carousel-caption text-right">
-            <h1>Infrastructure.</h1>
+            <h1>Systems.</h1>
             <p>We distill all the dizzying decisions required to choose a technical service provider into much more digestible options.</p>
-            <p><a class="btn btn-lg btn-primary" href="{% url 'services' %}#infrastructure" role="button">Learn more</a></p>
+            <p><a class="btn btn-lg btn-primary" href="{% url 'services' %}#systems" role="button">Learn more</a></p>
           </div>
         </div>
       </div>
