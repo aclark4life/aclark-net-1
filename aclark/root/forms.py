@@ -10,10 +10,14 @@ class ContactForm(forms.Form):
     last_name = forms.CharField(
         label="Last Name"
     )
+    company_name = forms.CharField(
+        label="Company Name",
+        required=False,
+    )
     email = forms.CharField(
         label="Email", widget=forms.EmailInput(attrs={"class": "email"})
     )
     message = forms.CharField(
-        label="Please let us know which products and services you would like to learn more about", widget=forms.Textarea(attrs={"class": "message"})
+        label="Please tell us which products and services you would like to learn more about", widget=forms.Textarea(attrs={"class": "message"})
     )
     captcha = ReCaptchaField(label="Protected by reCAPTCHA v3", widget=ReCaptchaV3)
