@@ -26,8 +26,9 @@
       {% for testimonial in testimonials %}
       <div class="col-md-4 px-4 mb-5">
         <h2 class="mb-4 text-left">
-            {{ testimonial.name }}, {{ testimonial.title }}
+            {{ testimonial.name }}
         </h2>
+        <h6 class="text-dark text-left mb-4">{{ testimonial.title }}</h6>
         <p class="mb-4 text-left">
             &quot;{{ testimonial.description }}&quot;
         </p>
