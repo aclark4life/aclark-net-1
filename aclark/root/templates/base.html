@@ -88,13 +88,13 @@
     <li class="nav-header"><a style="text-decoration: none" href="{% url 'home' %}">Home</a></li>
     <li class="nav-header"><a style="text-decoration: none" href="{% url 'about' %}">About</a></li>
     <li class="nav-item">
-      <a class="nav-link" href="{% url 'team' %}">Team</a>
-    </li>
-    <li class="nav-item">
       <a class="nav-link" href="{% url 'about' %}#technology">Technology</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="{% url 'testimonials' %}">Testimonials</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'team' %}">Team</a>
     </li>
     <li class="nav-divider"></li>
     <li class="nav-header"><a style="text-decoration: none" href="{% url 'services' %}">Services</a></li>
@@ -148,9 +148,9 @@
             About
           </a>
           <div class="dropdown-menu text-capitalize" aria-labelledby="navbarDropdown">
-            <a class="nav-link" href="{% url 'team' %}">Team</a>
             <a class="nav-link" href="{% url 'about' %}#technology">Technology</a>
             <a class="nav-link" href="{% url 'testimonials' %}">Testimonials</a>
+            <a class="nav-link" href="{% url 'team' %}">Team</a>
           </div>
         </li>
         <li class="nav-item px-1 dropdown">
@@ -214,9 +214,9 @@
       <div class="col-md-2 ml-auto mb-5">
         <ul class="list-unstyled list-spaced">
           <li class="mb-2"><h6 class="text-uppercase"><a style="text-decoration: none" href="{% url 'about' %}">About</a></h6></li>
-          <li><a class="text-muted" style="text-decoration: none" href="{% url 'team' %}">Team</a></li>
           <li><a class="text-muted" style="text-decoration: none" href="{% url 'about' %}#technology">Technology</a></li>
           <li><a class="text-muted" style="text-decoration: none" href="{% url 'testimonials' %}">Testimonials</a></li>
+          <li><a class="text-muted" style="text-decoration: none" href="{% url 'team' %}">Team</a></li>
         </ul>
       </div>
       <div class="col-md-2 mb-5">
