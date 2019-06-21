@@ -18,12 +18,11 @@
           <div class="col-md-6 col-sm-12 mr-auto">
             <h6 class="text-muted text-uppercase text-center">Contact Us</h6>
             <h2 class="text-center">Thank you for your interest in ACLARK.NET, LLC.</h2>
-            <p class="lead mt-5">Please use this form to contact us. We look forward to discussing your needs!</p>
+            <p class="lead mt-5">To contact us, please provide the following information:</p>
             <form action="" method="post" class="text-left">{% csrf_token %}{{ form|crispy }}
               <button class="btn btn-lg btn-primary" type="submit">Submit</button>
             </form>
           </div>
-
           <div class="col-sm-5 mb-5">
             <p class="d-none d-md-block">
               <img class="app-iphone border border-muted p-4" src="{% static 'aclarknet-background2.jpg' %}" style="width: 100%;">
