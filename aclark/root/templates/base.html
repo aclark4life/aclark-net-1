@@ -23,6 +23,7 @@
     <link href='https://fonts.googleapis.com/css?family=Lora:400,400italic|Work+Sans:300,400,500,600' rel='stylesheet' type='text/css'>
     <link href="{% static 'assets/css/toolkit-startup.css' %}" rel="stylesheet">
     <link href="{% static 'assets/css/application-startup.css' %}" rel="stylesheet">
+    <link href="{% static 'carousel.css' %}" rel="stylesheet">
 
     {% render_bundle 'main' 'css' %}
 
@@ -123,7 +124,7 @@
 {% include 'messages.html' %}
 
 <div class="block block-inverse app-header" 
-     style="background-image: url({% static 'assets/img/startup-1.jpg' %}); background-position: top; padding-bottom: 25px;">
+     style="background-color: #3883AC; background-position: top; padding-bottom: 25px;">
 
   <div class="container py-4 fixed-top app-navbar">
   <nav class="navbar navbar-transparent navbar-padded navbar-expand-md">
@@ -176,10 +177,6 @@
 
 
 </div>
-
-{% block app_graph %}
-  <img class="app-graph" src="{% static 'assets/img/startup-0.svg' %}">
-{% endblock %}
 
 
 </div>
