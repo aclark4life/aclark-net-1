@@ -70,6 +70,8 @@ def contact(request):
 
 def home(request):
     context = {}
+    testimonials = requests.get(TESTIMONIAL_URL).json()
+    context["testimonial"] = random.choice(testimonials)
     context['home_nav'] = True
     return render(request, "base.html", context)
 
