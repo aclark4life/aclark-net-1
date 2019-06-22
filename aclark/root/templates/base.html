@@ -92,6 +92,9 @@
     <li class="nav-header"><a style="text-decoration: none" href="{% url 'home' %}">Home</a></li>
     <li class="nav-header"><a style="text-decoration: none" href="{% url 'about' %}">About</a></li>
     <li class="nav-item">
+      <a class="nav-link" href="{% url 'about' %}#mission">Mission</a>
+    </li>
+    <li class="nav-item">
       <a class="nav-link" href="{% url 'about' %}#technology">Technology</a>
     </li>
     <li class="nav-item">
@@ -153,7 +156,6 @@
           </a>
           <div class="dropdown-menu text-capitalize" aria-labelledby="navbarDropdown">
             <a class="nav-link" href="{% url 'about' %}#mission">Mission</a>
-            <a target="_blank" class="nav-link" href="https://blog.aclark.net">Blog</a>
             <a class="nav-link" href="{% url 'about' %}#technology">Technology</a>
             <a class="nav-link" href="{% url 'testimonials' %}">Testimonials</a>
             <a class="nav-link" href="{% url 'team' %}">Team</a>
@@ -206,19 +208,20 @@
  <div class="container">
     <div class="row">
       <div class="col-md-5">
-        <h6 class="text-uppercase">Collaboratively myocardinate virtual opportunities rather than performance based.</h6>
+        <h6 class="text-uppercase">Blog</h6>
         <ul class="list-unstyled list-spaced">
           <li class="text-muted">
-            <p>Collaboratively myocardinate virtual opportunities rather than performance based.</p>
+            <p>Alex Clark has been blogging since 2007 about a variety of technical and other topics.</p>
           </li>
         </ul>
-        <a class="btn btn-transparent border-light btn-lg text-light mb-5" href="{% url 'contact' %}">Contact Us</a>
+        <a class="btn btn-transparent border-light btn-lg text-light mb-5" target="_blank" href="https://blog.aclark.net">Learn More</a>
         
 
       </div>
       <div class="col-md-2 ml-auto mb-5">
         <ul class="list-unstyled list-spaced">
           <li class="mb-2"><h6 class="text-uppercase"><a style="text-decoration: none" href="{% url 'about' %}">About</a></h6></li>
+          <li><a class="text-muted" style="text-decoration: none" href="{% url 'about' %}#mission">Mission</a></li>
           <li><a class="text-muted" style="text-decoration: none" href="{% url 'about' %}#technology">Technology</a></li>
           <li><a class="text-muted" style="text-decoration: none" href="{% url 'testimonials' %}">Testimonials</a></li>
           <li><a class="text-muted" style="text-decoration: none" href="{% url 'team' %}">Team</a></li>
