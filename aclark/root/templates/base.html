@@ -73,11 +73,6 @@
         border-bottom: 1px solid white;
       }
 
-      .caption {
-        margin-top: 5rem; 
-        margin-left: 3rem; 
-      }
-        
     </style>
 
     {% block head %}
@@ -128,10 +123,7 @@
 {% include 'messages.html' %}
 
 {% block block_fill_height %}
-
-<div class="block block-inverse block-fill-height app-header"
-    style="background-image: url({% static 'startup-1.jpg' %}); background-position: -80px; background-color: #3174A1;">
-
+{% include 'block_fill_height.html' %}
 {% endblock %}
 
   <div class="container py-4 fixed-top app-navbar">
@@ -190,24 +182,13 @@
   <img class="app-graph" src="{% static 'assets/img/startup-0.svg' %}">
 {% endblock %}
 
-{% block content %}
-
-  <div class="block-xs-middle">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-10 col-lg-6">
-{% include 'carousel.html' %}
-        </div>
-      </div>
-    </div>
-  </div>
-{% endblock %}
 
 </div>
 
 
 {% block marketing %}
-    <div class="block py-4 d-none d-md-block app-price-plans">
+{% include 'carousel.html' %}
+    <div class="block m-0 py-4 d-none d-md-block app-price-plans">
       <div class="container text-xs-center my-5">
         <h6 class="text-dark" id="mission">Mission</h6>
         <p class="text-dark text-left">Our focus is to advance the use of open source software and related technologies. We are the organizers and leaders of DC Python, a 501(c)(3) Python user's group; the creator and project lead for Pillow; the lead organizers and hosts of Plone Conference 2008; and the providers of successful open source software development, consulting, training, hosting and support for companies and organizations from Amtrak to USAID, in the U.S. and around the world, since 2004. Our past, current, and future endeavors allow us to continue to reinforce and expand our commitment, outreach, as well as our involvement with open source technology and the community that depends on it.</p>
