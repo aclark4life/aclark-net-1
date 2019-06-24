@@ -232,13 +232,13 @@
 
 
     <div class="block block-inverse app-high-praise"
-         style="background-image: url({% static 'iStock-951514270.jpg' %});" id="testimonials">
+         style="background-image: url({% static 'iStock-951514270.jpg' %}); height: 42rem;" id="testimonials">
         <div class="container">
-          <div class="row app-align-center py-3 justify-content-end">
-            <div class="col-sm-7 col-md-5 py-5">
-              <h6 class="text-white text-uppercase mb-2" style="z-index: 10; position: relative">Testimonials</h6>
-              <h2 class="mb-4" style="z-index: 10; position: relative">&quot;{{ testimonial.description }}&quot;</h2>
-              <p class="mb-4 text-white bg-info p-3" style="z-index: 10; position: relative">{{ testimonial.name }}, {{ testimonial.title }}</p>
+          <div class="row"> 
+            <div class="col-sm-7 col-md-5 carousel-caption text-left"> 
+              <h6 class="text-white text-uppercase mb-2 font-weight-bold" style="z-index: 10; position: relative">Testimonials</h6>
+              <p class="mb-4 lead font-weight-bold" style="z-index: 10; position: relative">&quot;{{ testimonial.description }}&quot;</p>
+              <p class="text-white bg-info p-3 font-weight-bold" style="z-index: 10; position: relative">{{ testimonial.name }}, {{ testimonial.title }}</p>
             </div>
           </div>
       </div>
