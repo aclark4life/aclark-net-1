@@ -229,13 +229,17 @@
         </div>
       </div>
     </div>
+    <!-- https://stackoverflow.com/a/21006790 -->
     <div class="block block-inverse app-high-praise"
-         style="background-image: url({% static 'istockphoto-951514270-small.jpg' %});" id="testimonials">
+         style="
+            background-image: url({% static 'iStock-951514270.jpg' %});
+            min-height: 999px;
+            ">
         <div class="container">
-          <div class="row app-align-center p-3 bg-light text-dark w-50" style="opacity: 0.9">
-            <div> 
-              <h6 class="text-uppercase mb-2 text-dark">Testimonials</h6>
-              <h2 class="mb-4">&quot;{{ testimonial.description }}&quot;</h2>
+          <div class="row app-align-center py-3 justify-content-end">
+            <div class="col-sm-7 col-md-5 py-5 text-dark font-weight-bold"> 
+              <h6 class="text-uppercase mb-2 text-dark font-weight-bold">Testimonials</h6>
+              <h2 class="mb-4 text-dark">&quot;{{ testimonial.description }}&quot;</h2>
               <p class="mb-4 text-dark bg-info p-3">{{ testimonial.name }}, {{ testimonial.title }}</p>
               <a class="text-dark" href="{% url 'testimonials' %}"><i class="fas fa-ellipsis-h"></i></a>
             </div>
