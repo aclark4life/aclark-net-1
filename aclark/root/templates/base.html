@@ -184,7 +184,7 @@
 
 {% block content %}
 {% include 'carousel.html' %}
-    <div class="block m-0 py-4 d-none d-md-block app-price-plans">
+    <div class="block m-0 py-4 app-price-plans">
       <div class="container text-xs-center my-5">
         <h6 class="text-dark" id="mission">Mission</h6>
         <p class="text-dark text-left">Our focus is to advance the use of open source software and related technologies. We are the organizers and leaders of DC Python, a 501(c)(3) Python user's group; the creator and project lead for Pillow; the lead organizers and hosts of Plone Conference 2008; and the providers of successful open source software development, consulting, training, hosting and support for companies and organizations from Amtrak to USAID, in the U.S. and around the world, since 2004. Our past, current, and future endeavors allow us to continue to reinforce and expand our commitment, outreach, as well as our involvement with open source technology and the community that depends on it.</p>
@@ -232,11 +232,11 @@
     <div class="block block-inverse app-high-praise"
          style="background-image: url({% static 'istockphoto-951514270-small.jpg' %});" id="testimonials">
         <div class="container">
-          <div class="row app-align-center py-3 text-dark">
-            <div class="col-sm-7 col-md-5 py-5">
+          <div class="row app-align-center p-3 bg-light text-dark w-50" style="opacity: 0.9">
+            <div> 
               <h6 class="text-uppercase mb-2 text-dark">Testimonials</h6>
               <h2 class="mb-4">&quot;{{ testimonial.description }}&quot;</h2>
-              <p class="mb-4 text-dark bg-info">{{ testimonial.name }}, {{ testimonial.title }}</p>
+              <p class="mb-4 text-dark bg-info p-3">{{ testimonial.name }}, {{ testimonial.title }}</p>
               <a class="text-dark" href="{% url 'testimonials' %}"><i class="fas fa-ellipsis-h"></i></a>
             </div>
           </div>
