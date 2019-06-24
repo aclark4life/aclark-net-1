@@ -230,14 +230,14 @@
       </div>
     </div>
     <div class="block block-inverse app-high-praise"
-         style="background-image: url({% static 'aclarknet-website-slide3.jpg' %});" id="testimonials">
+         style="background-image: url({% static 'istockphoto-951514270-small.jpg' %});" id="testimonials">
         <div class="container">
-          <div class="row app-align-center py-3 justify-content-end">
+          <div class="row app-align-center py-3 text-dark">
             <div class="col-sm-7 col-md-5 py-5">
-              <h6 class="text-muted text-uppercase mb-2">Testimonials</h6>
+              <h6 class="text-uppercase mb-2 text-dark">Testimonials</h6>
               <h2 class="mb-4">&quot;{{ testimonial.description }}&quot;</h2>
-              <p class="mb-4 text-muted">{{ testimonial.name }}, {{ testimonial.title }}</p>
-              <a class="text-white" href="{% url 'testimonials' %}"><i class="fas fa-ellipsis-h"></i></a>
+              <p class="mb-4 text-dark bg-info">{{ testimonial.name }}, {{ testimonial.title }}</p>
+              <a class="text-dark" href="{% url 'testimonials' %}"><i class="fas fa-ellipsis-h"></i></a>
             </div>
           </div>
       </div>
