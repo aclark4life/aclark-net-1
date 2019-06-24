@@ -229,14 +229,22 @@
         </div>
       </div>
     </div>
-    <!-- https://stackoverflow.com/a/21006790 -->
+
+
     <div class="block block-inverse app-high-praise"
-         style="
-            background-image: url({% static 'iStock-951514270.jpg' %});
-            min-height: 999px;
-            ">
+         style="background-image: url({% static 'iStock-951514270.jpg' %});" id="testimonials">
+        <div class="container">
+          <div class="row app-align-center py-3 justify-content-end">
+            <div class="col-sm-7 col-md-5 py-5">
+              <h6 class="text-white text-uppercase mb-2" style="z-index: 10; position: relative">Testimonials</h6>
+              <h2 class="mb-4" style="z-index: 10; position: relative">&quot;{{ testimonial.description }}&quot;</h2>
+              <p class="mb-4 text-white bg-info p-3" style="z-index: 10; position: relative">{{ testimonial.name }}, {{ testimonial.title }}</p>
+            </div>
+          </div>
       </div>
     </div>
+
+
     <div class="block app-ribbon py-4 d-none d-md-block">
       <div class="container text-xs-center"> 
         <img class="col-2" src="/static/amtrak-logo__white.svg">
@@ -308,10 +316,10 @@
           </div>
           <div class="col-sm-5 my-5 text-center">
             <p class="mb-5">
-              <img class="border border-muted p-3" src="{% static 'ploneconf.png' %}" style="width: 20rem;">
+              <img class="border border-info p-3" src="{% static 'ploneconf.png' %}" style="width: 25rem;">
             </p>
             <p> 
-              <img class="border border-muted p-3" src="{% static 'ploneconf-group.jpg' %}" style="width: 20rem;">
+              <img class="border border-info p-3" src="{% static 'ploneconf-group.jpg' %}" style="width: 25rem;">
             </p>
           </div>
         </div>

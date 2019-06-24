@@ -34,3 +34,15 @@
     left: 0;
     opacity: 0.9;
 }
+
+#testimonials:after {
+    position: absolute;
+    content: "";
+    background: linear-gradient(to right, transparent, black);
+    z-index: 9;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.9;
+}
