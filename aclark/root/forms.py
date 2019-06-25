@@ -18,6 +18,6 @@ class ContactForm(forms.Form):
         label="Email", widget=forms.EmailInput(attrs={"class": "email"})
     )
     message = forms.CharField(
-        label="Please tell us which products and services you would like to learn more about", widget=forms.Textarea(attrs={"class": "message"})
+        label="Please tell us which services you would like to learn more about", widget=forms.Textarea(attrs={"class": "message"})
     )
     captcha = ReCaptchaField(label="Protected by reCAPTCHA v3", widget=ReCaptchaV3)
