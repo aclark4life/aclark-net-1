@@ -5,9 +5,9 @@
 {% block content %}
 
     <div class="block block-secondary app-iphone-block">
-      <div class="container pb-5">
+      <div class="container">
         <div class="row app-align-center">
-          <div class="col-md-6 col-sm-12 mr-auto">
+          <div class="col-md-6 col-sm-12 mr-auto pb-5">
             <h6 class="text-dark text-uppercase text-center">Contact Us</h6>
             <p class="lead mt-5">Please provide the following information:</p>
             <form action="" method="post" class="text-left">{% csrf_token %}{{ form|crispy }}
@@ -15,9 +15,7 @@
             </form>
           </div>
           <div class="col-sm-5 mb-5 text-left">
-            <p class="d-none d-md-block">
-              <img class="app-iphone border border-muted p-4" src="{% static 'aclark-doe.jpg' %}" style="width: 100%;">
-            </p>
+            <img class="border border-muted w-100 mb-3" src="{% static 'aclarknet-website-background.jpg' %}"> 
             <p>ACLARK.NET, LLC is based in Bethesda, Maryland. We are active participants in the highly innovative, thriving Washington, D.C. technology scene.</p>
             <p><a class="text-dark" style="text-decoration: none" href="mailto:aclark@aclark.net"><i class="fas fa-envelope"></i>&nbsp;info@aclark.net</a></p>
             <p><a class="text-dark" style="text-decoration: none" href="https://goo.gl/maps/qEiATL78oK83RD5j7"><i class="fas fa-map-marker"></i>&nbsp;Bethesda, MD</a></p>
