@@ -136,7 +136,6 @@ def edit(request, **kwargs):
                                 task="url")
 
     context["form"] = form
-    context["is_staff"] = request.user.is_staff
     context["item"] = obj
     context["pk"] = pk
 
@@ -240,8 +239,6 @@ def get_index_items(**kwargs):
     page_num = get_query_string(request, "page")
     paginated = get_query_string(request, "paginated")
     search = get_query_string(request, "search")
-    if request:
-        context["is_staff"] = request.user.is_staff
     # Return search index items
     if request.method == "POST":
         if search == u"":  # Empty search returns none
@@ -308,7 +305,6 @@ def get_page_items(**kwargs):
     items = {}
 
     if request:  # Applies to all page items
-        context["is_staff"] = request.user.is_staff  # Perms
         context["icon_color"] = get_setting(request, app_settings_model,
                                             "icon_color")  # Prefs
         context["icon_size"] = get_setting(request, app_settings_model,

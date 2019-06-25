@@ -1,17 +1,17 @@
 {% load humanize %}
                 <table class="table"> 
                   <thead>
-                    {% if is_staff %}<th>Cost</th>{% endif %}
-                    {% if is_staff %}<th>Gross</th>{% endif %}
-                    {% if is_staff %}<th>Net</th>{% endif %}
-                    {% if not is_staff %}<th>Hours</th>{% endif %}
+                    {% if request.user.is_staff %}<th>Cost</th>{% endif %}
+                    {% if request.user.is_staff %}<th>Gross</th>{% endif %}
+                    {% if request.user.is_staff %}<th>Net</th>{% endif %}
+                    {% if not request.user.is_staff %}<th>Hours</th>{% endif %}
                   </thead>
                   <tbody>
                     <tr>
-                      {% if is_staff %}<td><strong class="text-danger">{{ currency_symbol }}{{ cost|default:'0.00'|intcomma }}</strong></td>{% endif %}
-                      {% if is_staff %}<td><strong class="text-info">{{ currency_symbol }}{{ gross|default:'0.00'|intcomma }}</strong></td>{% endif %}
-                      {% if is_staff %}<td><strong class="text-success">{{ currency_symbol }}{{ net|default:'0.00'|intcomma }}</strong></td>{% endif %}
-                      {% if not is_staff %}<td>{{ hours }}</td>{% endif %}
+                      {% if request.user.is_staff %}<td><strong class="text-danger">{{ currency_symbol }}{{ cost|default:'0.00'|intcomma }}</strong></td>{% endif %}
+                      {% if request.user.is_staff %}<td><strong class="text-info">{{ currency_symbol }}{{ gross|default:'0.00'|intcomma }}</strong></td>{% endif %}
+                      {% if request.user.is_staff %}<td><strong class="text-success">{{ currency_symbol }}{{ net|default:'0.00'|intcomma }}</strong></td>{% endif %}
+                      {% if not request.user.is_staff %}<td>{{ hours }}</td>{% endif %}
                     </tr>
                   </tbody>
                 </table>

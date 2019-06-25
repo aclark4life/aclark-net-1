@@ -8,7 +8,7 @@
   <div class="container">
     <div class="row my-5">
       <div class="col-10">
-        <h1>{% if is_staff %}<a class="text-dark" href="{% url 'user_index' %}">Users</a>{% else %}Users{% endif %} &rarr; {{ item.get_full_name|default:item.username }}</h1>
+        <h1>{% if request.user.is_staff %}<a class="text-dark" href="{% url 'user_index' %}">Users</a>{% else %}Users{% endif %} &rarr; {{ item.get_full_name|default:item.username }}</h1>
       </div>
       <div class="col-2">
         <!-- http://getbootstrap.com/docs/4.0/components/dropdowns/#split-button-dropdowns -->

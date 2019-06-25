@@ -12,11 +12,12 @@
       <div class="sidebar-sticky">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active" href="#">
+            <a class="nav-link active" href="{% url 'dashboard' %}">
               <span data-feather="home"></span>
               Dashboard <span class="sr-only">(current)</span>
             </a>
           </li>
+          {% if request.user.is_staff %}
           <li class="nav-item">
             <a class="nav-link" href="#">
               <span data-feather="file"></span>
@@ -47,8 +48,10 @@
               Integrations
             </a>
           </li>
+          {% endif %}
         </ul>
 
+{% if request.user.is_staff %}
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
           <span>Saved reports</span>
           <a class="d-flex align-items-center text-muted" href="#">
@@ -81,6 +84,7 @@
             </a>
           </li>
         </ul>
+{% endif %}
       </div>
     </nav>
 
@@ -94,7 +98,11 @@
         </div>
       </div>
 
+{% block dashboard %}
+
+{% if request.user.is_staff %}
       <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+{% endif %}
 
       {% if user.profile.dashboard_items %}
         {% for dashboard in user.profile.dashboard_items %}  <!-- https://stackoverflow.com/a/4524851/185820 -->
@@ -108,6 +116,9 @@
         </div>
       {% endif %}
       </div>
+
+{% endblock %}
+
     </main>
   </div>
 </div>
