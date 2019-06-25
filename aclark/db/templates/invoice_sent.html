@@ -14,7 +14,7 @@
                   <form action="{% url edit_url item.pk %}" method="post">
                     {% csrf_token %}
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-success" name="invoiced" type="submit" value="true" onChange="this.form.submit()">Sent</button>
+                    <button class="btn btn-primary" name="invoiced" type="submit" value="true" onChange="this.form.submit()">Sent</button>
                   </form>
                 </div>
               </div>
@@ -36,7 +36,7 @@
                   <form action="{% url edit_url item.pk %}" method="post">
                     {% csrf_token %}
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-success" name="invoiced" type="submit" value="false" onChange="this.form.submit()">Not invoiced</button>
+                    <button class="btn btn-primary" name="invoiced" type="submit" value="false" onChange="this.form.submit()">Not invoiced</button>
                   </form>
                 </div>
               </div>

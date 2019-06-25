@@ -712,34 +712,6 @@ def company_edit(request, pk=None):
 
 
 @staff_member_required
-def order_edit(request, pk=None):
-    return edit(request, form_model=OrderForm, model=Order, pk=pk)
-
-
-@staff_member_required
-def order_index(request):
-    context = get_index_items(
-        model=Order,
-        app_settings_model=SettingsApp,
-        order_by=("-active", ),
-        request=request,
-        search_fields=("name", ),
-    )
-    return render(request, "order_index.html", context)
-
-
-@staff_member_required
-def order_view(request, pk=None):
-    """
-    """
-    context = get_page_items(model=Order,
-                             pk=pk,
-                             request=request,
-                             time_model=Time)
-    return render(request, "order_view.html", context)
-
-
-@staff_member_required
 def task_view(request, pk=None):
     context = get_page_items(model=Task,
                              app_settings_model=SettingsApp,

@@ -19,9 +19,9 @@
           </li>
           {% if request.user.is_staff %}
           <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file"></span>
-              Orders
+            <a class="nav-link" href="{% url 'client_index' %}">
+              <span data-feather="users"></span>
+              Clients
             </a>
           </li>
           <li class="nav-item">
@@ -126,3 +126,18 @@
 {% include 'signin.html' %}
 {% endif %}
 {% endblock %}
+
+
+            <a class="btn btn-outline-dark" style="text-decoration: none" href="{% url 'invoice_index' %}"><i class="fas fa-file-invoice-dollar fa-3x p-1"></i><p class="p-0 m-0">Invoices</p></a>
+            <a class="btn btn-outline-dark" style="text-decoration: none" href="{% url 'project_index' %}"><i class="fas fa-project-diagram fa-3x p-1"></i><p class="p-0 m-0">Projects</p></a>
+            <a class="btn btn-outline-dark" style="text-decoration: none" href="{% url 'report_index' %}"><i class="fas fa-chart-line fa-3x p-1"></i><p class="p-0 m-0">Reports</p></a>
+            <a class="btn btn-outline-dark" style="text-decoration: none" href="{% url 'time_index' %}"><i class="fas fa-user-clock fa-3x p-1"></i><p class="p-0 m-0">Times</p></a>
+            <a class="btn btn-outline-dark" style="text-decoration: none" href="{% url 'contact_index' %}"><i class="fas fa-address-card fa-3x p-1"></i><p class="p-0 m-0">Contacts</p></a>
+            <a class="btn btn-outline-dark" style="text-decoration: none" href="{% url 'estimate_index' %}"><i class="fa fa-file-invoice fa-3x p-1"></i><p class="p-0 m-0">Estimates</p></a>
+            <a class="btn btn-outline-dark" style="text-decoration: none" href="{% url 'note_index' %}"><i class="fas fa-file-alt fa-3x p-1"></i><p class="p-0 m-0">Notes</p></a>
+            <a class="btn btn-outline-dark" style="text-decoration: none" href="{% url 'task_index' %}"><i class="fa fa-tasks fa-3x p-1"></i><p class="p-0 m-0">Tasks</p></a>
+            <a class="btn btn-outline-dark" style="text-decoration: none" href="{% url 'user_index' %}"><i class="fa fa-user-cog fa-3x p-1"></i><p class="p-0 m-0">Users</p></a>
+            <a class="btn btn-outline-dark" style="text-decoration: none" href="/api" target="_blank"><i class="fa fa-terminal fa-3x p-1"></i><p class="p-0 m-0">API</p></a>
+            <a class="btn btn-outline-dark" style="text-decoration: none" href="{% url 'admin:index' %}" target="_blank"><i class="fab fa-python fa-3x p-1"></i><p class="p-0 m-0">Admin</p></a>
+            <a class="btn btn-outline-dark" style="text-decoration: none" href="https://github.com/aclark-net/aclark-net-1" target="_blank"><i class="fab fa-github fa-3x p-1"></i><p class="p-0 m-0">GitHub</p></a>
+            <a class="btn btn-outline-dark" style="text-decoration: none" href="{% url 'app_view' %}"><i class="fas fa-tools fa-3x p-1"></i><p class="p-0 m-0">Settings</p></a>
