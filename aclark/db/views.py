@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
+from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.models import User
@@ -440,6 +441,12 @@ def login(request):
             messages.add_message(request, messages.WARNING, "Login failed.")
             return HttpResponseRedirect(reverse("home"))
     return render(request, "login.html", context)
+
+
+def logout(request):
+    auth_logout(request)
+    # Redirect to a success page.
+    return HttpResponseRedirect(reverse("home"))
 
 
 @staff_member_required

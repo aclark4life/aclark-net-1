@@ -40,6 +40,7 @@ urlpatterns = [
     url(r"^invoice$", views.invoice_index, name="invoice_index"),
     #    # Login
     url(r"^login$", views.login, name="login"),
+    url(r"^logout$", views.logout, name="logout"),
     # Files
     url(r"^file/(?P<pk>\d+)$", views.file_view, name="file_view"),
     url(r"^file/(?P<pk>\d+)/edit$", views.file_edit, name="file_edit"),
