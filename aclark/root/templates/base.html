@@ -24,6 +24,9 @@
     <link href="{% static 'assets/css/toolkit-startup.css' %}" rel="stylesheet">
     <link href="{% static 'assets/css/application-startup.css' %}" rel="stylesheet">
     <link href="{% static 'carousel.css' %}" rel="stylesheet">
+    <link href="{% static 'dashboard.css' %}" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js">
 
     {% render_bundle 'main' 'css' %}
 
@@ -72,6 +75,9 @@
       }
       .nav-link:hover {
         border-bottom: 1px solid white;
+      }
+      #user-menu {
+        border-bottom: none;
       }
 
     </style>
@@ -171,6 +177,16 @@
         <li class="nav-item pl-5 ">
           <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
         </li>
+        {% if request.user.is_authenticated %}
+        <li class="nav-item px-1 dropdown dropleft">
+          <a id="user-menu" class="nav-link {% if services_nav %}border-bottom {% endif %}" href="{% url 'dashboard' %}"><i class="far fa-user-circle"></i></a>
+          <div class="dropdown-menu text-capitalize" aria-labelledby="navbarDropdown">
+            <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+            <a class="nav-link" href="{% url 'user_view' request.user.id  %}">Profile</a>
+            <a class="nav-link" href="{% url 'logout' %}">Sign out</a>
+          </div>
+        </li>
+        {% endif %}
       </ul>
     </div>
   </nav>
@@ -380,6 +396,8 @@
 <script src="{% static 'assets/js/popper.min.js' %}"></script>
 <script src="{% static 'assets/js/toolkit.js' %}"></script>
 <script src="{% static 'assets/js/application.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
 <script>
   // execute/clear BS loaders for docs
   $(function(){while(window.BS&&window.BS.loader&&window.BS.loader.length){(window.BS.loader.pop())()}})
@@ -388,6 +406,9 @@
 <script src="https://kit.fontawesome.com/b99cce5dfd.js"></script>
 
 {% render_bundle 'main' 'js' %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+<script src="{% static 'dashboard.js' %}"></script></body>
 
 </body>
 </html>
