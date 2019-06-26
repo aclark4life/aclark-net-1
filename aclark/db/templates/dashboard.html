@@ -86,22 +86,22 @@
           {% endif %}
         </ul>
 {% if request.user.is_staff %}
+        {% if reports.items.reports %}
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center text-muted">
           <span>Saved reports</span>
           <a class="d-flex align-items-center text-muted" href="{% url 'report_edit' %}">
             <span data-feather="plus-circle"></span>
           </a>
         </h6>
+        {% endif %}
         <ul class="nav flex-column mb-2">
-          {% for report in reports %}
-          {% if report.id %}
+          {% for report in reports.items.reports %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'report_view' report.id %}">
               <span data-feather="file-text"></span>
               {{ report }}
             </a>
           </li>
-          {% endif %}
           {% endfor %}
         </ul>
 {% endif %}
