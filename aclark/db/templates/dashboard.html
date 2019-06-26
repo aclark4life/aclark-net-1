@@ -35,9 +35,21 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="{% url 'contact_index' %}">
+              <span data-feather="users"></span>
+              Contacts
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="{% url 'project_index' %}">
-              <span data-feather="shopping-cart"></span>
+              <span data-feather="folder"></span>
               Projects
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'note_index' %}">
+              <span data-feather="folder"></span>
+              Notes
             </a>
           </li>
           <li class="nav-item">
@@ -56,6 +68,24 @@
             <a class="nav-link" href="{% url 'invoice_index' %}">
               <span data-feather="layers"></span>
               Invoices
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'estimate_index' %}">
+              <span data-feather="layers"></span>
+              Estimates
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'time_index' %}">
+              <span data-feather="clock"></span>
+              Times
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'task_index' %}">
+              <span data-feather="activity"></span>
+              Tasks
             </a>
           </li>
           {% endif %}
@@ -138,11 +168,6 @@
 {% endblock %}
 
 
-            <a class="btn btn-outline-dark" style="text-decoration: none" href="{% url 'time_index' %}"><i class="fas fa-user-clock fa-3x p-1"></i><p class="p-0 m-0">Times</p></a>
-            <a class="btn btn-outline-dark" style="text-decoration: none" href="{% url 'contact_index' %}"><i class="fas fa-address-card fa-3x p-1"></i><p class="p-0 m-0">Contacts</p></a>
-            <a class="btn btn-outline-dark" style="text-decoration: none" href="{% url 'estimate_index' %}"><i class="fa fa-file-invoice fa-3x p-1"></i><p class="p-0 m-0">Estimates</p></a>
-            <a class="btn btn-outline-dark" style="text-decoration: none" href="{% url 'note_index' %}"><i class="fas fa-file-alt fa-3x p-1"></i><p class="p-0 m-0">Notes</p></a>
-            <a class="btn btn-outline-dark" style="text-decoration: none" href="{% url 'task_index' %}"><i class="fa fa-tasks fa-3x p-1"></i><p class="p-0 m-0">Tasks</p></a>
             <a class="btn btn-outline-dark" style="text-decoration: none" href="/api" target="_blank"><i class="fa fa-terminal fa-3x p-1"></i><p class="p-0 m-0">API</p></a>
             <a class="btn btn-outline-dark" style="text-decoration: none" href="{% url 'admin:index' %}" target="_blank"><i class="fab fa-python fa-3x p-1"></i><p class="p-0 m-0">Admin</p></a>
             <a class="btn btn-outline-dark" style="text-decoration: none" href="https://github.com/aclark-net/aclark-net-1" target="_blank"><i class="fab fa-github fa-3x p-1"></i><p class="p-0 m-0">GitHub</p></a>
