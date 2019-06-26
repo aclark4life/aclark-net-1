@@ -1,4 +1,4 @@
-ACLARK.NET, LLC website
+ACLARK.NET, LLC Website
 ================================================================================
 
 .. image:: Screenshot-2019-06-26-18.19.19.png
@@ -32,4 +32,5 @@ Issues
 
 ::
 
-    pip install --install-option="--include-path=/usr/local/include/" --install-option="--library-path=/usr/local/lib/" pygraphviz
+    pip install --install-option="--include-path=/usr/local/include/" \
+        --install-option="--library-path=/usr/local/lib/" pygraphviz
