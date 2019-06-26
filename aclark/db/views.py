@@ -371,6 +371,14 @@ def home(request):
         user_model=User,
         request=request,
     )
+    reports = get_index_items(
+        model=Report,
+        app_settings_model=SettingsApp,
+        order_by=("-date", ),
+        request=request,
+        search_fields=("id", "name", "gross", "net"),
+    )
+    context['reports'] = reports
     return render(request, "dashboard.html", context)
 
 
