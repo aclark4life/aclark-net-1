@@ -12,8 +12,7 @@ COLOR_CHOICES = (
     ("white", "White"),
 )
 
-DASHBOARD_ITEMS = (("tools", "Tools"), ("times", "Times"), ("totals",
-                                                            "Totals"))
+DASHBOARD_ITEMS = (("times", "Times"), ("totals", "Totals"))
 
 EDITOR_CHOICES = (("ckeditor", "CKEditor"), ("tinymce", "TinyMCE"))
 
