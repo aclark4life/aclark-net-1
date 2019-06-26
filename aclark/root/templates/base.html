@@ -179,7 +179,7 @@
         </li>
         {% if request.user.is_authenticated %}
         <li class="nav-item px-1 dropdown dropleft">
-          <a id="user-menu" class="nav-link {% if services_nav %}border-bottom {% endif %}" href="{% url 'dashboard' %}"><i class="far fa-user-circle"></i></a>
+          <a id="user-menu" class="nav-link" href="{% url 'dashboard' %}"><i class="far fa-user-circle"></i></a>
           <div class="dropdown-menu text-capitalize" aria-labelledby="navbarDropdown">
             <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
             <a class="nav-link" href="{% url 'user_view' request.user.id  %}">Profile</a>
