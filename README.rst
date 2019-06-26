@@ -18,8 +18,10 @@ Installation
 
 ::
 
-    git clone
+    git clone git@github.com:aclark4life/aclarknet.git
+    cd aclarknet
     make virtualenv
+    source bin/activate
     make install
     make django-serve
 
