@@ -128,7 +128,6 @@
 
 <div class="stage" id="stage">
 
-{% include 'messages.html' %}
 
 <div class="block block-inverse app-header" 
      style="background-color: #3883AC; background-position: -40px 0px;  padding-bottom: 2rem; margin-bottom: 0; background-image: url({% static 'startup-1.jpg' %}); background-repeat: repeat-x">
@@ -191,14 +190,9 @@
       </ul>
     </div>
   </nav>
-
-
 </div>
-
-
 </div>
-
-
+{% include 'messages.html' %}
 {% block content %}
 {% include 'carousel.html' %}
     <div class="block m-0 py-4 app-price-plans">
@@ -411,6 +405,21 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
 <script src="{% static 'dashboard.js' %}"></script></body>
+
+<script type="text/javascript">
+
+$(document).ready(function () {
+
+/* https://stackoverflow.com/a/32630356 */
+ 
+window.setTimeout(function() {
+    $(".alert").fadeTo(250, 0).slideUp(250, function(){
+        $(this).remove(); 
+    });
+}, 1000);
+ 
+});
+</script>
 
 </body>
 </html>

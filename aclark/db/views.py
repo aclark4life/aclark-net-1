@@ -272,7 +272,7 @@ def estimate_view(request, pk=None):
         message_plain = "Title"
         message_subject = "Subject"
         mail_send(message=message_plain, subject=message_subject)
-        messages.add_message(request, messages.INFO, "Estimate sent!")
+        messages.add_message(request, messages.INFO, "Estimate sent")
         return render(request, "estimate_view.html", context)
     else:
         return render(request, "estimate_view.html", context)
@@ -435,10 +435,10 @@ def login(request):
         if user is not None:
             # https://stackoverflow.com/a/39316967/185820
             auth_login(request, user)
-            messages.add_message(request, messages.INFO, "Login succeeded!")
+            messages.add_message(request, messages.INFO, "Login succeeded")
             return HttpResponseRedirect(reverse("home"))
         else:
-            messages.add_message(request, messages.WARNING, "Login failed.")
+            messages.add_message(request, messages.WARNING, "Login failed")
             return HttpResponseRedirect(reverse("home"))
     return render(request, "login.html", context)
 
@@ -446,6 +446,7 @@ def login(request):
 def logout(request):
     auth_logout(request)
     # Redirect to a success page.
+    messages.add_message(request, messages.INFO, "Logout succeeded")
     return HttpResponseRedirect(reverse("home"))
 
 
@@ -495,7 +496,7 @@ def note_view(request, pk=None):
                 message=message_plain,
                 subject=message_subject,
             )
-            messages.add_message(request, messages.INFO, "Note sent!")
+            messages.add_message(request, messages.INFO, "Note sent")
         elif context["pdf"]:
             filename = ".".join([filename, "pdf"])
             return render_pdf(context,
@@ -560,7 +561,7 @@ def project_view(request, pk=None):
     )
     if context["mail"]:
         mail_proc(context["item"], request)
-        messages.add_message(request, messages.INFO, "Reminder(s) sent!")
+        messages.add_message(request, messages.INFO, "Reminder(s) sent")
         return render(request, "project_view.html", context)
     else:
         return render(request, "project_view.html", context)
@@ -636,7 +637,7 @@ def report_view(request, pk=None):
         message = context["email_message"]
         subject = context["email_subject"]
         mail_send(message=message, subject=subject)
-        messages.add_message(request, messages.INFO, "Report sent!")
+        messages.add_message(request, messages.INFO, "Report sent")
         return render(request, "report_view.html", context)
     else:
         return render(request, "report_view.html", context)
