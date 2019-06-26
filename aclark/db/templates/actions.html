@@ -32,8 +32,9 @@
 
                   {% if request.user.is_staff %}{% if model_name == 'project' %}<a class="dropdown-item" href="{% url 'project_view' item.pk %}?mail=true"><i class="fas fa-clock"></i> Remind</a>{% endif %}{% endif %}
 
-                  <div class="dropdown-divider"></div>
 
-                  {% if request.user.is_staff and model_name == 'note' %}<a class="dropdown-item" href="{% url view_url item.pk %}?doc=true"><i class="far fa-file-word"></i> Export</a>{% endif %}
+                  {% if request.user.is_staff and model_name == 'note' %}
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="{% url view_url item.pk %}?doc=true"><i class="far fa-file-word"></i> Export</a>{% endif %}
                   {% if request.user.is_staff and model_name != 'contract' %}<a class="dropdown-item" href="{% url view_url item.pk %}?pdf=true" target="_blank"><i class="far fa-file-pdf"></i> Export</a>{% endif %}
                   {% if request.user.is_staff %}{% if model_name == 'estimate' or model_name == 'report' or model_name == 'note' %}<a class="dropdown-item" href="{% url view_url item.pk %}?mail=true"><i class="fas fa-at"></i> Export</a>{% endif %}{% endif %}

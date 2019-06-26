@@ -1,28 +1,19 @@
 {% extends 'dashboard.html' %}
 {% load l10n %}
 {% block dashboard %}
-
   <div class="container">
-    <div class="row my-5">
+    <div class="row">
       <div class="col-12">
-        <h1>Invoices</h1>
-      </div>
-    </div>
-    <div class="row my-5">
-      <div class="col-12 card text-dark">
 {% with items=items.invoices %}
 {% include 'search.html' %}
 {% include 'pagination.html' %}
 {% with item_type='estimate' %}
- 
 {% include 'invoice_table.html' %}
 {% endwith %}
 {% include 'search.html' %}
 {% include 'pagination.html' %}
 {% endwith %}
-
       </div>
     </div>
   </div>
-
 {% endblock %}

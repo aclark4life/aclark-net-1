@@ -1,13 +1,8 @@
 {% extends 'dashboard.html' %}
 {% block dashboard %}
   <div class="container">
-    <div class="row my-5">
+    <div class="row">
       <div class="col-12">
-        <h1>Reports</h1>
-      </div>
-    </div>
-    <div class="row my-5">
-      <div class="col-12 card text-dark">
 {% with items=items.reports %}
 {% include 'search.html' %}
 {% include 'pagination.html' %}
