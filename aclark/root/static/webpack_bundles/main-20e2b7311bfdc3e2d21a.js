@@ -13338,9 +13338,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__docs_assets_js_application_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__docs_assets_js_application_js__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__docs_assets_js_toolkit_js__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__docs_assets_js_toolkit_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__docs_assets_js_toolkit_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_jquery_dist_jquery_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_jquery_dist_jquery_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_jquery_dist_jquery_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_popper_js_dist_popper_js__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__dashboard_js__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__dashboard_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__dashboard_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_jquery_dist_jquery_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_jquery_dist_jquery_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_jquery_dist_jquery_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_popper_js_dist_popper_js__ = __webpack_require__(17);
+
 
 
 
@@ -22939,6 +22942,65 @@ var Stage = function ($) {
 
 /***/ }),
 /* 16 */
+/***/ (function(module, exports) {
+
+/* globals Chart:false, feather:false */
+
+(function () {
+  'use strict'
+
+  feather.replace()
+
+  // Graphs
+  var ctx = document.getElementById('myChart')
+  // eslint-disable-next-line no-unused-vars
+  var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: [
+        'Sunday',
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday'
+      ],
+      datasets: [{
+        data: [
+          15339,
+          21345,
+          18483,
+          24003,
+          23489,
+          24092,
+          12034
+        ],
+        lineTension: 0,
+        backgroundColor: 'transparent',
+        borderColor: '#007bff',
+        borderWidth: 4,
+        pointBackgroundColor: '#007bff'
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: false
+          }
+        }]
+      },
+      legend: {
+        display: false
+      }
+    }
+  })
+}())
+
+
+/***/ }),
+/* 17 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

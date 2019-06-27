@@ -10,6 +10,7 @@ import './signin.css';
 import './aclark.js';
 import './docs/assets/js/application.js';
 import './docs/assets/js/toolkit.js';
+import './dashboard.js';
 import 'jquery/dist/jquery.js';
 import 'popper.js/dist/popper.js';
 
