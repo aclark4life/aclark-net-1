@@ -13322,23 +13322,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap_table___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_bootstrap_table__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__aclark_css__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__aclark_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__aclark_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dashboard_css__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dashboard_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__dashboard_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dist_toolkit_startup_min_css__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dist_toolkit_startup_min_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__dist_toolkit_startup_min_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__docs_assets_css_application_startup_css__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__docs_assets_css_application_startup_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__docs_assets_css_application_startup_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__signin_css__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__signin_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__signin_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__aclark_js__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__aclark_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__aclark_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__docs_assets_js_application_js__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__docs_assets_js_application_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__docs_assets_js_application_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__docs_assets_js_toolkit_js__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__docs_assets_js_toolkit_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__docs_assets_js_toolkit_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_jquery_dist_jquery_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_jquery_dist_jquery_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_jquery_dist_jquery_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_popper_js_dist_popper_js__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__carousel_css__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__carousel_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__carousel_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dashboard_css__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dashboard_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__dashboard_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dist_toolkit_startup_min_css__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dist_toolkit_startup_min_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__dist_toolkit_startup_min_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__docs_assets_css_application_startup_css__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__docs_assets_css_application_startup_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__docs_assets_css_application_startup_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__signin_css__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__signin_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__signin_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__aclark_js__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__aclark_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__aclark_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__docs_assets_js_application_js__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__docs_assets_js_application_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__docs_assets_js_application_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__docs_assets_js_toolkit_js__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__docs_assets_js_toolkit_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__docs_assets_js_toolkit_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_jquery_dist_jquery_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_jquery_dist_jquery_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_jquery_dist_jquery_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_popper_js_dist_popper_js__ = __webpack_require__(16);
+
 
 
 
@@ -17851,6 +17854,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 /* 12 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {
@@ -17865,7 +17874,7 @@ window.setTimeout(function() {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {
@@ -17963,7 +17972,7 @@ $(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery, $, Popper) {/*!
@@ -22929,7 +22938,7 @@ var Stage = function ($) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(0), __webpack_require__(2)["default"]))
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
