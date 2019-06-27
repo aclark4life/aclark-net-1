@@ -19,6 +19,7 @@
 .dropdown:hover>.dropdown-menu {
   display: block;
   background: #262E35;
+  margin: 0;
 }
 
 /* https://bootstrapthemes.co/demo/resource/bootstrap-4-multi-dropdown-hover-navbar/ */
