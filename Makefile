@@ -408,8 +408,8 @@ virtualenv-3-7:
 webpack:
 	./node_modules/js-beautify/js/bin/js-beautify.js -r ./webpack.config.js
 	./node_modules/js-beautify/js/bin/js-beautify.js -r $(PROJECT)/root/static/index.js
-	rm -rf $(PROJECT)/$(APP)/static/webpack_bundles
+	rm -rf $(PROJECT)/root/static/webpack_bundles
 	./node_modules/.bin/webpack
-	git add $(PROJECT)/$(APP)/static/webpack_bundles
+	git add $(PROJECT)/root/static/webpack_bundles
 d:
 	eb deploy

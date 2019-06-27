@@ -21,67 +21,9 @@
     </title>
     
     <link href='https://fonts.googleapis.com/css?family=Lora:400,400italic|Work+Sans:300,400,500,600' rel='stylesheet' type='text/css'>
-    <link href="{% static 'assets/css/toolkit-startup.css' %}" rel="stylesheet">
-    <link href="{% static 'assets/css/application-startup.css' %}" rel="stylesheet">
-    <link href="{% static 'carousel.css' %}" rel="stylesheet">
-    <link href="{% static 'dashboard.css' %}" rel="stylesheet">
-    <link href="{% static 'signin.css' %}" rel="stylesheet">
-
     <link href="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js">
 
     {% render_bundle 'main' 'css' %}
-
-    <style>
-      /* note: this is a hack for ios iframe for bootstrap themes shopify page */
-      /* this chunk of css is not part of the toolkit :) */
-      /* …curses ios, etc… */
-      @media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
-        body {
-          width: 1px;
-          min-width: 100%;
-          *width: 100%;
-        }
-        #stage {
-          height: 1px;
-          overflow: auto;
-          min-height: 100vh;
-          -webkit-overflow-scrolling: touch;
-        }
-      }
-
-      /* https://stackoverflow.com/a/42183824/185820 */
-      .dropdown:hover>.dropdown-menu {
-        display: block;
-        background: #262E35;
-      }
-
-      /* https://bootstrapthemes.co/demo/resource/bootstrap-4-multi-dropdown-hover-navbar/ */
-      .dropdown-menu {
-          padding: 0px 0; 
-          margin: 0 0 0; 
-          border: 0px solid transition !important;
-          border: 0px solid rgba(0,0,0,.15);	
-          border-radius: 2px;
-          -webkit-box-shadow: none !important;
-          box-shadow: none !important;
-
-      }
-      .dropdown-menu a {
-        color: white; 
-      }
-
-      .dropdown-menu a:hover {
-        background: white; 
-        color: black;
-      }
-      .nav-link:hover {
-        border-bottom: 1px solid white;
-      }
-      #user-menu {
-        border-bottom: none;
-      }
-
-    </style>
 
     {% block head %}
     {% endblock %}
@@ -388,38 +330,11 @@
 
 </div>
 
-<script src="{% static 'assets/js/jquery.min.js' %}"></script>
-<script src="{% static 'assets/js/popper.min.js' %}"></script>
-<script src="{% static 'assets/js/toolkit.js' %}"></script>
-<script src="{% static 'assets/js/application.js' %}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
-<script>
-  // execute/clear BS loaders for docs
-  $(function(){while(window.BS&&window.BS.loader&&window.BS.loader.length){(window.BS.loader.pop())()}})
-</script>
-
-<script src="https://kit.fontawesome.com/b99cce5dfd.js"></script>
-
 {% render_bundle 'main' 'js' %}
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
-<script src="{% static 'dashboard.js' %}"></script></body>
-
-<script type="text/javascript">
-
-$(document).ready(function () {
-
-/* https://stackoverflow.com/a/32630356 */
- 
-window.setTimeout(function() {
-    $(".alert").fadeTo(250, 0).slideUp(250, function(){
-        $(this).remove(); 
-    });
-}, 1000);
- 
-});
-</script>
+<script src="https://kit.fontawesome.com/b99cce5dfd.js"></script>
 
 </body>
 </html>

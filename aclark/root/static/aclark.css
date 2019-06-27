@@ -1,0 +1,48 @@
+/* note: this is a hack for ios iframe for bootstrap themes shopify page */
+/* this chunk of css is not part of the toolkit :) */
+/* …curses ios, etc… */
+@media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
+  body {
+    width: 1px;
+    min-width: 100%;
+    *width: 100%;
+  }
+  #stage {
+    height: 1px;
+    overflow: auto;
+    min-height: 100vh;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* https://stackoverflow.com/a/42183824/185820 */
+.dropdown:hover>.dropdown-menu {
+  display: block;
+  background: #262E35;
+}
+
+/* https://bootstrapthemes.co/demo/resource/bootstrap-4-multi-dropdown-hover-navbar/ */
+.dropdown-menu {
+    padding: 0px 0; 
+    margin: 0 0 0; 
+    border: 0px solid transition !important;
+    border: 0px solid rgba(0,0,0,.15);   
+    border-radius: 2px;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+
+}
+.dropdown-menu a {
+  color: white; 
+}
+
+.dropdown-menu a:hover {
+  background: white; 
+  color: black;
+}
+.nav-link:hover {
+  border-bottom: 1px solid white;
+}
+#user-menu {
+  border-bottom: none;
+}
