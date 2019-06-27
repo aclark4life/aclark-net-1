@@ -1,0 +1,35 @@
+<div class="stage-shelf stage-shelf-right hidden" id="sidebar">
+  <ul class="nav nav-bordered nav-stacked flex-column">
+    <li class="nav-header"><a style="text-decoration: none" href="{% url 'home' %}">Home</a></li>
+    <li class="nav-header"><a style="text-decoration: none" href="{% url 'about' %}">About</a></li>
+    <li class="nav-item d-none d-md-block">
+      <a class="nav-link" href="{% url 'home' %}#mission">Mission</a>
+    </li>
+    <li class="nav-item d-none d-md-block">
+      <a class="nav-link" href="{% url 'home' %}#pillow">Pillow</a>
+    </li>
+    <li class="nav-item d-none d-md-block">
+      <a class="nav-link" href="{% url 'home' %}#technology">Technology</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'testimonials' %}">Testimonials</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'team' %}">Team</a>
+    </li>
+    <li class="nav-divider d-none d-md-block"></li>
+    <li class="nav-header"><a style="text-decoration: none" href="{% url 'services' %}">Services</a></li>
+    <li class="nav-item d-none d-md-block">
+      <a class="nav-link" href="{% url 'services' %}#consulting">Consulting</a>
+    </li>
+    <li class="nav-item d-none d-md-block">
+      <a class="nav-link" href="{% url 'services' %}#software">Software</a>
+    </li>
+    <li class="nav-item d-none d-md-block">
+      <a class="nav-link" href="{% url 'services' %}#systems">Systems</a>
+    </li>
+    <li class="nav-divider d-none d-md-block"></li>
+    <li class="nav-header"><a style="text-decoration: none" href="{% url 'clients' %}">Clients</a></li>
+    <li class="nav-header"><a style="text-decoration: none" href="{% url 'contact' %}">Contact Us</a></li>
+  </ul>
+</div>
