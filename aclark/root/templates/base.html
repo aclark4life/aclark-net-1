@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Python programming &amp; more since 2004.">
+    <meta name="description" content="Professional Python&reg; and open source consulting &amp; programming since 2004">
     <meta name="keywords" content="Python">
     <meta name="author" content="Alex Clark">
     <meta property="og:url" content="https://aclark.net/" />
@@ -14,10 +14,10 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="ACLARK.NET" />
     <meta property="og:image" content="https://aclark.net/static/iStock-1132941044.jpg" />
-    <meta property="og:description" content="Python programming &amp; and more since 2004." />
+    <meta property="og:description" content="Professional Python&reg; and open source consulting &amp; programming since 2004" />
     <meta property="fb:app_id" content="2346672928993828" />
     <title>
-      ACLARK.NET &middot; Python programming &amp; more since 2004.
+        ACLARK.NET &middot; Professional Python&reg; and open source consulting &amp; programming since 2004
     </title>
     <link href='https://fonts.googleapis.com/css?family=Lora:400,400italic|Work+Sans:300,400,500,600' rel='stylesheet' type='text/css'>
 {% render_bundle 'main' 'css' %}
@@ -52,7 +52,7 @@
     <div class="container py-4 fixed-top app-navbar">
     <nav class="navbar navbar-transparent navbar-padded navbar-expand-md">
       <a class="navbar-brand mr-auto" href="{% url 'home' %}">
-        <span class="border border-light p-3" style="font-size: 120%">ACLARK.NET, LLC</span>
+        <span class="border border-light p-3" style="font-size: 120%">ACLARK.NET</span>
       </a>
       <button
         class="navbar-toggler"
@@ -110,6 +110,12 @@
 </div>
 
 {% block content %}
+
+<div class="block app-ribbon py-5">
+  <div class="container text-xs-center"> 
+    <h5 class="text-white pb-4 text-uppercase">Professional Python&reg; and open source consulting &amp; programming since 2004</h5>
+  </div>
+</div>
 
 {% include 'carousel.html' %}
 
