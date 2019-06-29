@@ -419,3 +419,12 @@ pip-upgrade:
 	mv -f $(TMP)/requirements.txt .
 	pip install -U -r requirements.txt
 	$(MAKE) pip-freeze
+
+# https://rst2pdf.org/examples.html
+s:
+	# rst2pdf --stylesheets=dark.style services.rst -o services-dark.pdf
+	# rst2pdf --stylesheets=light.style services.rst -o services-light.pdf
+	rst2pdf --stylesheets=simple.style services.rst -o services.pdf
+	# open services-dark.pdf
+	# open services-light.pdf
+	open services.pdf
