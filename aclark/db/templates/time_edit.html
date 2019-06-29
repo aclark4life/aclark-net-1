@@ -5,8 +5,7 @@
       <div class="col-12">
         <form action="" method="post">{% csrf_token %}
         {{ form|crispy }}
-        <input class="btn btn-primary btn-lg" type="submit" value="Submit">
-        <a class="btn btn-secondary btn-lg btn-outline-dark" href="{{ request.META.HTTP_REFERER }}">Cancel</a>  <!-- http://stackoverflow.com/a/4406484 -->
+{% include 'save.html' %}
         </form>
       </div>
     </div>
