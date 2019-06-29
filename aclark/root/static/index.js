@@ -1,10 +1,10 @@
-import 'bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-table';
 import './aclark.css';
 import './carousel.css';
 import './dashboard.css';
-import './dist/toolkit-startup.min.css';
+import './dist/toolkit-startup.css';
 import './docs/assets/css/application-startup.css';
 import './signin.css';
 import './aclark.js';
