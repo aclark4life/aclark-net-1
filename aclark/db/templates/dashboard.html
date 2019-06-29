@@ -91,37 +91,24 @@
 {% endif %}
         </ul>
 {% if request.user.is_staff %}
+
+        {% if reports.items.reports %}
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
           <span>Saved reports</span>
-          <a class="d-flex align-items-center text-muted" href="#">
+          <a class="d-flex align-items-center text-muted" href="{% url 'report_edit' %}">
             <span data-feather="plus-circle"></span>
           </a>
         </h6>
+        {% endif %}
         <ul class="nav flex-column mb-2">
+{% for report in reports.items.reports %}
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'report_view' report.id %}">
               <span data-feather="file-text"></span>
-              Current month
+              {{ report.name|default:'Untitled report' }}
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text"></span>
-              Last quarter
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text"></span>
-              Social engagement
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text"></span>
-              Year-end sale
-            </a>
-          </li>
+{% endfor %}
         </ul>
 {% endif %}
       </div>
