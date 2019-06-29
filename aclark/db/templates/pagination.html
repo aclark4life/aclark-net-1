@@ -1,17 +1,27 @@
-          <!-- https://stackoverflow.com/a/1070414/185820 -->
-          <div class="row px-5 m-3">
-            <div class="col-md-7 mx-auto border rounded btn-outline-dark bg-light text-dark">
-              {% if items.paginator %} <!-- Paginated -->
-              Items {{ items.start_index }} to {{ items.end_index }} of {{ items.paginator.count }}
-              {% if items.has_previous %} <a class="btn" href="?page=1"><i class="fa fa-step-backward"></i></a> <a class="btn" href="?page={{ items.previous_page_number }}"><i class="fa fa-chevron-circle-left"></i></a> {% else %} <button class="btn" disabled><i class="fa fa-step-backward"></i></button> <button class="btn" disabled><i class="fa fa-chevron-circle-left"></i></button> {% endif %}
-              Page {{ items.number }} of {{ items.paginator.num_pages }}
-              {% if items.has_next %} <a class="btn" href="?page={{ items.next_page_number }}"><i class="fa fa-chevron-circle-right"></i></a> <a class="btn" href="?page={{ items.paginator.num_pages }}"><i class="fa fa-step-forward"></i></a> {% else %} <button class="btn" disabled><i class="fa fa-chevron-circle-right"></i></button> <button class="btn" disabled><i class="fa fa-step-forward"></i></button>
-              {% endif %}
-              <a class="btn" href="?paginated=false">Show all</a>
-              {% else %}<!-- Single page -->
-              {% if items.count %}Items 1 to {{ items.count }} of {{ items.count }}{% else %}Items 0 to {{ items.count }} of {{ items.count }}{% endif %}
-              <button class="btn" disabled><i class="fa fa-step-backward"></i></button> <button class="btn" disabled><i class="fa fa-chevron-circle-left"></i></button> <span>Page 1 of 1</span> <button class="btn" disabled><i class="fa fa-chevron-circle-right"></i></button> <button class="btn" disabled><i class="fa fa-step-forward"></i></button>
-              <a class="btn m-1" href="?paginated=true">Show paginated</a>
-              {% endif %}
-            </div>
+    <!-- https://www.codeply.com/go/U3sXVBzDK4/bootstrap-4-center-btn-toolbar -->
+    <div class="text-center">
+      <div class="d-inline-block">
+        <div class="btn-toolbar my-3" role="toolbar" aria-label="Toolbar with button groups">
+          <div class="btn-group btn-group-lg mr-2" role="group" aria-label="First group">
+            <!-- Paginated -->
+            <!-- Item count -->
+            {% if items.paginator %}<button type="button" class="btn btn-dark" disabled>Items {{ items.start_index }} to {{ items.end_index }} of {{ items.paginator.count }}</button>{% endif %}
+            {% if not items.paginator %}{% if items.count %}<button type="button" class="btn btn-dark" disabled>Items 1 to {{ items.count }} of {{ items.count }}{% else %}Items 0 to {{ items.count }} of {{ items.count }}</button>{% endif %}{% endif %}
+            <!-- Next/Prev -->
+            {% if items.has_previous %}<a class="btn btn-dark" href="?page=1"><i class="fa fa-step-backward"></i></a> <a class="btn btn-dark" href="?page={{ items.previous_page_number }}"><i class="fa fa-chevron-circle-left"></i></a>{% endif %}
+            {% if not items.has_previous %}<button class="btn btn-dark" disabled><i class="fa fa-step-backward"></i></button> <button class="btn btn-dark" disabled><i class="fa fa-chevron-circle-left"></i></button>{% endif %}
+            <!-- Next/Prev -->
+            {% if items.has_next %}<a class="btn btn-dark" href="?page={{ items.next_page_number }}"><i class="fa fa-chevron-circle-right"></i></a> <a class="btn btn-dark" href="?page={{ items.paginator.num_pages }}"><i class="fa fa-step-forward"></i></a>{% endif %}
+            {% if not items.has_next %}<button class="btn btn-dark" disabled><i class="fa fa-chevron-circle-right"></i></button><button class="btn btn-dark" disabled><i class="fa fa-step-forward"></i></button>{% endif %}
+            <!-- Which page -->
+            {% if items.paginator %}<button class="btn btn-dark" disabled>Page {{ items.number }} of {{ items.paginator.num_pages }}</button>{% endif %}
+            {% if not items.paginator %}<button class="btn btn-dark" disabled>Page 1 of 1</button>{% endif %}
           </div>
+          <div class="btn-group btn-group-lg mr-2" role="group" aria-label="Second group">
+            <!-- Show all or paginated -->
+            {% if items.paginator %}<a class="btn btn-dark" href="?paginated=false">Show all</a>{% endif %}
+            {% if not items.paginator %}<a class="btn btn-dark" href="?paginated=true">Show paginated</a>{% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
