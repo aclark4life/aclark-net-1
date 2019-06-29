@@ -1,10 +1,12 @@
 {% load humanize %}
-                <table data-toggle="table"> 
+    <div class="text-right">
+      <div class="d-inline-block">
+                <table data-toggle="table" class="w-25"> 
                   <thead>
                     {% if request.user.is_staff %}<th>Cost</th>{% endif %}
                     {% if request.user.is_staff %}<th>Gross</th>{% endif %}
                     {% if request.user.is_staff %}<th>Net</th>{% endif %}
-                    {% if not request.user.is_staff %}<th>Hours</th>{% endif %}
+                    {% if not request.user.is_staff %}<th>Total Current Hours</th>{% endif %}
                   </thead>
                   <tbody>
                     <tr>
@@ -15,3 +17,5 @@
                     </tr>
                   </tbody>
                 </table>
+              </div>
+              </div>
