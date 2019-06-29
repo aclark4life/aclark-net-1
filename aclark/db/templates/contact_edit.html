@@ -1,11 +1,9 @@
 {% extends 'dashboard.html' %}
 {% load crispy_forms_tags %}
 {% block dashboard %}
-
   <div class="container">
-    <div class="row my-5">
+    <div class="row">
       <div class="col-12">
-        <h1>Contact</h1>
         <div class="alert alert-warning">
           <strong>Enter a valid phone number.</strong> Please use <a href="https://en.wikipedia.org/wiki/E.164" target="_blank">E.164 format</a> to enter phone numbers e.g. +13015551212.
         </div>
@@ -17,9 +15,7 @@
       </div>
     </div>
   </div>
-
 {% endblock %}
-
-{% block js %}
+{% block script %}
 {% include 'tinymce.html' %}
 {% endblock %}

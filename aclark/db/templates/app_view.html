@@ -2,12 +2,6 @@
 {% block app_graph %}
 {% endblock %}
 {% block dashboard %}
-  <div class="container">
-    <div class="row">
-      <div class="col-12 ml-auto">
-        <a class="btn btn-lg btn-primary" href="{% url 'app_edit' %}">Edit</a>
-      </div>
-    </div>
     <div class="row">
       <div class="col-12">
         <ul class="nav nav-tabs">
@@ -20,10 +14,5 @@
         </ul>
       </div>
     </div>
-    <div class="row">
-      <div class="col-12 card text-dark">
 {% include 'item_table.html' %}
-      </div>
-    </div>
-  </div>
 {% endblock %}

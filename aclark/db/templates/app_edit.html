@@ -1,11 +1,9 @@
 {% extends 'dashboard.html' %}
 {% load crispy_forms_tags %}
 {% block dashboard %}
-
   <div class="container">
-    <div class="row my-5">
+    <div class="row">
       <div class="col-12">
-        <h1>Settings</h1>
         <ul class="nav nav-tabs">
           <li class="nav-item">
             <a class="nav-link {% if active_nav == 'Settings App' %}active{% endif %}" href="{% url 'app_view' %} ">App</a>

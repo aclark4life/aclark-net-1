@@ -1,11 +1,9 @@
 {% extends 'dashboard.html' %}
 {% load crispy_forms_tags %}
 {% block dashboard %}
-
   <div class="container">
-    <div class="row my-5">
+    <div class="row">
       <div class="col-12">
-        <h1>Project</h2>
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
           <strong>Note</strong> Only active users can be added to Project &rarr; team.
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -21,7 +19,6 @@
     </div>
   </div>
 {% endblock %}
-
-{% block js %}
+{% block script %}
 {% include 'tinymce.html' %}
 {% endblock %}

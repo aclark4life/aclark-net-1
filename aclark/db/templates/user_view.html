@@ -2,22 +2,12 @@
 {% block app_graph %}
 {% endblock %}
 {% block dashboard %}
-  <div class="container">
     <div class="row">
-      <div class="col-12">
-        <!-- http://getbootstrap.com/docs/4.0/components/dropdowns/#split-button-dropdowns -->
-        <a class="btn btn-lg btn-primary" href="{% url 'user_edit' pk=item.pk %}">Edit</a>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <div class="card">
-{% include 'item_table.html' %}
+      <div class="col-12 py-3">
+        <div class="btn-group float-right">
+          <a class="btn btn-lg btn-outline-dark" href="{% url 'user_edit' %}">Edit</a>
         </div>
       </div>
     </div>
-  </div>
-
-</div>
-
+{% include 'item_table.html' %}
 {% endblock %}

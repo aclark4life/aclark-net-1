@@ -1,12 +1,10 @@
 {% extends 'dashboard.html' %}
 {% load crispy_forms_tags %}
 {% block dashboard %}
-
   <div class="block-xs-middle pb-5">
     <div class="container">
-      <div class="row my-5">
+      <div class="row">
         <div class="col-12">
-          <h1>{% if request.user.is_staff %}<a class="text-dark" href="{% url 'user_index' %}">Users</a>{% else %}Users{% endif %} &rarr; <a class="text-dark" href="{% url 'user_view' pk=item.user.pk %}">{{ item.user.get_full_name|default:item.user }}</a> &rarr; Edit</h1>
           <form action="" method="post">{% csrf_token %}
             {{ form|crispy }}
             <input class="btn btn-lg btn-primary" type="submit" value="Save User">
@@ -16,8 +14,7 @@
       </div>
     </div>
   </div>
-
 {% endblock %}
-{% block js %}
+{% block script %}
 {% include 'tinymce.html' %}
 {% endblock %}

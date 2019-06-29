@@ -3,65 +3,27 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <!-- http://getbootstrap.com/docs/4.0/components/dropdowns/#split-button-dropdowns -->
-        <div class="btn-group float-right dropdown">
+        <div class="btn-group dropdown">
           <a class="btn btn-lg btn-primary" href="{% url 'client_edit' pk=item.pk %}">Edit</a>
           <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="sr-only">Toggle Dropdown</span>
           </button>
-          <div class="dropdown-menu dropdown-menu-right">
+          <div class="dropdown-menu">
 {% include 'actions.html' %}
           </div>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12 mt-5 card text-dark">
-        <h2>Address</h2>
-        <div class="card-body">
-          <address>{{ item.address|linebreaks }}</address>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12 mt-5 card">
-        <h2 class="my-1"><a href="{% url 'contact_index' %}" class="text-dark">Contacts</a></h2>
+    <address>{{ item.address|linebreaks }}</address>
 {% include 'contact_table.html' %}
-      </div>
-    </div>
-    <!-------------------------------------------------------------------------------->
-    <div class="row">
-      <div class="col-md-12 mt-5 card">
-        <h2 class="my-1"><a href="{% url 'estimate_index' %}" class="text-dark">Estimates</a></h2>
-          {% with items=items.estimates view_url='estimate_view' edit_url='estimate_edit' item_type='estimate' %}
+{% with items=items.estimates view_url='estimate_view' edit_url='estimate_edit' item_type='estimate' %}
 {% include 'invoice_table.html' %}
-          {% endwith %}
-      </div>
-    </div>
-    <!-------------------------------------------------------------------------------->
-    <div class="row">
-      <div class="col-md-12 mt-5 card">
-        <h2 class="my-1"><a href="{% url 'invoice_index' %}" class="text-dark">Invoices</a></h2>
-          {% with items=items.invoices view_url='invoice_view' edit_url='invoice_edit' item_type='invoice' %}
+{% endwith %}
+{% with items=items.invoices view_url='invoice_view' edit_url='invoice_edit' item_type='invoice' %}
 {% include 'invoice_table.html' %}
-          {% endwith %}
-      </div>
-    </div>
-    <!-------------------------------------------------------------------------------->
-    <div class="row">
-      <div class="col-md-12 mt-5 card">
-        <h2 class="my-1"><a href="{% url 'note_index' %}" class="text-dark">Notes</a></h2>
+{% endwith %}
 {% include 'note_table.html' %}
-      </div>
-    </div>
-    <!-------------------------------------------------------------------------------->
-    <div class="row">
-      <div class="col-md-12 mt-5 card">
-        <h2 class="my-1"><a href="{% url 'project_index' %}" class="text-dark">Projects</a></h2>
 {% include 'project_table.html' %}
-      </div>
-    </div>
-  </div>
 {% include 'copy_form.html' %}
 {% include 'delete_form.html' %}
 {% endblock %}

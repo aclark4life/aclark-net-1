@@ -1,26 +1,19 @@
 {% extends 'dashboard.html' %}
 {% block dashboard %}
-  <div class="container">
     <div class="row">
       <div class="col-12">
-        <!-- http://getbootstrap.com/docs/4.0/components/dropdowns/#split-button-dropdowns -->
-        <div class="btn-group float-right dropdown">
+        <div class="btn-group dropdown">
           <a class="btn btn-lg btn-primary" href="{% url 'invoice_edit' pk=item.pk %}">Edit</a>
           <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="sr-only">Toggle Dropdown</span>
           </button>
-          <div class="dropdown-menu dropdown-menu-right">
+          <div class="dropdown-menu">
 {% include 'actions.html' %}
           </div>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-12">
 {% include 'invoice_export.html' %}
-      </div>
-    </div>
-  </div>
 {% include 'copy_form.html' %}
 {% include 'delete_form.html' %}
 {% include 'invoice_sent.html' %}

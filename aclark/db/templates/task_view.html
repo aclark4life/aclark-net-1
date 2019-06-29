@@ -1,40 +1,19 @@
 {% extends 'dashboard.html' %}
 {% block dashboard %}
-  <div class="container">
     <div class="row">
       <div class="col-12">
-        <h1><a class="text-dark" href="{% url 'task_index' %}">Tasks</a> &rarr; Task</h1>
-        <!-- http://getbootstrap.com/docs/4.0/components/dropdowns/#split-button-dropdowns -->
-        <div class="btn-group dropdown float-right">
+        <div class="btn-group dropdown">
           <a class="btn btn-lg btn-primary" href="{% url 'task_edit' pk=item.pk %}">Edit</a>
           <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="sr-only">Toggle Dropdown</span>
           </button>
-          <div class="dropdown-menu dropdown-menu-right">
+          <div class="dropdown-menu">
 {% include 'actions.html' %}
           </div>
         </div>
-{% include 'copy_form.html' %}
-{% include 'delete_form.html' %}
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>Active</th>
-              <th>Name</th>
-              <th>Rate</th>
-              <th>Unit</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="table-{{ item.color }}">
-              <td><form action="{% url 'task_edit' item.pk %}" method="post">{% csrf_token %}<input type="hidden" value="off" name="checkbox-active"><input type="checkbox" value="on" name="checkbox-active"{% if item.active %} checked {% endif %} onChange="this.form.submit()"></form></td>
-              <td>{{ item.name|default:'' }}</td>
-              <td>{{ item.rate|default:'' }}</td>
-              <td>{{ item.unit|default:'' }}</td>
-            </tr>
-          </tbody>
-        </table>
       </div>
     </div>
-  </div>
+{% include 'copy_form.html' %}
+{% include 'delete_form.html' %}
+{% include 'task_table.html' %}
 {% endblock %}
