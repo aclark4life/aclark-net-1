@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
-
+{% load static %}
+{% block app_graph %}
+{% endblock %}
 {% block head %}
     <style>
       .nav-link {
@@ -7,121 +9,113 @@
       }
     </style>
 {% endblock %}
-
 {% block content %}
 {% if request.user.is_authenticated %}
-<nav class="navbar navbar-dark bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"></a>
-  <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
-  <ul class="navbar-nav px-3">
-    <li class="nav-item text-nowrap">
-      <a class="nav-link" href="#"></a>
-    </li>
-  </ul>
-</nav>
-
 <div class="container-fluid">
   <div class="row">
-    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <nav class="col-md-2 bg-light sidebar">
       <div class="sidebar-sticky">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active" href="#">
+            <a class="nav-link active" href="{% url 'dashboard' %}">
               <span data-feather="home"></span>
               Dashboard <span class="sr-only">(current)</span>
             </a>
           </li>
-{% if request.user.is_staff %}
+          {% if request.user.is_staff %}
           <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file"></span>
-              Orders
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="shopping-cart"></span>
-              Products
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'client_index' %}">
               <span data-feather="users"></span>
-              Customers
+              Clients
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'contact_index' %}">
+              <span data-feather="users"></span>
+              Contacts
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'project_index' %}">
+              <span data-feather="folder"></span>
+              Projects
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'note_index' %}">
+              <span data-feather="folder"></span>
+              Notes
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'user_index' %}">
+              <span data-feather="users"></span>
+              Users
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'report_index' %}">
               <span data-feather="bar-chart-2"></span>
               Reports
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'invoice_index' %}">
               <span data-feather="layers"></span>
-              Integrations
+              Invoices
             </a>
           </li>
-{% endif %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'estimate_index' %}">
+              <span data-feather="layers"></span>
+              Estimates
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'time_index' %}">
+              <span data-feather="clock"></span>
+              Times
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'task_index' %}">
+              <span data-feather="activity"></span>
+              Tasks
+            </a>
+          </li>
+          {% endif %}
         </ul>
-
 {% if request.user.is_staff %}
-        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+        {% if reports.items.reports %}
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center text-muted">
           <span>Saved reports</span>
-          <a class="d-flex align-items-center text-muted" href="#">
+          <a class="d-flex align-items-center text-muted" href="{% url 'report_edit' %}">
             <span data-feather="plus-circle"></span>
           </a>
         </h6>
+        {% endif %}
         <ul class="nav flex-column mb-2">
+          {% for report in reports.items.reports %}
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'report_view' report.id %}">
               <span data-feather="file-text"></span>
-              Current month
+              {{ report.name|default:'Untitled report' }}
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text"></span>
-              Last quarter
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text"></span>
-              Social engagement
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text"></span>
-              Year-end sale
-            </a>
-          </li>
+          {% endfor %}
         </ul>
 {% endif %}
       </div>
     </nav>
-
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center border-bottom">
         <h1 class="h2">Dashboard</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-toolbar mb-md-0">
           <div class="btn-group mr-2">
-            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+             <a class="btn btn-sm btn-outline-dark bg-light text-dark" href="{% url 'time_edit' %}">Add Time</a>
           </div>
-          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-            <span data-feather="calendar"></span>
-            This week
-          </button>
         </div>
       </div>
-
-{% if request.user.is_staff %}
-      <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
-{% endif %}
-
-
 {% block dashboard %}
       {% if user.profile.dashboard_items %}
         {% for dashboard in user.profile.dashboard_items %}  <!-- https://stackoverflow.com/a/4524851/185820 -->
@@ -134,8 +128,8 @@
           Please <a href="{% url 'user_edit' user.pk %}">edit your profile</a> to add dashboard items.
         </div>
       {% endif %}
+      </div>
 {% endblock %}
-
     </main>
   </div>
 </div>
@@ -143,3 +137,10 @@
 {% include 'signin.html' %}
 {% endif %}
 {% endblock %}
+            <a class="btn btn-outline-dark" style="text-decoration: none" href="/api" target="_blank"><i class="fa fa-terminal fa-3x p-1"></i><p class="p-0 m-0">API</p></a>
+            <a class="btn btn-outline-dark" style="text-decoration: none" href="{% url 'admin:index' %}" target="_blank"><i class="fab fa-python fa-3x p-1"></i><p class="p-0 m-0">Admin</p></a>
+            <a class="btn btn-outline-dark" style="text-decoration: none" href="https://github.com/aclark-net/aclark-net-1" target="_blank"><i class="fab fa-github fa-3x p-1"></i><p class="p-0 m-0">GitHub</p></a>
+            <a class="btn btn-outline-dark" style="text-decoration: none" href="{% url 'app_view' %}"><i class="fas fa-tools fa-3x p-1"></i><p class="p-0 m-0">Settings</p></a>
+{% if request.user.is_staff %}
+      <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+{% endif %}
