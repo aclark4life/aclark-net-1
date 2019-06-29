@@ -28,7 +28,7 @@ module.exports = {
     ],
     // https://github.com/webpack-contrib/extract-text-webpack-plugin#usage
     module: {
-        loaders: [{
+        rules: [{
                 test: /\.css$/,
                 use: ExtractTextPlugin.extract({
                     fallback: "style-loader",
