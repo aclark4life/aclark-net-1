@@ -54,7 +54,7 @@ python3-openid==3.1.0
 pytz==2019.1
 reportlab==3.5.20
 requests-oauthlib==1.2.0
-requests==2.21.0
+requests==2.22.0
 s3transfer==0.2.0
 six==1.12.0
 social-auth-app-django==3.1.0

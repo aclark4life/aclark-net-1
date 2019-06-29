@@ -22,6 +22,8 @@ Installation
     cd aclarknet
     make virtualenv
     source bin/activate
+    pip install --install-option="--include-path=/usr/local/include/" \
+        --install-option="--library-path=/usr/local/lib/" pygraphviz
     make install
     make django-serve
 

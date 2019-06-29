@@ -413,3 +413,9 @@ webpack:
 	git add $(PROJECT)/root/static/webpack_bundles
 d:
 	eb deploy
+
+pip-upgrade:
+	cat requirements.txt | awk -F \= '{print $1}' > $(TMP)/requirements.txt
+	mv -f $(TMP)/requirements.txt .
+	pip install -U -r requirements.txt
+	$(MAKE) pip-freeze
