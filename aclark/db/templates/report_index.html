@@ -1,6 +1,5 @@
 {% extends 'dashboard.html' %}
 {% block dashboard %}
-  <div class="container">
     <div class="row">
       <div class="col-12">
 {% with items=items.reports %}
@@ -15,5 +14,4 @@
 {% include 'report_plot.html' %}
       </div>
     </div>
-  </div>
 {% endblock %}

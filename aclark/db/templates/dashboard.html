@@ -29,33 +29,63 @@
           </li>
 {% if request.user.is_staff %}
           <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file"></span>
-              Orders
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="shopping-cart"></span>
-              Products
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'client_index' %}">
               <span data-feather="users"></span>
-              Customers
+              Clients
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'contact_index' %}">
+              <span data-feather="users"></span>
+              Contacts
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'project_index' %}">
+              <span data-feather="folder"></span>
+              Projects
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'note_index' %}">
+              <span data-feather="folder"></span>
+              Notes
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'user_index' %}">
+              <span data-feather="users"></span>
+              Users
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'report_index' %}">
               <span data-feather="bar-chart-2"></span>
               Reports
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'invoice_index' %}">
               <span data-feather="layers"></span>
-              Integrations
+              Invoices
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'estimate_index' %}">
+              <span data-feather="layers"></span>
+              Estimates
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'time_index' %}">
+              <span data-feather="clock"></span>
+              Times
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'task_index' %}">
+              <span data-feather="activity"></span>
+              Tasks
             </a>
           </li>
 {% endif %}

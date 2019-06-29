@@ -20,7 +20,7 @@
             <!-- Paginated -->
             <!-- Item count -->
             {% if items.paginator %}<button type="button" class="btn btn-dark" disabled>Items {{ items.start_index }} to {{ items.end_index }} of {{ items.paginator.count }}</button>{% endif %}
-            {% if not items.paginator %}{% if items.count %}<button type="button" class="btn btn-dark" disabled>Items 1 to {{ items.count }} of {{ items.count }}{% else %}Items 0 to {{ items.count }} of {{ items.count }}</button>{% endif %}{% endif %}
+            {% if not items.paginator %}<button type="button" class="btn btn-dark" disabled>Items 1 to {{ items.count|default:'?' }} of {{ items.count|default:'?' }}</button>{% endif %}
             <!-- Which page -->
             {% if items.paginator %}<button class="btn btn-dark" disabled>Page {{ items.number }} of {{ items.paginator.num_pages }}</button>{% endif %}
             {% if not items.paginator %}<button class="btn btn-dark" disabled>Page 1 of 1</button>{% endif %}
