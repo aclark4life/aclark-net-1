@@ -1,8 +1,11 @@
 
 +-----------------------------------------------------+-----------------------------------------------------------------------+--------------------------------------------------------------------------+
-|                                                     |                                                                       |   TRAINING                                                               |
-|                                                     | IT OUTSOURCING                                                        |                                                                          |
-|   IT CONSULTING                                     |                                                                       |   We believe training is of critical importance to                       |
+|                                                     |                                                                       |   **TRAINING**                                                           |
+|                                                     | **IT OUTSOURCING**                                                    |                                                                          |
+|   **IT CONSULTING**                                 |                                                                       |   |                                                                      |
+|                                                     | |                                                                     |                                                                          |
+|   |                                                 |                                                                       |   We believe training is of critical importance to                       |
+|                                                     |                                                                       |                                                                          |
 |   We are technology subject matter experts whose    | We are here to takeover, improve, maintain and manage critical IT     |   the success of your project and offer quality                          |
 |   expertise includes open source software & related | infrastructure for your organization (so your organization can focus  |   training on a variety of technical subjects, including:                |
 |   technologies, including:                          | on its mission), including:                                           |                                                                          |
@@ -20,22 +23,6 @@
 |                                                     |                                                                       |                                                                          |
 |                                                     |                                                                       |                                                                          |
 +-----------------------------------------------------+-----------------------------------------------------------------------+--------------------------------------------------------------------------+
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 Software
 
