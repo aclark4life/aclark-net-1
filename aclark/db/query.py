@@ -39,9 +39,11 @@ def get_query_string(request, key):
         query_checkbox_active = request.POST.get("checkbox-active")
         query_checkbox_subscribe = request.POST.get("checkbox-subscribe")
         condition = (  # if any of these exist
-            query_checkbox_active == "on" or query_checkbox_active == "off"
+            query_checkbox_active == "on"
+            or query_checkbox_active == "off"
             or query_checkbox_subscribe == "on"
-            or query_checkbox_subscribe == "off")
+            or query_checkbox_subscribe == "off"
+        )
         query_checkbox["active"] = query_checkbox_active
         query_checkbox["subscribe"] = query_checkbox_subscribe
         query_checkbox["condition"] = condition
@@ -55,7 +57,8 @@ def get_query_string(request, key):
         query_invoiced_state = request.POST.get("invoiced")
         query_invoiced["state"] = query_invoiced_state
         condition = (  # if either of these exist
-            query_invoiced_state == "true" or query_invoiced_state == "false")
+            query_invoiced_state == "true" or query_invoiced_state == "false"
+        )
         query_invoiced["condition"] = condition
         return query_invoiced
     else:

@@ -35,15 +35,23 @@ def blog(request):
 
 def clients(request):
     context = {}
-    clients_government = Client.objects.filter(tags__name__in=["government",], published=True)
-    clients_non_profit = Client.objects.filter(tags__name__in=["non-profit",], published=True)
-    clients_private_sector = Client.objects.filter(tags__name__in=["private-sector",], published=True)
-    clients_colleges_universities = Client.objects.filter(tags__name__in=["colleges-universities",], published=True)
-    context['clients_government'] = clients_government
-    context['clients_non_profit'] = clients_non_profit
-    context['clients_private_sector'] = clients_private_sector
-    context['clients_colleges_universities'] = clients_colleges_universities
-    context['clients_nav'] = True
+    clients_government = Client.objects.filter(
+        tags__name__in=["government"], published=True
+    )
+    clients_non_profit = Client.objects.filter(
+        tags__name__in=["non-profit"], published=True
+    )
+    clients_private_sector = Client.objects.filter(
+        tags__name__in=["private-sector"], published=True
+    )
+    clients_colleges_universities = Client.objects.filter(
+        tags__name__in=["colleges-universities"], published=True
+    )
+    context["clients_government"] = clients_government
+    context["clients_non_profit"] = clients_non_profit
+    context["clients_private_sector"] = clients_private_sector
+    context["clients_colleges_universities"] = clients_colleges_universities
+    context["clients_nav"] = True
     return render(request, "clients.html", context)
 
 
@@ -72,7 +80,7 @@ def home(request):
     context = {}
     testimonials = requests.get(TESTIMONIAL_URL).json()
     context["testimonial"] = random.choice(testimonials)
-    context['home_nav'] = True
+    context["home_nav"] = True
     return render(request, "base.html", context)
 
 
@@ -80,7 +88,7 @@ def services(request):
     context = {}
     services = requests.get(SERVICE_URL).json()
     context["services"] = services
-    context['services_nav'] = True
+    context["services_nav"] = True
     return render(request, "services.html", context)
 
 

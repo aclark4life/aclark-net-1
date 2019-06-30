@@ -56,14 +56,16 @@ def mail_proc(obj, request, **kwargs):
     hostname = request.META.get("HTTP_HOST")
     recipients = get_recipients(obj)
     for first_name, email_address in recipients:
-        mail_send(**mail_create(
-            obj,
-            first_name=first_name,
-            hostname=hostname,
-            mail_from="aclark@aclark.net",
-            mail_to=email_address,
-            request=request,
-        ))
+        mail_send(
+            **mail_create(
+                obj,
+                first_name=first_name,
+                hostname=hostname,
+                mail_from="aclark@aclark.net",
+                mail_to=email_address,
+                request=request,
+            )
+        )
 
 
 def mail_send(**kwargs):
@@ -80,12 +82,9 @@ def mail_send(**kwargs):
             subject,
             message,
             mail_from,
-            (mail_to, ),
+            (mail_to,),
             fail_silently=False,
             html_message=html_message,
         )
     else:
-        send_mail(subject,
-                  message,
-                  mail_from, (mail_to, ),
-                  fail_silently=False)
+        send_mail(subject, message, mail_from, (mail_to,), fail_silently=False)

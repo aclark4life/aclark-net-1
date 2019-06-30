@@ -32,8 +32,7 @@ def get_total(**kwargs):
             for user in team:
                 total["users"][user] = 0
                 times_user = times.filter(user=user)
-                hours_user = times_user.aggregate(
-                    hours=Sum(F("hours")))["hours"]
+                hours_user = times_user.aggregate(hours=Sum(F("hours")))["hours"]
                 if hours_user:
                     total["users"][user] = hours_user
     return total

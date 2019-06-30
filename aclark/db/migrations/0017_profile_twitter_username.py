@@ -5,14 +5,12 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('db', '0016_auto_20190614_1208'),
-    ]
+    dependencies = [("db", "0016_auto_20190614_1208")]
 
     operations = [
         migrations.AddField(
-            model_name='profile',
-            name='twitter_username',
+            model_name="profile",
+            name="twitter_username",
             field=models.CharField(blank=True, max_length=150, null=True),
-        ),
+        )
     ]

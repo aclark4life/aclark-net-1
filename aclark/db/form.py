@@ -27,8 +27,9 @@ def get_form(**kwargs):
         if model_name == "note":  # Populate form with tags already set
             form = form_model(initial={"tags": obj.tags.all()}, instance=obj)
         elif model_name == "time":  # XXX Dup
-            projects = project_model.objects.filter(team__in=[request.user.pk],
-                                                    active=True)
+            projects = project_model.objects.filter(
+                team__in=[request.user.pk], active=True
+            )
             choices = [("", "---------")]
             for project in projects:
                 choice = ("%s" % project.id, "%s" % project)
@@ -60,8 +61,7 @@ def get_form(**kwargs):
                     user = get_object_or_404(user_model, pk=query_user)
                     obj = model(user=user)
                 elif query_project:
-                    project = get_object_or_404(project_model,
-                                                pk=query_project)
+                    project = get_object_or_404(project_model, pk=query_project)
                     obj = model(project=project)
                 form = form_model(instance=obj)
             elif model_name == "invoice":
@@ -71,7 +71,8 @@ def get_form(**kwargs):
                 form = form_model(instance=obj)
             elif model_name == "time":  # XXX Dup
                 projects = project_model.objects.filter(
-                    team__in=[request.user.pk], active=True)
+                    team__in=[request.user.pk], active=True
+                )
                 choices = [("", "---------")]
                 for project in projects:
                     choice = ("%s" % project.id, "%s" % project)
