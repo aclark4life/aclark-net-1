@@ -422,5 +422,5 @@ pip-upgrade:
 
 s:
 	pandoc -V 'fontfamily: arev' -f html -t latex aclarknet-core-competencies.html -o aclarknet-core-competencies.pdf
-	cp aclarknet-core-competiences.pdf aclark/root/static
-	open aclarknet-core-competiences.pdf
+	cp aclarknet-core-competencies.pdf aclark/root/static
+	open aclarknet-core-competencies.pdf
