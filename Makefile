@@ -420,12 +420,8 @@ pip-upgrade:
 	pip install -U -r requirements.txt
 	$(MAKE) pip-freeze
 
-# https://rst2pdf.org/examples.html
 s:
-	# rst2pdf --stylesheets=dark.style services.rst -o services-dark.pdf
-	# rst2pdf --stylesheets=light.style services.rst -o services-light.pdf
-	rst2pdf --stylesheets=simple.style services.rst -o services.pdf
-	# rst2pdf services.rst -o services.pdf
-	# open services-dark.pdf
-	# open services-light.pdf
-	open services.pdf
+	cp aclark/root/templates/services.html .
+	# mv services.html aclarknet-services.html
+	pandoc -V 'fontfamily: arev' -f html -t latex aclarknet-services.html -o aclarknet-services.pdf
+	open aclarknet-services.pdf
