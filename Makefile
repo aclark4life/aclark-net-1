@@ -421,7 +421,6 @@ pip-upgrade:
 	$(MAKE) pip-freeze
 
 s:
-	cp aclark/root/templates/services.html .
-	# mv services.html aclarknet-services.html
-	pandoc -V 'fontfamily: arev' -f html -t latex aclarknet-services.html -o aclarknet-services.pdf
-	open aclarknet-services.pdf
+	pandoc -V 'fontfamily: arev' -f html -t latex aclarknet-core-competencies.html -o aclarknet-core-competencies.pdf
+	cp aclarknet-core-competiences.pdf aclark/root/static
+	open aclarknet-core-competiences.pdf
