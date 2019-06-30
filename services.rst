@@ -1,50 +1,41 @@
 
-+------------+
-| ACLARK.NET |
-+------------+
++-----------------------------------------------------+-----------------------------------------------------------------------+--------------------------------------------------------------------------+
+|                                                     |                                                                       |   TRAINING                                                               |
+|                                                     | IT OUTSOURCING                                                        |                                                                          |
+|   IT CONSULTING                                     |                                                                       |   We believe training is of critical importance to                       |
+|   We are technology subject matter experts whose    | We are here to takeover, improve, maintain and manage critical IT     |   the success of your project and offer quality                          |
+|   expertise includes open source software & related | infrastructure for your organization (so your organization can focus  |   training on a variety of technical subjects, including:                |
+|   technologies, including:                          | on its mission), including:                                           |                                                                          |
+|   - Backup and Security                             |                                                                       |   - Agile Methodology                                                    |
+|     - NetApp                                        |                                                                       |   - Django Web Application Development                                   |
+|   - Cloud and Cloud-Related Services                | Cloud IT Acquisition Services                                         |   - Plone Enterprise Content Management Systems                          |
+|     - Amazon Web Services                           |                                                                       |   - Developer & Integrator Training                                      |
+|   - Data Conversion                                 | - Data Center Services                                                |   - End User Training                                                    |
+|   - Introduction to New Information Technology      | - Health IT Services                                                  |   - Python Programming                                                   |
+|   - Network Management                              |                                                                       |                                                                          |
+|   - Software Maintenance                            |   - HEART WG                                                          |                                                                          |
+|                                                     |                                                                       |                                                                          |
+|                                                     | - Implementation Services                                             |                                                                          |
+|                                                     | - Maintenance and Support                                             |                                                                          |
+|                                                     |                                                                       |                                                                          |
+|                                                     |                                                                       |                                                                          |
++-----------------------------------------------------+-----------------------------------------------------------------------+--------------------------------------------------------------------------+
 
-Services
-
-Consulting
 
 
-+----------------------------------------------------------------------------------------------------------------------------+
-|   IT CONSULTING                                                                                                            |
-|   We are technology subject matter experts whose expertise includes open source software & related technologies, including:|   
-|   - Backup and Security                                                                                                    |   
-|     - NetApp                                                                                                               |   
-|   - Cloud and Cloud-Related Services                                                                                       |   
-|     - Amazon Web Services                                                                                                  |   
-|   - Data Conversion                                                                                                        |   
-|   - Introduction to New Information Technology                                                                             |   
-|   - Network Management                                                                                                     |   
-|   - Software Maintenance                                                                                                   |   
-+----------------------------------------------------------------------------------------------------------------------------+
 
-IT OUTSOURCING
 
-We are here to takeover, improve, maintain and manage critical IT infrastructure for your organization (so your organization can focus on its mission), including:
 
-Cloud IT Acquisition Services
 
-- Data Center Services
-- Health IT Services
 
-  - HEART WG
 
-- Implementation Services
-- Maintenance and Support
-  
-TRAINING
 
-We believe training is of critical importance to the success of your project and offer quality training on a variety of technical subjects, including:
 
-- Agile Methodology
-- Django Web Application Development
-- Plone Enterprise Content Management Systems
-- Developer & Integrator Training
-- End User Training
-- Python Programming
+
+
+
+
+
 
 Software
 
