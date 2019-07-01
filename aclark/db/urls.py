@@ -35,17 +35,11 @@ urlpatterns = [
     url(r"^file/(?P<pk>\d+)/edit$", views.file_edit, name="file_edit"),
     url(r"^file/add$", views.file_edit, name="file_edit"),
     url(r"^file$", views.file_index, name="file_index"),
-    # Geolocation
-    url(r"^geo-loc$", views.geo_view, name="geo-loc"),
-    # Logs
-    url(r"^log$", views.log_index, name="log_index"),
     # Note
     url(r"^note/(?P<pk>\d+)$", views.note_view, name="note_view"),
     url(r"^note/(?P<pk>\d+)/edit$", views.note_edit, name="note_edit"),
     url(r"^note/add$", views.note_edit, name="note_edit"),
     url(r"^note$", views.note_index, name="note_index"),
-    # Plot
-    url(r"^plot$", views.plot, name="plot"),
     # Project
     url(r"^project/(?P<pk>\d+)$", views.project_view, name="project_view"),
     url(r"^project/(?P<pk>\d+)/edit$", views.project_edit, name="project_edit"),

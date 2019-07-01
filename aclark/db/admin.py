@@ -1,6 +1,5 @@
 from decimal import Decimal
 from django.contrib import admin
-from django.contrib.gis import admin as geo_admin
 from import_export import fields
 from import_export import widgets
 from import_export.admin import ImportExportModelAdmin
