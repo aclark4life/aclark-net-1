@@ -367,7 +367,7 @@ def note_edit(request, pk=None):
 def note_index(request, pk=None):
     context = get_index_items(
         model=Note,
-        order_by=("-active", "-updated", "tags"),
+        order_by=("-created",),
         request=request,
         search_fields=("note", "title"),
     )
