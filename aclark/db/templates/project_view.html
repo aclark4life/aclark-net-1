@@ -24,7 +24,7 @@
 {% include 'invoice_table.html' %}
 {% endwith %}
 {% include 'note_table.html' %}
-{% with users=item.hours.users %}
+{% with users=items.users %}
 {% include 'user_table.html' %}
 {% endwith %}
 {% include 'times_table.html' %}

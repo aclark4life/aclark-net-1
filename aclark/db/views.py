@@ -491,12 +491,7 @@ def project_view(request, pk=None):
         pk=pk,
         request=request,
     )
-    if context["mail"]:
-        mail_proc(context["item"], request)
-        messages.add_message(request, messages.INFO, "Reminder(s) sent")
-        return render(request, "project_view.html", context)
-    else:
-        return render(request, "project_view.html", context)
+    return render(request, "project_view.html", context)
 
 
 @staff_member_required

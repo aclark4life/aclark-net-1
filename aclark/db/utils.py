@@ -488,10 +488,9 @@ def get_page_items(**kwargs):
             times = time_model.objects.filter(estimate=None, invoiced=False, user=user)
             times = times.order_by(*order_by["time"])
             contacts = contact_model.objects.all()
+            fields = get_fields(user.profile, exclude_fields=exclude_fields)  # fields_items.html
+            context["fields"] = fields
             context["item"] = user
-            context["items"] = get_fields(
-                [user.profile], exclude_fields=exclude_fields
-            )  # fields_items.html
             context["projects"] = projects
             context["times"] = times
         else:
