@@ -330,17 +330,11 @@ def get_page_items(**kwargs):
         context["view_url"] = "%s_view" % model_name
 
         if model_name == "Settings App":
-            exclude_fields = ("id",)
             app_settings = app_settings_model.get_solo()
-            context["items"] = get_fields(
-                [app_settings], exclude_fields=exclude_fields
-            )  # fields_items.html
+            context["items"] = get_fields(app_settings)  # fields_items.html
         elif model_name == "Settings Company":
-            exclude_fields = ("id",)
             company_settings = model.get_solo()
-            context["item"] = get_fields(
-                [company_settings], exclude_fields=exclude_fields
-            )  # fields_items.html
+            context["item"] = get_fields(company_settings)  # fields_items.html
         elif model_name == "client":
             client = get_object_or_404(model, pk=pk)
             contacts = contact_model.objects.filter(client=client)
@@ -362,19 +356,7 @@ def get_page_items(**kwargs):
             context["items"] = items
         elif model_name == "contact":
             contact = get_object_or_404(model, pk=pk)
-            exclude_fields = (
-                "id",
-                "icon_name",
-                "icon_size",
-                "icon_color",
-                "hidden",
-                "created",
-                "updated",
-                "uuid",
-            )
-            context["items"] = get_fields(
-                [contact], exclude_fields=exclude_fields
-            )  # fields_items.html
+            context["items"] = get_fields(contact)  # fields_items.html
             context["item"] = contact
         elif model_name == "estimate":  # handle obj or model
             if not obj:
@@ -461,34 +443,16 @@ def get_page_items(**kwargs):
         if model_name == "time":
             time = get_object_or_404(model, pk=pk)
             context["item"] = time
-            exclude_fields = ("id",)
-            fields = get_fields(time, exclude_fields=exclude_fields)
+            fields = get_fields(time)  # fields_items.html
             context["fields"] = fields  # fields_items.html
         elif model_name == "user":
-            exclude_fields = (
-                "id",
-                "created",
-                "updated",
-                "hidden",
-                "active",
-                "app_admin",
-                "is_contact",
-                "notify",
-                "published",
-                "editor",
-                "icon_size",
-                "icon_color",
-                "preferred_username",
-                "unit",
-                "avatar_url",
-            )
             user = get_object_or_404(model, pk=pk)
             projects = project_model.objects.filter(team__in=[user], active=True)
             projects = projects.order_by(*order_by["project"])
             times = time_model.objects.filter(estimate=None, invoiced=False, user=user)
             times = times.order_by(*order_by["time"])
             contacts = contact_model.objects.all()
-            fields = get_fields(user.profile, exclude_fields=exclude_fields)  # fields_items.html
+            fields = get_fields(user.profile)  # fields_table.html
             context["fields"] = fields
             context["item"] = user
             context["projects"] = projects
