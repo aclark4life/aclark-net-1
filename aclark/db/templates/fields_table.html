@@ -1,4 +1,4 @@
-          <table data-toggle="table">
+          <table data-toggle="table" data-classes="table-sm table-bordered">
             <tbody>
               {% for key, value in fields.items %}
               <tr><td valign="top"><strong>{{ key }}</strong></td><td>{{ value|default:''|safe }} </td></tr>
