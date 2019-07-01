@@ -195,48 +195,6 @@ def contact_index(request):
     return render(request, "contact_index.html", context)
 
 
-@staff_member_required
-def contract_view(request, pk=None):
-    """
-    """
-    context = get_page_items(
-        app_settings_model=SettingsApp,
-        company_model=SettingsCompany,
-        model=Contract,
-        pk=pk,
-        time_model=Time,
-        request=request,
-    )
-    if context["doc"]:
-        company_name = get_company_name(SettingsCompany)
-        filename = "%s_%s_%s.pdf" % (company_name, "contract".upper(), pk)
-        return render_doc(context, filename=filename, template="table_contract.html")
-    else:
-        return render(request, "contract_view.html", context)
-
-
-@staff_member_required
-def contract_edit(request, pk=None):
-    """
-    """
-    return edit(
-        request, form_model=ContractForm, model=Contract, client_model=Client, pk=pk
-    )
-
-
-@staff_member_required
-def contract_index(request):
-    """
-    """
-    context = get_index_items(
-        app_settings_model=SettingsApp,
-        model=Contract,
-        request=request,
-        order_by=("-updated",),
-    )
-    return render(request, "contract_index.html", context)
-
-
 def error(request):
     """
     """
@@ -568,42 +526,6 @@ def project_index(request, pk=None):
 
 
 @staff_member_required
-def proposal_view(request, pk=None):
-    context = get_page_items(
-        app_settings_model=SettingsApp,
-        company_model=SettingsCompany,
-        model=Proposal,
-        pk=pk,
-        request=request,
-    )
-    return render(request, "proposal_view.html", context)
-
-
-@staff_member_required
-def proposal_edit(request, pk=None):
-    """
-    """
-    return edit(
-        request,
-        form_model=ProposalForm,
-        model=Proposal,
-        company_model=SettingsCompany,
-        pk=pk,
-    )
-
-
-@staff_member_required
-def proposal_index(request, pk=None):
-    context = get_index_items(
-        app_settings_model=SettingsApp,
-        model=Proposal,
-        order_by=("-updated",),
-        request=request,
-    )
-    return render(request, "proposal_index.html", context)
-
-
-@staff_member_required
 def report_view(request, pk=None):
     context = get_page_items(
         model=Report, app_settings_model=SettingsApp, pk=pk, request=request
@@ -640,18 +562,6 @@ def report_index(request):
         search_fields=("id", "name", "gross", "net"),
     )
     return render(request, "report_index.html", context)
-
-
-# https://stackoverflow.com/a/42038839/185820
-@staff_member_required(login_url="login")
-def service_edit(request, pk=None):
-    return edit(
-        request,
-        form_model=ServiceForm,
-        model=Service,
-        company_model=SettingsCompany,
-        pk=pk,
-    )
 
 
 @staff_member_required
@@ -715,13 +625,12 @@ def time_view(request, pk=None):
     Authenticated users can only view their own time entries unless
     they are staff.
     """
-    time_entry = get_object_or_404(Time, pk=pk)
-    if not request.user.is_staff and not time_entry.user:  # No user
+    time = get_object_or_404(Time, pk=pk)
+    if not request.user.is_staff and not time.user:  # No user
         messages.add_message(request, messages.WARNING, FOUR_O_3)
         return HttpResponseRedirect(reverse("home"))
     elif (
-        not request.user.is_staff
-        and not time_entry.user.username == request.user.username
+        not request.user.is_staff and not time.user.username == request.user.username
     ):  # Time entry user does not match user
         messages.add_message(request, messages.WARNING, FOUR_O_3)
         return HttpResponseRedirect(reverse("home"))
@@ -739,13 +648,13 @@ def time_edit(request, pk=None):
     they are staff.
     """
     if pk is not None:
-        time_entry = get_object_or_404(Time, pk=pk)
-        if not request.user.is_staff and not time_entry.user:  # No user
+        time = get_object_or_404(Time, pk=pk)
+        if not request.user.is_staff and not time.user:  # No user
             messages.add_message(request, messages.WARNING, FOUR_O_3)
             return HttpResponseRedirect(reverse("home"))
         elif (
             not request.user.is_staff
-            and not time_entry.user.username == request.user.username
+            and not time.user.username == request.user.username
         ):  # Time entry user does not match user
             messages.add_message(request, messages.WARNING, FOUR_O_3)
             return HttpResponseRedirect(reverse("home"))

@@ -51,7 +51,6 @@ NAME="Alex Clark"
 PROJECT=project
 TMP:=$(shell echo `tmp`)
 UNAME:=$(shell uname)
-REMOTE=remotehost
 
 # Rules
 #
@@ -118,7 +117,6 @@ django-install:
 	@$(MAKE) freeze
 	-git add requirements.txt
 	-@$(MAKE) git-commit-auto-push
-django-lint: django-yapf  # Alias
 django-migrate:
 	python manage.py migrate
 django-migrations:
@@ -139,16 +137,15 @@ django-static:
 	python manage.py collectstatic --noinput
 django-su:
 	python manage.py createsuperuser
-django-yapf:
-	-yapf -i *.py
-	-yapf -i -e $(PROJECT)/urls.py $(PROJECT)/*.py  # Don't format urls.py
-	-yapf -i $(PROJECT)/$(APP)/*.py
+django-loaddata:
+	python manage.py loaddata
 graph: django-graph
 migrate: django-migrate  # Alias
 migrations: django-migrations  # Alias
 static: django-static  # Alias
 su: django-su  # Alias
 test: django-test  # Alias
+loaddata: django-loaddata  # Alias
 
 # Elastic Beanstalk
 eb-init: 
@@ -198,12 +195,10 @@ grunt-serve:
 h: help  # Alias
 he: help  # Alias
 help:
-	@echo "Usage: make [TARGET]\nAvailable targets:\n"
 	@$(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F:\
         '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}'\
         | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$' | xargs | tr ' ' '\n' | awk\
         '{print "    - "$$0}' | less  # http://stackoverflow.com/a/26339924
-	@echo "\n"
 upstream:
 	git push --set-upstream origin master
 
@@ -254,6 +249,11 @@ freeze: pip-freeze
 pip-freeze:
 	pip freeze | sort > $(TMP)/requirements.txt
 	mv -f $(TMP)/requirements.txt .
+pip-upgrade:
+	cat requirements.txt | awk -F \= '{print $1}' > $(TMP)/requirements.txt
+	mv -f $(TMP)/requirements.txt .
+	pip install -U -r requirements.txt
+	$(MAKE) pip-freeze
 
 # Plone
 plone: plone-install plone-init plone-serve  # Chain
@@ -286,7 +286,7 @@ python-flake:
 	-flake8 $(PROJECT)/$(APP)/*.py
 python-install:
 	pip install -r requirements.txt
-python-lint: python-yapf python-flake python-wc  # Chain
+python-lint: python-black python-flake python-wc  # Chain
 python-serve:
 	@echo "\n\tServing HTTP on http://0.0.0.0:8000\n"
 	python -m SimpleHTTPServer
@@ -302,6 +302,8 @@ python-yapf:
 	-yapf -i *.py
 	-yapf -i $(PROJECT)/*.py
 	-yapf -i $(PROJECT)/$(APP)/*.py
+python-black:
+	black $(PROJECT)
 python-wc:
 	-wc -l *.py
 	-wc -l $(PROJECT)/*.py
@@ -400,11 +402,9 @@ webpack:
 	./node_modules/.bin/webpack
 pack: webpack  # Alias
 
-# aclark-net
+# aclarknet
 PROJECT=aclark
 APP=db
-virtualenv-3-7:
-	virtualenv --python=python3.7 .
 webpack:
 	./node_modules/js-beautify/js/bin/js-beautify.js -r ./webpack.config.js
 	./node_modules/js-beautify/js/bin/js-beautify.js -r $(PROJECT)/root/static/index.js
@@ -413,13 +413,6 @@ webpack:
 	git add $(PROJECT)/root/static/webpack_bundles
 d:
 	eb deploy
-
-pip-upgrade:
-	cat requirements.txt | awk -F \= '{print $1}' > $(TMP)/requirements.txt
-	mv -f $(TMP)/requirements.txt .
-	pip install -U -r requirements.txt
-	$(MAKE) pip-freeze
-
 s:
 	pandoc -V 'fontfamily: arev' -f html -t latex aclarknet-core-competencies.html -o aclarknet-core-competencies.pdf
 	cp aclarknet-core-competencies.pdf aclark/root/static

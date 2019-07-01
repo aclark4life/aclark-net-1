@@ -3,33 +3,33 @@
             <thead>
               <tr>
                 <th data-field="counter" data-sortable="true">#</th>
-                <th data-field="invoiced" data-sortable="true">Sent</th>
-                <th data-field="date" data-sort-name="hidden-date" data-sortable="true">Date</th>
+                <th data-field="date" data-sort-name="hidden-date" data-sortable="true" data-width="100">Date</th>
                 <th data-field="hidden-date" data-sortable="true" data-visible="false">Hidden Date</th>
-                <th data-field="log" data-sortable="true" data-visible="{{ columns_visible.time.log }}">Log</th>
-                {% if request.user.is_staff %}<th data-field="client" data-sortable="true" data-visible="false">Client</th>{% endif %}
                 <th data-field="hours" data-sortable="true">Hours</th>
                 <th data-field="project" data-sort-name="hidden-project" data-sortable="true" data-visible="true">Project</th>
                 <th data-field="hidden-project" data-sortable="true" data-visible="false">Hidden Project</th>
+                <th data-field="log" data-sortable="true">Log</th>
+                {% if request.user.is_staff %}<th data-field="client" data-sortable="true" data-visible="false">Client</th>{% endif %}
                 {% if request.user.is_staff %}<th data-field="task" data-sortable="true" data-visible="false">Task</th>{% endif %}
                 {% if request.user.is_staff %}<th data-field="invoice" data-sortable="true" data-visible="{{ columns_visible.time.invoice }}">Invoice</th>{% endif %}
                 {% if request.user.is_staff %}<th data-field="estimate" data-sortable="true" data-visible="false">Estimate</th>{% endif %}
                 {% if request.user.is_staff %}<th data-field="user" data-sortable="true" data-visible="true">User</th>{% endif %}
+                <th data-field="invoiced" data-sortable="true"><i class="fas fa-thumbs-up"></i></th>
               </tr>
             </thead>
             <tbody>
             {% for item in items.times %}
               <tr>
                 <td>{{ forloop.counter }}</td>
-                <td>{% if item.invoiced %}<i class="fa fa-check"></i>{% endif %}</td>
                 <td>{{ item.date|date:'Y-m-d'|default:'' }}</td>
                 <td>{{ item.date|date:'U' }}</td>
-                <td>{{ item.log|linebreaks }}</td>
-                {% if request.user.is_staff %}<td>{{ item.client|default:'' }}</td>{% endif %}
-                <td class="col-1"><a class="text-{{ icon_color }}" href="{% url 'time_view' item.pk %}">{{ item.hours }}</a> <a class="text-{{ icon_color }}" href="{% url 'time_edit' item.pk %}"><i class="fas fa-pencil-alt fa-{{ icon_size }}" style="vertical-align: middle"></i></a></td>
+                <td><a class="text-{{ icon_color }}" href="{% url 'time_view' item.pk %}">{{ item.hours }}</a> <a class="text-{{ icon_color }}" href="{% url 'time_edit' item.pk %}"><i class="fas fa-pencil-alt fa-{{ icon_size }}" style="vertical-align: middle"></i></a></td>
                 {% if item.project and request.user.is_staff %}<td><a href="{% url 'project_view' item.project.pk %}">{{ item.project|default:'Project' }}</a></td>{% else %}<td>{{ item.project|default:'' }}</td>{% endif %}
                 <td>{{ item.project|default:'' }}</td>
+                <td>{{ item.log|linebreaks }}</td>
+                {% if request.user.is_staff %}<td>{{ item.client|default:'' }}</td>{% endif %}
                 {% if request.user.is_staff %}{% if item.task %}<td><a href="{% url 'task_view' item.task.pk %}">{{ item.task|default:'' }}</a></td>{% else %}<td></td>{% endif %}{% endif %}
+                <td>{% if item.invoiced %}<i class="fa fa-check"></i>{% endif %}</td>
                 {% if request.user.is_staff %}{% if item.invoice %}<td><a href="{% url 'invoice_view' item.invoice.pk %}">{{ item.invoice.pk }}</a></td>{% else %}<td></td>{% endif %}{% endif %}
                 {% if request.user.is_staff %}{% if item.estimate %}<td><a href="{% url 'estimate_view' item.estimate.pk %}">{{ item.estimate.pk }}</a></td>{% else %}<td>{{ item.estimate|default:'' }}</td>{% endif %}{% endif %}
                 {% if request.user.is_staff %}{% if item.user %}<td><a href="{% url 'user_view' item.user.pk %}">{{ item.user|default:'' }}</a></td>{% else %}<td>{{ item.user|default:'' }}</td>{% endif %}{% endif %}

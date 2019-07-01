@@ -15,11 +15,6 @@ urlpatterns = [
     url(r"^contact/(?P<pk>\d+)/edit$", views.contact_edit, name="contact_edit"),
     url(r"^contact/add$", views.contact_edit, name="contact_edit"),
     url(r"^contact$", views.contact_index, name="contact_index"),
-    # Contract
-    url(r"^contract/(?P<pk>\d+)$", views.contract_view, name="contract_view"),
-    url(r"^contract/(?P<pk>\d+)/edit$", views.contract_edit, name="contract_edit"),
-    url(r"^contract/add$", views.contract_edit, name="contract_edit"),
-    url(r"^contract$", views.contract_index, name="contract_index"),
     # Error (forced)
     url(r"^500$", views.error, name="error"),
     # Estimate
@@ -56,19 +51,11 @@ urlpatterns = [
     url(r"^project/(?P<pk>\d+)/edit$", views.project_edit, name="project_edit"),
     url(r"^project/add$", views.project_edit, name="project_edit"),
     url(r"^project$", views.project_index, name="project_index"),
-    # Proposal
-    url(r"^proposal/(?P<pk>\d+)$", views.proposal_view, name="proposal_view"),
-    url(r"^proposal/(?P<pk>\d+)/edit$", views.proposal_edit, name="proposal_edit"),
-    url(r"^proposal/add$", views.proposal_edit, name="proposal_edit"),
-    url(r"^proposal$", views.proposal_index, name="proposal_index"),
     # Report
     url(r"^report/(?P<pk>\d+)$", views.report_view, name="report_view"),
     url(r"^report$", views.report_index, name="report_index"),
     url(r"^report/add$", views.report_edit, name="report_edit"),
     url(r"^report/(?P<pk>\d+)/edit$", views.report_edit, name="report_edit"),
-    #    # Services
-    #    url(r'^service/(?P<pk>\d+)/edit$', views.service_edit,
-    #        name='service_edit'),
     # Settings
     url(r"^settings/app/edit$", views.settings_app_edit, name="app_edit"),
     url(r"^settings/app$", views.settings_app, name="app_view"),

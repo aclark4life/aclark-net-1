@@ -341,19 +341,13 @@ def get_page_items(**kwargs):
             app_settings = app_settings_model.get_solo()
             context["items"] = get_fields(
                 [app_settings], exclude_fields=exclude_fields
-            )  # table_items.html
+            )  # fields_items.html
         elif model_name == "Settings Company":
             exclude_fields = ("id",)
             company_settings = model.get_solo()
-            context["items"] = get_fields(
+            context["item"] = get_fields(
                 [company_settings], exclude_fields=exclude_fields
-            )  # table_items.html
-        elif model_name == "Settings Contract":
-            exclude_fields = ("id",)
-            contract_settings = model.get_solo()
-            context["items"] = get_fields(
-                [contract_settings], exclude_fields=exclude_fields
-            )  # table_items.html
+            )  # fields_items.html
         elif model_name == "client":
             client = get_object_or_404(model, pk=pk)
             contacts = contact_model.objects.filter(client=client)
@@ -387,23 +381,8 @@ def get_page_items(**kwargs):
             )
             context["items"] = get_fields(
                 [contact], exclude_fields=exclude_fields
-            )  # table_items.html
+            )  # fields_items.html
             context["item"] = contact
-        elif model_name == "contract":
-            contract = get_object_or_404(model, pk=pk)
-            exclude_fields = (
-                "id",
-                "icon_name",
-                "icon_size",
-                "icon_color",
-                "hidden",
-                "created",
-                "updated",
-            )
-            context["items"] = get_fields(
-                [contract], exclude_fields=exclude_fields
-            )  # table_items.html
-            context["item"] = contract
         elif model_name == "estimate":  # handle obj or model
             if not obj:
                 estimate = get_object_or_404(model, pk=pk)
@@ -486,9 +465,12 @@ def get_page_items(**kwargs):
         elif model_name == "task":
             task = get_object_or_404(model, pk=pk)
             context["item"] = task
-        elif model_name == "time":
-            time_entry = get_object_or_404(model, pk=pk)
-            context["item"] = time_entry
+        if model_name == "time":
+            time = get_object_or_404(model, pk=pk)
+            context["item"] = time
+            exclude_fields = ("id",)
+            fields = get_fields(time, exclude_fields=exclude_fields)
+            context["fields"] = fields  # fields_items.html
         elif model_name == "user":
             exclude_fields = (
                 "id",
@@ -516,7 +498,7 @@ def get_page_items(**kwargs):
             context["item"] = user
             context["items"] = get_fields(
                 [user.profile], exclude_fields=exclude_fields
-            )  # table_items.html
+            )  # fields_items.html
             context["projects"] = projects
             context["times"] = times
         else:

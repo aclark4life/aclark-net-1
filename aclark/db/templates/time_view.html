@@ -17,5 +17,7 @@
     </div>
 {% include 'copy_form.html' %}
 {% include 'delete_form.html' %}
-{% include 'time_table.html' %}
+{% with items=item.fields %}
+{% include 'fields_table.html' %}
+{% endwith %}
 {% endblock %}

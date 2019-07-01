@@ -1,9 +1,7 @@
           <table data-toggle="table">
             <tbody>
-            {% for item in items %}
-              {% for key, value in item.fields.items %}
+              {% for key, value in fields.items %}
               <tr><td valign="top"><strong>{{ key }}</strong></td><td>{{ value|default:''|safe }} </td></tr>
               {% endfor %}
-            {% endfor %}
             </tbody>
           </table>
