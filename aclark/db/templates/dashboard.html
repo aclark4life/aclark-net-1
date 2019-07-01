@@ -119,10 +119,6 @@
         <h1 class="h2">Dashboard</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
 
-          <div class="btn-group float-right">
-            <a class="btn btn-lg btn-outline-dark" href="{% url 'time_edit' %}">Add Time</a>
-          </div>
-
 {% if request.user.is_staff %}
           <div class="btn-group mr-2">
             <button type="button" class="btn btn-sm btn-outline-dark">Share</button>
@@ -137,6 +133,13 @@
       </div>
 
 {% block dashboard %}
+      <div class="row">
+        <div class="col-md-12">
+          <div class="text-right">
+            <a class="btn btn-lg btn-outline-dark" href="{% url 'time_edit' %}">Add Time</a>
+          </div>
+        </div>
+      </div>
 
       {% if user.profile.dashboard_items %}
         {% for dashboard in user.profile.dashboard_items %}  <!-- https://stackoverflow.com/a/4524851/185820 -->
