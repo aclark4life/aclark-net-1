@@ -211,7 +211,6 @@ def get_index_items(**kwargs):
     """
     context = {}
     app_settings_model = kwargs.get("app_settings_model")
-    columns_visible = kwargs.get("columns_visible")
     company_model = kwargs.get("company_model")
     model = kwargs.get("model")
     filter_by = kwargs.get("filter_by")
@@ -222,8 +221,6 @@ def get_index_items(**kwargs):
     model_name = model._meta.verbose_name
     edit_url = "%s_edit" % model_name
     view_url = "%s_view" % model_name
-    if columns_visible:
-        context["columns_visible"] = columns_visible
     if company_model:
         company = company_model.get_solo()
         company_name = company.name
@@ -279,7 +276,6 @@ def get_index_items(**kwargs):
 def get_page_items(**kwargs):
     app_settings_model = kwargs.get("app_settings_model")
     company_model = kwargs.get("company_model")
-    columns_visible = kwargs.get("columns_visible")
     contact_model = kwargs.get("contact_model")
     estimate_model = kwargs.get("estimate_model")
     contract_model = kwargs.get("contract_model")
@@ -319,9 +315,6 @@ def get_page_items(**kwargs):
         context["company_name"] = company_name
         context["company_address"] = company_address
         context["currency_symbol"] = currency_symbol
-
-    if columns_visible:
-        context["columns_visible"] = columns_visible
 
     model_name = None
 
@@ -537,7 +530,8 @@ def get_page_items(**kwargs):
                 ]
                 total_cost = totals.get_total(field="cost", projects=projects)["cost"]
                 total_hours = totals.get_total(field="hours", times=times)["hours"]
-                context["net"] = total_amount - total_cost
+                if total_amount and total_cost:
+                    context["net"] = total_amount - total_cost
                 context["cost"] = total_cost
                 context["gross"] = total_amount
                 context["hours"] = total_hours

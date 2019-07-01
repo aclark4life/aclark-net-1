@@ -293,10 +293,6 @@ def home(request):
     context = get_page_items(
         app_settings_model=SettingsApp,
         company_model=SettingsCompany,
-        columns_visible={
-            "note": {"due": "false", "hidden": "false", "note": "false"},
-            "invoices": {"sent": "false"},
-        },
         filter_by={"time": {"estimate": None, "user": request.user}},
         invoice_model=Invoice,
         order_by={
@@ -359,7 +355,6 @@ def invoice_index(request):
     context = get_index_items(
         app_settings_model=SettingsApp,
         model=Invoice,
-        columns_visible={"invoices": {"sent": "true"}},
         order_by=("-last_payment_date", "subject"),
         request=request,
         search_fields=search_fields,
@@ -487,7 +482,6 @@ def project_view(request, pk=None):
         invoice_model=Invoice,
         note_model=Note,
         user_model=User,
-        columns_visible={"invoices": {"sent": "true"}},
         order_by={
             "time": ("-date",),
             "invoice": ("-issue_date",),
@@ -516,7 +510,6 @@ def project_edit(request, pk=None):
 def project_index(request, pk=None):
     context = get_index_items(
         app_settings_model=SettingsApp,
-        columns_visible={"project": {"notes": "true"}},
         model=Project,
         order_by=("-active", "name"),
         request=request,
@@ -691,9 +684,6 @@ def time_index(request):
     context = get_index_items(
         model=Time,
         app_settings_model=SettingsApp,
-        columns_visible={
-            "time": {"invoice": "true", "estimate": "true", "log": "false"}
-        },
         filter_by={"time": {"estimate": None, "user__isnull": False}},
         order_by=("-date",),
         request=request,

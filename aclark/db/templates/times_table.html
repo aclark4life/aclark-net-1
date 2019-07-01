@@ -10,10 +10,10 @@
                 <th data-field="hidden-project" data-sortable="true" data-visible="false">Hidden Project</th>
                 <th data-field="log" data-sortable="true">Log</th>
                 <th data-field="invoiced" data-sortable="true"><i class="fas fa-thumbs-up"></i></th>
-                {% if request.user.is_staff %}<th data-field="client" data-sortable="true" data-visible="false">Client</th>{% endif %}
-                {% if request.user.is_staff %}<th data-field="task" data-sortable="true" data-visible="false">Task</th>{% endif %}
-                {% if request.user.is_staff %}<th data-field="invoice" data-sortable="true" data-visible="{{ columns_visible.time.invoice }}">Invoice</th>{% endif %}
-                {% if request.user.is_staff %}<th data-field="estimate" data-sortable="true" data-visible="false">Estimate</th>{% endif %}
+                {% if request.user.is_staff %}<th data-field="client" data-sortable="true" data-visible="true">Client</th>{% endif %}
+                {% if request.user.is_staff %}<th data-field="task" data-sortable="true" data-visible="true">Task</th>{% endif %}
+                {% if request.user.is_staff %}<th data-field="invoice" data-sortable="true" data-visible="true">Invoice</th>{% endif %}
+                {% if request.user.is_staff %}<th data-field="estimate" data-sortable="true" data-visible="true">Estimate</th>{% endif %}
                 {% if request.user.is_staff %}<th data-field="user" data-sortable="true" data-visible="true">User</th>{% endif %}
               </tr>
             </thead>
