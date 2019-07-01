@@ -27,7 +27,7 @@ urlpatterns = [
     url(r"^invoice/(?P<pk>\d+)/edit$", views.invoice_edit, name="invoice_edit"),
     url(r"^invoice/add$", views.invoice_edit, name="invoice_edit"),
     url(r"^invoice$", views.invoice_index, name="invoice_index"),
-    #    # Login
+    # Login
     url(r"^login$", views.login, name="login"),
     url(r"^logout$", views.logout, name="logout"),
     # Files
@@ -56,11 +56,6 @@ urlpatterns = [
     url(r"^report$", views.report_index, name="report_index"),
     url(r"^report/add$", views.report_edit, name="report_edit"),
     url(r"^report/(?P<pk>\d+)/edit$", views.report_edit, name="report_edit"),
-    # Settings
-    url(r"^settings/app/edit$", views.settings_app_edit, name="app_edit"),
-    url(r"^settings/app$", views.settings_app, name="app_view"),
-    url(r"^settings/company/edit$", views.company_edit, name="company_edit"),
-    url(r"^settings/company$", views.company_view, name="company_view"),
     # Social
     url("", include("social_django.urls", namespace="social")),
     # Task

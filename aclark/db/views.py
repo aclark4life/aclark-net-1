@@ -17,40 +17,25 @@ from .forms import AdminProfileForm
 from .forms import AdminTimeForm
 from .forms import ClientForm
 from .forms import ContactForm
-from .forms import ContractForm
 from .forms import EstimateForm
-from .forms import FileForm
 from .forms import InvoiceForm
 from .forms import NoteForm
 from .forms import ProfileForm
 from .forms import ProjectForm
-from .forms import ProposalForm
 from .forms import ReportForm
-from .forms import ServiceForm
-from .forms import SettingsAppForm
-from .forms import SettingsCompanyForm
 from .forms import TaskForm
 from .forms import TimeForm
-from .forms import OrderForm
 from .models import Client
 from .models import Contact
-from .models import Contract
 from .models import Estimate
-from .models import File
 from .models import Invoice
-from .models import Log
 from .models import Note
 from .models import Profile
 from .models import Project
-from .models import Proposal
 from .models import Report
-from .models import Service
-from .models import SettingsApp
-from .models import SettingsCompany
 from .models import Testimonial
 from .models import Task
 from .models import Time
-from .models import Order
 from .export import render_doc
 from .export import render_pdf
 from .mail import mail_proc
@@ -59,7 +44,6 @@ from .misc import has_profile
 from .plot import get_plot
 from .serializers import ClientSerializer
 from .serializers import ProfileSerializer
-from .serializers import ServiceSerializer
 from .serializers import TestimonialSerializer
 from .utils import edit
 from .utils import get_index_items
@@ -78,14 +62,6 @@ class ClientViewSet(viewsets.ModelViewSet):
 
     queryset = Client.objects.filter(published=True).order_by("name")
     serializer_class = ClientSerializer
-
-
-class ServiceViewSet(viewsets.ModelViewSet):
-    """
-    """
-
-    queryset = Service.objects.filter(active=True).order_by("name")
-    serializer_class = ServiceSerializer
 
 
 class TestimonialViewSet(viewsets.ModelViewSet):

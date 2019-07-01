@@ -5,23 +5,14 @@ from import_export import fields
 from import_export import widgets
 from import_export.admin import ImportExportModelAdmin
 from import_export.resources import ModelResource as ImportExportModelResource
-from solo.admin import SingletonModelAdmin
 from .models import Client
 from .models import Contact
-from .models import Contract
 from .models import Estimate
 from .models import Invoice
-from .models import Location
-from .models import Log
 from .models import Note
-from .models import Order
 from .models import Profile
 from .models import Project
-from .models import Proposal
 from .models import Report
-from .models import Service
-from .models import SettingsApp
-from .models import SettingsCompany
 from .models import Task
 from .models import Testimonial
 from .models import Time
@@ -128,12 +119,6 @@ class ContactAdmin(ImportExportModelAdmin):
     resource_class = ContactResource
 
 
-@admin.register(Contract)
-class ContractAdmin(ImportExportModelAdmin):
-    """
-    """
-
-
 class EstimateResource(ImportExportModelResource):
     """
     """
@@ -228,28 +213,8 @@ class InvoiceAdmin(ImportExportModelAdmin):
     resource_class = InvoiceResource
 
 
-@admin.register(Location)
-class LocationAdmin(geo_admin.OSMGeoAdmin):
-    """
-    """
-
-    search_fields = ("name",)
-
-
-@admin.register(Log)
-class LogAdmin(ImportExportModelAdmin):
-    """
-    """
-
-
 @admin.register(Note)
 class NoteAdmin(ImportExportModelAdmin):
-    """
-    """
-
-
-@admin.register(Order)
-class OrderAdmin(ImportExportModelAdmin):
     """
     """
 
@@ -313,32 +278,8 @@ class ProjectAdmin(ImportExportModelAdmin):
     resource_class = ProjectResource
 
 
-@admin.register(Proposal)
-class ProposalAdmin(ImportExportModelAdmin):
-    """
-    """
-
-
 @admin.register(Report)
 class ReportAdmin(ImportExportModelAdmin):
-    """
-    """
-
-
-@admin.register(Service)
-class ServiceAdmin(ImportExportModelAdmin):
-    """
-    """
-
-
-@admin.register(SettingsApp)
-class SettingsAppAdmin(SingletonModelAdmin):
-    """
-    """
-
-
-@admin.register(SettingsCompany)
-class SettingsCompanyAdmin(SingletonModelAdmin):
     """
     """
 

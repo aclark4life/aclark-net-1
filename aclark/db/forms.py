@@ -1,20 +1,13 @@
 from .models import Client
 from .models import Contact
-from .models import Contract
 from .models import Estimate
-from .models import File
 from .models import Invoice
 from .models import Note
 from .models import Profile
 from .models import Project
-from .models import Proposal
 from .models import Report
-from .models import Service
-from .models import SettingsApp
-from .models import SettingsCompany
 from .models import Task
 from .models import Time
-from .models import Order
 from django import forms
 from taggit.models import Tag
 from django.utils import timezone
@@ -94,13 +87,6 @@ class ContactForm(forms.ModelForm):
         )
 
 
-class ContractForm(forms.ModelForm):
-    class Meta:
-        model = Contract
-        exclude = ("icon_name", "icon_size", "icon_color")
-        widgets = {"body": forms.widgets.TextInput(attrs={"class": "tinymce"})}
-
-
 class EstimateForm(forms.ModelForm):
     class Meta:
         model = Estimate
@@ -140,12 +126,6 @@ class EstimateForm(forms.ModelForm):
         required=False,
         initial=timezone.now(),
     )
-
-
-class FileForm(forms.ModelForm):
-    class Meta:
-        model = File
-        fields = "__all__"
 
 
 class InvoiceForm(forms.ModelForm):
@@ -276,13 +256,6 @@ class ProjectForm(forms.ModelForm):
     )
 
 
-class ProposalForm(forms.ModelForm):
-    class Meta:
-        model = Proposal
-        fields = "__all__"
-        widgets = {"body": forms.widgets.TextInput(attrs={"class": "tinymce"})}
-
-
 class ReportForm(forms.ModelForm):
     class Meta:
         model = Report
@@ -299,25 +272,6 @@ class ReportForm(forms.ModelForm):
     )
 
 
-class ServiceForm(forms.ModelForm):
-    class Meta:
-        model = Service
-        fields = "__all__"
-        widgets = {"description": forms.widgets.TextInput(attrs={"class": "tinymce"})}
-
-
-class SettingsAppForm(forms.ModelForm):
-    class Meta:
-        model = SettingsApp
-        fields = "__all__"
-
-
-class SettingsCompanyForm(forms.ModelForm):
-    class Meta:
-        model = SettingsCompany
-        fields = "__all__"
-
-
 class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
@@ -329,9 +283,3 @@ class TimeForm(forms.ModelForm):
         model = Time
         fields = ("date", "project", "hours", "log")
         widgets = {"hours": forms.widgets.NumberInput(attrs={"class": "col-2"})}
-
-
-class OrderForm(forms.ModelForm):
-    class Meta:
-        model = Order
-        fields = "__all__"

@@ -1,6 +1,5 @@
 from .models import Client
 from .models import Profile
-from .models import Service
 from .models import Testimonial
 from django.contrib.auth.models import User
 from rest_framework import serializers
@@ -34,12 +33,6 @@ class ProfileSerializer(serializers.ModelSerializer):
             "job_title",
             "twitter_username",
         )
-
-
-class ServiceSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Service
-        fields = ("name", "description")
 
 
 class TestimonialSerializer(serializers.HyperlinkedModelSerializer):

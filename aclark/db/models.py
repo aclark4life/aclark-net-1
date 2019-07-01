@@ -5,7 +5,6 @@ from django.urls import reverse
 from django.utils import timezone
 from multiselectfield import MultiSelectField
 from phonenumber_field.modelfields import PhoneNumberField
-from solo.models import SingletonModel
 from taggit.managers import TaggableManager
 from uuid import uuid4
 from . import choices
@@ -94,54 +93,6 @@ class Contact(BaseModel):
             return "-".join([self._meta.verbose_name, str(self.pk)])
 
 
-class Contract(BaseModel):
-    """
-    """
-
-    title = models.CharField(max_length=300, blank=True, null=True)
-    client = models.ForeignKey(
-        "Client",
-        blank=True,
-        null=True,
-        limit_choices_to={"active": True},
-        on_delete=models.CASCADE,
-    )
-    project = models.ForeignKey(
-        "Project",
-        blank=True,
-        null=True,
-        on_delete=models.CASCADE,
-        limit_choices_to={"active": True},
-    )
-    statement_of_work = models.ForeignKey(
-        "Estimate",
-        blank=True,
-        null=True,
-        on_delete=models.CASCADE,
-        limit_choices_to={"accepted_date": None},
-    )
-    task = models.ForeignKey(
-        "Task",
-        blank=True,
-        null=True,
-        limit_choices_to={"active": True},
-        on_delete=models.CASCADE,
-    )
-    body = models.TextField(blank=True, null=True)
-
-    def __str__(self):
-        if self.title:
-            return self.title
-        else:
-            return "-".join([self._meta.verbose_name, str(self.pk)])
-
-
-# https://docs.djangoproject.com/en/1.11/ref/contrib/gis/model-api/
-class Elevation(BaseModel):
-    name = models.CharField(max_length=100)
-    rast = models.RasterField()
-
-
 class Estimate(BaseModel):
     """
     Issue Date, Estimate ID, Client, Subject, Estimate Amount, Subtotal,
@@ -204,15 +155,6 @@ class Estimate(BaseModel):
     estimate_type = models.CharField(
         max_length=255, blank=True, null=True, choices=choices.ICON_CHOICES
     )
-
-
-class File(BaseModel):
-    """
-    """
-
-    name = models.CharField(max_length=300, blank=True, null=True)
-    doc = models.FileField(blank=True, null=True)
-    image = models.ImageField(blank=True, null=True)
 
 
 class Invoice(BaseModel):
@@ -282,39 +224,6 @@ class Invoice(BaseModel):
     # https://stackoverflow.com/a/6062320/185820
     class Meta:
         ordering = ["subject"]
-
-
-# https://docs.djangoproject.com/en/1.11/ref/contrib/gis/tutorial/#defining-a-geographic-model
-class Location(BaseModel):
-    name = models.CharField(max_length=300)
-    area = models.IntegerField(blank=True, null=True)
-    pop2005 = models.IntegerField("Population 2005", blank=True, null=True)
-    fips = models.CharField("FIPS Code", max_length=2, blank=True, null=True)
-    iso2 = models.CharField("2 Digit ISO", max_length=2, blank=True, null=True)
-    iso3 = models.CharField("3 Digit ISO", max_length=3, blank=True, null=True)
-    un = models.IntegerField("United Nations Code", blank=True, null=True)
-    region = models.IntegerField("Region Code", blank=True, null=True)
-    subregion = models.IntegerField("Sub-Region Code", blank=True, null=True)
-    lon = models.FloatField(blank=True, null=True)
-    lat = models.FloatField(blank=True, null=True)
-    mpoly = models.MultiPolygonField(blank=True, null=True)
-
-    def __str__(self):
-        return self.name
-
-
-class Log(BaseModel):
-    """
-    Log sending of marketing emails and other interesting events.
-    """
-
-    entry = models.CharField(max_length=3000, blank=True, null=True)
-
-    def __str__(self):
-        if self.name:
-            return self.name
-        else:
-            return "-".join([self._meta.verbose_name, str(self.pk)])
 
 
 class Note(BaseModel):
@@ -473,48 +382,6 @@ class Project(BaseModel):
         ordering = ["name"]
 
 
-class Proposal(BaseModel):
-    """
-    """
-
-    client = models.ForeignKey(
-        "Client",
-        blank=True,
-        null=True,
-        limit_choices_to={"active": True},
-        on_delete=models.CASCADE,
-    )
-    project = models.ForeignKey(
-        "Project",
-        blank=True,
-        null=True,
-        on_delete=models.CASCADE,
-        limit_choices_to={"active": True},
-    )
-    statement_of_work = models.ForeignKey(
-        "Estimate",
-        blank=True,
-        null=True,
-        on_delete=models.CASCADE,
-        limit_choices_to={"accepted_date": None},
-    )
-    task = models.ForeignKey(
-        "Task",
-        blank=True,
-        null=True,
-        limit_choices_to={"active": True},
-        on_delete=models.CASCADE,
-    )
-    title = models.CharField(max_length=300, blank=True, null=True)
-    body = models.TextField(blank=True, null=True)
-
-    def __str__(self):
-        if self.name:
-            return self.name
-        else:
-            return "-".join([self._meta.verbose_name, str(self.pk)])
-
-
 class Report(BaseModel):
     """
     """
@@ -531,60 +398,11 @@ class Report(BaseModel):
         return "report-%s" % self.date
 
 
-class Service(BaseModel):
-    """
-    """
-
-    active = models.BooleanField(default=True)
-    # company = models.ForeignKey(CompanySettings, blank=True, null=True)
-    name = models.CharField(max_length=300, blank=True, null=True)
-    description = models.TextField(blank=True, null=True)
-
-    def __str__(self):
-        if self.name:
-            return self.name
-        else:
-            return "-".join([self._meta.verbose_name, str(self.pk)])
-
-
-class SettingsApp(SingletonModel):
-    """
-    """
-
-    auto_hide = models.BooleanField(default=True)
-    exclude_hidden = models.BooleanField(default=True)
-
-    class Meta:
-        verbose_name = "Settings App"
-
-
-class SettingsCompany(SingletonModel):
-    """
-    """
-
-    name = models.CharField(max_length=255, blank=True, null=True)
-    address = models.TextField(blank=True, null=True)
-    currency_symbol = models.CharField(
-        "Currency Symbol", default="$", max_length=300, blank=True, null=True
-    )
-    note = models.ManyToManyField("Note", blank=True)
-
-    class Meta:
-        verbose_name = "Settings Company"
-
-    def __str__(self):
-        if self.name:
-            return self.name
-        else:
-            return "-".join([self._meta.verbose_name, str(self.pk)])
-
-
 class Testimonial(BaseModel):
     """
     """
 
     active = models.BooleanField(default=True)
-    # company = models.ForeignKey(CompanySettings, blank=True, null=True)
     name = models.CharField(max_length=300, blank=True, null=True)
     slug = models.SlugField(blank=True, null=True)
     title = models.CharField(max_length=300, blank=True, null=True)
@@ -669,7 +487,7 @@ class Time(BaseModel):
     estimate = models.ForeignKey(
         Estimate, blank=True, null=True, on_delete=models.SET_NULL
     )
-    order = models.ForeignKey("Order", blank=True, null=True, on_delete=models.SET_NULL)
+    # order = models.ForeignKey("Order", blank=True, null=True, on_delete=models.SET_NULL)
     invoice = models.ForeignKey(
         Invoice,
         blank=True,
@@ -701,14 +519,3 @@ class Time(BaseModel):
     # https://docs.djangoproject.com/en/1.9/ref/models/instances/#get-absolute-url
     def get_absolute_url(self, hostname):
         return "%s/%s" % (hostname, reverse("time_view", args=[str(self.id)]))
-
-
-class Order(BaseModel):
-    """
-    """
-
-
-# https://docs.djangoproject.com/en/1.11/ref/contrib/gis/model-api/
-class Zipcode(BaseModel):
-    code = models.CharField(max_length=5)
-    poly = models.PolygonField()
