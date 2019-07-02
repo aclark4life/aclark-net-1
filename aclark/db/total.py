@@ -5,32 +5,25 @@ from decimal import Decimal
 
 def get_total(field, **kwargs):
     """
+    Calculate and return net, gross, cost amounts based on field. No object storage here.
     """
     invoices = kwargs.get("invoices")
     projects = kwargs.get("projects")
     times = kwargs.get("times")
+
     if field == "gross" and invoices:
         gross = invoices.aggregate(amount=Sum(F("amount")))["amount"]
         return gross
-    elif field == "cost" and projects:  # Currency
+    elif field == "cost" and projects:
         cost = projects.aggregate(cost=Sum(F("cost")))["cost"]
         return cost
-    elif field == "hours" and times:  # Time
+    elif field == "hours" and times:
         hours = times.aggregate(hours=Sum(F("hours")))["hours"]
         return hours
-        # if team:
-        #     total["users"] = {}
-        #     for user in team:
-        #         total["users"][user] = 0
-        #         times_user = times.filter(user=user)
-        #         hours_user = times_user.aggregate(hours=Sum(F("hours")))["hours"]
-        #         if hours_user:
-        #             total["users"][user] = hours_user
 
 
 def set_total(times, **kwargs):
     """
-    Given times and object, set total currency on object
     """
     estimate = kwargs.get("estimate")
     invoice = kwargs.get("invoice")

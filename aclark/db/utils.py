@@ -122,74 +122,6 @@ def edit(request, **kwargs):
     return render(request, template_name, context)
 
 
-def generate_doc():
-    """
-    """
-
-    # # https://stackoverflow.com/a/24122313/185820
-    # document = Document()
-    # # Head
-    # task = ''
-    # contract = context['item']
-    # if contract.task:
-    #     task = contract.task
-    # title = document.add_heading(
-    #     'ACLARK.NET, LLC %s AGREEMENT PREPARED FOR:' % task, level=1)
-    # title.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    # if contract.client:
-    #     client_name = document.add_heading(contract.client.name, level=1)
-    #     client_name.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    #     client_address = document.add_heading(contract.client.address, level=1)
-    #     client_address.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    # parser = etree.HTMLParser()  # http://lxml.de/parsing.html
-    # tree = etree.parse(StringIO(contract.body), parser)
-    # # Body
-    # for element in tree.iter():
-    #     if element.tag == 'h2':
-    #         document.add_heading(element.text, level=2)
-    #     elif element.tag == 'p':
-    #         document.add_paragraph(element.text)
-    # response = HttpResponse(content_type=DOC)
-    # response['Content-Disposition'] = 'attachment; filename=download.docx'
-    # document.save(response)
-    # return response
-
-    # logo = kwargs.get('logo')
-    # document.add_picture(logo, height=Inches(0.33))
-
-    # p.add_run('bold').bold = True
-    # p.add_run(' and some ')
-    # p.add_run('italic.').italic = True
-
-    # document.add_heading('Heading, level 1', level=1)
-    # document.add_paragraph('Intense quote', style='Intense Quote')
-
-    # document.add_paragraph(
-    #     'first item in unordered list', style='List Bullet'
-    # )
-    # document.add_paragraph(
-    #     'first item in ordered list', style='List Number'
-    # )
-
-    # records = (
-    #     (3, '101', 'Spam'),
-    #     (7, '422', 'Eggs'),
-    #     (4, '631', 'Spam, spam, eggs, and spam')
-    # )
-
-    # table = document.add_table(rows=1, cols=3)
-    # hdr_cells = table.rows[0].cells
-    # hdr_cells[0].text = 'Qty'
-    # hdr_cells[1].text = 'Id'
-    # hdr_cells[2].text = 'Desc'
-    # for qty, id, desc in records:
-    #     row_cells = table.add_row().cells
-    #     row_cells[0].text = str(qty)
-    #     row_cells[1].text = id
-    #     row_cells[2].text = desc
-    # document.add_page_break()
-
-
 def get_index_items(**kwargs):
     """
     """
@@ -322,18 +254,6 @@ def get_page_items(**kwargs):
             context["config"] = config
             context["entries"] = times
             context["item"] = estimate
-        elif model_name == "order":  # handle obj or model
-            if not obj:
-                order = get_object_or_404(model, pk=pk)
-            else:
-                order = obj
-            times = time_model.objects.filter(order=order)
-            if order_by:
-                times = times.order_by(*order_by["time"])
-            times = set_total(times, order=order)
-            context["doc_type"] = "Statement of Work"
-            context["entries"] = times
-            context["item"] = order
         elif model_name == "invoice":
             invoice = get_object_or_404(model, pk=pk)
             config = (
@@ -355,12 +275,10 @@ def get_page_items(**kwargs):
             contacts = contact_model.objects.all()
             estimates = estimate_model.objects.filter(project=project)
             invoices = invoice_model.objects.filter(project=project)
-            times = set_total(
-                time_model.objects.filter(
-                    estimate=None, project=project, task__isnull=False, invoiced=False
-                ),
-                project=project,
+            times = time_model.objects.filter(
+                estimate=None, project=project, task__isnull=False, invoiced=False
             )
+            times = set_total(times, project=project)
             if order_by:
                 times = times.order_by(*order_by["time"])
                 invoices = invoices.order_by(*order_by["invoice"])
@@ -444,15 +362,17 @@ def get_page_items(**kwargs):
                             items["times"], page_num=page_num, page_size=page_size
                         )
                 # Totals
+                net = 0
                 gross = get_total("gross", invoices=invoices)
-                cost = get_total("cost", projects=projects)
                 hours = get_total("hours", times=times)
+                cost = get_total("cost", projects=projects)
                 if gross and cost:
-                    context["net"] = gross - cost
-
-                context["cost"] = cost
+                    net = gross - cost
+                context["net"] = net
                 context["gross"] = gross
                 context["hours"] = hours
+                context["cost"] = cost
+
                 # Location
                 ip_address = request.META.get("HTTP_X_REAL_IP")
                 context["ip_address"] = ip_address
