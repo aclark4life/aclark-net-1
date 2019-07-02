@@ -47,5 +47,6 @@ def set_total(times, **kwargs):
 
     elif project:
         project.amount = "%.2f" % invoice_amount
+        project.cost = 0
         project.save()
     return times
