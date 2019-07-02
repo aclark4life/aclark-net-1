@@ -55,10 +55,11 @@ def set_total(times, **kwargs):
             for user in users:
                 times = times.filter(user=user)
                 hours = get_total("hours", times=times)
-                hours = Decimal(hours)
                 rate = user.profile.rate
-                if rate:
-                    cost += rate * hours
+                if hours:
+                    hours = Decimal(hours)
+                    if rate:
+                        cost += rate * hours
         project.cost = "%.2f" % cost
         project.hours = hours
         project.amount = "%.2f" % invoice_sum
