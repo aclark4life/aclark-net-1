@@ -13,7 +13,8 @@ from .misc import has_profile
 from .obj import obj_process
 from .page import paginate
 from .query import get_query_string
-from . import totals
+from .total import get_total
+from .total import set_total
 
 fake = Faker()
 gravatar_url = "https://www.gravatar.com/avatar/%s"
@@ -313,7 +314,7 @@ def get_page_items(**kwargs):
             times = time_model.objects.filter(estimate=estimate)
             if order_by:
                 times = times.order_by(*order_by["time"])
-            times = totals.set_total(times, estimate=estimate)
+            times = set_total(times, estimate=estimate)
             config = (
                 site_config_model.get_solo()
             )  # get_solo will create the item if it does not already exist
@@ -329,7 +330,7 @@ def get_page_items(**kwargs):
             times = time_model.objects.filter(order=order)
             if order_by:
                 times = times.order_by(*order_by["time"])
-            times = totals.set_total(times, order=order)
+            times = set_total(times, order=order)
             context["doc_type"] = "Statement of Work"
             context["entries"] = times
             context["item"] = order
@@ -340,7 +341,7 @@ def get_page_items(**kwargs):
             )  # get_solo will create the item if it does not already exist
             times = time_model.objects.filter(estimate=None, invoice=invoice)
             times = times.order_by(*order_by["time"])
-            times = totals.set_total(times, invoice=invoice)
+            times = set_total(times, invoice=invoice)
             last_payment_date = invoice.last_payment_date
             context["doc_type"] = model_name
             context["entries"] = times
@@ -354,7 +355,7 @@ def get_page_items(**kwargs):
             contacts = contact_model.objects.all()
             estimates = estimate_model.objects.filter(project=project)
             invoices = invoice_model.objects.filter(project=project)
-            times = totals.set_total(
+            times = set_total(
                 time_model.objects.filter(
                     estimate=None, project=project, task__isnull=False, invoiced=False
                 ),
@@ -428,7 +429,7 @@ def get_page_items(**kwargs):
                 else:
                     times = time_model.objects.all()
                 times = times.order_by(*order_by["time"])
-                times = totals.set_total(times)
+                times = set_total(times)
                 items = set_items("invoice", items=invoices)
                 items = set_items("project", items=projects, _items=items)
                 items = set_items("time", items=times, _items=items)
@@ -443,11 +444,11 @@ def get_page_items(**kwargs):
                             items["times"], page_num=page_num, page_size=page_size
                         )
                 # Totals
-                total_amount = totals.get_total(field="amount", invoices=invoices)[
+                total_amount = get_total(field="amount", invoices=invoices)[
                     "amount"
                 ]
-                total_cost = totals.get_total(field="cost", projects=projects)["cost"]
-                total_hours = totals.get_total(field="hours", times=times)["hours"]
+                total_cost = get_total(field="cost", projects=projects)["cost"]
+                total_hours = get_total(field="hours", times=times)["hours"]
                 if total_amount and total_cost:
                     context["net"] = total_amount - total_cost
                 context["cost"] = total_cost
