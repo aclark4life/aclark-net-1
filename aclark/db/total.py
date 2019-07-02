@@ -49,11 +49,13 @@ def set_total(times, **kwargs):
         cost = 0
         hours = 0
         users = project.team.all()
+        project.user_hours = {}
         if users:
             for user in users:
                 times = times.filter(user=user)
                 hours = get_total("hours", times=times)
                 if hours:
+                    project.user_hours[user.username] = str(hours)
                     hours = Decimal(hours)
                     if user.profile.rate:
                         cost += user.profile.rate * hours
