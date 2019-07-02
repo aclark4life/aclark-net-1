@@ -24,7 +24,7 @@
 {% include 'invoice_table.html' %}
 {% endwith %}
 {% include 'note_table.html' %}
-{% with users=items.users %}
+{% with users=item.team.all %}
 {% include 'users_table.html' %}
 {% endwith %}
 {% include 'times_table.html' %}

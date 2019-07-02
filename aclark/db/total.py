@@ -5,7 +5,7 @@ from decimal import Decimal
 
 def get_total(field, **kwargs):
     """
-    Given a field & queryset, calculate & return net, gross, cost; no object storage.
+    Given a field & queryset, calculate & return net, gross, cost sums; no object storage.
     """
 
     # querysets
@@ -26,42 +26,39 @@ def get_total(field, **kwargs):
 
 def set_total(times, **kwargs):
     """
-    Given a queryset, calculate and store invoice, time & hours sums and project cost.
     """
-    invoice = kwargs.get("invoice")
     project = kwargs.get("project")
+    invoice = kwargs.get("invoice")
 
-    t_sum = 0
-    invoice_sum = 0
-    # Calculate sum for each time (t.amount) and all times (invoice_sum).
+    # Calculate & save invoice & time amounts
+    amount = 0
+    invoice_amount = 0
     for t in times:
-        hours = t.hours
         if t.task:
-            rate = t.task.rate
-            if rate:
-                t_sum = rate * hours
-        t.amount = "%.2f" % t_sum
-        invoice_sum += t_sum
+            if t.task.rate:
+                amount = t.task.rate * t.hours
+        t.amount = "%.2f" % amount
+        t.save()
+        invoice_amount += amount
 
-    # If invoice, save invoice sum to invoice.
-    cost = 0
     if invoice:
-        invoice.amount = "%.2f" % invoice_sum
+        invoice.amount = "%.2f" % invoice_amount
         invoice.save()
-    # If project, save invoice total (gross) & project cost to project.
+
     elif project:
+        cost = 0
+        hours = 0
         users = project.team.all()
         if users:
             for user in users:
                 times = times.filter(user=user)
                 hours = get_total("hours", times=times)
-                rate = user.profile.rate
                 if hours:
                     hours = Decimal(hours)
-                    if rate:
-                        cost += rate * hours
+                    if user.profile.rate:
+                        cost += user.profile.rate * hours
+        project.amount = "%.2f" % invoice_amount
         project.cost = "%.2f" % cost
         project.hours = hours
-        project.amount = "%.2f" % invoice_sum
         project.save()
     return times

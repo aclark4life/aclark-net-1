@@ -99,14 +99,14 @@
                 </tr>
               </thead>
               <tbody>
-                {% for entry in entries %}
+                {% for t in times %}
                 <tr class="border-bottom">
-                  <td valign="top" align="left" class="border-right" style="width: 20%">{{ entry.date|date:'Y-m-d'|default:'' }}</td>
-                  <td valign="top" align="left" class="border-right" style="width: 20%">{{ entry.task|default:'' }}</td>
-                  <td valign="top" align="left" class="border-right" style="width: 100%">{{ entry.log|linebreaks|default:'' }}</td>
-                  <td valign="top" align="right" class="border-right" style="width: 20%">{% if not pdf %} <a href="{% url 'time_view' entry.pk %}">{{ entry.hours|default:'0' }}</a> <a href="{% url 'time_edit' entry.pk %}"><i class="fa fa-cog"></i></a> {% if entry.user.profile %} <a href="{% url 'user_view' entry.user.profile.pk %}">{{ entry.user.get_full_name }}</a> {% endif %} {% else %} {{ entry.hours }} {% endif %} </td>
-                  <td valign="top" align="right" class="border-right" style="width: 20%">{{ currency_symbol }}{% if entry.task %}{{ entry.task.rate|default:'' }}{% endif %}</td>
-                  <td valign="top" align="right" style="width: 20%"><strong>{{ currency_symbol }}{{ entry.amount|default:'0' }}</strong></td>
+                  <td valign="top" align="left" class="border-right" style="width: 20%">{{ t.date|date:'Y-m-d'|default:'' }}</td>
+                  <td valign="top" align="left" class="border-right" style="width: 20%">{{ t.task|default:'' }}</td>
+                  <td valign="top" align="left" class="border-right" style="width: 100%">{{ t.log|linebreaks|default:'' }}</td>
+                  <td valign="top" align="right" class="border-right" style="width: 20%">{% if not pdf %} <a href="{% url 'time_view' t.pk %}">{{ t.hours|default:'0' }}</a> <a href="{% url 'time_edit' t.pk %}"><i class="fa fa-cog"></i></a> {% if t.user.profile %} <a href="{% url 'user_view' t.user.profile.pk %}">{{ t.user.get_full_name }}</a> {% endif %} {% else %} {{ t.hours }} {% endif %} </td>
+                  <td valign="top" align="right" class="border-right" style="width: 20%">{{ currency_symbol }}{% if t.task %}{{ t.task.rate|default:'' }}{% endif %}</td>
+                  <td valign="top" align="right" style="width: 20%"><strong>{{ currency_symbol }}{{ t.amount|default:'0' }}</strong></td>
                 </tr>
                 {% endfor %}
                 <tr>

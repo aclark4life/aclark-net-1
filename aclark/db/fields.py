@@ -1,10 +1,11 @@
 from collections import OrderedDict
 
 
-def get_fields(item, exclude_fields=[]):
+def get_fields(item, include=[]):
     _fields = item._meta._get_fields()
     fields = OrderedDict()
     for field in _fields:
-        value = getattr(item, field.name)
-        fields[field.name] = value
+        if field.name in include:
+            value = getattr(item, field.name)
+            fields[field.name] = value
     return fields

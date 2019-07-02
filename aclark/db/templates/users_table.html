@@ -22,7 +22,7 @@
                 <td>{{ user.email }}</td>
                 <td><a class="text-{{ icon_color }}" href="{% url 'user_view' user.pk %}">{{ user.profile.get_username }}</a> {% if user.profile %}<a class="text-{{ icon_color }}" href="{% url 'user_edit' user.pk %}"><i class="fas fa-pencil-alt fa-{{ icon_size }}" style="vertical-align: middle"></i></a>{% endif %}</td>
 
-                <td>{{ user }}</td>
+                <td>{{ user.hours }}</td>
               </tr>
             {% endfor %}
             </tbody>

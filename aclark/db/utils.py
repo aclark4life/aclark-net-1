@@ -189,11 +189,11 @@ def get_page_items(**kwargs):
     order_by = kwargs.get("order_by")
     pk = kwargs.get("pk")
     time_model = kwargs.get("time_model")
-    user_model = kwargs.get("user_model")
     filter_by = kwargs.get("filter_by")
     page_size = kwargs.get("page_size")
     context = {}
     items = {}
+    time_include = ("date", "project", "hours", "log")
 
     if request:  # Applies to all page items
         doc = get_query_string(request, "doc")  # Export
@@ -264,17 +264,17 @@ def get_page_items(**kwargs):
             times = set_total(times, invoice=invoice)
             last_payment_date = invoice.last_payment_date
             context["doc_type"] = model_name
-            context["entries"] = times
+            context["times"] = times
             context["item"] = invoice
             context["invoice"] = True
             context["config"] = config
             context["last_payment_date"] = last_payment_date
         elif model_name == "project":
             project = get_object_or_404(model, pk=pk)
-            context["item"] = project
             contacts = contact_model.objects.all()
             estimates = estimate_model.objects.filter(project=project)
             invoices = invoice_model.objects.filter(project=project)
+            notes = note_model.objects.filter(project=project)
             times = time_model.objects.filter(
                 estimate=None, project=project, task__isnull=False, invoiced=False
             )
@@ -282,14 +282,12 @@ def get_page_items(**kwargs):
             if order_by:
                 times = times.order_by(*order_by["time"])
                 invoices = invoices.order_by(*order_by["invoice"])
-            users = user_model.objects.filter(project=project)
-            notes = note_model.objects.filter(project=project)
             items = set_items("contact", items=contacts)
             items = set_items("estimate", items=estimates, _items=items)
             items = set_items("invoice", items=invoices, _items=items)
             items = set_items("time", items=times, _items=items)
-            items = set_items("user", items=users, _items=items)
             items = set_items("note", items=notes, _items=items)
+            context["item"] = project
             context["items"] = items
             context["cost"] = float(project.cost)
             context["gross"] = float(project.amount)
@@ -317,7 +315,7 @@ def get_page_items(**kwargs):
         if model_name == "time":
             time = get_object_or_404(model, pk=pk)
             context["item"] = time
-            fields = get_fields(time)  # fields_items.html
+            fields = get_fields(time, include=time_include)  # fields_table.html
             context["fields"] = fields  # fields_items.html
         elif model_name == "user":
             user = get_object_or_404(model, pk=pk)
@@ -326,7 +324,7 @@ def get_page_items(**kwargs):
             times = time_model.objects.filter(estimate=None, invoiced=False, user=user)
             times = times.order_by(*order_by["time"])
             contacts = contact_model.objects.all()
-            fields = get_fields(user.profile)  # fields_table.html
+            fields = get_fields(user.profile, include=time_include)  # fields_table.html
             context["fields"] = fields
             context["item"] = user
             context["projects"] = projects
