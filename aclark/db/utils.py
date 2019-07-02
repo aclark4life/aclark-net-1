@@ -194,6 +194,7 @@ def get_page_items(**kwargs):
     context = {}
     items = {}
     time_include = ("date", "project", "hours", "log")
+    user_include = ("rate", "bio", "dashboard_items")
 
     if request:  # Applies to all page items
         doc = get_query_string(request, "doc")  # Export
@@ -324,7 +325,7 @@ def get_page_items(**kwargs):
             times = time_model.objects.filter(estimate=None, invoiced=False, user=user)
             times = times.order_by(*order_by["time"])
             contacts = contact_model.objects.all()
-            fields = get_fields(user.profile, include=time_include)  # fields_table.html
+            fields = get_fields(user.profile, include=user_include)  # fields_table.html
             context["fields"] = fields
             context["item"] = user
             context["projects"] = projects
