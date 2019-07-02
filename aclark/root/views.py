@@ -14,7 +14,6 @@ from aclark.db.models import Client
 # Create your views here.
 
 BASE_URL = "https://%s" % os.environ.get("API_HOST", "aclark.net")
-SERVICE_URL = "%s/api/services/?format=json" % BASE_URL
 TESTIMONIAL_URL = "%s/api/testimonials/?format=json" % BASE_URL
 PROFILE_URL = "%s/api/profiles/?format=json" % BASE_URL
 
@@ -86,8 +85,6 @@ def home(request):
 
 def services(request):
     context = {}
-    services = requests.get(SERVICE_URL).json()
-    context["services"] = services
     context["services_nav"] = True
     return render(request, "services.html", context)
 
