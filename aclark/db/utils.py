@@ -279,7 +279,7 @@ def get_page_items(**kwargs):
             times = time_model.objects.filter(
                 estimate=None, project=project, task__isnull=False, invoiced=False
             )
-            times = set_total(times, project=project)
+            times = set_total(times, project=project, time_model=time_model)
             if order_by:
                 times = times.order_by(*order_by["time"])
                 invoices = invoices.order_by(*order_by["invoice"])
@@ -288,19 +288,6 @@ def get_page_items(**kwargs):
             items = set_items("invoice", items=invoices, _items=items)
             items = set_items("time", items=times, _items=items)
             items = set_items("note", items=notes, _items=items)
-
-            cost = 0
-            users = project.team.all()
-            for user in users:
-                times = time_model.objects.filter(
-                    estimate=None, invoiced=False, user=user, project=project
-                )
-                hours = get_total("hours", times=times)
-                if user.profile.rate:
-                    cost += user.profile.rate * hours
-            project.cost = cost
-            project.save()
-
             context["item"] = project
             context["items"] = items
             context["cost"] = float(project.cost)

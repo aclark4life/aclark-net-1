@@ -29,6 +29,7 @@ def set_total(times, **kwargs):
     """
     project = kwargs.get("project")
     invoice = kwargs.get("invoice")
+    time_model = kwargs.get("time_model")
 
     # Calculate & save invoice & time amounts
     amount = 0
@@ -47,6 +48,15 @@ def set_total(times, **kwargs):
 
     elif project:
         project.amount = "%.2f" % invoice_amount
-        project.cost = 0
+        cost = 0
+        users = project.team.all()
+        for user in users:
+            times = time_model.objects.filter(
+                estimate=None, invoiced=False, user=user, project=project
+            )
+            hours = get_total("hours", times=times)
+            if user.profile.rate:
+                cost += user.profile.rate * hours
+        project.cost = cost
         project.save()
     return times
