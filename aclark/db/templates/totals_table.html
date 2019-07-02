@@ -1,0 +1,21 @@
+{% load humanize %}
+            <div class="text-right">
+              <div class="d-inline-block">
+                <table data-toggle="table" data-classes="table-sm table-bordered">
+                  <thead>
+                    {% if request.user.is_staff %}<th>Cost</th>{% endif %}
+                    {% if request.user.is_staff %}<th>Gross</th>{% endif %}
+                    {% if request.user.is_staff %}<th>Net</th>{% endif %}
+                    <th data-width="50">Total Current Hours</th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      {% if request.user.is_staff %}<td><strong class="text-danger">{{ cost|default:0|intcomma }}</strong></td>{% endif %}
+                      {% if request.user.is_staff %}<td><strong class="text-info">{{ gross|default:0|intcomma }}</strong></td>{% endif %}
+                      {% if request.user.is_staff %}<td><strong class="text-success">{{ net|default:0|intcomma }}</strong></td>{% endif %}
+                      <td>{{ hours|default:0 }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>

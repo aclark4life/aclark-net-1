@@ -326,10 +326,12 @@ def get_page_items(**kwargs):
             times = times.order_by(*order_by["time"])
             contacts = contact_model.objects.all()
             fields = get_fields(user.profile, include=user_include)  # fields_table.html
+            hours = get_total("hours", times=times)
             context["fields"] = fields
             context["item"] = user
             context["projects"] = projects
             context["times"] = times
+            context["hours"] = hours
         else:
             item = get_object_or_404(model, pk=pk)
             context["item"] = item
