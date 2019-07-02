@@ -1,0 +1,29 @@
+          <table data-toggle="table" data-classes="table-sm table-bordered">
+            <thead>
+              <tr>
+                <th data-field="counter" data-sortable="true">#</th>
+                <th data-field="active" data-sort-name="hidden-active" data-sortable="true" {% if active %} data-visible="false" {% endif %} >Active</th>
+                <th data-field="hidden-active" data-sortable="true" data-visible="false">Hidden Active</th>
+                <th data-field="hidden-id" data-sortable="true" data-visible="false">Hidden Id</th>
+                <th data-field="fullname" data-sortable="true">Full Name</th>
+                <th data-field="email-address" data-sortable="true">Email</th>
+                <th data-field="username" data-sortable="true">Username</th>
+                {% if model_name == 'project' %}<th data-field="hours" data-sortable="true">Hours</th>{% endif %}
+              </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+              <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{% if user.profile %}<form action="{% url 'user_edit' user.pk %}" method="post">{% csrf_token %}<input type="hidden" value="off" name="checkbox-active"><input type="checkbox" value="on" name="checkbox-active" {% if user.profile.active %} checked {% endif %} onChange="this.form.submit()"></form>{% endif %}</td>
+                <td>{{ user.profile.active }}</td>
+                <td>{{ user.pk }}</td>
+                <td>{{ user.get_full_name }}</td>
+                <td>{{ user.email }}</td>
+                <td><a class="text-{{ icon_color }}" href="{% url 'user_view' user.pk %}">{{ user.profile.get_username }}</a> {% if user.profile %}<a class="text-{{ icon_color }}" href="{% url 'user_edit' user.pk %}"><i class="fas fa-pencil-alt fa-{{ icon_size }}" style="vertical-align: middle"></i></a>{% endif %}</td>
+
+                {% if model_name == 'project' %}<td>{{ user.hours }}</td>{% endif %}
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
