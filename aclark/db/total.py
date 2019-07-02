@@ -9,21 +9,15 @@ def get_total(field, **kwargs):
     invoices = kwargs.get("invoices")
     projects = kwargs.get("projects")
     times = kwargs.get("times")
-    total = {}
-    total["cost"] = 0
-    total["hours"] = 0
-    total["amount"] = 0
-    if field == "amount" and invoices:  # Currency
-        amount = invoices.aggregate(amount=Sum(F("amount")))["amount"]
-        total["amount"] = amount
+    if field == "gross" and invoices:
+        gross = invoices.aggregate(amount=Sum(F("amount")))["amount"]
+        return gross
     elif field == "cost" and projects:  # Currency
         cost = projects.aggregate(cost=Sum(F("cost")))["cost"]
-        total["cost"] = cost
+        return cost
     elif field == "hours" and times:  # Time
-        total["hours"] = 0
-        total_hours = times.aggregate(hours=Sum(F("hours")))["hours"]
-        if total_hours:
-            total["hours"] = total_hours
+        hours = times.aggregate(hours=Sum(F("hours")))["hours"]
+        return hours
         # if team:
         #     total["users"] = {}
         #     for user in team:
@@ -32,7 +26,6 @@ def get_total(field, **kwargs):
         #         hours_user = times_user.aggregate(hours=Sum(F("hours")))["hours"]
         #         if hours_user:
         #             total["users"][user] = hours_user
-    return total
 
 
 def set_total(times, **kwargs):

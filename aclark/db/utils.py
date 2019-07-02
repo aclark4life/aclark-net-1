@@ -444,14 +444,15 @@ def get_page_items(**kwargs):
                             items["times"], page_num=page_num, page_size=page_size
                         )
                 # Totals
-                total_amount = get_total("amount", invoices=invoices)["amount"]
-                total_cost = get_total("cost", projects=projects)["cost"]
-                total_hours = get_total("hours", times=times)["hours"]
-                if total_amount and total_cost:
-                    context["net"] = total_amount - total_cost
-                context["cost"] = total_cost
-                context["gross"] = total_amount
-                context["hours"] = total_hours
+                gross = get_total("gross", invoices=invoices)
+                cost = get_total("cost", projects=projects)
+                hours = get_total("hours", times=times)
+                if gross and cost:
+                    context["net"] = gross - cost
+
+                context["cost"] = cost
+                context["gross"] = gross
+                context["hours"] = hours
                 # Location
                 ip_address = request.META.get("HTTP_X_REAL_IP")
                 context["ip_address"] = ip_address

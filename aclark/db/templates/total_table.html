@@ -13,7 +13,7 @@
                       {% if request.user.is_staff %}<td><strong class="text-danger">{{ currency_symbol }}{{ cost|default:'0.00'|intcomma }}</strong></td>{% endif %}
                       {% if request.user.is_staff %}<td><strong class="text-info">{{ currency_symbol }}{{ gross|default:'0.00'|intcomma }}</strong></td>{% endif %}
                       {% if request.user.is_staff %}<td><strong class="text-success">{{ currency_symbol }}{{ net|default:'0.00'|intcomma }}</strong></td>{% endif %}
-                      {% if not request.user.is_staff %}<td>{{ hours }}</td>{% endif %}
+                      {% if not request.user.is_staff %}<td>{{ hours|default:0 }}</td>{% endif %}
                     </tr>
                   </tbody>
                 </table>
