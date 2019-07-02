@@ -8,6 +8,7 @@ def get_total(field, **kwargs):
     Given a field & queryset, calculate & return net, gross, cost; no object storage.
     """
 
+    # querysets
     invoices = kwargs.get("invoices")
     projects = kwargs.get("projects")
     times = kwargs.get("times")
@@ -25,16 +26,13 @@ def get_total(field, **kwargs):
 
 def set_total(times, **kwargs):
     """
-    Given a queryset, calculate and store invoice, time & hours totals and project cost.
+    Given a queryset, calculate and store invoice, time & hours sums and project cost.
     """
     invoice = kwargs.get("invoice")
     project = kwargs.get("project")
 
-    hours = 0
-    cost = 0
     t_sum = 0
     invoice_sum = 0
-
     # Calculate sum for each time (t.amount) and all times (invoice_sum).
     for t in times:
         hours = t.hours
@@ -46,25 +44,23 @@ def set_total(times, **kwargs):
         invoice_sum += t_sum
 
     # If invoice, save invoice sum to invoice.
+    cost = 0
     if invoice:
         invoice.amount = "%.2f" % invoice_sum
         invoice.save()
-
-    # If project, save invoice sum to project.
+    # If project, save invoice total (gross) & project cost to project.
     elif project:
-        # team = project.team.all()
-        # if team:
-        #     hours = get_total(field="hours", times=times, team=team)
-        #     if "users" in hours:
-        #         for user in hours["users"]:
-        #             rate = user.profile.rate
-        #             user_hours = Decimal(hours["users"][user])
-        #             user.hours = user_hours
-        #            user.save()
-        #            if rate:
-        #                project_cost += rate * user_hours
-        # project.cost = "%.2f" % project_cost
-        # project.hours = hours
+        users = project.team.all()
+        if users:
+            for user in users:
+                times = times.filter(user=user)
+                hours = get_total("hours", times=times)
+                hours = Decimal(hours)
+                rate = user.profile.rate
+                if rate:
+                    cost += rate * hours
+        project.cost = "%.2f" % cost
+        project.hours = hours
         project.amount = "%.2f" % invoice_sum
         project.save()
     return times

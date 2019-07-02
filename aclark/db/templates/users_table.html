@@ -8,7 +8,7 @@
                 <th data-field="fullname" data-sortable="true">Full Name</th>
                 <th data-field="email-address" data-sortable="true">Email</th>
                 <th data-field="username" data-sortable="true">Username</th>
-                {% if model_name == 'project' %}<th data-field="hours" data-sortable="true">Hours</th>{% endif %}
+                <th data-field="hours" data-sortable="true">Hours</th>
               </tr>
             </thead>
             <tbody>
@@ -22,7 +22,7 @@
                 <td>{{ user.email }}</td>
                 <td><a class="text-{{ icon_color }}" href="{% url 'user_view' user.pk %}">{{ user.profile.get_username }}</a> {% if user.profile %}<a class="text-{{ icon_color }}" href="{% url 'user_edit' user.pk %}"><i class="fas fa-pencil-alt fa-{{ icon_size }}" style="vertical-align: middle"></i></a>{% endif %}</td>
 
-                {% if model_name == 'project' %}<td>{{ user.hours }}</td>{% endif %}
+                <td>{{ user }}</td>
               </tr>
             {% endfor %}
             </tbody>
