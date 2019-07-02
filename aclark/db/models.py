@@ -8,7 +8,6 @@ from phonenumber_field.modelfields import PhoneNumberField
 from taggit.managers import TaggableManager
 from uuid import uuid4
 from . import choices
-from django.contrib.postgres.fields import JSONField
 
 
 # Create your models here.
@@ -389,7 +388,6 @@ class Project(BaseModel):
         blank=True, null=True, max_digits=12, decimal_places=2
     )
     note = models.ManyToManyField("Note", blank=True, limit_choices_to={"active": True})
-    user_hours = JSONField(blank=True, null=True)
 
     def __str__(self):
         if self.name:
