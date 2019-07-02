@@ -391,7 +391,6 @@ class Project(BaseModel):
     note = models.ManyToManyField("Note", blank=True, limit_choices_to={"active": True})
     user_hours = JSONField(blank=True, null=True)
 
-
     def __str__(self):
         if self.name:
             return self.name

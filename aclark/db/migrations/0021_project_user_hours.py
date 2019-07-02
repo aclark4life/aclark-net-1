@@ -6,14 +6,12 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('db', '0020_auto_20190701_2342'),
-    ]
+    dependencies = [("db", "0020_auto_20190701_2342")]
 
     operations = [
         migrations.AddField(
-            model_name='project',
-            name='user_hours',
+            model_name="project",
+            name="user_hours",
             field=django.contrib.postgres.fields.jsonb.JSONField(blank=True, null=True),
-        ),
+        )
     ]
