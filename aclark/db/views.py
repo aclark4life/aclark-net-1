@@ -204,28 +204,6 @@ def estimate_index(request):
     return render(request, "estimate_index.html", context)
 
 
-@staff_member_required
-def file_view(request, pk=None):
-    context = get_page_items(model=File, pk=pk, request=request)
-    return render(request, "file_view.html", context)
-
-
-@staff_member_required
-def file_edit(request, pk=None):
-    return edit(request, form_model=FileForm, model=File, pk=pk)
-
-
-@staff_member_required
-def file_index(request):
-    context = get_index_items(model=File, order_by=("-updated",), request=request)
-    return render(request, "file_index.html", context)
-
-
-@staff_member_required
-def geo_view(request):
-    return render(request, "geo_view.html", {})
-
-
 def home(request):
     context = get_page_items(
         filter_by={"time": {"estimate": None, "user": request.user}},

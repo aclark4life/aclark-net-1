@@ -3,15 +3,12 @@ from django.db.models import Sum
 from decimal import Decimal
 
 
-def get_total(**kwargs):
+def get_total(field, **kwargs):
     """
-    Given object or field, return total currency or time
     """
-    field = kwargs.get("field")
     invoices = kwargs.get("invoices")
     projects = kwargs.get("projects")
     times = kwargs.get("times")
-    team = kwargs.get("team")
     total = {}
     total["cost"] = 0
     total["hours"] = 0
@@ -27,14 +24,14 @@ def get_total(**kwargs):
         total_hours = times.aggregate(hours=Sum(F("hours")))["hours"]
         if total_hours:
             total["hours"] = total_hours
-        if team:
-            total["users"] = {}
-            for user in team:
-                total["users"][user] = 0
-                times_user = times.filter(user=user)
-                hours_user = times_user.aggregate(hours=Sum(F("hours")))["hours"]
-                if hours_user:
-                    total["users"][user] = hours_user
+        # if team:
+        #     total["users"] = {}
+        #     for user in team:
+        #         total["users"][user] = 0
+        #         times_user = times.filter(user=user)
+        #         hours_user = times_user.aggregate(hours=Sum(F("hours")))["hours"]
+        #         if hours_user:
+        #             total["users"][user] = hours_user
     return total
 
 
@@ -64,17 +61,17 @@ def set_total(times, **kwargs):
         estimate.amount = "%.2f" % invoice_amount
         estimate.save()
     elif project:
-        team = project.team.all()
-        if team:
-            hours = get_total(field="hours", times=times, team=team)
-            if "users" in hours:
-                for user in hours["users"]:
-                    rate = user.profile.rate
-                    user_hours = Decimal(hours["users"][user])
-                    user.hours = user_hours
-                    user.save()
-                    if rate:
-                        project_cost += rate * user_hours
+        # team = project.team.all()
+        # if team:
+        #     hours = get_total(field="hours", times=times, team=team)
+        #     if "users" in hours:
+        #         for user in hours["users"]:
+        #             rate = user.profile.rate
+        #             user_hours = Decimal(hours["users"][user])
+        #             user.hours = user_hours
+        #            user.save()
+        #            if rate:
+        #                project_cost += rate * user_hours
         project.amount = "%.2f" % invoice_amount
         project.cost = "%.2f" % project_cost
         project.hours = hours

@@ -30,11 +30,6 @@ urlpatterns = [
     # Login
     url(r"^login$", views.login, name="login"),
     url(r"^logout$", views.logout, name="logout"),
-    # Files
-    url(r"^file/(?P<pk>\d+)$", views.file_view, name="file_view"),
-    url(r"^file/(?P<pk>\d+)/edit$", views.file_edit, name="file_edit"),
-    url(r"^file/add$", views.file_edit, name="file_edit"),
-    url(r"^file$", views.file_index, name="file_index"),
     # Note
     url(r"^note/(?P<pk>\d+)$", views.note_view, name="note_view"),
     url(r"^note/(?P<pk>\d+)/edit$", views.note_edit, name="note_edit"),
