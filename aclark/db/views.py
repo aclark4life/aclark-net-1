@@ -33,6 +33,7 @@ from .models import Note
 from .models import Profile
 from .models import Project
 from .models import Report
+from .models import SiteConfiguration
 from .models import Testimonial
 from .models import Task
 from .models import Time
@@ -157,6 +158,7 @@ def estimate_view(request, pk=None):
     order_by = {"time": ("updated",)}
     context = get_page_items(
         model=Estimate,
+        site_config_model=SiteConfiguration,
         order_by=order_by,
         pk=pk,
         project_model=Project,
@@ -164,7 +166,9 @@ def estimate_view(request, pk=None):
         request=request,
     )
     if context["pdf"]:
-        filename = "%s_%s_%s.pdf" % ("ACLARK.NET, LLC", "estimate".upper(), pk)
+        company_name = context["config"].company_name
+        company_name = slugify(company_name)
+        filename = "%s-%s-%s.pdf" % (company_name, "estimate", pk)
         return render_pdf(context, filename=filename, template="invoice_export.html")
     elif context["mail"]:
         message_plain = "Title"
@@ -251,13 +255,16 @@ def home(request):
 def invoice_view(request, pk=None):
     context = get_page_items(
         model=Invoice,
+        site_config_model=SiteConfiguration,
         order_by={"time": ("date", "updated")},  # For time entries
         pk=pk,
         request=request,
         time_model=Time,
     )
     if context["pdf"]:
-        filename = "%s_%s_%s.pdf" % ("ACLARK.NET, LLC", "invoice".upper(), pk)
+        company_name = context["config"].company_name
+        company_name = slugify(company_name)
+        filename = "%s-%s-%s.pdf" % (company_name, "invoice", pk)
         return render_pdf(context, filename=filename, template="invoice_export.html")
     else:
         return render(request, "invoice_view.html", context)

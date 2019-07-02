@@ -17,6 +17,12 @@ from .models import Testimonial
 from .models import Time
 
 
+from solo.admin import SingletonModelAdmin
+from aclark.db.models import SiteConfiguration
+
+admin.site.register(SiteConfiguration, SingletonModelAdmin)
+
+
 class BooleanWidget(widgets.Widget):
     """
     Convert strings to boolean values

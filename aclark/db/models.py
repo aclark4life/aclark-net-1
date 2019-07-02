@@ -11,6 +11,23 @@ from . import choices
 
 # Create your models here.
 
+# https://github.com/lazybird/django-solo
+from solo.models import SingletonModel
+
+
+class SiteConfiguration(SingletonModel):
+    site_name = models.CharField(max_length=255, default="Site Name")
+    maintenance_mode = models.BooleanField(default=False)
+
+    company_name = models.CharField(max_length=255, default="Company Name")
+    company_address = models.TextField(blank=True, null=True)
+
+    def __unicode__(self):
+        return u"Site Configuration"
+
+    class Meta:
+        verbose_name = "Site Configuration"
+
 
 class BaseModel(models.Model):
     """

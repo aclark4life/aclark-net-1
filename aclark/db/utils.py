@@ -24,10 +24,7 @@ def edit(request, **kwargs):
     """
     context = {}
     obj = None
-    app_settings_model = kwargs.get("app_settings_model")
-    contract_settings_model = kwargs.get("contract_settings_model")
     client_model = kwargs.get("client_model")
-    company_model = kwargs.get("company_model")
     contact_model = kwargs.get("contact_model")
     estimate_model = kwargs.get("estimate_model")
     form_model = kwargs.get("form_model")
@@ -47,7 +44,6 @@ def edit(request, **kwargs):
     if pk is None:  # New obj
         form = get_form(
             client_model=client_model,
-            contract_settings_model=contract_settings_model,
             form_model=form_model,
             invoice_model=invoice_model,
             model=model,
@@ -63,15 +59,7 @@ def edit(request, **kwargs):
             form_model=form_model, obj=obj, project_model=project_model, request=request
         )
 
-    if company_model:
-        company = company_model.get_solo()
-        company_name = company.name
-        company_address = company.address
-        currency_symbol = company.currency_symbol
-        context["company_name"] = company_name
-        context["company_address"] = company_address
-        context["currency_symbol"] = currency_symbol
-    elif contact_model:
+    if contact_model:
         model_name = contact_model._meta.verbose_name
     elif note_model:
         model_name = note_model._meta.verbose_name
@@ -97,11 +85,7 @@ def edit(request, **kwargs):
 
         if query_checkbox["condition"]:
             return obj_process(
-                obj,
-                query_checkbox=query_checkbox,
-                app_settings_model=app_settings_model,
-                request=request,
-                task="check",
+                obj, query_checkbox=query_checkbox, request=request, task="check"
             )
 
         if query_invoiced["condition"]:
@@ -119,7 +103,6 @@ def edit(request, **kwargs):
                 obj,
                 request,
                 client_model=client_model,
-                company_model=company_model,
                 estimate_model=estimate_model,
                 invoice_model=invoice_model,
                 model=model,
@@ -210,8 +193,6 @@ def get_index_items(**kwargs):
     """
     """
     context = {}
-    app_settings_model = kwargs.get("app_settings_model")
-    company_model = kwargs.get("company_model")
     model = kwargs.get("model")
     filter_by = kwargs.get("filter_by")
     order_by = kwargs.get("order_by")
@@ -221,14 +202,6 @@ def get_index_items(**kwargs):
     model_name = model._meta.verbose_name
     edit_url = "%s_edit" % model_name
     view_url = "%s_view" % model_name
-    if company_model:
-        company = company_model.get_solo()
-        company_name = company.name
-        company_address = company.address
-        currency_symbol = company.currency_symbol
-        context["company_name"] = company_name
-        context["company_address"] = company_address
-        context["currency_symbol"] = currency_symbol
     page_num = get_query_string(request, "page")
     paginated = get_query_string(request, "paginated")
     search = get_query_string(request, "search")
@@ -242,7 +215,6 @@ def get_index_items(**kwargs):
                 model,
                 search_fields,
                 search,
-                app_settings_model=app_settings_model,
                 edit_url=edit_url,
                 view_url=view_url,
                 order_by=order_by,
@@ -263,8 +235,6 @@ def get_index_items(**kwargs):
         items = paginate(items, page_num=page_num, page_size=page_size)
     context["edit_url"] = edit_url
     context["view_url"] = view_url
-    context["icon_size"] = get_setting(request, app_settings_model, "icon_size")
-    context["icon_color"] = get_setting(request, app_settings_model, "icon_color")
     context["page"] = page_num
     context["paginated"] = paginated
     items = set_items(model_name, items=items)
@@ -274,11 +244,9 @@ def get_index_items(**kwargs):
 
 
 def get_page_items(**kwargs):
-    app_settings_model = kwargs.get("app_settings_model")
-    company_model = kwargs.get("company_model")
+    site_config_model = kwargs.get("site_config_model")
     contact_model = kwargs.get("contact_model")
     estimate_model = kwargs.get("estimate_model")
-    contract_model = kwargs.get("contract_model")
     invoice_model = kwargs.get("invoice_model")
     note_model = kwargs.get("note_model")
     model = kwargs.get("model")
@@ -295,10 +263,6 @@ def get_page_items(**kwargs):
     items = {}
 
     if request:  # Applies to all page items
-        context["icon_color"] = get_setting(
-            request, app_settings_model, "icon_color"
-        )  # Prefs
-        context["icon_size"] = get_setting(request, app_settings_model, "icon_size")
         doc = get_query_string(request, "doc")  # Export
         mail = get_query_string(request, "mail")  # Export
         pdf = get_query_string(request, "pdf")  # Export
@@ -306,15 +270,6 @@ def get_page_items(**kwargs):
         context["mail"] = mail
         context["pdf"] = pdf
         context["request"] = request  # Include request
-
-    if company_model:
-        company = company_model.get_solo()
-        company_name = company.name
-        company_address = company.address
-        currency_symbol = company.currency_symbol
-        context["company_name"] = company_name
-        context["company_address"] = company_address
-        context["currency_symbol"] = currency_symbol
 
     model_name = None
 
@@ -329,16 +284,9 @@ def get_page_items(**kwargs):
         context["edit_url"] = "%s_edit" % model_name
         context["view_url"] = "%s_view" % model_name
 
-        if model_name == "Settings App":
-            app_settings = app_settings_model.get_solo()
-            context["items"] = get_fields(app_settings)  # fields_items.html
-        elif model_name == "Settings Company":
-            company_settings = model.get_solo()
-            context["item"] = get_fields(company_settings)  # fields_items.html
-        elif model_name == "client":
+        if model_name == "client":
             client = get_object_or_404(model, pk=pk)
             contacts = contact_model.objects.filter(client=client)
-            contracts = contract_model.objects.filter(client=client)
             estimates = estimate_model.objects.filter(client=client)
             invoices = invoice_model.objects.filter(client=client)
             projects = project_model.objects.filter(client=client)
@@ -351,7 +299,6 @@ def get_page_items(**kwargs):
             items = set_items("note", items=notes, _items=items)
             items = set_items("project", items=projects, _items=items)
             items = set_items("estimate", items=estimates, _items=items)
-            items = set_items("contract", items=contracts, _items=items)
             context["item"] = client
             context["items"] = items
         elif model_name == "contact":
@@ -367,7 +314,11 @@ def get_page_items(**kwargs):
             if order_by:
                 times = times.order_by(*order_by["time"])
             times = totals.set_total(times, estimate=estimate)
+            config = (
+                site_config_model.get_solo()
+            )  # get_solo will create the item if it does not already exist
             context["doc_type"] = model_name
+            context["config"] = config
             context["entries"] = times
             context["item"] = estimate
         elif model_name == "order":  # handle obj or model
@@ -384,6 +335,9 @@ def get_page_items(**kwargs):
             context["item"] = order
         elif model_name == "invoice":
             invoice = get_object_or_404(model, pk=pk)
+            config = (
+                site_config_model.get_solo()
+            )  # get_solo will create the item if it does not already exist
             times = time_model.objects.filter(estimate=None, invoice=invoice)
             times = times.order_by(*order_by["time"])
             times = totals.set_total(times, invoice=invoice)
@@ -392,6 +346,7 @@ def get_page_items(**kwargs):
             context["entries"] = times
             context["item"] = invoice
             context["invoice"] = True
+            context["config"] = config
             context["last_payment_date"] = last_payment_date
         elif model_name == "project":
             project = get_object_or_404(model, pk=pk)
@@ -509,7 +464,6 @@ def get_search_results(
     model,
     search_fields,
     search,
-    app_settings_model=None,
     edit_url=None,
     view_url=None,
     order_by=None,
@@ -523,8 +477,6 @@ def get_search_results(
     context["active_nav"] = model_name
     context["edit_url"] = edit_url
     context["view_url"] = view_url
-    context["icon_size"] = get_setting(request, app_settings_model, "icon_size")
-    context["icon_color"] = get_setting(request, app_settings_model, "icon_color")
     if order_by is not None:
         items = items.order_by(*order_by)
     items = set_items(model_name, items=items)
@@ -559,9 +511,6 @@ def get_setting(request, setting, settings_model=None, page_size=None):
             user_pref = request.user.profile.dashboard_choices
         if user_pref:
             return user_pref
-    elif setting == "exclude_hidden":
-        app_settings = settings_model.get_solo()
-        return app_settings.exclude_hidden
 
 
 def set_items(model_name, items=None, _items={}):
@@ -580,7 +529,6 @@ def set_ref(obj, request, **kwargs):
     Set object field references after create or edit
     """
     client_model = kwargs.get("client_model")
-    company_model = kwargs.get("company_model")
     estimate_model = kwargs.get("estimate_model")
     invoice_model = kwargs.get("invoice_model")
     project_model = kwargs.get("project_model")
@@ -605,27 +553,16 @@ def set_ref(obj, request, **kwargs):
             obj.save()
     elif model_name == "note":
         query_client = get_query_string(request, "client")
-        query_company = get_query_string(request, "company")
         query_invoice = get_query_string(request, "invoice")
         if query_client:
             client = get_object_or_404(client_model, pk=query_client)
             client.note.add(obj)
             client.save()
-        elif query_company:
-            company = company_model.get_solo()
-            company.note.add(obj)
-            company.save()
         elif query_invoice:
             invoice = get_object_or_404(invoice_model, pk=query_invoice)
             invoice.note.add(obj)
             invoice.save()
     elif model_name == "project":
-        query_client = get_query_string(request, "client")
-        if query_client:
-            client = get_object_or_404(client_model, pk=query_client)
-            obj.client = client
-            obj.save()
-    elif model_name == "contract":
         query_client = get_query_string(request, "client")
         if query_client:
             client = get_object_or_404(client_model, pk=query_client)

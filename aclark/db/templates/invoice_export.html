@@ -26,9 +26,9 @@
                 <!-- Right column -->
                 <td valign="top" class="field-name border-right" align="right">From</td>
                 <td valign="top" class="field-value"> 
-                  <strong>{% if not pdf %}<a href="{% url 'company_view' %}">{{ company_name|default:'' }}</a> <a href="{% url 'company_edit' %}"><i class="fa fa-cog"></i></a>{% else %}{{ company_name|default:''|linebreaksbr }}{% endif %}</strong>
+                  <strong>{% if not pdf %}{{ config.company_name|default:'' }}{% else %}{{ config.company_name|default:''|linebreaksbr }}{% endif %}</strong>
                   <br>
-                  {{ company_address|default:''|linebreaksbr }}
+                  {{ config.company_address|default:''|linebreaksbr }}
                 </td>
               </tr>
               <tr><!-- After "From" and before "Invoice For" --></tr>
@@ -41,7 +41,7 @@
                 <td rowspan=5 valign="top" class="field-value">
                   <!-- Client Name -->
                   <strong>
-                  {% if item.client and not pdf %}<a href="{% url 'client_view' item.client.pk %}">{{ item.client.name|default:''|linebreaksbr }}</a> <a href="{% url 'client_edit' item.client.pk %}"><i class="fa fa-cog"></i></a>{% else %} {{ item.client.name|default:''|linebreaksbr }} {% endif %}
+                  {% if item.client and not pdf %}<a href="{% url 'client_view' item.client.pk %}">{{ item.client.name|default:'Client'|linebreaksbr }}</a> <a href="{% url 'client_edit' item.client.pk %}"><i class="fa fa-cog"></i></a>{% else %} {{ item.client.name|default:'Client'|linebreaksbr }} {% endif %}
                   </strong> <br>
                   <!-- Client Address -->
                   {% if item.client %}{{ item.client.address|default:''|linebreaksbr }}{% endif %}
@@ -60,7 +60,7 @@
               <tr>
                 <!-- Left column -->
                 <td valign="top" align="left" style="width: 16%" class="field-name border-bottom border-right">Subject</td>
-                <td valign="top" align="left" style="width: 50%" class="field-value border-bottom">{{ item.subject|default:'' }}</td>
+                <td valign="top" align="left" style="width: 50%" class="field-value border-bottom">{{ item.subject|default:'Client' }}</td>
               </tr>
               {% if item.start_date and item.end_date %}
               <tr>
