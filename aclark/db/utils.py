@@ -296,7 +296,7 @@ def get_page_items(**kwargs):
                     estimate=None, invoiced=False, user=user, project=project
                 )
                 hours = get_total("hours", times=times)
-                if hours:
+                if hours and cost:
                     cost += user.profile.rate * hours
             project.cost = cost
             project.save()
