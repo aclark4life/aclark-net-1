@@ -56,6 +56,7 @@ def set_total(times, **kwargs):
                 hours = get_total("hours", times=times)
                 if hours:
                     project.user_hours[user.username] = str(hours)
+                    project.save()
                     hours = Decimal(hours)
                     if user.profile.rate:
                         cost += user.profile.rate * hours
