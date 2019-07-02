@@ -3,9 +3,9 @@
 {% load humanize %}
 {% block dashboard %}
     <div class="row">
-      <div class="col-12">
-        <div class="btn-group btn-outline-dark dropdown float-right">
-          <a class="btn btn-lg" href="{% url 'project_edit' pk=item.pk %}">Edit</a>
+      <div class="col-12 text-right">
+        <div class="btn-group dropdown">
+          <a class="btn btn-lg btn-outline-dark bg-white text-dark" href="{% url 'project_edit' pk=item.pk %}">Edit</a>
           <button type="button" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="sr-only">Toggle Dropdown</span>
           </button>

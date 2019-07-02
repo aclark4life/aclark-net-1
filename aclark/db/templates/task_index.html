@@ -2,6 +2,12 @@
 {% block dashboard %}
     <div class="row">
       <div class="col-12">
+        <div class="text-right">
+          <a class="btn btn-lg btn-outline-dark" href="{% url 'task_edit' %}">Add Task</a>
+        </div>
+      </div>
+    </div>
+
 {% with items=items.tasks %}
 {% include 'search.html' %}
 {% include 'pagination.html' %}
@@ -11,6 +17,4 @@
 {% include 'search.html' %}
 {% include 'pagination.html' %}
 {% endwith %}
-      </div>
-    </div>
 {% endblock %}
