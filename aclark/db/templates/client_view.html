@@ -13,16 +13,45 @@
         </div>
       </div>
     </div>
-    <address>{{ item.address|linebreaks }}</address>
+    <h3>{{ client.name|default:'Client' }}</h3>
+    <div class="row">
+      <div class="col-3">
+        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+          <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Misc</a>
+          <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Estimates</a>
+          <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Invoices</a>
+          <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Projects</a>
+        </div>
+      </div>
+      <div class="col-9">
+        <div class="tab-content" id="v-pills-tabContent">
+          <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+            <h6 class="text-dark">Address</h6>
+            <address>{{ item.address|default:'Address'|linebreaks }}</address>
+            <h6 class="text-dark">Contacts</h6>
 {% include 'contact_table.html' %}
+            <h6 class="text-dark">Notes</h6>
+{% include 'note_table.html' %}
+          </div>
+          <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+            <h6 class="text-dark">Estimates</h6>
 {% with items=items.estimates view_url='estimate_view' edit_url='estimate_edit' item_type='estimate' %}
 {% include 'invoice_table.html' %}
 {% endwith %}
+          </div>
+          <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+            <h6 class="text-dark">Invoices</h6>
 {% with items=items.invoices view_url='invoice_view' edit_url='invoice_edit' item_type='invoice' %}
 {% include 'invoice_table.html' %}
 {% endwith %}
-{% include 'note_table.html' %}
+          </div>
+          <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+            <h6 class="text-dark">Projects</h6>
 {% include 'project_table.html' %}
+          </div>
+        </div>
+      </div>
+    </div>
 {% include 'copy_form.html' %}
 {% include 'delete_form.html' %}
 {% endblock %}
