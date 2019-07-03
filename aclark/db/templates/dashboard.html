@@ -90,7 +90,7 @@
 {% if request.user.is_staff %}
 
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-          <a class="text-dark" style="text-decoration: none" href="{% url 'report_index' %}">Saved reports</a>
+          <a class="text-muted" style="text-decoration: none" href="{% url 'report_index' %}">Saved reports</a>
           <a class="d-flex align-items-center text-muted" href="{% url 'report_edit' %}">
             <span data-feather="plus-circle"></span>
           </a>
