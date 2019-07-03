@@ -22,7 +22,7 @@
       <div class="sidebar-sticky">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active text-dark" href="{% url 'dashboard' %}">
+            <a class="nav-link {% if home_nav %}active{% endif %}" href="{% url 'dashboard' %}">
               <span data-feather="home"></span>
               Dashboard <span class="sr-only">(current)</span>
             </a>
@@ -32,7 +32,7 @@
             <span>Tools</span>
           </h6>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'client_index' %}">
+            <a class="nav-link {% if client_nav %}active{% endif %}" href="{% url 'client_index' %}">
               <span data-feather="users"></span>
               Clients
             </a>

@@ -118,6 +118,8 @@ def edit(request, **kwargs):
     context["form"] = form
     context["item"] = obj
     context["pk"] = pk
+    if model_name == "client":
+        context["client_nav"] = True
 
     return render(request, template_name, context)
 

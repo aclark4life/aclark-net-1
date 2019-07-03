@@ -99,6 +99,7 @@ def client_view(request, pk=None):
         project_model=Project,
         request=request,
     )
+    context["client_nav"] = True
     return render(request, "client_view.html", context)
 
 
@@ -115,6 +116,7 @@ def client_index(request):
         request=request,
         search_fields=("address", "name"),
     )
+    context["client_nav"] = True
     return render(request, "client_index.html", context)
 
 
@@ -165,6 +167,7 @@ def estimate_view(request, pk=None):
         time_model=Time,
         request=request,
     )
+    context["estimate_nav"] = True
     if context["pdf"]:
         company_name = context["config"].company_name
         company_name = slugify(company_name)
@@ -201,6 +204,7 @@ def estimate_index(request):
         search_fields=("subject",),
         request=request,
     )
+    context["estimate_nav"] = True
     return render(request, "estimate_index.html", context)
 
 
@@ -226,6 +230,7 @@ def home(request):
         search_fields=("id", "name", "gross", "net"),
     )
     context["reports"] = reports
+    context["home_nav"] = True
     return render(request, "dashboard.html", context)
 
 
