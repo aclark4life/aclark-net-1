@@ -8,13 +8,13 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                    You are about to mark this item sent!
+                    You are about to mark this invoice <strong>sent</strong>!
                 </div>
                 <div class="modal-footer">
                   <form action="{% url edit_url item.pk %}" method="post">
                     {% csrf_token %}
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-primary" name="invoiced" type="submit" value="true" onChange="this.form.submit()">Sent</button>
+                    <button class="btn btn-primary" name="invoiced" type="submit" value="true" onChange="this.form.submit()">Submit</button>
                   </form>
                 </div>
               </div>
@@ -24,19 +24,19 @@
             <div class="modal-dialog modal-sm">
               <div class="modal-content">
                 <div class="modal-header">
+                  <h4 class="modal-title">Are you sure?</h4>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
-                  <h4 class="modal-title">Are you sure?</h4>
                 </div>
                 <div class="modal-body">
-                    You are about to mark this item not sent!
+                    You are about to mark this invoice <strong>not sent</strong>!
                 </div>
                 <div class="modal-footer">
                   <form action="{% url edit_url item.pk %}" method="post">
                     {% csrf_token %}
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-primary" name="invoiced" type="submit" value="false" onChange="this.form.submit()">Not invoiced</button>
+                    <button class="btn btn-primary" name="invoiced" type="submit" value="false" onChange="this.form.submit()">Submit</button>
                   </form>
                 </div>
               </div>

@@ -49,7 +49,7 @@ def get_form(**kwargs):
                 name = "%s %s" % (last_month, this_year)
                 invoices = invoice_model.objects.filter(last_payment_date=None)
                 projects = project_model.objects.filter(invoice__in=invoices)
-                gross = get_total("amount", invoices=invoices)
+                gross = get_total("gross", invoices=invoices)
                 cost = get_total("cost", projects=projects)
                 net = 0
                 if gross:
