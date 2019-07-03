@@ -123,6 +123,7 @@ def client_index(request):
 @staff_member_required
 def contact_view(request, pk=None):
     context = get_page_items(model=Contact, pk=pk, request=request)
+    context["contact_nav"] = True
     return render(request, "contact_view.html", context)
 
 
@@ -146,6 +147,7 @@ def contact_index(request):
         request=request,
         search_fields=("first_name", "last_name", "email", "pk"),
     )
+    context["contact_nav"] = True
     return render(request, "contact_index.html", context)
 
 
