@@ -42,7 +42,11 @@ def get_form(**kwargs):
         if model:
             model_name = model._meta.verbose_name
             if model_name == "report" and invoice_model:  # Populate new report
-                # with gross
+                last_month = (timezone.now() - timezone.timedelta(days=7)).strftime(
+                    "%B"
+                )  # Close enough
+                this_year = timezone.now().strftime("%Y")
+                name = "%s %s" % (last_month, this_year)
                 invoices = invoice_model.objects.filter(last_payment_date=None)
                 projects = project_model.objects.filter(invoice__in=invoices)
                 gross = get_total("amount", invoices=invoices)
@@ -50,7 +54,7 @@ def get_form(**kwargs):
                 net = 0
                 if gross:
                     net = gross - cost
-                obj = model(cost=cost, gross=gross, net=net)
+                obj = model(cost=cost, gross=gross, net=net, name=name)
                 form = form_model(instance=obj, initial={"invoices": invoices})
             elif model_name == "contact":  # Populate new contact
                 # with appropriate fields
