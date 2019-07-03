@@ -55,7 +55,7 @@ def set_total(times, **kwargs):
                 estimate=None, invoiced=False, user=user, project=project
             )
             hours = get_total("hours", times=times)
-            if user.profile.rate:
+            if user.profile.rate and hours: 
                 cost += user.profile.rate * hours
         project.cost = cost
         project.save()
