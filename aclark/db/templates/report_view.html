@@ -22,4 +22,7 @@
 {% with items=items.invoices view_url='invoice_view' edit_url='invoice_edit' item_type='invoice' %}
 {% include 'invoice_table.html' %}
 {% endwith %}
+{% with cost=item.cost gross=item.gross net=item.net %}
+{% include 'totals_table.html' %}
+{% endwith %}
 {% endblock %}
