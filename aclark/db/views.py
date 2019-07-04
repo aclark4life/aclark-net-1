@@ -45,7 +45,7 @@ from .plot import get_plot
 from .serializers import ClientSerializer
 from .serializers import ProfileSerializer
 from .serializers import TestimonialSerializer
-from .utils import edit
+from .edit import edit
 from .utils import get_index_items
 from .utils import get_page_items
 import os

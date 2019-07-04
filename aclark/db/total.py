@@ -1,6 +1,5 @@
 from django.db.models import F
 from django.db.models import Sum
-from decimal import Decimal
 
 
 def get_total(field, **kwargs):
