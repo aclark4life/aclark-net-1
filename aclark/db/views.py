@@ -418,8 +418,8 @@ def project_index(request, pk=None):
 def report_view(request, pk=None):
     context = get_page_items(model=Report, pk=pk, request=request)
     if context["mail"]:
-        message = context["email_message"]
-        subject = context["email_subject"]
+        message = context["message"]
+        subject = context["subject"]
         mail_send(message=message, subject=subject)
         messages.add_message(request, messages.INFO, "Report sent")
         return render(request, "report_view.html", context)

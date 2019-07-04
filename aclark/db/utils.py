@@ -198,9 +198,10 @@ def get_index_items(**kwargs):
     context["view_url"] = view_url
     context["page"] = page_num
     context["paginated"] = paginated
-    reports = report_model.objects.filter(active=True)
     items = set_items(model_name, items=items)
-    items = set_items("report", items=reports, _items=items)
+    if report_model:
+        reports = report_model.objects.filter(active=True)
+        items = set_items("report", items=reports, _items=items)
     context["items"] = items
     context["%s_nav" % model_name] = True
     return context
@@ -340,9 +341,9 @@ def get_page_items(**kwargs):
             reports.aggregate(net=Sum(F("net")))
             invoices = report.invoices.all()
             items = set_items("invoice", items=invoices, _items=items)
+            items = set_items("report", items=reports, _items=items)
             context["item"] = report
             context["items"] = items
-            context["reports"] = reports
             # E-Mail
             context["message"] = "Cost: %s, Gross: %s, Net: %s" % (
                 report.cost,
