@@ -105,8 +105,8 @@
                   <td valign="top" align="left" class="border-right" style="width: 20%">{{ t.task|default:'' }}</td>
                   <td valign="top" align="left" class="border-right" style="width: 100%">{{ t.log|linebreaks|default:'' }}</td>
                   <td valign="top" align="right" class="border-right" style="width: 20%">{% if not pdf %} <a href="{% url 'time_view' t.pk %}">{{ t.hours|default:'0' }}</a> <a href="{% url 'time_edit' t.pk %}"><i class="fa fa-cog"></i></a> {% if t.user.profile %} <a href="{% url 'user_view' t.user.profile.pk %}">{{ t.user.get_full_name }}</a> {% endif %} {% else %} {{ t.hours }} {% endif %} </td>
-                  <td valign="top" align="right" class="border-right" style="width: 20%">{{ currency_symbol }}{% if t.task %}{{ t.task.rate|default:'' }}{% endif %}</td>
-                  <td valign="top" align="right" style="width: 20%"><strong>{{ currency_symbol }}{{ t.amount|default:'0' }}</strong></td>
+                  <td valign="top" align="right" class="border-right" style="width: 20%">{% if t.task %}{{ t.task.rate|default:'' }}{% endif %}</td>
+                  <td valign="top" align="right" style="width: 20%"><strong>{{ t.amount|default:'0' }}</strong></td>
                 </tr>
                 {% endfor %}
                 <tr>
@@ -114,7 +114,7 @@
                     <h1>Total</h1>
                   </td>
                   <td>
-                    <h1>{{ currency_symbol }}{{ item.amount|intcomma }}</h1>
+                    <h1>{{ item.amount|default:0|intcomma }}</h1>
                   </td>
                 </tr>
                 {% if item.note.all %}

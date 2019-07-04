@@ -226,6 +226,7 @@ def get_page_items(**kwargs):
     items = {}
     time_include = ("date", "project", "hours", "log")
     user_include = ("rate", "bio", "dashboard_items")
+    contact_include = ("first_name", "last_name")
 
     if request:  # Applies to all page items
         doc = get_query_string(request, "doc")  # Export
@@ -249,6 +250,12 @@ def get_page_items(**kwargs):
         context["edit_url"] = "%s_edit" % model_name
         context["view_url"] = "%s_view" % model_name
 
+        if report_model:
+            reports = report_model.objects.filter(active=True)
+            items = set_items("report", items=reports)
+        else:
+            items = {}
+
         if model_name == "client":
             client = get_object_or_404(model, pk=pk)
             contacts = contact_model.objects.filter(client=client)
@@ -259,7 +266,7 @@ def get_page_items(**kwargs):
             if order_by:
                 invoices = invoices.order_by(*order_by["invoice"])
                 projects = projects.order_by(*order_by["project"])
-            items = set_items("contact", items=contacts)
+            items = set_items("contact", items=contacts, _items=items)
             items = set_items("invoice", items=invoices, _items=items)
             items = set_items("note", items=notes, _items=items)
             items = set_items("project", items=projects, _items=items)
@@ -268,8 +275,9 @@ def get_page_items(**kwargs):
             context["items"] = items
         elif model_name == "contact":
             contact = get_object_or_404(model, pk=pk)
-            context["items"] = get_fields(contact)  # fields_items.html
-            context["item"] = contact
+            fields = get_fields(contact, include=contact_include)  # fields_items.html
+            context["fields"] = fields
+            context["items"] = items
         elif model_name == "estimate":  # handle obj or model
             if not obj:
                 estimate = get_object_or_404(model, pk=pk)
@@ -314,7 +322,7 @@ def get_page_items(**kwargs):
             if order_by:
                 times = times.order_by(*order_by["time"])
                 invoices = invoices.order_by(*order_by["invoice"])
-            items = set_items("contact", items=contacts)
+            items = set_items("contact", items=contacts, _items=items)
             items = set_items("estimate", items=estimates, _items=items)
             items = set_items("invoice", items=invoices, _items=items)
             items = set_items("time", items=times, _items=items)
@@ -331,16 +339,17 @@ def get_page_items(**kwargs):
             reports.aggregate(gross=Sum(F("gross")))
             reports.aggregate(net=Sum(F("net")))
             invoices = report.invoices.all()
-            items = set_items("invoice", items=invoices)
+            items = set_items("invoice", items=invoices, _items=items)
             context["item"] = report
             context["items"] = items
             context["reports"] = reports
-            context["email_message"] = "Cost: %s, Gross: %s, Net: %s" % (
+            # E-Mail
+            context["message"] = "Cost: %s, Gross: %s, Net: %s" % (
                 report.cost,
                 report.gross,
                 report.net,
             )
-            context["email_subject"] = report.name
+            context["subject"] = report.name
         elif model_name == "task":
             task = get_object_or_404(model, pk=pk)
             context["item"] = task
