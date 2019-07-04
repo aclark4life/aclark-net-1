@@ -2,6 +2,11 @@
 {% block dashboard %}
     <div class="row">
       <div class="col-12">
+        <div class="text-right">
+          <a class="btn btn-lg btn-outline-dark" href="{% url 'contact_edit' %}">Add Contact</a>
+        </div>
+      </div>
+    </div>
 {% with items=items.contacts %}     
 {% include 'search.html' %}
 {% include 'pagination.html' %}
@@ -11,6 +16,4 @@
 {% include 'search.html' %}
 {% include 'pagination.html' %}
 {% endwith %}
-      </div>
-    </div>
 {% endblock %}
