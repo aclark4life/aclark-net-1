@@ -1,13 +1,12 @@
-from django.db.models import Q
 from django.db.models import F
 from django.db.models import Sum
 from django.shortcuts import get_object_or_404
-from functools import reduce
-from operator import or_ as OR
 from .fields import get_fields
 from .misc import has_profile
+from .misc import set_items
 from .page import paginate
 from .query import get_query_string
+from .search import get_search_results
 from .total import get_total
 from .total import set_total
 
@@ -31,6 +30,14 @@ def get_index_items(**kwargs):
     page_num = get_query_string(request, "page")
     paginated = get_query_string(request, "paginated")
     search = get_query_string(request, "search")
+
+    items = {}
+    if report_model:
+        reports = report_model.objects.filter(active=True).order_by("-date")
+        items = set_items("report", items=reports, _items=items)
+    context["items"] = items
+    context["%s_nav" % model_name] = True
+
     # Return search index items
     if request.method == "POST":
         if search == u"":  # Empty search returns none
@@ -64,11 +71,7 @@ def get_index_items(**kwargs):
     context["page"] = page_num
     context["paginated"] = paginated
     items = set_items(model_name, items=items)
-    if report_model:
-        reports = report_model.objects.filter(active=True).order_by("-date")
-        items = set_items("report", items=reports, _items=items)
     context["items"] = items
-    context["%s_nav" % model_name] = True
     return context
 
 
@@ -292,31 +295,6 @@ def get_page_items(**kwargs):
     return context
 
 
-def get_search_results(
-    context,
-    model,
-    search_fields,
-    search,
-    edit_url=None,
-    view_url=None,
-    order_by=None,
-    request=None,
-):
-    query = []
-    model_name = model._meta.verbose_name
-    for field in search_fields:
-        query.append(Q(**{field + "__icontains": search}))
-    items = model.objects.filter(reduce(OR, query))
-    context["%s_nav" % model_name] = True
-    context["edit_url"] = edit_url
-    context["view_url"] = view_url
-    if order_by is not None:
-        items = items.order_by(*order_by)
-    items = set_items(model_name, items=items)
-    context["items"] = items
-    return context
-
-
 def get_setting(request, setting, settings_model=None, page_size=None):
     """
     Return appropriate setting from user profile model or singleton settings
@@ -344,17 +322,6 @@ def get_setting(request, setting, settings_model=None, page_size=None):
             user_pref = request.user.profile.dashboard_choices
         if user_pref:
             return user_pref
-
-
-def set_items(model_name, items=None, _items={}):
-    """
-    Share templates by returning dictionary of items e.g.
-        for item in items.reports
-    instead of:
-        for item in reports
-    """
-    _items["%ss" % model_name] = items
-    return _items
 
 
 def set_ref(obj, request, **kwargs):

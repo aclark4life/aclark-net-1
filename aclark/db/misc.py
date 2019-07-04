@@ -15,3 +15,14 @@ def gravatar_url(email):
     except AttributeError:
         # https://stackoverflow.com/a/7585378/185820
         return gravatar_url % md5("db@aclark.net".encode("utf-8")).hexdigest()
+
+
+def set_items(model_name, items=None, _items={}):
+    """
+    Share templates by returning dictionary of items e.g.
+        for item in items.reports
+    instead of:
+        for item in reports
+    """
+    _items["%ss" % model_name] = items
+    return _items
