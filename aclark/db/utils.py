@@ -118,10 +118,26 @@ def edit(request, **kwargs):
     context["form"] = form
     context["item"] = obj
     context["pk"] = pk
+
+    # XXX Factor
     if model_name == "client":
         context["client_nav"] = True
     elif model_name == "contact":
         context["contact_nav"] = True
+    elif model_name == "estimate":
+        context["estimate_nav"] = True
+    elif model_name == "invoice":
+        context["invoice_nav"] = True
+    elif model_name == "note":
+        context["note_nav"] = True
+    elif model_name == "project":
+        context["project_nav"] = True
+    elif model_name == "task":
+        context["task_nav"] = True
+    elif model_name == "time":
+        context["time_nav"] = True
+    elif model_name == "user":
+        context["user_nav"] = True
 
     return render(request, template_name, context)
 

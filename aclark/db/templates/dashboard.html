@@ -44,43 +44,43 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'estimate_index' %}">
+            <a class="nav-link {% if estimate_nav %}active{% endif %}" href="{% url 'estimate_index' %}">
               <span data-feather="file"></span>
               Estimates
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'invoice_index' %}">
+            <a class="nav-link {% if invoice_nav %}active{% endif %}" href="{% url 'invoice_index' %}">
               <span data-feather="file"></span>
               Invoices
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'note_index' %}">
+            <a class="nav-link {% if note_nav %}active{% endif %}" href="{% url 'note_index' %}">
               <span data-feather="file-text"></span>
               Notes
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'project_index' %}">
+            <a class="nav-link {% if project_nav %}active{% endif %}" href="{% url 'project_index' %}">
               <span data-feather="folder"></span>
               Projects
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'task_index' %}">
+            <a class="nav-link {% if task_nav %}active{% endif %}" href="{% url 'task_index' %}">
               <span data-feather="activity"></span>
               Tasks
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'time_index' %}">
+            <a class="nav-link {% if time_nav %}active{% endif %}" href="{% url 'time_index' %}">
               <span data-feather="clock"></span>
               Times
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'user_index' %}">
+            <a class="nav-link {% if user_nav %}active{% endif %}" href="{% url 'user_index' %}">
               <span data-feather="users"></span>
               Users
             </a>

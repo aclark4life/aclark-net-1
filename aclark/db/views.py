@@ -246,6 +246,7 @@ def invoice_view(request, pk=None):
         request=request,
         time_model=Time,
     )
+    context["invoice_nav"] = True
     if context["pdf"]:
         company_name = context["config"].company_name
         company_name = slugify(company_name)
@@ -276,6 +277,7 @@ def invoice_index(request):
         request=request,
         search_fields=search_fields,
     )
+    context["invoice_nav"] = True
     return render(request, "invoice_index.html", context)
 
 
@@ -340,6 +342,7 @@ def note_view(request, pk=None):
         elif context["pdf"]:
             filename = ".".join([filename, "pdf"])
             return render_pdf(context, filename=filename, template="note_export.html")
+        context["note_nav"] = True
         return render(request, "note_view.html", context)
 
 
@@ -363,6 +366,7 @@ def note_index(request, pk=None):
         request=request,
         search_fields=("note", "title"),
     )
+    context["note_nav"] = True
     return render(request, "note_index.html", context)
 
 
@@ -389,6 +393,7 @@ def project_view(request, pk=None):
         pk=pk,
         request=request,
     )
+    context["project_nav"] = True
     return render(request, "project_view.html", context)
 
 
@@ -407,6 +412,7 @@ def project_index(request, pk=None):
         request=request,
         search_fields=("id", "name"),
     )
+    context["project_nav"] = True
     return render(request, "project_index.html", context)
 
 
@@ -449,6 +455,7 @@ def report_index(request):
 @staff_member_required
 def task_view(request, pk=None):
     context = get_page_items(model=Task, pk=pk, request=request)
+    context["task_nav"] = True
     return render(request, "task_view.html", context)
 
 
@@ -465,6 +472,7 @@ def task_index(request):
         request=request,
         search_fields=("name",),
     )
+    context["task_nav"] = True
     return render(request, "task_index.html", context)
 
 
@@ -484,6 +492,7 @@ def time_view(request, pk=None):
         messages.add_message(request, messages.WARNING, FOUR_O_3)
         return HttpResponseRedirect(reverse("home"))
     else:
+        context["time_nav"] = True
         context = get_page_items(model=Time, pk=pk, request=request)
         return render(request, "time_view.html", context)
 
@@ -542,6 +551,7 @@ def time_index(request):
         request=request,
         search_fields=search_fields,
     )
+    context["time_nav"] = True
     return render(request, "time_index.html", context)
 
 
@@ -562,6 +572,7 @@ def user_view(request, pk=None):
             pk=pk,
             request=request,
         )
+        context["user_nav"] = True
         return render(request, "user_view.html", context)
 
 
@@ -590,4 +601,5 @@ def user_index(request):
         request=request,
         search_fields=("first_name", "last_name", "id", "email", "username"),
     )
+    context["user_nav"] = True
     return render(request, "user_index.html", context)
