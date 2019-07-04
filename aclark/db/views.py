@@ -39,7 +39,6 @@ from .models import Task
 from .models import Time
 from .export import render_doc
 from .export import render_pdf
-from .mail import mail_proc
 from .mail import mail_send
 from .misc import has_profile
 from .plot import get_plot
@@ -124,7 +123,7 @@ def client_index(request):
 
 @staff_member_required
 def contact_view(request, pk=None):
-    context = get_page_items(model=Contact, pk=pk, request=request)
+    context = get_page_items(model=Contact, pk=pk, request=request, report_model=Report)
     return render(request, "contact_view.html", context)
 
 
@@ -168,6 +167,7 @@ def estimate_view(request, pk=None):
         order_by=order_by,
         pk=pk,
         project_model=Project,
+        report_model=Report,
         time_model=Time,
         request=request,
     )
@@ -239,6 +239,7 @@ def invoice_view(request, pk=None):
         pk=pk,
         request=request,
         time_model=Time,
+        report_model=Report,
     )
     if context["pdf"]:
         company_name = context["config"].company_name
@@ -312,7 +313,9 @@ def note_view(request, pk=None):
         messages.add_message(request, messages.WARNING, FOUR_O_3)
         return HttpResponseRedirect(reverse("home"))
     else:
-        context = get_page_items(model=Note, pk=pk, request=request)
+        context = get_page_items(
+            model=Note, pk=pk, request=request, report_model=Report
+        )
         title = context["item"].title
         if title:
             title = slugify(title)
@@ -453,7 +456,7 @@ def report_index(request):
 
 @staff_member_required
 def task_view(request, pk=None):
-    context = get_page_items(model=Task, pk=pk, request=request)
+    context = get_page_items(model=Task, pk=pk, request=request, report_model=Report)
     return render(request, "task_view.html", context)
 
 
@@ -568,6 +571,7 @@ def user_view(request, pk=None):
             order_by=order_by,
             profile_model=Profile,
             project_model=Project,
+            report_model=Report,
             time_model=Time,
             pk=pk,
             request=request,

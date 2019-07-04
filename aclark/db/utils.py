@@ -142,7 +142,7 @@ def edit(request, **kwargs):
 
     items = {}
     if report_model:
-        reports = report_model.objects.filter(active=True)
+        reports = report_model.objects.filter(active=True).order_by("-date")
         items = set_items("report", items=reports)
     context["items"] = items
 
@@ -200,7 +200,7 @@ def get_index_items(**kwargs):
     context["paginated"] = paginated
     items = set_items(model_name, items=items)
     if report_model:
-        reports = report_model.objects.filter(active=True)
+        reports = report_model.objects.filter(active=True).order_by("-date")
         items = set_items("report", items=reports, _items=items)
     context["items"] = items
     context["%s_nav" % model_name] = True
@@ -228,6 +228,7 @@ def get_page_items(**kwargs):
     time_include = ("date", "project", "hours", "log")
     user_include = ("rate", "bio", "dashboard_items")
     contact_include = ("first_name", "last_name")
+    note_include = ("note",)
 
     if request:  # Applies to all page items
         doc = get_query_string(request, "doc")  # Export
@@ -252,10 +253,10 @@ def get_page_items(**kwargs):
         context["view_url"] = "%s_view" % model_name
 
         if report_model:
-            reports = report_model.objects.filter(active=True)
+            reports = report_model.objects.filter(active=True).order_by("-date")
             items = set_items("report", items=reports)
-        else:
-            items = {}
+
+        context["items"] = items
 
         if model_name == "client":
             client = get_object_or_404(model, pk=pk)
@@ -273,12 +274,10 @@ def get_page_items(**kwargs):
             items = set_items("project", items=projects, _items=items)
             items = set_items("estimate", items=estimates, _items=items)
             context["item"] = client
-            context["items"] = items
         elif model_name == "contact":
             contact = get_object_or_404(model, pk=pk)
             fields = get_fields(contact, include=contact_include)  # fields_items.html
             context["fields"] = fields
-            context["items"] = items
         elif model_name == "estimate":  # handle obj or model
             if not obj:
                 estimate = get_object_or_404(model, pk=pk)
@@ -329,13 +328,12 @@ def get_page_items(**kwargs):
             items = set_items("time", items=times, _items=items)
             items = set_items("note", items=notes, _items=items)
             context["item"] = project
-            context["items"] = items
             context["cost"] = float(project.cost)
             context["gross"] = float(project.amount)
             context["net"] = float(project.amount) - float(project.cost)
         elif model_name == "report":
             report = get_object_or_404(model, pk=pk)
-            reports = model.objects.filter(active=True)
+            reports = model.objects.filter(active=True).order_by("-date")
             reports.aggregate(cost=Sum(F("cost")))
             reports.aggregate(gross=Sum(F("gross")))
             reports.aggregate(net=Sum(F("net")))
@@ -343,7 +341,6 @@ def get_page_items(**kwargs):
             items = set_items("invoice", items=invoices, _items=items)
             items = set_items("report", items=reports, _items=items)
             context["item"] = report
-            context["items"] = items
             # E-Mail
             context["message"] = "Cost: %s, Gross: %s, Net: %s" % (
                 report.cost,
@@ -359,9 +356,6 @@ def get_page_items(**kwargs):
             context["item"] = time
             fields = get_fields(time, include=time_include)  # fields_table.html
             context["fields"] = fields  # fields_items.html
-            reports = report_model.objects.filter(active=True)
-            items = set_items("report", items=reports, _items=items)
-            context["items"] = items
         elif model_name == "user":
             user = get_object_or_404(model, pk=pk)
             projects = project_model.objects.filter(team__in=[user], active=True)
@@ -376,6 +370,11 @@ def get_page_items(**kwargs):
             context["projects"] = projects
             context["times"] = times
             context["hours"] = hours
+        elif model_name == "note":
+            note = get_object_or_404(model, pk=pk)
+            fields = get_fields(note, include=note_include)  # fields_items.html
+            context["fields"] = fields
+            context["item"] = note
         else:
             item = get_object_or_404(model, pk=pk)
             context["item"] = item
@@ -422,7 +421,7 @@ def get_page_items(**kwargs):
                 context["ip_address"] = ip_address
 
                 # Reports
-                reports = report_model.objects.filter(active=True)
+                reports = report_model.objects.filter(active=True).order_by("-date")
                 items = set_items("report", items=reports, _items=items)
                 context["items"] = items
     return context
