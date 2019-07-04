@@ -34,13 +34,14 @@ def edit(request, **kwargs):
     note_model = kwargs.get("note_model")
     pk = kwargs.get("pk")
     project_model = kwargs.get("project_model")
+    report_model = kwargs.get("report_model")
     user_model = kwargs.get("user_model")
     model_name = None
     new_time = False
 
     if model:
         model_name = model._meta.verbose_name
-        context["active_nav"] = model_name
+        context["%s_nav" % model_name] = True
 
     if pk is None:  # New obj
         form = get_form(
@@ -139,6 +140,12 @@ def edit(request, **kwargs):
     elif model_name == "user":
         context["user_nav"] = True
 
+    items = {}
+    if report_model:
+        reports = report_model.objects.filter(active=True)
+        items = set_items("report", items=reports)
+    context["items"] = items
+
     return render(request, template_name, context)
 
 
@@ -147,6 +154,7 @@ def get_index_items(**kwargs):
     """
     context = {}
     model = kwargs.get("model")
+    report_model = kwargs.get("report_model")
     filter_by = kwargs.get("filter_by")
     order_by = kwargs.get("order_by")
     page_size = kwargs.get("page_size")
@@ -190,9 +198,11 @@ def get_index_items(**kwargs):
     context["view_url"] = view_url
     context["page"] = page_num
     context["paginated"] = paginated
+    reports = report_model.objects.filter(active=True)
     items = set_items(model_name, items=items)
+    items = set_items("report", items=reports, _items=items)
     context["items"] = items
-    context["active_nav"] = model_name
+    context["%s_nav" % model_name] = True
     return context
 
 
@@ -205,6 +215,7 @@ def get_page_items(**kwargs):
     model = kwargs.get("model")
     obj = kwargs.get("obj")
     project_model = kwargs.get("project_model")
+    report_model = kwargs.get("report_model")
     request = kwargs.get("request")
     order_by = kwargs.get("order_by")
     pk = kwargs.get("pk")
@@ -234,7 +245,7 @@ def get_page_items(**kwargs):
             model_name = obj._meta.verbose_name
 
         context["model_name"] = model_name
-        context["active_nav"] = model_name
+        context["%s_nav" % model_name] = True
         context["edit_url"] = "%s_edit" % model_name
         context["view_url"] = "%s_view" % model_name
 
@@ -338,6 +349,9 @@ def get_page_items(**kwargs):
             context["item"] = time
             fields = get_fields(time, include=time_include)  # fields_table.html
             context["fields"] = fields  # fields_items.html
+            reports = report_model.objects.filter(active=True)
+            items = set_items("report", items=reports, _items=items)
+            context["items"] = items
         elif model_name == "user":
             user = get_object_or_404(model, pk=pk)
             projects = project_model.objects.filter(team__in=[user], active=True)
@@ -372,7 +386,6 @@ def get_page_items(**kwargs):
                 items = set_items("invoice", items=invoices)
                 items = set_items("project", items=projects, _items=items)
                 items = set_items("time", items=times, _items=items)
-                context["items"] = items
                 # Paginate items
                 page_num = get_query_string(request, "page")
                 paginated = get_query_string(request, "paginated")
@@ -397,6 +410,11 @@ def get_page_items(**kwargs):
                 # Location
                 ip_address = request.META.get("HTTP_X_REAL_IP")
                 context["ip_address"] = ip_address
+
+                # Reports
+                reports = report_model.objects.filter(active=True)
+                items = set_items("report", items=reports, _items=items)
+                context["items"] = items
     return context
 
 
@@ -415,7 +433,7 @@ def get_search_results(
     for field in search_fields:
         query.append(Q(**{field + "__icontains": search}))
     items = model.objects.filter(reduce(OR, query))
-    context["active_nav"] = model_name
+    context["%s_nav" % model_name] = True
     context["edit_url"] = edit_url
     context["view_url"] = view_url
     if order_by is not None:

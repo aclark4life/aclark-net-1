@@ -97,33 +97,34 @@ def client_view(request, pk=None):
         order_by=order_by,
         pk=pk,
         project_model=Project,
+        report_model=Report,
         request=request,
     )
-    context["client_nav"] = True
     return render(request, "client_view.html", context)
 
 
 @staff_member_required
 def client_edit(request, pk=None):
-    return edit(request, form_model=ClientForm, model=Client, pk=pk)
+    return edit(
+        request, report_model=Report, form_model=ClientForm, model=Client, pk=pk
+    )
 
 
 @staff_member_required
 def client_index(request):
     context = get_index_items(
         model=Client,
+        report_model=Report,
         order_by=("-active", "name"),
         request=request,
         search_fields=("address", "name"),
     )
-    context["client_nav"] = True
     return render(request, "client_index.html", context)
 
 
 @staff_member_required
 def contact_view(request, pk=None):
     context = get_page_items(model=Contact, pk=pk, request=request)
-    context["contact_nav"] = True
     return render(request, "contact_view.html", context)
 
 
@@ -131,6 +132,7 @@ def contact_view(request, pk=None):
 def contact_edit(request, pk=None):
     return edit(
         request,
+        report_model=Report,
         form_model=ContactForm,
         model=Contact,
         client_model=Client,
@@ -143,11 +145,11 @@ def contact_edit(request, pk=None):
 def contact_index(request):
     context = get_index_items(
         model=Contact,
+        report_model=Report,
         order_by=("-active", "last_name", "first_name"),
         request=request,
         search_fields=("first_name", "last_name", "email", "pk"),
     )
-    context["contact_nav"] = True
     return render(request, "contact_index.html", context)
 
 
@@ -169,7 +171,6 @@ def estimate_view(request, pk=None):
         time_model=Time,
         request=request,
     )
-    context["estimate_nav"] = True
     if context["pdf"]:
         company_name = context["config"].company_name
         company_name = slugify(company_name)
@@ -190,6 +191,7 @@ def estimate_edit(request, pk=None):
     return edit(
         request,
         form_model=EstimateForm,
+        report_model=Report,
         model=Estimate,
         project_model=Project,
         client_model=Client,
@@ -202,11 +204,11 @@ def estimate_edit(request, pk=None):
 def estimate_index(request):
     context = get_index_items(
         model=Estimate,
+        report_model=Report,
         order_by=("-issue_date",),
         search_fields=("subject",),
         request=request,
     )
-    context["estimate_nav"] = True
     return render(request, "estimate_index.html", context)
 
 
@@ -220,19 +222,11 @@ def home(request):
             "time": ("-date",),
         },
         project_model=Project,
-        time_model=Time,
         report_model=Report,
+        time_model=Time,
         user_model=User,
         request=request,
     )
-    reports = get_index_items(
-        model=Report,
-        order_by=("-date",),
-        request=request,
-        search_fields=("id", "name", "gross", "net"),
-    )
-    context["reports"] = reports
-    context["home_nav"] = True
     return render(request, "dashboard.html", context)
 
 
@@ -246,7 +240,6 @@ def invoice_view(request, pk=None):
         request=request,
         time_model=Time,
     )
-    context["invoice_nav"] = True
     if context["pdf"]:
         company_name = context["config"].company_name
         company_name = slugify(company_name)
@@ -260,6 +253,7 @@ def invoice_view(request, pk=None):
 def invoice_edit(request, pk=None):
     return edit(
         request,
+        report_model=Report,
         form_model=InvoiceForm,
         model=Invoice,
         client_model=Client,
@@ -273,11 +267,11 @@ def invoice_index(request):
     search_fields = ("client__name", "id", "issue_date", "project__name", "subject")
     context = get_index_items(
         model=Invoice,
+        report_model=Report,
         order_by=("-last_payment_date", "subject"),
         request=request,
         search_fields=search_fields,
     )
-    context["invoice_nav"] = True
     return render(request, "invoice_index.html", context)
 
 
@@ -342,7 +336,6 @@ def note_view(request, pk=None):
         elif context["pdf"]:
             filename = ".".join([filename, "pdf"])
             return render_pdf(context, filename=filename, template="note_export.html")
-        context["note_nav"] = True
         return render(request, "note_view.html", context)
 
 
@@ -350,6 +343,7 @@ def note_view(request, pk=None):
 def note_edit(request, pk=None):
     return edit(
         request,
+        report_model=Report,
         form_model=NoteForm,
         model=Note,
         client_model=Client,
@@ -362,11 +356,11 @@ def note_edit(request, pk=None):
 def note_index(request, pk=None):
     context = get_index_items(
         model=Note,
+        report_model=Report,
         order_by=("-created",),
         request=request,
         search_fields=("note", "title"),
     )
-    context["note_nav"] = True
     return render(request, "note_index.html", context)
 
 
@@ -393,14 +387,18 @@ def project_view(request, pk=None):
         pk=pk,
         request=request,
     )
-    context["project_nav"] = True
     return render(request, "project_view.html", context)
 
 
 @staff_member_required
 def project_edit(request, pk=None):
     return edit(
-        request, form_model=ProjectForm, model=Project, client_model=Client, pk=pk
+        request,
+        report_model=Report,
+        form_model=ProjectForm,
+        model=Project,
+        client_model=Client,
+        pk=pk,
     )
 
 
@@ -408,11 +406,11 @@ def project_edit(request, pk=None):
 def project_index(request, pk=None):
     context = get_index_items(
         model=Project,
+        report_model=Report,
         order_by=("-active", "name"),
         request=request,
         search_fields=("id", "name"),
     )
-    context["project_nav"] = True
     return render(request, "project_index.html", context)
 
 
@@ -433,6 +431,7 @@ def report_view(request, pk=None):
 def report_edit(request, pk=None):
     return edit(
         request,
+        report_model=Report,
         form_model=ReportForm,
         model=Report,
         invoice_model=Invoice,
@@ -455,7 +454,6 @@ def report_index(request):
 @staff_member_required
 def task_view(request, pk=None):
     context = get_page_items(model=Task, pk=pk, request=request)
-    context["task_nav"] = True
     return render(request, "task_view.html", context)
 
 
@@ -468,11 +466,11 @@ def task_edit(request, pk=None):
 def task_index(request):
     context = get_index_items(
         model=Task,
+        report_model=Report,
         order_by=("-active", "name"),
         request=request,
         search_fields=("name",),
     )
-    context["task_nav"] = True
     return render(request, "task_index.html", context)
 
 
@@ -492,8 +490,9 @@ def time_view(request, pk=None):
         messages.add_message(request, messages.WARNING, FOUR_O_3)
         return HttpResponseRedirect(reverse("home"))
     else:
-        context = get_page_items(model=Time, pk=pk, request=request)
-        context["time_nav"] = True
+        context = get_page_items(
+            model=Time, pk=pk, request=request, report_model=Report
+        )
         return render(request, "time_view.html", context)
 
 
@@ -525,6 +524,7 @@ def time_edit(request, pk=None):
         invoice_model=Invoice,
         estimate_model=Estimate,
         project_model=Project,
+        report_model=Report,
         task_model=Task,
         time_model=Time,
         pk=pk,
@@ -546,12 +546,12 @@ def time_index(request):
     )
     context = get_index_items(
         model=Time,
+        report_model=Report,
         filter_by={"time": {"estimate": None, "user__isnull": False}},
         order_by=("-date",),
         request=request,
         search_fields=search_fields,
     )
-    context["time_nav"] = True
     return render(request, "time_index.html", context)
 
 
@@ -572,7 +572,6 @@ def user_view(request, pk=None):
             pk=pk,
             request=request,
         )
-        context["user_nav"] = True
         return render(request, "user_view.html", context)
 
 
@@ -596,10 +595,10 @@ def user_edit(request, pk=None):
 def user_index(request):
     context = get_index_items(
         contact_model=Contact,
+        report_model=Report,
         model=User,
         order_by=("-profile__active", "last_name", "first_name"),
         request=request,
         search_fields=("first_name", "last_name", "id", "email", "username"),
     )
-    context["user_nav"] = True
     return render(request, "user_index.html", context)

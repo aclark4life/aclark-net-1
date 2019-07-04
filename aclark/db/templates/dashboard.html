@@ -96,7 +96,7 @@
           </a>
         </h6>
         <ul class="nav flex-column mb-2">
-{% for report in reports.items.reports %}
+{% for report in items.reports %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'report_view' report.id %}">
               <span data-feather="file-text"></span>
