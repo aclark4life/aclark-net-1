@@ -492,8 +492,8 @@ def time_view(request, pk=None):
         messages.add_message(request, messages.WARNING, FOUR_O_3)
         return HttpResponseRedirect(reverse("home"))
     else:
-        context["time_nav"] = True
         context = get_page_items(model=Time, pk=pk, request=request)
+        context["time_nav"] = True
         return render(request, "time_view.html", context)
 
 
