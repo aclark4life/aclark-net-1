@@ -13,7 +13,6 @@
         </div>
       </div>
     </div>
-    <h3>{{ client.name|default:'Client' }}</h3>
     <div class="row">
       <div class="col-3">
         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -29,7 +28,7 @@
       <div class="col-9">
         <div class="tab-content" id="v-pills-tabContent">
           <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-            <h1 class="display-1">{{ client.name|default:'Client' }}</h1>
+            <h1 class="display-1">{{ item.name|default:'Client' }}</h1>
           </div>
           <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
 {% with items=items.estimates view_url='estimate_view' edit_url='estimate_edit' item_type='estimate' %}
