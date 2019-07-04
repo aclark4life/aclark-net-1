@@ -1,6 +1,6 @@
 -e git+https://github.com/aclark4life/django-xhtml2pdf.git@ca6fae09f70856d701124583cacb9e5a83e7ac26#egg=django_xhtml2pdf
 Babel==2.6.0
-Django==2.1.9
+Django==2.1.10
 Pillow==6.1.0
 PyJWT==1.7.1
 PyPDF2==1.26.0
