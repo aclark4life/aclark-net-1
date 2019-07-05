@@ -83,6 +83,7 @@ class ProfileViewSet(viewsets.ModelViewSet):
 @staff_member_required
 def client_view(request, pk=None):
     order_by = {
+        "contact": ("-active",),
         "project": ("-updated",),
         "estimate": ("-issue_date",),
         "invoice": ("-issue_date",),

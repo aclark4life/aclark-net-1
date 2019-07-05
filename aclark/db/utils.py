@@ -136,6 +136,7 @@ def get_page_items(**kwargs):
             if order_by:
                 invoices = invoices.order_by(*order_by["invoice"])
                 projects = projects.order_by(*order_by["project"])
+                contacts = contacts.order_by(*order_by["contact"])
             items = set_items("contact", items=contacts, _items=items)
             items = set_items("invoice", items=invoices, _items=items)
             items = set_items("note", items=notes, _items=items)
