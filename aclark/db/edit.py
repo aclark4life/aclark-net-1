@@ -2,10 +2,10 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 from .form import get_form
 from .mail import mail_send
+from .misc import set_items
 from .obj import obj_process
+from .obj import set_ref
 from .query import get_query_string
-from .utils import set_items
-from .utils import set_ref
 
 
 def edit(request, **kwargs):

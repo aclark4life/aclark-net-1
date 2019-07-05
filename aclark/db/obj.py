@@ -2,7 +2,9 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils import timezone
+from django.shortcuts import get_object_or_404
 from . import choices
+from .query import get_query_string
 
 
 def obj_process(
@@ -123,3 +125,72 @@ def obj_process(
                 obj.subscribed = False
         obj.save()
         return HttpResponseRedirect(http_ref)
+
+
+def set_ref(obj, request, **kwargs):
+    """
+    Set object field references after create or edit
+    """
+    client_model = kwargs.get("client_model")
+    estimate_model = kwargs.get("estimate_model")
+    invoice_model = kwargs.get("invoice_model")
+    project_model = kwargs.get("project_model")
+    model_name = obj._meta.verbose_name
+    if model_name == "contact":
+        query_client = get_query_string(request, "client")
+        if query_client:
+            client = get_object_or_404(client_model, pk=query_client)
+            obj.client = client
+            obj.save()
+    elif model_name == "estimate" or model_name == "invoice":
+        query_client = get_query_string(request, "client")
+        query_project = get_query_string(request, "project")
+        if query_project:
+            project = get_object_or_404(project_model, pk=query_project)
+            obj.client = project.client
+            obj.project = project
+            obj.save()
+        if query_client:
+            client = get_object_or_404(client_model, pk=query_client)
+            obj.client = client
+            obj.save()
+    elif model_name == "note":
+        query_client = get_query_string(request, "client")
+        query_invoice = get_query_string(request, "invoice")
+        if query_client:
+            client = get_object_or_404(client_model, pk=query_client)
+            client.note.add(obj)
+            client.save()
+        elif query_invoice:
+            invoice = get_object_or_404(invoice_model, pk=query_invoice)
+            invoice.note.add(obj)
+            invoice.save()
+    elif model_name == "project":
+        query_client = get_query_string(request, "client")
+        if query_client:
+            client = get_object_or_404(client_model, pk=query_client)
+            obj.client = client
+            obj.save()
+    elif model_name == "time":
+        if not obj.user:  # If no user, set user, else do nothing.
+            obj.user = request.user
+        query_estimate = get_query_string(request, "estimate")
+        query_invoice = get_query_string(request, "invoice")
+        query_project = get_query_string(request, "project")
+        if query_estimate:
+            estimate = get_object_or_404(estimate_model, pk=query_estimate)
+            obj.estimate = estimate
+        if query_invoice:
+            invoice = get_object_or_404(invoice_model, pk=query_invoice)
+            obj.invoice = invoice
+            obj.save()  # Need save here to set more attrs
+            obj.project = invoice.project
+            obj.save()  # Need save here to set more attrs
+            obj.task = invoice.project.task
+        if query_project:
+            project = get_object_or_404(project_model, pk=query_project)
+            obj.project = project
+            obj.save()  # Need save here to set more attrs
+            if project.task:
+                obj.task = project.task
+        obj.save()

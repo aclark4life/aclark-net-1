@@ -26,3 +26,16 @@ def set_items(model_name, items=None, _items={}):
     """
     _items["%ss" % model_name] = items
     return _items
+
+
+def get_setting(request, setting, settings_model=None, page_size=None):
+    """
+    Return setting from user profile model or system config
+    """
+
+    if not request.user.is_authenticated:
+        return
+
+    if setting == "page_size":
+        if has_profile(request.user):
+            return request.user.profile.page_size

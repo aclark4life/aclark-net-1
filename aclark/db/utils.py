@@ -2,8 +2,8 @@ from django.db.models import F
 from django.db.models import Sum
 from django.shortcuts import get_object_or_404
 from .fields import get_fields
-from .misc import has_profile
 from .misc import set_items
+from .misc import get_setting
 from .page import paginate
 from .query import get_query_string
 from .search import get_search_results
@@ -293,101 +293,3 @@ def get_page_items(**kwargs):
                 items = set_items("report", items=reports, _items=items)
                 context["items"] = items
     return context
-
-
-def get_setting(request, setting, settings_model=None, page_size=None):
-    """
-    Return appropriate setting from user profile model or singleton settings
-    model based on args
-    """
-    if not request.user.is_authenticated:
-        return
-    if setting == "icon_size":
-        if has_profile(request.user):
-            user_pref = request.user.profile.icon_size
-        if user_pref:
-            return user_pref
-    elif setting == "icon_color":
-        if has_profile(request.user):
-            user_pref = request.user.profile.icon_color
-        if user_pref:
-            return user_pref
-    elif setting == "page_size":
-        if has_profile(request.user):
-            user_pref = request.user.profile.page_size
-        if user_pref:
-            return user_pref
-    elif setting == "dashboard_choices":
-        if has_profile(request.user):
-            user_pref = request.user.profile.dashboard_choices
-        if user_pref:
-            return user_pref
-
-
-def set_ref(obj, request, **kwargs):
-    """
-    Set object field references after create or edit
-    """
-    client_model = kwargs.get("client_model")
-    estimate_model = kwargs.get("estimate_model")
-    invoice_model = kwargs.get("invoice_model")
-    project_model = kwargs.get("project_model")
-    model_name = obj._meta.verbose_name
-    if model_name == "contact":
-        query_client = get_query_string(request, "client")
-        if query_client:
-            client = get_object_or_404(client_model, pk=query_client)
-            obj.client = client
-            obj.save()
-    elif model_name == "estimate" or model_name == "invoice":
-        query_client = get_query_string(request, "client")
-        query_project = get_query_string(request, "project")
-        if query_project:
-            project = get_object_or_404(project_model, pk=query_project)
-            obj.client = project.client
-            obj.project = project
-            obj.save()
-        if query_client:
-            client = get_object_or_404(client_model, pk=query_client)
-            obj.client = client
-            obj.save()
-    elif model_name == "note":
-        query_client = get_query_string(request, "client")
-        query_invoice = get_query_string(request, "invoice")
-        if query_client:
-            client = get_object_or_404(client_model, pk=query_client)
-            client.note.add(obj)
-            client.save()
-        elif query_invoice:
-            invoice = get_object_or_404(invoice_model, pk=query_invoice)
-            invoice.note.add(obj)
-            invoice.save()
-    elif model_name == "project":
-        query_client = get_query_string(request, "client")
-        if query_client:
-            client = get_object_or_404(client_model, pk=query_client)
-            obj.client = client
-            obj.save()
-    elif model_name == "time":
-        if not obj.user:  # If no user, set user, else do nothing.
-            obj.user = request.user
-        query_estimate = get_query_string(request, "estimate")
-        query_invoice = get_query_string(request, "invoice")
-        query_project = get_query_string(request, "project")
-        if query_estimate:
-            estimate = get_object_or_404(estimate_model, pk=query_estimate)
-            obj.estimate = estimate
-        if query_invoice:
-            invoice = get_object_or_404(invoice_model, pk=query_invoice)
-            obj.invoice = invoice
-            obj.save()  # Need save here to set more attrs
-            obj.project = invoice.project
-            obj.save()  # Need save here to set more attrs
-            obj.task = invoice.project.task
-        if query_project:
-            project = get_object_or_404(project_model, pk=query_project)
-            obj.project = project
-            obj.save()  # Need save here to set more attrs
-            if project.task:
-                obj.task = project.task
-        obj.save()
