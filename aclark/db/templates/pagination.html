@@ -2,28 +2,27 @@
     <div class="text-center">
       <div class="d-inline-block">
         <div class="btn-toolbar my-3" role="toolbar" aria-label="Toolbar with button groups">
-          <div class="btn-group btn-group-lg mr-2" role="group" aria-label="Second group">
+          <div class="btn-group mr-2" role="group" aria-label="Second group">
             <!-- Next/Prev -->
-            {% if items.has_previous %}<a class="btn btn-dark" href="?page=1"><i class="fa fa-step-backward"></i></a> <a class="btn btn-dark" href="?page={{ items.previous_page_number }}"><i class="fa fa-chevron-circle-left"></i></a>{% endif %}
-            {% if not items.has_previous %}<button class="btn btn-dark" disabled><i class="fa fa-step-backward"></i></button> <button class="btn btn-dark" disabled><i class="fa fa-chevron-circle-left"></i></button>{% endif %}
+            {% if items.has_previous %}<a class="btn btn-outline-dark" href="?page=1"><i class="fa fa-step-backward"></i></a> <a class="btn btn-outline-dark" href="?page={{ items.previous_page_number }}"><i class="fa fa-chevron-circle-left"></i></a>{% endif %}
+            {% if not items.has_previous %}<button class="btn btn-outline-dark" disabled><i class="fa fa-step-backward"></i></button> <button class="btn btn-outline-dark" disabled><i class="fa fa-chevron-circle-left"></i></button>{% endif %}
             <!-- Next/Prev -->
-            {% if items.has_next %}<a class="btn btn-dark" href="?page={{ items.next_page_number }}"><i class="fa fa-chevron-circle-right"></i></a> <a class="btn btn-dark" href="?page={{ items.paginator.num_pages }}"><i class="fa fa-step-forward"></i></a>{% endif %}
-            {% if not items.has_next %}<button class="btn btn-dark" disabled><i class="fa fa-chevron-circle-right"></i></button><button class="btn btn-dark" disabled><i class="fa fa-step-forward"></i></button>{% endif %}
-
+            {% if items.has_next %}<a class="btn btn-outline-dark" href="?page={{ items.next_page_number }}"><i class="fa fa-chevron-circle-right"></i></a> <a class="btn btn-outline-dark" href="?page={{ items.paginator.num_pages }}"><i class="fa fa-step-forward"></i></a>{% endif %}
+            {% if not items.has_next %}<button class="btn btn-outline-dark" disabled><i class="fa fa-chevron-circle-right"></i></button><button class="btn btn-outline-dark" disabled><i class="fa fa-step-forward"></i></button>{% endif %}
           </div>
-          <div class="btn-group btn-group-lg mr-2" role="group" aria-label="Third group">
+          <div class="btn-group mr-2" role="group" aria-label="Third group">
             <!-- Show all or paginated -->
-            {% if items.paginator %}<a class="btn btn-dark" href="?paginated=false">Show all</a>{% endif %}
-            {% if not items.paginator %}<a class="btn btn-dark" href="?paginated=true">Show paginated</a>{% endif %}
+            {% if items.paginator %}<a class="btn btn-outline-dark" href="?paginated=false">Show all</a>{% endif %}
+            {% if not items.paginator %}<a class="btn btn-outline-dark" href="?paginated=true">Show paginated</a>{% endif %}
           </div>
-          <div class="btn-group btn-group-lg mr-2" role="group" aria-label="First group">
+          <div class="btn-group mr-2" role="group" aria-label="First group">
             <!-- Paginated -->
             <!-- Item count -->
-            {% if items.paginator %}<button type="button" class="btn btn-dark" disabled>Items {{ items.start_index }} to {{ items.end_index }} of {{ items.paginator.count }}</button>{% endif %}
-            {% if not items.paginator %}<button type="button" class="btn btn-dark" disabled>Items 1 to {{ items.count|default:'?' }} of {{ items.count|default:'?' }}</button>{% endif %}
+            {% if items.paginator %}<button type="button" class="btn btn-outline-dark" disabled>Items {{ items.start_index }} to {{ items.end_index }} of {{ items.paginator.count }}</button>{% endif %}
+            {% if not items.paginator %}<button type="button" class="btn btn-outline-dark" disabled>Items 1 to {{ items.count|default:'?' }} of {{ items.count|default:'?' }}</button>{% endif %}
             <!-- Which page -->
-            {% if items.paginator %}<button class="btn btn-dark" disabled>Page {{ items.number }} of {{ items.paginator.num_pages }}</button>{% endif %}
-            {% if not items.paginator %}<button class="btn btn-dark" disabled>Page 1 of 1</button>{% endif %}
+            {% if items.paginator %}<button class="btn btn-outline-dark" disabled>Page {{ items.number }} of {{ items.paginator.num_pages }}</button>{% endif %}
+            {% if not items.paginator %}<button class="btn btn-outline-dark" disabled>Page 1 of 1</button>{% endif %}
           </div>
         </div>
       </div>
