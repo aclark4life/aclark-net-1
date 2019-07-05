@@ -1,16 +1,11 @@
 {% extends 'dashboard.html' %}
 {% block dashboard %}
-    <div class="row">
-      <div class="col-12">
 {% with items=items.reports %}
 {% include 'search.html' %}
 {% include 'pagination.html' %}
 {% endwith %}
 {% include 'report_table.html' %}
 {% with items=items.reports %}
-{% include 'search.html' %}
 {% include 'pagination.html' %}
 {% endwith %}
-      </div>
-    </div>
 {% endblock %}
