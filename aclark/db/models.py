@@ -3,11 +3,9 @@ from django.conf import settings
 from django.contrib.gis.db import models
 from django.urls import reverse
 from django.utils import timezone
-from multiselectfield import MultiSelectField
 from phonenumber_field.modelfields import PhoneNumberField
 from taggit.managers import TaggableManager
 from uuid import uuid4
-from . import choices
 
 
 # Create your models here.
@@ -38,15 +36,6 @@ class BaseModel(models.Model):
     updated = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True)
     hidden = models.BooleanField(default=False)
-    icon_name = models.CharField(
-        "Font Awesome Icon", max_length=25, blank=True, null=True
-    )
-    icon_size = models.CharField(
-        max_length=255, blank=True, null=True, choices=choices.ICON_CHOICES
-    )
-    icon_color = models.CharField(
-        max_length=255, blank=True, null=True, choices=choices.COLOR_CHOICES
-    )
 
     class Meta:
         abstract = True
@@ -170,10 +159,6 @@ class Estimate(BaseModel):
     def __str__(self):
         return "estimate-%s" % self.pk
 
-    estimate_type = models.CharField(
-        max_length=255, blank=True, null=True, choices=choices.ICON_CHOICES
-    )
-
 
 class Invoice(BaseModel):
     """
@@ -273,23 +258,11 @@ class Profile(BaseModel):
     """
 
     active = models.BooleanField(default=True)
-    app_admin = models.BooleanField(default=False)
-    is_contact = models.BooleanField(default=False)
-    notify = models.BooleanField(default=True)
     published = models.BooleanField(default=False)
-    dashboard_items = MultiSelectField(
-        "Dashboard Items", choices=choices.DASHBOARD_ITEMS, null=True, blank=True
-    )
-    editor = models.CharField(
-        max_length=8, choices=choices.EDITOR_CHOICES, null=True, blank=True
-    )
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True
     )
     page_size = models.PositiveIntegerField(blank=True, null=True)
-    preferred_username = models.CharField(
-        "Preferred Username", max_length=150, blank=True, null=True
-    )
     rate = models.DecimalField(
         "Hourly Rate (United States Dollar - USD)",
         blank=True,
@@ -303,13 +276,6 @@ class Profile(BaseModel):
     avatar_url = models.URLField("Avatar URL", blank=True, null=True)
     bio = models.TextField(blank=True, null=True)
     address = models.TextField(blank=True, null=True)
-    payment_method = models.CharField(
-        "Preferred Payment Method",
-        max_length=255,
-        blank=True,
-        null=True,
-        choices=choices.PAYMENT_CHOICES,
-    )
     job_title = models.CharField(max_length=150, blank=True, null=True)
     twitter_username = models.CharField(max_length=150, blank=True, null=True)
 
@@ -443,10 +409,6 @@ class Task(BaseModel):
     active = models.BooleanField(default=True)
     billable = models.BooleanField(default=True)
     name = models.CharField(max_length=300, blank=True, null=True)
-    # https://stackoverflow.com/a/31131029
-    color = models.CharField(
-        blank=True, choices=choices.COLOR_CHOICES, max_length=7, null=True
-    )
     rate = models.DecimalField(blank=True, null=True, max_digits=12, decimal_places=2)
     unit = models.DecimalField(
         "Unit", default=1.0, blank=True, null=True, max_digits=12, decimal_places=2

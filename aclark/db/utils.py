@@ -94,7 +94,7 @@ def get_page_items(**kwargs):
     context = {}
     items = {}
     time_include = ("date", "project", "hours", "log")
-    user_include = ("rate", "bio", "dashboard_items")
+    user_include = ("rate", "bio", "address", "job_title", "twitter_username")
     contact_include = ("first_name", "last_name")
     note_include = ("note",)
 

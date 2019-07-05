@@ -120,16 +120,7 @@
       </div>
 
 {% block dashboard %}
-      {% if user.profile.dashboard_items %}
-        {% for dashboard in user.profile.dashboard_items %}  <!-- https://stackoverflow.com/a/4524851/185820 -->
-          {% with "dashboard_"|add:dashboard|add:".html" as dashboard_html %}
-{% include dashboard_html %}
-          {% endwith %}
-        {% endfor %}
-      {% else %}
-      <p class="py-3">Please <a href="{% url 'user_edit' user.pk %}">select dashboard items</a>.</p>
-      {% endif %}
-
+{% include 'dashboard_times.html' %}
 {% endblock %}
 
     </main>

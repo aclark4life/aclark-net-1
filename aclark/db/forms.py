@@ -11,7 +11,6 @@ from .models import Time
 from django import forms
 from taggit.models import Tag
 from django.utils import timezone
-from . import choices
 
 
 class AdminProfileForm(forms.ModelForm):
@@ -19,27 +18,15 @@ class AdminProfileForm(forms.ModelForm):
         model = Profile
         fields = (
             "rate",
-            "payment_method",
             "bio",
             "address",
             "job_title",
             "twitter_username",
-            "dashboard_items",
-            "icon_color",
-            "icon_size",
-            "notify",
             "page_size",
             "published",
             "avatar_url",
         )
         widgets = {"bio": forms.widgets.TextInput(attrs={"class": "tinymce"})}
-
-    dashboard_items = forms.MultipleChoiceField(
-        choices=choices.DASHBOARD_ITEMS,
-        label="Dashboard Items",
-        required=False,
-        widget=forms.SelectMultiple(attrs={"size": "6"}),
-    )
 
 
 class AdminTimeForm(forms.ModelForm):
@@ -207,25 +194,8 @@ class NoteForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = (
-            "rate",
-            "bio",
-            "address",
-            "job_title",
-            "twitter_username",
-            "payment_method",
-            "icon_size",
-            "page_size",
-            "dashboard_items",
-        )
+        fields = ("rate", "bio", "address", "job_title", "twitter_username")
         widgets = {"bio": forms.widgets.TextInput(attrs={"class": "tinymce"})}
-
-    dashboard_items = forms.MultipleChoiceField(
-        choices=(("times", "Times"), ("totals", "Totals")),  # Limit choices
-        label="Dashboard Items",
-        required=False,
-        widget=forms.SelectMultiple(attrs={"size": "6"}),
-    )
 
 
 class ProjectForm(forms.ModelForm):
