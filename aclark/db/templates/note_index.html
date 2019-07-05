@@ -1,5 +1,6 @@
 {% extends 'dashboard.html' %}
 {% block dashboard %}
+{% include 'search.html' %}
     <div class="row">
       <div class="col-12">
         <div class="text-right">
@@ -7,10 +8,7 @@
         </div>
       </div>
     </div>
-
-
 {% with items=items.notes %}
-{% include 'search.html' %}
 {% include 'pagination.html' %}
 {% endwith %}
 {% include 'note_table.html' %}

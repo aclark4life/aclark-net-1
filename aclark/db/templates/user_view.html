@@ -3,12 +3,13 @@
 {% endblock %}
 {% block dashboard %}
     <div class="row">
-      <div class="col-12 py-3">
-        <div class="btn-group btn-outline-dark float-right">
+      <div class="col-12">
+        <div class="text-right my-3">
           <a class="btn btn-lg btn-outline-dark" href="{% url 'user_edit' pk=item.pk %}">Edit</a>
         </div>
       </div>
     </div>
+{% include 'totals_table.html' %}
 {% include 'fields_table.html' %}
 {% include 'totals_table.html' %}
 {% endblock %}

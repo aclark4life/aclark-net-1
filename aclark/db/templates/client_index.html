@@ -1,14 +1,14 @@
 {% extends 'dashboard.html' %}
 {% block dashboard %}
+{% include 'search.html' %}
     <div class="row">
       <div class="col-12">
-
-          <div class="text-right">
-            <a class="btn btn-lg btn-outline-dark" href="{% url 'client_edit' %}">Add Client</a>
-          </div>
-
+        <div class="text-right">
+          <a class="btn btn-lg btn-outline-dark" href="{% url 'client_edit' %}">Add Client</a>
+        </div>
+      </div>
+    </div>
 {% with items=items.clients %}
-{% include 'search.html' %}
 {% include 'pagination.html' %}
 {% endwith %}
 {% include 'client_table.html' %}
@@ -16,6 +16,4 @@
 {% include 'search.html' %}
 {% include 'pagination.html' %}
 {% endwith %}
-      </div>
-    </div>
 {% endblock %}
