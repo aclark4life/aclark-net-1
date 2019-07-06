@@ -108,7 +108,6 @@ def edit(request, **kwargs):
     context["item"] = obj
     context["pk"] = pk
 
-    # XXX Factor
     if model_name == "client":
         context["client_nav"] = True
     elif model_name == "contact":
