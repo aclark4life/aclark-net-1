@@ -24,15 +24,15 @@ def set_items(model_name, items=None, _items={}):
     instead of:
         for item in reports
     """
-    # i = {}
-    # i["%ss" % model_name] = items
+    i = {}
+    i["%ss" % model_name] = items
 
-    # for key in _items.keys():
-    #     i[key] = _items[key]
+    for key in _items.keys():
+        i[key] = _items[key]
 
-    # return i
-    _items["%ss" % model_name] = items
-    return _items
+    return i
+    # _items["%ss" % model_name] = items
+    # return _items
 
 
 def get_setting(request, setting, settings_model=None, page_size=None):
