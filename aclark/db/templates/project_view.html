@@ -19,6 +19,7 @@
     </div>
 {% include 'copy_form.html' %}
 {% include 'delete_form.html' %}
+{% include 'total_table.html' %}
 {% with items=items.estimates view_url='estimate_view' edit_url='estimate_edit' item_type='estimate' %}
 {% include 'invoice_table.html' %}
 {% endwith %}
