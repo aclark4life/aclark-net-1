@@ -303,42 +303,10 @@ def logout(request):
 @login_required
 def note_view(request, pk=None):
     note = get_object_or_404(Note, pk=pk)
-    if not request.user.is_staff and not note.user:  # No user
-        messages.add_message(request, messages.WARNING, FOUR_O_3)
-        return HttpResponseRedirect(reverse("home"))
-    elif (
-        not request.user.is_staff and not note.user.username == request.user.username
-    ):  # Time entry user does not match user
-        messages.add_message(request, messages.WARNING, FOUR_O_3)
-        return HttpResponseRedirect(reverse("home"))
-    else:
-        context = get_page_items(
-            model=Note, pk=pk, request=request, report_model=Report
-        )
-        title = context["item"].title
-        if title:
-            title = slugify(title)
-        filename = title
-        logo = os.path.join(
-            os.environ.get("PWD"), "aclark", "root", "static", "aclarknet-header.png"
-        )
-        if context["doc"]:
-            filename = ".".join([filename, "docx"])
-            return render_doc(context, filename=filename, logo=logo)
-        elif context["mail"]:  # https://stackoverflow.com/a/16335483
-            message_plain = note.note
-            message_html = render_to_string("note_export.html", context)
-            message_subject = title
-            mail_send(
-                html_message=message_html,
-                message=message_plain,
-                subject=message_subject,
-            )
-            messages.add_message(request, messages.INFO, "Note sent")
-        elif context["pdf"]:
-            filename = ".".join([filename, "pdf"])
-            return render_pdf(context, filename=filename, template="note_export.html")
-        return render(request, "note_view.html", context)
+    context = get_page_items(
+        model=Note, pk=pk, request=request, report_model=Report
+    )
+    return render(request, "note_view.html", context)
 
 
 @login_required
