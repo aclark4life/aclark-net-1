@@ -66,7 +66,9 @@ def get_index_items(**kwargs):
 
     # Return search index items
     if request.method == "POST":
-        if search == u"":  # Empty search returns none
+        if search == u"":
+            items = []  # Empty search returns none
+            context["items"] = items
             return context
         else:
             return get_search_results(
