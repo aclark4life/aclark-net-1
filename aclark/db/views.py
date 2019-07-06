@@ -11,7 +11,6 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 from django.template.loader import render_to_string
-from faker import Faker
 from rest_framework import viewsets
 from .forms import AdminProfileForm
 from .forms import AdminTimeForm
@@ -50,7 +49,6 @@ from .utils import get_index_items
 from .utils import get_page_items
 import os
 
-fake = Faker()
 FOUR_O_3 = "Sorry, you are not allowed to see that."
 
 # Create your views here.
