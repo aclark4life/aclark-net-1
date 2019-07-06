@@ -213,7 +213,7 @@ def estimate_index(request):
 
 def home(request):
     context = get_page_items(
-        filter_by={"time": {"estimate": None, "user": request.user}},
+        filter_by={"time": {"estimate": None, "user": request.user, "invoiced": False}},
         invoice_model=Invoice,
         order_by={
             "invoice": ("-issue_date",),
