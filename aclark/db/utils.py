@@ -40,20 +40,20 @@ def get_index_items(**kwargs):
     if order_by is not None:  # http://stackoverflow.com/a/20257999/185820
         items = items.order_by(*order_by)
 
-    if not request.user.is_authenticated:  # Don't show anon
-        items = []
-
     if paginated:  # Paginate if paginated
         page_size = get_setting(request, "page_size")
         items = paginate(items, page_num=page_num, page_size=page_size)
 
-    items = set_items(model_name, items=items)
-
     if report_model:
         reports = report_model.objects.filter(active=True).order_by("-date")
-        items = set_items("report", items=reports, _items=items)
 
     context = {}
+
+    items = set_items(model_name, items=items)
+
+    if not request.user.is_authenticated:  # Don't show anon
+        items = []
+
     context["items"] = items
 
     context["edit_url"] = edit_url
@@ -115,10 +115,11 @@ def get_page_items(**kwargs):
     cost = 0
 
     context = {}
-    items = []
     item = None
+    items = None
     model_name = None
     fields = None
+    config = None
 
     last_payment_date = None
 
@@ -135,7 +136,7 @@ def get_page_items(**kwargs):
                 invoices = invoices.order_by(*order_by["invoice"])
                 projects = projects.order_by(*order_by["project"])
                 contacts = contacts.order_by(*order_by["contact"])
-            items = set_items("contact", items=contacts, _items=items)
+            items = set_items("contact", items=contacts)
             items = set_items("invoice", items=invoices, _items=items)
             items = set_items("note", items=notes, _items=items)
             items = set_items("project", items=projects, _items=items)
@@ -176,7 +177,7 @@ def get_page_items(**kwargs):
             if order_by:
                 times = times.order_by(*order_by["time"])
                 invoices = invoices.order_by(*order_by["invoice"])
-            items = set_items("contact", items=contacts, _items=items)
+            items = set_items("contact", items=contacts)
             items = set_items("estimate", items=estimates, _items=items)
             items = set_items("invoice", items=invoices, _items=items)
             items = set_items("time", items=times, _items=items)
@@ -188,7 +189,7 @@ def get_page_items(**kwargs):
             reports.aggregate(gross=Sum(F("gross")))
             reports.aggregate(net=Sum(F("net")))
             invoices = item.invoices.all()
-            items = set_items("invoice", items=invoices, _items=items)
+            items = set_items("invoice", items=invoices)
             items = set_items("report", items=reports, _items=items)
             # E-Mail
             context["message"] = "Cost: %s, Gross: %s, Net: %s" % (
@@ -222,6 +223,7 @@ def get_page_items(**kwargs):
             )  # fields_items.html
         else:
             item = get_object_or_404(model, pk=pk)
+            items = set_items(model_name, items=items)
     else:  # no model
         # Items
         invoices = invoice_model.objects.filter(last_payment_date=None)
