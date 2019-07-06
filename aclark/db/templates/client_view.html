@@ -1,9 +1,12 @@
 {% extends 'dashboard.html' %}
 {% block dashboard %}
-    <div class="row">
-      <div class="col-12">
+    <div class="row my-3">
+      <div class="col-6">
+        <h2>{{ item.name }}</h2>
+      </div>
+      <div class="col-6">
         <div class="text-right">
-          <div class="btn-group dropdown my-3">
+          <div class="btn-group dropdown">
             <a class="btn btn-lg btn-outline-dark" href="{% url 'client_edit' pk=item.pk %}">Edit</a>
             <button type="button" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <span class="sr-only">Toggle Dropdown</span>
@@ -18,8 +21,7 @@
     <div class="row">
       <div class="col-3">
         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-          <a class="nav-link active btn-light" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Name</a>
-          <a class="nav-link btn-light" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Estimates</a>
+          <a class="nav-link active btn-light" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Estimates</a>
           <a class="nav-link btn-light" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Invoices</a>
           <a class="nav-link btn-light" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Projects</a>
           <a class="nav-link btn-light" id="v-pills-address-tab" data-toggle="pill" href="#v-pills-address" role="tab" aria-controls="v-pills-address" aria-selected="false">Address</a>
@@ -29,9 +31,6 @@
       </div>
       <div class="col-9">
         <div class="tab-content" id="v-pills-tabContent">
-          <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-            <h1 class="display-4">{{ item.name|default:'Client' }}</h1>
-          </div>
           <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
 {% with items=items.estimates view_url='estimate_view' edit_url='estimate_edit' item_type='estimate' %}
 {% include 'invoice_table.html' %}

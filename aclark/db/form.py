@@ -24,9 +24,7 @@ def get_form(**kwargs):
         query_client = get_query_string(request, "client")
     if obj:  # Existing object
         model_name = obj._meta.verbose_name
-        if model_name == "note":  # Populate form with tags already set
-            form = form_model(initial={"tags": obj.tags.all()}, instance=obj)
-        elif model_name == "time":  # XXX Dup
+        if model_name == "time":  # XXX Dup
             projects = project_model.objects.filter(
                 team__in=[request.user.pk], active=True
             )

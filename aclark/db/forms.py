@@ -173,14 +173,8 @@ class InvoiceForm(forms.ModelForm):
 class NoteForm(forms.ModelForm):
     class Meta:
         model = Note
-        fields = ("active", "hidden", "title", "tags", "note", "due_date", "contacts")
+        fields = ("active", "hidden", "title", "note", "due_date", "contacts")
         widgets = {"note": forms.widgets.TextInput(attrs={"class": "tinymce"})}
-
-    tags = forms.ModelMultipleChoiceField(
-        queryset=Tag.objects.all(),
-        required=False,
-        widget=forms.SelectMultiple(attrs={"size": "5"}),
-    )
 
     contacts = forms.ModelMultipleChoiceField(
         queryset=Contact.objects.filter(active=True)
