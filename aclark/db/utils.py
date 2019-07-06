@@ -16,26 +16,52 @@ gravatar_url = "https://www.gravatar.com/avatar/%s"
 def get_index_items(**kwargs):
     """
     """
-    context = {}
+    request = kwargs.get("request")
     model = kwargs.get("model")
     report_model = kwargs.get("report_model")
     filter_by = kwargs.get("filter_by")
     order_by = kwargs.get("order_by")
-    page_size = kwargs.get("page_size")
-    request = kwargs.get("request")
     search_fields = kwargs.get("search_fields")
+    page_size = kwargs.get("page_size")
+
     model_name = model._meta.verbose_name
     edit_url = "%s_edit" % model_name
     view_url = "%s_view" % model_name
+
     page_num = get_query_string(request, "page")
     paginated = get_query_string(request, "paginated")
     search = get_query_string(request, "search")
 
-    items = {}
+    items = model.objects.all()
+
+    if filter_by:
+        items = items.filter(**filter_by[model_name])
+
+    if order_by is not None:  # http://stackoverflow.com/a/20257999/185820
+        items = items.order_by(*order_by)
+
+    if not request.user.is_authenticated:  # Don't show anon
+        items = []
+
+    if paginated:  # Paginate if paginated
+        page_size = get_setting(request, "page_size")
+        items = paginate(items, page_num=page_num, page_size=page_size)
+
+    items = set_items(model_name, items=items)
+
     if report_model:
         reports = report_model.objects.filter(active=True).order_by("-date")
         items = set_items("report", items=reports, _items=items)
+
+    context = {}
     context["items"] = items
+
+    context["edit_url"] = edit_url
+    context["view_url"] = view_url
+
+    context["page"] = page_num
+    context["paginated"] = paginated
+
     context["%s_nav" % model_name] = True
 
     # Return search index items
@@ -53,25 +79,7 @@ def get_index_items(**kwargs):
                 order_by=order_by,
                 request=request,
             )
-    # Return filtered or all index items
-    if filter_by:
-        items = model.objects.filter(**filter_by[model_name])
-    else:
-        items = model.objects.all()
-    if order_by is not None:  # Order items
-        # http://stackoverflow.com/a/20257999/185820
-        items = items.order_by(*order_by)
-    if not request.user.is_authenticated:  # Don't show items to anon
-        items = []
-    if paginated:  # Paginate if paginated
-        page_size = get_setting(request, "page_size")
-        items = paginate(items, page_num=page_num, page_size=page_size)
-    context["edit_url"] = edit_url
-    context["view_url"] = view_url
-    context["page"] = page_num
-    context["paginated"] = paginated
-    items = set_items(model_name, items=items)
-    context["items"] = items
+
     return context
 
 
