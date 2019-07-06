@@ -84,27 +84,34 @@ def get_index_items(**kwargs):
 
 
 def get_page_items(**kwargs):
-    site_config_model = kwargs.get("site_config_model")
+
     contact_model = kwargs.get("contact_model")
     estimate_model = kwargs.get("estimate_model")
     invoice_model = kwargs.get("invoice_model")
     note_model = kwargs.get("note_model")
-    model = kwargs.get("model")
-    obj = kwargs.get("obj")
     project_model = kwargs.get("project_model")
     report_model = kwargs.get("report_model")
-    request = kwargs.get("request")
-    order_by = kwargs.get("order_by")
-    pk = kwargs.get("pk")
     time_model = kwargs.get("time_model")
+
+    model = kwargs.get("model")
+    obj = kwargs.get("obj")
+    pk = kwargs.get("pk")
+
     filter_by = kwargs.get("filter_by")
+    order_by = kwargs.get("order_by")
+
     page_size = kwargs.get("page_size")
+    site_config_model = kwargs.get("site_config_model")
+
+    request = kwargs.get("request")
+
     context = {}
     items = {}
+
+    contact_include = ("first_name", "last_name")
+    note_include = ("note", "title", "active", "hidden", "due")
     time_include = ("date", "project", "hours", "log")
     user_include = ("rate", "bio", "address", "job_title", "twitter_username")
-    contact_include = ("first_name", "last_name")
-    note_include = ("note",)
 
     if request:  # Applies to all page items
         doc = get_query_string(request, "doc")  # Export
