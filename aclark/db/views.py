@@ -215,16 +215,18 @@ def estimate_index(request):
 
 def home(request):
     context = get_page_items(
-        time_model=Time,
-        request=request,
-        report_model=Report,
-        project_model=Project,
+        filter_by={"time": {"estimate": None, "user": request.user}},
         invoice_model=Invoice,
         order_by={
-            "invoice": ("-active",),
-            "project": ("-active",),
-            "time": ("-active",),
+            "invoice": ("-issue_date",),
+            "project": ("-updated",),
+            "time": ("-date",),
         },
+        project_model=Project,
+        time_model=Time,
+        report_model=Report,
+        user_model=User,
+        request=request,
     )
     return render(request, "dashboard.html", context)
 

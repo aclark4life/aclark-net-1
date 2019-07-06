@@ -300,4 +300,6 @@ def get_page_items(**kwargs):
                 # Reports
                 reports = report_model.objects.filter(active=True).order_by("-date")
                 items = set_items("report", items=reports, _items=items)
+                context["items"] = items
+
     return context
