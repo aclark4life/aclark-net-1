@@ -175,12 +175,6 @@ def estimate_view(request, pk=None):
         company_name = slugify(company_name)
         filename = "%s-%s-%s.pdf" % (company_name, "estimate", pk)
         return render_pdf(context, filename=filename, template="invoice_export.html")
-    elif context["mail"]:
-        message_plain = "Title"
-        message_subject = "Subject"
-        mail_send(message=message_plain, subject=message_subject)
-        messages.add_message(request, messages.INFO, "Estimate sent")
-        return render(request, "estimate_view.html", context)
     else:
         return render(request, "estimate_view.html", context)
 
@@ -303,9 +297,7 @@ def logout(request):
 @login_required
 def note_view(request, pk=None):
     note = get_object_or_404(Note, pk=pk)
-    context = get_page_items(
-        model=Note, pk=pk, request=request, report_model=Report
-    )
+    context = get_page_items(model=Note, pk=pk, request=request, report_model=Report)
     return render(request, "note_view.html", context)
 
 
