@@ -120,7 +120,15 @@
       </div>
 
 {% block dashboard %}
-{% include 'dashboard_times.html' %}
+{% include 'total_table.html' %}
+{% with items=items.times %}
+{% include 'pagination.html' %}
+{% endwith %}
+{% include 'time_table.html' %}
+{% with items=items.times %}
+{% include 'pagination.html' %}
+{% endwith %}
+{% include 'total_table.html' %}
 {% endblock %}
 
     </main>

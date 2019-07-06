@@ -33,6 +33,9 @@ def get_index_items(**kwargs):
     search = get_query_string(request, "search")
 
     items = model.objects.all()
+    hours = 0
+    if model_name == "time":
+        hours = get_total("hours", times=items)
 
     if filter_by:
         items = items.filter(**filter_by[model_name])
@@ -54,6 +57,7 @@ def get_index_items(**kwargs):
         items = set_items("report", items=reports, _items=items)
 
     context = {}
+    context["hours"] = hours
     context["items"] = items
 
     context["edit_url"] = edit_url
