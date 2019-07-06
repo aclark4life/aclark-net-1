@@ -415,5 +415,5 @@ d:
 	eb deploy
 s:
 	pandoc -V 'fontfamily: arev' -f html -t latex aclarknet-core-competencies.html -o aclarknet-core-competencies.pdf
-	cp aclarknet-core-competencies.pdf aclark/root/static
-	open aclarknet-core-competencies.pdf
+	mv aclarknet-core-competencies.pdf aclark/root/static
+	open aclark/root/static/aclarknet-core-competencies.pdf
