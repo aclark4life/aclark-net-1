@@ -99,6 +99,7 @@ def get_page_items(**kwargs):
 
     filter_by = kwargs.get("filter_by")
     order_by = kwargs.get("order_by")
+    include_fields = kwargs.get("include_fields")
 
     page_size = kwargs.get("page_size")
     site_config_model = kwargs.get("site_config_model")
@@ -107,11 +108,6 @@ def get_page_items(**kwargs):
 
     context = {}
     items = {}
-
-    contact_include = ("first_name", "last_name")
-    note_include = ("note", "title", "active", "hidden", "due")
-    time_include = ("date", "project", "hours", "log")
-    user_include = ("rate", "bio", "address", "job_title", "twitter_username")
 
     if request:  # Applies to all page items
         doc = get_query_string(request, "doc")  # Export
@@ -160,7 +156,9 @@ def get_page_items(**kwargs):
             context["item"] = client
         elif model_name == "contact":
             contact = get_object_or_404(model, pk=pk)
-            fields = get_fields(contact, include=contact_include)  # fields_items.html
+            fields = get_fields(
+                contact, include_fields=include_fields
+            )  # fields_items.html
             context["fields"] = fields
         elif model_name == "estimate":  # handle obj or model
             if not obj:
@@ -238,7 +236,9 @@ def get_page_items(**kwargs):
         if model_name == "time":
             time = get_object_or_404(model, pk=pk)
             context["item"] = time
-            fields = get_fields(time, include=time_include)  # fields_table.html
+            fields = get_fields(
+                time, include_fields=include_fields
+            )  # fields_table.html
             context["fields"] = fields  # fields_items.html
         elif model_name == "user":
             user = get_object_or_404(model, pk=pk)
@@ -247,7 +247,9 @@ def get_page_items(**kwargs):
             times = time_model.objects.filter(estimate=None, invoiced=False, user=user)
             times = times.order_by(*order_by["time"])
             contacts = contact_model.objects.all()
-            fields = get_fields(user.profile, include=user_include)  # fields_table.html
+            fields = get_fields(
+                user.profile, include_fields=include_fields
+            )  # fields_table.html
             hours = get_total("hours", times=times)
             context["fields"] = fields
             context["item"] = user
@@ -256,7 +258,9 @@ def get_page_items(**kwargs):
             context["hours"] = hours
         elif model_name == "note":
             note = get_object_or_404(model, pk=pk)
-            fields = get_fields(note, include=note_include)  # fields_items.html
+            fields = get_fields(
+                note, include_fields=include_fields
+            )  # fields_items.html
             context["fields"] = fields
             context["item"] = note
         else:

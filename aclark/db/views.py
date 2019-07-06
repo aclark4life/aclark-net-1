@@ -47,7 +47,6 @@ from .serializers import TestimonialSerializer
 from .edit import edit
 from .utils import get_index_items
 from .utils import get_page_items
-import os
 
 FOUR_O_3 = "Sorry, you are not allowed to see that."
 
@@ -122,7 +121,14 @@ def client_index(request):
 
 @staff_member_required
 def contact_view(request, pk=None):
-    context = get_page_items(model=Contact, pk=pk, request=request, report_model=Report)
+
+    context = get_page_items(
+        model=Contact,
+        pk=pk,
+        request=request,
+        report_model=Report,
+        include_fields=("first_name", "last_name"),
+    )
     return render(request, "contact_view.html", context)
 
 
@@ -296,8 +302,13 @@ def logout(request):
 
 @login_required
 def note_view(request, pk=None):
-    note = get_object_or_404(Note, pk=pk)
-    context = get_page_items(model=Note, pk=pk, request=request, report_model=Report)
+    context = get_page_items(
+        model=Note,
+        pk=pk,
+        request=request,
+        report_model=Report,
+        include_fields=("note", "title", "active", "hidden", "due"),
+    )
     return render(request, "note_view.html", context)
 
 
@@ -453,7 +464,11 @@ def time_view(request, pk=None):
         return HttpResponseRedirect(reverse("home"))
     else:
         context = get_page_items(
-            model=Time, pk=pk, request=request, report_model=Report
+            model=Time,
+            pk=pk,
+            request=request,
+            report_model=Report,
+            include_fields=("date", "project", "hours", "log"),
         )
         return render(request, "time_view.html", context)
 
@@ -530,6 +545,7 @@ def user_view(request, pk=None):
             order_by=order_by,
             profile_model=Profile,
             project_model=Project,
+            include_fields=("rate", "bio", "address", "job_title", "twitter_username"),
             report_model=Report,
             time_model=Time,
             pk=pk,
