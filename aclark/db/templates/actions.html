@@ -1,4 +1,8 @@
 {% load l10n %}
+                  {% if model_name == 'time' %}
+                  <h6 class="dropdown-header">Add</h6>
+                  <a class="dropdown-item" href="{% url 'time_edit' %}"><i class="fa fa-plus"></i> Time</a>
+                  {% endif %}
 
                   {% if model_name == 'client' %}
                   <h6 class="dropdown-header">Add</h6>

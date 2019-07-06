@@ -225,6 +225,7 @@ def get_page_items(**kwargs):
             item = get_object_or_404(model, pk=pk)
             items = set_items(model_name, items=items)
     else:  # no model
+        model_name = "home"
         # Items
         invoices = invoice_model.objects.filter(last_payment_date=None)
         invoices = invoices.order_by(*order_by["invoice"])
