@@ -1,15 +1,11 @@
 {% extends 'dashboard.html' %}
-{% block add_graph %}
-{% endblock %}
 {% block dashboard %}
-    <div class="row">
-      <div class="col-12"> 
-{% with users=items.users %}
 {% include 'search.html' %}
-{% include 'pagination.html' %}
-{% include 'users_table.html' %}
+{% with users=items.users %}
 {% include 'pagination.html' %}
 {% endwith %}
-      </div>
-    </div>
+{% include 'users_table.html' %}
+{% with users=items.users %}
+{% include 'pagination.html' %}
+{% endwith %}
 {% endblock %}

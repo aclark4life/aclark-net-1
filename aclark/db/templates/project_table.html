@@ -4,18 +4,16 @@
                 <th data-field="counter" data-width="50" data-sortable="true">#</th>
                 <th data-valign="top" data-width="50" data-field="active" data-sort-name="hidden-active" {% if active %}data-visible="false"{% endif %} data-sortable="true">Active</th>
                 <th data-valign="top" data-field="hidden-active" data-sortable="true" data-visible="false">Hidden Active</th>
-                <th data-valign="top" data-field="hidden-color" data-sortable="true" data-visible="false">Hidden Color</th>
                 <th data-valign="top" data-width="600" data-field="name" data-sortable="true">Name</th>
                 <th data-valign="top" data-sortable="true" data-visible="false">Task</th>
               </tr>
             </thead>
             <tbody>
             {% for item in items.projects %}
-              <tr class="table-{{ item.task.color }}"> 
+              <tr> 
                 <td>{{ forloop.counter }}</td>
                 <td><form action="{% url 'project_edit' item.pk %}" method="post">{% csrf_token %}<input type="hidden" value="off" name="checkbox-active"> <input type="checkbox" value="on" name="checkbox-active" {% if item.active %} checked {% endif %} onChange="this.form.submit()"> </form></td>
                 <td>{{ item.active }}</td>
-                <td>{{ item.task.color|default:'' }}</td>
                 <td class="col-1"><a data-toggle="tooltip" title="{{ item.name|default:'Project' }}" href="{% url 'project_view' item.pk %}">{{ item.name|default:'Project' }}</a> <a href="{% url 'project_edit' item.pk %}"><i data-toggle="tooltip" title="Edit" class="fas fa-pencil-alt fa-{{ icon_size }}" style="vertical-align: middle"></i></a></td>
                 {% if item.task %}<td><a href="{% url 'task_view' item.task.pk %}"></i> {{ item.task.name|default:'Task' }}</a> <a href="{% url 'task_edit' item.task.pk %}"><i data-toggle="tooltip" title="Edit" class="fas fa-pencil-alt fa-{{ icon_size }}" style="vertical-align: middle"></i></a></td>{% else %}<td>{{ task.name|default:'Task' }}</td>{% endif %}
               </tr>

@@ -23,7 +23,7 @@
                 <td>{{ forloop.counter }}</td>
                 <td>{% if item.invoiced %}<i class="fa fa-check"></i>{% endif %}</td>
                 <td>{{ item.log|linebreaks }}</td>
-                <td><a class="text-{{ icon_color }}" href="{% url 'time_view' item.pk %}">{{ item.hours }}</a> <a class="text-{{ icon_color }}" href="{% url 'time_edit' item.pk %}"><i class="fas fa-pencil-alt fa-{{ icon_size }}" style="vertical-align: middle"></i></a></td>
+                <td><a href="{% url 'time_view' item.pk %}">{{ item.hours }}</a> <a href="{% url 'time_edit' item.pk %}"><i class="fas fa-pencil-alt" style="vertical-align: middle"></i></a></td>
                 <td>{{ item.date|date:'Y-m-d'|default:'' }}</td>
                 <td>{{ item.date|date:'U' }}</td>
                 <td>{{ item.project|default:'' }}</td>

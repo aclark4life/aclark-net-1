@@ -599,7 +599,6 @@ def user_edit(request, pk=None):
 @staff_member_required
 def user_index(request):
     context = get_index_items(
-        contact_model=Contact,
         report_model=Report,
         model=User,
         order_by=("-profile__active", "last_name", "first_name"),

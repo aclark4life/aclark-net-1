@@ -1,7 +1,11 @@
 {% extends 'dashboard.html' %}
 {% block dashboard %}
 {% include 'search.html' %}
+{% with items=items.projects %}
 {% include 'pagination.html' %}
+{% endwith %}
 {% include 'project_table.html' %}
+{% with items=items.projects %}
 {% include 'pagination.html' %}
+{% endwith %}
 {% endblock %}

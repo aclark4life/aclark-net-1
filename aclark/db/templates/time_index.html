@@ -1,7 +1,7 @@
 {% extends 'dashboard.html' %}
 {% block dashboard %}
-{% with items=items.times %}
 {% include 'search.html' %}
+{% with items=items.times %}
 {% include 'pagination.html' %}
 {% endwith %}
 {% include 'times_table.html' %}
