@@ -257,6 +257,13 @@ def get_page_items(**kwargs):
         if gross and cost:
             net = gross - cost
 
+    if report_model:
+        reports = report_model.objects.filter(active=True).order_by("-date")
+        if items:
+            items = set_items("report", items=reports, _items=items)
+        else:
+            items = set_items("report", items=reports)
+
     context["item"] = item
     context["net"] = net
     context["gross"] = gross
@@ -274,8 +281,5 @@ def get_page_items(**kwargs):
     context["fields"] = fields
     context["config"] = config
     context["last_payment_date"] = last_payment_date
-
-    if report_model:
-        reports = report_model.objects.filter(active=True).order_by("-date")
 
     return context
