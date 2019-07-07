@@ -413,6 +413,3 @@ webpack:
 	git add $(PROJECT)/root/static/webpack_bundles
 d:
 	eb deploy
-s:
-	pandoc -f html -t latex aclarknet-competency.html -o aclark/root/static/aclarknet-competency.pdf
-	open aclark/root/static/aclarknet-competency.pdf
