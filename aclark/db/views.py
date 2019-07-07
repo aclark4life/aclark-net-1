@@ -312,8 +312,14 @@ def note_view(request, pk=None):
         pk=pk,
         request=request,
         report_model=Report,
+        site_config_model=SiteConfiguration,
         include_fields=("text", "title", "active", "hidden", "due"),
     )
+    if context["pdf"]:
+        company_name = context["config"].company_name
+        company_name = slugify(company_name)
+        filename = "%s-%s-%s.pdf" % (company_name, "note", pk)
+        return render_pdf(context, filename=filename, template="note.html")
     return render(request, "note_view.html", context)
 
 

@@ -123,6 +123,8 @@ def get_page_items(**kwargs):
     model_name = None
     fields = None
     config = None
+    if site_config_model:
+        config = site_config_model.get_solo()
 
     last_payment_date = None
 
@@ -154,14 +156,8 @@ def get_page_items(**kwargs):
                 times = times.order_by(*order_by["time"])
             times = set_total(times, estimate=item)
             items = set_items("time", items=times)
-            config = (
-                site_config_model.get_solo()
-            )  # get_solo will create the item if it does not already exist
         elif model_name == "invoice":
             item = get_object_or_404(model, pk=pk)
-            config = (
-                site_config_model.get_solo()
-            )  # get_solo will create the item if it does not already exist
             times = time_model.objects.filter(estimate=None, invoice=item)
             times = times.order_by(*order_by["time"])
             times = set_total(times, invoice=item)
