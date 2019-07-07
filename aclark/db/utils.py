@@ -44,12 +44,13 @@ def get_index_items(**kwargs):
         page_size = get_setting(request, "page_size")
         items = paginate(items, page_num=page_num, page_size=page_size)
 
-    if report_model:
-        reports = report_model.objects.filter(active=True).order_by("-date")
-
     context = {}
 
     items = set_items(model_name, items=items)
+
+    if report_model:
+        reports = report_model.objects.filter(active=True).order_by("-date")
+        items = set_items("report", items=reports, _items=items)
 
     if not request.user.is_authenticated:  # Don't show anon
         items = []

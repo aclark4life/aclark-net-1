@@ -36,7 +36,6 @@ from .models import SiteConfiguration
 from .models import Testimonial
 from .models import Task
 from .models import Time
-from .export import render_doc
 from .export import render_pdf
 from .mail import mail_send
 from .misc import has_profile
@@ -212,8 +211,14 @@ def estimate_index(request):
 
 
 def home(request):
+    if request.user.is_staff:
+        filter_by = {"time": {"estimate": None, "invoiced": False}}
+    else:
+        filter_by = {
+            "time": {"estimate": None, "user": request.user, "invoiced": False}
+        }
     context = get_page_items(
-        filter_by={"time": {"estimate": None, "user": request.user, "invoiced": False}},
+        filter_by=filter_by,
         invoice_model=Invoice,
         order_by={
             "invoice": ("-issue_date",),
