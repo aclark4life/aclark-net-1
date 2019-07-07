@@ -55,7 +55,7 @@ class AdminTimeForm(forms.ModelForm):
 class ClientForm(forms.ModelForm):
     class Meta:
         model = Client
-        exclude = ("icon_name", "icon_size", "icon_color")
+        fields = "__all__"
 
 
 class ContactForm(forms.ModelForm):
