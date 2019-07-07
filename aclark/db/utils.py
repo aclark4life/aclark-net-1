@@ -133,14 +133,12 @@ def get_page_items(**kwargs):
             estimates = estimate_model.objects.filter(client=item)
             invoices = invoice_model.objects.filter(client=item)
             projects = project_model.objects.filter(client=item)
-            notes = note_model.objects.filter(client=item)
             if order_by:
                 invoices = invoices.order_by(*order_by["invoice"])
                 projects = projects.order_by(*order_by["project"])
                 contacts = contacts.order_by(*order_by["contact"])
             items = set_items("contact", items=contacts)
             items = set_items("invoice", items=invoices, _items=items)
-            items = set_items("note", items=notes, _items=items)
             items = set_items("project", items=projects, _items=items)
             items = set_items("estimate", items=estimates, _items=items)
         elif model_name == "contact":
@@ -172,7 +170,6 @@ def get_page_items(**kwargs):
             contacts = contact_model.objects.all()
             estimates = estimate_model.objects.filter(project=item)
             invoices = invoice_model.objects.filter(project=item)
-            notes = note_model.objects.filter(project=item)
             times = time_model.objects.filter(
                 estimate=None, project=item, task__isnull=False, invoiced=False
             )
@@ -184,7 +181,6 @@ def get_page_items(**kwargs):
             items = set_items("estimate", items=estimates, _items=items)
             items = set_items("invoice", items=invoices, _items=items)
             items = set_items("time", items=times, _items=items)
-            items = set_items("note", items=notes, _items=items)
         elif model_name == "report":
             item = get_object_or_404(model, pk=pk)
             reports = model.objects.filter(active=True).order_by("-date")

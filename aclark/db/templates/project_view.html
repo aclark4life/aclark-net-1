@@ -26,7 +26,6 @@
 {% with items=items.invoices view_url='invoice_view' edit_url='invoice_edit' item_type='invoice' %}
 {% include 'invoice_table.html' %}
 {% endwith %}
-{% include 'note_table.html' %}
 {% with users=item.team.all %}
 {% include 'user_table.html' %}
 {% endwith %}
