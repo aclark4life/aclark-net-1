@@ -456,7 +456,6 @@ class Time(BaseModel):
     estimate = models.ForeignKey(
         Estimate, blank=True, null=True, on_delete=models.SET_NULL
     )
-    # order = models.ForeignKey("Order", blank=True, null=True, on_delete=models.SET_NULL)
     invoice = models.ForeignKey(
         Invoice,
         blank=True,
@@ -480,7 +479,7 @@ class Time(BaseModel):
     currency = models.CharField(max_length=300, blank=True, null=True)
     external_reference_url = models.URLField(blank=True, null=True)
     project_code = models.IntegerField(blank=True, null=True)
-    log = models.TextField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return "-".join([self._meta.verbose_name, str(self.pk)])

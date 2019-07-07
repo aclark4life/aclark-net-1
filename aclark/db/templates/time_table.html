@@ -4,7 +4,7 @@
               <tr>
                 <th data-field="counter" data-width="50" data-sortable="true">#</th>
                 <th data-field="invoiced" data-sortable="true"><i class="fas fa-thumbs-up"></i></th>
-                <th data-field="log" data-sortable="true" data-width="300">Log</th>
+                <th data-field="description" data-sortable="true" data-width="300">Description</th>
                 <th data-field="hours" data-sortable="true" data-width="75">Hours</th>
                 <th data-field="date" data-width="100" data-sort-name="hidden-date" data-sortable="true" data-width="100">Date</th>
                 <th data-field="hidden-date" data-sortable="true" data-visible="false">Hidden Date</th>
@@ -22,7 +22,7 @@
               <tr>
                 <td>{{ forloop.counter }}</td>
                 <td>{% if item.invoiced %}<i class="fa fa-check"></i>{% endif %}</td>
-                <td>{{ item.log|linebreaks }}</td>
+                <td>{{ item.description|linebreaks }}</td>
                 <td><a href="{% url 'time_view' item.pk %}">{{ item.hours }}</a> <a href="{% url 'time_edit' item.pk %}"><i class="far fa-edit"></i></a></td>
                 <td>{{ item.date|date:'Y-m-d'|default:'' }}</td>
                 <td>{{ item.date|date:'U' }}</td>

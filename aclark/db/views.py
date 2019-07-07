@@ -473,7 +473,7 @@ def time_view(request, pk=None):
             pk=pk,
             request=request,
             report_model=Report,
-            include_fields=("date", "project", "hours", "log"),
+            include_fields=("date", "project", "hours", "description"),
         )
         return render(request, "time_view.html", context)
 
@@ -518,7 +518,7 @@ def time_index(request):
     search_fields = (
         "client__name",
         "date",
-        "log",
+        "description",
         "pk",
         "project__name",
         "hours",
