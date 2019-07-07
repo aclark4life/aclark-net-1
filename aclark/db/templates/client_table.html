@@ -15,8 +15,8 @@
                 <td><form action="{% url 'client_edit' item.pk %}" method="post">{% csrf_token %}<input type="hidden" value="off" name="checkbox-active"><input type="checkbox" value="on" name="checkbox-active"{% if item.active %} checked {% endif %} onChange="this.form.submit()"></form></td>
                 <td>{{ item.active }}</td>
                 <td>
-                  <a class="btn btn-outline-warning" href="{% url 'client_edit' item.pk %}"><i class="fas fa-pencil-alt"></i></a>
-                  <a class="text-dark" style="text-decoration: none" href="{% url 'client_view' item.pk %}">{{ item.name|default:'Client' }}</a>
+                  <a href="{% url 'client_view' item.pk %}">{{ item.name|default:'Client' }}</a>
+                  <a href="{% url 'client_edit' item.pk %}"><i class="far fa-edit"></i></a>
                 </td>
                 <td>{{ item.name|default:'' }}</td>
               </tr>

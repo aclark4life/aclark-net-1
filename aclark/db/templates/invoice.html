@@ -41,7 +41,7 @@
                 <td rowspan=5 valign="top" class="field-value">
                   <!-- Client Name -->
                   <strong>
-                  {% if item.client and not pdf %}<a href="{% url 'client_view' item.client.pk %}">{{ item.client.name|default:'Client'|linebreaksbr }}</a> <a href="{% url 'client_edit' item.client.pk %}"><i class="fas fa-pencil-alt"></i></a>{% else %} {{ item.client.name|default:'Client'|linebreaksbr }} {% endif %}
+                  {% if item.client and not pdf %}<a href="{% url 'client_view' item.client.pk %}">{{ item.client.name|default:'Client'|linebreaksbr }}</a> <a href="{% url 'client_edit' item.client.pk %}"><i class="far fa-edit"></i></a>{% else %} {{ item.client.name|default:'Client'|linebreaksbr }} {% endif %}
                   </strong> <br>
                   <!-- Client Address -->
                   {% if item.client %}{{ item.client.address|default:''|linebreaksbr }}{% endif %}
@@ -104,7 +104,7 @@
                   <td valign="top" align="left" class="border-right" style="width: 20%">{{ t.date|date:'Y-m-d'|default:'' }}</td>
                   <td valign="top" align="left" class="border-right" style="width: 20%">{{ t.task|default:'' }}</td>
                   <td valign="top" align="left" class="border-right" style="width: 100%">{{ t.log|linebreaks|default:'' }}</td>
-                  <td valign="top" align="right" class="border-right" style="width: 20%">{% if not pdf %} <a href="{% url 'time_view' t.pk %}">{{ t.hours|default:'0' }}</a> <a href="{% url 'time_edit' t.pk %}"><i class="fas fa-pencil-alt"></i></a> {% if t.user.profile %} <a href="{% url 'user_view' t.user.profile.pk %}">{{ t.user.get_full_name }}</a> {% endif %} {% else %} {{ t.hours }} {% endif %} </td>
+                  <td valign="top" align="right" class="border-right" style="width: 20%">{% if not pdf %} <a href="{% url 'time_view' t.pk %}">{{ t.hours|default:'0' }}</a> <a href="{% url 'time_edit' t.pk %}"><i class="far fa-edit"></i></a> {% if t.user.profile %} <a href="{% url 'user_view' t.user.profile.pk %}">{{ t.user.get_full_name }}</a> {% endif %} {% else %} {{ t.hours }} {% endif %} </td>
                   <td valign="top" align="right" class="border-right" style="width: 20%">{% if t.task %}{{ t.task.rate|default:'' }}{% endif %}</td>
                   <td valign="top" align="right" style="width: 20%"><strong>{{ t.amount|default:'0' }}</strong></td>
                 </tr>
@@ -126,7 +126,7 @@
                 <div class="d-inline-block">
                   <div class="btn-toolbar my-3" role="toolbar" aria-label="Toolbar with button groups">
                     <div class="btn-group mr-2" role="group" aria-label="Second group">
-                      <a class="btn btn-outline-dark" href="{% url 'note_edit' note.pk %}"><i class="fas fa-pencil-alt"></i></a>
+                      <a class="btn btn-outline-dark" href="{% url 'note_edit' note.pk %}"><i class="far fa-edit"></i></a>
                       <a class="btn btn-outline-dark" href="{% url 'note_view' note.pk %}"><i class="far fa-sticky-note"></i></a>
                     </div>
                   </div>

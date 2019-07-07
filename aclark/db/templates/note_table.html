@@ -18,7 +18,7 @@
                 <td>{{ item.active }}</td>
                 <td>{{ item.created }}</td>
                 <td>{{ item.updated }}</td>
-                <td><a href="{% url 'note_view' item.pk %}">{{ item.title|default:'Note' }}</a> <a href="{% url 'note_edit' item.pk %}"><i class="fas fa-pencil-alt" style="vertical-align: middle"></i></a></td>
+                <td><a href="{% url 'note_view' item.pk %}">{{ item.title|default:'Note' }}</a> <a href="{% url 'note_edit' item.pk %}"><i class="far fa-edit"></i></a></td>
                 <td>{{ item.note|safe }}</td>
               </tr>
             {% endfor %}

@@ -24,10 +24,10 @@
                       <td>{{ item.issue_date|date:'U'|default:'' }}</td>
                       <td>{% if item.amount %}{% endif %}{{ item.amount|default:'0.00'|intcomma }}</td>
                       <td>{{ item.amount|unlocalize|default:'' }}</td>
-                      {% if item.client %}<td><a href="{% url 'client_view' item.client.pk %}">{{ item.client.name|default:'Client' }}</a> <a href="{% url 'client_edit' item.client.pk %}"><i data-toggle="tooltip" title="Edit" class="fas fa-pencil-alt" style="vertical-align: middle"></i></a></td>{% else %}<td>Client</td> {% endif %}
+                      {% if item.client %}<td><a href="{% url 'client_view' item.client.pk %}">{{ item.client.name|default:'Client' }}</a> <a href="{% url 'client_edit' item.client.pk %}"><i class="far fa-edit"></i></a></td>{% else %}<td>Client</td> {% endif %}
                       <td>{{ item.client|default:'Client' }}</td>
-                      {% if item.project %}<td><a href="{% url 'project_view' item.project.pk %}">{{ item.project.name|default:'' }}</a> <a href="{% url 'project_edit' item.project.pk %}"><i data-toggle="tooltip" title="Edit" class="fas fa-pencil-alt" style="vertical-align: middle"></i></a></td>{% else %}<td>Project</td>{% endif %}
-                      <td><a href="{% url view_url item.pk %}">{{ item.subject|default:'Subject' }}</a> <a href="{% url edit_url item.pk %}"><i data-toggle="tooltip" title="Edit" class="fas fa-pencil-alt" style="vertical-align: middle"></i></a> <a href="{% url 'time_edit' %}?{{ item_type }}={{ item.pk }}"><i data-toggle="tooltip" title="Add time" class="fa fa-plus" style="vertical-align: middle"></i></a></td> <!-- https://stackoverflow.com/a/18541484/185820 -->
+                      {% if item.project %}<td><a href="{% url 'project_view' item.project.pk %}">{{ item.project.name|default:'' }}</a> <a href="{% url 'project_edit' item.project.pk %}"><i class="far fa-edit"></i></a></td>{% else %}<td>Project</td>{% endif %}
+                      <td><a href="{% url view_url item.pk %}">{{ item.subject|default:'Subject' }}</a> <a href="{% url edit_url item.pk %}"><i class="far fa-edit"></i></a> <a href="{% url 'time_edit' %}?{{ item_type }}={{ item.pk }}"><i data-toggle="tooltip" title="Add time" class="fa fa-plus" style="vertical-align: middle"></i></a></td> <!-- https://stackoverflow.com/a/18541484/185820 -->
                     </tr>
                   {% endfor %}
                   </tbody>

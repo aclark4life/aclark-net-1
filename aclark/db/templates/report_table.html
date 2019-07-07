@@ -36,7 +36,7 @@
                     <td>{{ item.gross|unlocalize }}</td>
                     <td>{{ item.net|intcomma }}</td>
                     <td>{{ item.net|unlocalize }}</td>
-                    <td><a href="{% url 'report_view' item.pk %}">{{ item.date|date:'Y-m-d'|default:'' }}</a> <a href="{% url 'report_edit' item.pk %}"><i class="fas fa-pencil-alt" style="vertical-align: middle"></i></a></td>
+                    <td><a href="{% url 'report_view' item.pk %}">{{ item.date|date:'Y-m-d'|default:'' }}</a> <a href="{% url 'report_edit' item.pk %}"><i class="far fa-edit"></i></a></td>
                     <td>{{ item.date|date:'U'|default:'' }}</td>
                   </tr>
                 {% endfor %}
