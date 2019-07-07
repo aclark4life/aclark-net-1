@@ -4,11 +4,7 @@
 {% include 'search.html' %}
 {% with items=items.invoices %}
 {% include 'pagination.html' %}
-{% endwith %}
-{% with item_type='invoice' %}
 {% include 'invoice_table.html' %}
-{% endwith %}
-{% with items=items.invoices %}
 {% include 'pagination.html' %}
 {% endwith %}
 {% endblock %}
