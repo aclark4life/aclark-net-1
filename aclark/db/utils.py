@@ -152,6 +152,7 @@ def get_page_items(**kwargs):
             if order_by:
                 times = times.order_by(*order_by["time"])
             times = set_total(times, estimate=item)
+            items = set_items("time", items=times)
             config = (
                 site_config_model.get_solo()
             )  # get_solo will create the item if it does not already exist
