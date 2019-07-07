@@ -307,7 +307,7 @@ def note_view(request, pk=None):
         pk=pk,
         request=request,
         report_model=Report,
-        include_fields=("note", "title", "active", "hidden", "due"),
+        include_fields=("text", "title", "active", "hidden", "due"),
     )
     return render(request, "note_view.html", context)
 
