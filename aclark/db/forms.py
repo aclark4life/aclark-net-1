@@ -193,7 +193,6 @@ class ProjectForm(forms.ModelForm):
             "name",
             "start_date",
             "end_date",
-            "note",
             "client",
             "task",
             "team",
