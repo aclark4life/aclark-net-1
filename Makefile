@@ -414,6 +414,5 @@ webpack:
 d:
 	eb deploy
 s:
-	pandoc -V 'fontfamily: arev' -f html -t latex aclarknet-core-competencies.html -o aclarknet-core-competencies.pdf
-	mv aclarknet-core-competencies.pdf aclark/root/static
-	open aclark/root/static/aclarknet-core-competencies.pdf
+	pandoc -f html -t latex aclarknet-competency.html -o aclark/root/static/aclarknet-competency.pdf
+	open aclark/root/static/aclarknet-competency.pdf
