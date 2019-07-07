@@ -1,8 +1,6 @@
 {% extends 'dashboard.html' %}
 {% load crispy_forms_tags %}
 {% block dashboard %}
-  <div class="block-xs-middle pb-5">
-    <div class="container">
       <div class="row">
         <div class="col-12">
           <form action="" method="post">{% csrf_token %}
@@ -11,6 +9,4 @@
           </form>
         </div>
       </div>
-    </div>
-  </div>
 {% endblock %}

@@ -117,23 +117,26 @@
                     <h1>{{ item.amount|default:0|intcomma }}</h1>
                   </td>
                 </tr>
-                {% if item.note.all %}
-                {% for note in item.note.all %}
-                <tr>
-                  <td colspan=6> 
-                    <div class="row">
-                      <div class="offset-11 col-1">
-                        <a class="float-right" href="{% url 'note_edit' note.pk %}"><i class="fas fa-pencil-alt"></i></a>
-                      </div> 
-                    </div> 
-                  </td>
-                </tr>
-                <tr>
-                  <td colspan=5> 
-                    {{ note.note|safe }}
-                  </td>
-                </tr>
-                {% endfor %}
-                {% endif %}
               </tbody>
             </table>
+{% if item.note.all %}
+{% for note in item.note.all %}
+            <div class="row">
+              <div class="col-md-12 text-right">
+                <div class="d-inline-block">
+                  <div class="btn-toolbar my-3" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="Second group">
+                      <a class="btn btn-outline-dark" href="{% url 'note_edit' note.pk %}"><i class="fas fa-pencil-alt"></i></a>
+                      <a class="btn btn-outline-dark" href="{% url 'note_view' note.pk %}"><i class="far fa-sticky-note"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+{{ note.text|safe }}
+              </div>
+            </div>
+{% endfor %}
+{% endif %}

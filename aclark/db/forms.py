@@ -173,16 +173,8 @@ class InvoiceForm(forms.ModelForm):
 class NoteForm(forms.ModelForm):
     class Meta:
         model = Note
-        fields = ("active", "hidden", "title", "note", "due_date", "contacts")
-        widgets = {"note": forms.widgets.TextInput(attrs={"class": "tinymce"})}
-
-    contacts = forms.ModelMultipleChoiceField(
-        queryset=Contact.objects.filter(active=True)
-        .exclude(email=None)
-        .order_by("first_name"),
-        required=False,
-        widget=forms.SelectMultiple(attrs={"size": "5"}),
-    )
+        fields = ("active", "hidden", "title", "text", "due_date")
+        widgets = {"text": forms.widgets.TextInput(attrs={"class": "tinymce"})}
 
 
 class ProfileForm(forms.ModelForm):
