@@ -4,9 +4,9 @@
 {% include 'search.html' %}
 {% with items=items.invoices %}
 {% include 'pagination.html' %}
-{% with item_type='estimate' %}
-{% include 'invoice_table.html' %}
 {% endwith %}
+{% include 'invoice_table.html' %}
+{% with items=items.invoices %}
 {% include 'pagination.html' %}
 {% endwith %}
 {% endblock %}
