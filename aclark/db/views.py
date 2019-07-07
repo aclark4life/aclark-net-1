@@ -318,7 +318,13 @@ def note_view(request, pk=None):
     if context["pdf"]:
         company_name = context["config"].company_name
         company_name = slugify(company_name)
-        filename = "%s-%s-%s.pdf" % (company_name, "note", pk)
+        item = context["item"]
+        if item.title:
+            note_title = item.title
+            note_title = slugify(note_title)
+            filename = "%s-%s.pdf" % (company_name, note_title)
+        else:
+            filename = "%s-%s-%s.pdf" % (company_name, "note", pk)
         return render_pdf(context, filename=filename, template="note.html")
     return render(request, "note_view.html", context)
 
