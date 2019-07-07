@@ -151,7 +151,10 @@
 <script src="https://cdn.tiny.cloud/1/0hiakgt5bcrg78741ummffngymeatxilifg95oc473nrtvs4/tinymce/5/tinymce.min.js"></script>
   <script>
   tinymce.init({
-    selector: '.tinymce'
+    selector: '.tinymce',
+    plugins: 'code print preview fullpage paste searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern help',
+    toolbar: 'formatselect | bold italic strikethrough forecolor backcolor permanentpen formatpainter | link image media pageembed | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent | removeformat | addcomment',
+    height: 400
   });
   </script>
 
