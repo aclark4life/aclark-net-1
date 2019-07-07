@@ -19,6 +19,8 @@
                   <h6 class="dropdown-header">Status</h6>
                   <a class="dropdown-item" href="" data-toggle="modal" data-target=".bd-invoiced-true-modal-sm"><i class="far fa-check-square"></i> Sent</a>
                   <a class="dropdown-item" href="" data-toggle="modal" data-target=".bd-invoiced-false-modal-sm"><i class="far fa-square"></i> Not sent</a>
+                  <h6 class="dropdown-header">Export</h6>
+                  <a class="dropdown-item" href="{% url 'invoice_view' item.pk %}?pdf=1"><i class="far fa-square"></i> Export</a>
                   {% endif %}
 
                   {% if model_name == 'project' %}

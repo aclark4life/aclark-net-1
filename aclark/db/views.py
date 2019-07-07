@@ -180,7 +180,7 @@ def estimate_view(request, pk=None):
         company_name = context["config"].company_name
         company_name = slugify(company_name)
         filename = "%s-%s-%s.pdf" % (company_name, "estimate", pk)
-        return render_pdf(context, filename=filename, template="invoice_export.html")
+        return render_pdf(context, filename=filename, template="invoice.html")
     else:
         return render(request, "estimate_view.html", context)
 
@@ -244,7 +244,7 @@ def invoice_view(request, pk=None):
         company_name = context["config"].company_name
         company_name = slugify(company_name)
         filename = "%s-%s-%s.pdf" % (company_name, "invoice", pk)
-        return render_pdf(context, filename=filename, template="invoice_export.html")
+        return render_pdf(context, filename=filename, template="invoice.html")
     else:
         return render(request, "invoice_view.html", context)
 
