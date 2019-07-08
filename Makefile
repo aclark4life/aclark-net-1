@@ -413,3 +413,7 @@ webpack:
 	git add $(PROJECT)/root/static/webpack_bundles
 d:
 	eb deploy
+
+t:
+	coverage run --source='aclark' manage.py test aclark
+	coverage report
