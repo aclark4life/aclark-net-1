@@ -57,7 +57,7 @@ def clients(request):
 def contact(request):
     context = {}
     now = timezone.datetime.now
-    msg = "Message sent!"
+    msg = "Message sent"
     if request.method == "POST":
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -70,7 +70,7 @@ def contact(request):
                 [first_name, last_name, company_name, message, sender]
             )
             recipients = [EMAIL_FROM]
-            subject = "Contact %s" % now().strftime("%m/%d/%Y %H:%M")
+            subject = "Contact Us"
             send_mail(subject, message, EMAIL_FROM, recipients)
             messages.add_message(request, messages.SUCCESS, msg)
             return HttpResponseRedirect(reverse("home"))

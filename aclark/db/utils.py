@@ -91,7 +91,6 @@ def get_page_items(**kwargs):
     contact_model = kwargs.get("contact_model")
     estimate_model = kwargs.get("estimate_model")
     invoice_model = kwargs.get("invoice_model")
-    note_model = kwargs.get("note_model")
     project_model = kwargs.get("project_model")
     report_model = kwargs.get("report_model")
     time_model = kwargs.get("time_model")
