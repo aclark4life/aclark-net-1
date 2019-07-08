@@ -210,6 +210,7 @@ def estimate_index(request):
     return render(request, "estimate_index.html", context)
 
 
+@login_required
 def home(request):
     if request.user.is_staff:
         filter_by = {"time": {"estimate": None, "invoiced": False}}
@@ -305,7 +306,7 @@ def logout(request):
     return HttpResponseRedirect(reverse("home"))
 
 
-@login_required
+@staff_member_required
 def note_view(request, pk=None):
     context = get_page_items(
         model=Note,
@@ -329,7 +330,7 @@ def note_view(request, pk=None):
     return render(request, "note_view.html", context)
 
 
-@login_required
+@staff_member_required
 def note_edit(request, pk=None):
     return edit(
         request,
