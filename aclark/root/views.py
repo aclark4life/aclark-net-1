@@ -98,7 +98,5 @@ def testimonials(request):
 
 def team(request):
     context = {}
-    profiles = requests.get(PROFILE_URL).json()
-    context["profiles"] = profiles
     context["about_nav"] = True
     return render(request, "team.html", context)
