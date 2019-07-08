@@ -1,6 +1,8 @@
 from .utils import gravatar_url
 from django.conf import settings
-from django.contrib.gis.db import models
+
+# from django.contrib.gis.db import models
+from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 from phonenumber_field.modelfields import PhoneNumberField

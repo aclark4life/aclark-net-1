@@ -27,5 +27,5 @@ class SiteConfigurationTestCase(TestCase):
     def test_config(self):
         """
         """
-        self.assertEqual(self.config.company_name, 'Company Name')
-        self.assertEqual(self.config.site_name, 'Site Name')
+        self.assertEqual(self.config.company_name, "Company Name")
+        self.assertEqual(self.config.site_name, "Site Name")
