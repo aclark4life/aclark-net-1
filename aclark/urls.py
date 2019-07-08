@@ -39,3 +39,5 @@ urlpatterns = [
     url(r"^about/testimonials$", views_root.testimonials, name="testimonials"),
     url(r"^services$", views_root.services, name="services"),
 ]
+
+handler500 = "aclark.root.views.my_custom_error_view"

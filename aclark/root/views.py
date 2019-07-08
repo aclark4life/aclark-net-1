@@ -83,6 +83,11 @@ def home(request):
     return render(request, "base.html", context)
 
 
+def my_custom_error_view(request):
+    context = {}
+    return render(request, "error.html", context)
+
+
 def services(request):
     context = {}
     context["services_nav"] = True
