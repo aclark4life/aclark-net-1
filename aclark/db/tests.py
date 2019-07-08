@@ -65,9 +65,13 @@ class ContactTestCase(TestCase):
 
 class EstimateTestCase(TestCase):
     def setUp(self):
-        self.estimate = Estimate(subject="Enthusiastically reinvent plug-and-play platforms")
+        self.estimate = Estimate(
+            subject="Enthusiastically reinvent plug-and-play platforms"
+        )
 
     def test_contact(self):
         """
         """
-        self.assertEqual(self.estimate.subject, "Enthusiastically reinvent plug-and-play platforms")
+        self.assertEqual(
+            self.estimate.subject, "Enthusiastically reinvent plug-and-play platforms"
+        )
