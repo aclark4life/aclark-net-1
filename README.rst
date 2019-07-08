@@ -32,6 +32,13 @@ Issues
 
 - https://github.com/pygraphviz/pygraphviz/issues/100#issuecomment-237560404
 
+
+Custom Error Template
+~~~~~~~~~~~~~~~~~~~~~
+
+For when the unthinkable happens, 
+
+.. image:: Screenshot-2019-07-08-16.50.39.png
 ::
 
     pip install --install-option="--include-path=/usr/local/include/" \
