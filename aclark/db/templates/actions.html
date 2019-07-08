@@ -34,6 +34,10 @@
                   <h6 class="dropdown-header">Add</h6>
                   <a class="dropdown-item" href="{% url 'invoice_edit' %}?client={{ item.client.pk }}&project={{ item.pk }}"><i class="fa fa-plus"></i>Invoice</a>
 {% endif %}
+{% if model_name == 'report' %} 
+                  <h6 class="dropdown-header">Export</h6>
+                  <a target="_blank" class="dropdown-item" href="{% url 'report_view' item.pk %}?mail=1"><i class="fab fa-mailchimp mr-1"></i>Export</a>
+{% endif %}
                   <h6 class="dropdown-header">Actions</h6>
                   <a class="dropdown-item" href="" data-toggle="modal" data-target=".bd-copy-modal-sm"><i class="far fa-copy mr-1"></i>Copy</a>
                   <a class="dropdown-item" href="" data-toggle="modal" data-target=".bd-delete-modal-sm"><i class="fas fa-trash mr-1"></i>Delete</a>
