@@ -71,7 +71,6 @@ class Contact(BaseModel):
     Fax
     """
 
-    active = models.BooleanField(default=True)
     subscribed = models.BooleanField(default=True)
     client = models.ForeignKey(
         Client,
@@ -249,7 +248,6 @@ class Profile(BaseModel):
     """
     """
 
-    active = models.BooleanField(default=True)
     published = models.BooleanField(default=False)
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True
@@ -361,7 +359,6 @@ class Report(BaseModel):
     """
     """
 
-    active = models.BooleanField(default=True)
     name = models.CharField(max_length=300, blank=True, null=True)
     date = models.DateField(default=timezone.now)
     cost = models.DecimalField(blank=True, null=True, max_digits=12, decimal_places=2)
@@ -377,7 +374,6 @@ class Testimonial(BaseModel):
     """
     """
 
-    active = models.BooleanField(default=True)
     name = models.CharField(max_length=300, blank=True, null=True)
     slug = models.SlugField(blank=True, null=True)
     title = models.CharField(max_length=300, blank=True, null=True)
@@ -397,7 +393,6 @@ class Task(BaseModel):
     """
     """
 
-    active = models.BooleanField(default=True)
     billable = models.BooleanField(default=True)
     name = models.CharField(max_length=300, blank=True, null=True)
     rate = models.DecimalField(blank=True, null=True, max_digits=12, decimal_places=2)
