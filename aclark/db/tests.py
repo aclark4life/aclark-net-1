@@ -3,12 +3,12 @@ from aclark.db.models import SiteConfiguration
 from aclark.db.models import BaseModel
 from aclark.db.models import Client
 from aclark.db.models import Contact
+from aclark.db.models import Estimate
 
 # Create your tests here.
 
 from django.test import TestCase
 
-# class Contact(BaseModel):
 # class Estimate(BaseModel):
 # class Invoice(BaseModel):
 # class Note(BaseModel):
@@ -61,3 +61,13 @@ class ContactTestCase(TestCase):
         """
         self.assertEqual(self.contact.first_name, "Alex")
         self.assertEqual(self.contact.last_name, "Clark")
+
+
+class EstimateTestCase(TestCase):
+    def setUp(self):
+        self.estimate = Estimate(subject="Enthusiastically reinvent plug-and-play platforms")
+
+    def test_contact(self):
+        """
+        """
+        self.assertEqual(self.estimate.subject, "Enthusiastically reinvent plug-and-play platforms")
