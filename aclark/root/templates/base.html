@@ -163,11 +163,22 @@
         <a target="_blank" class="text-white btn btn-lg border border-mute mt-5" href="https://www.packtpub.com/web-development/plone-33-site-administration">Buy Book</a>
       </div>
       <div class="col-sm-5 my-5 text-center">
-        <img class="border app-code p-4" src="{% static '7047_plone20site20admincov.jpg' %}" style="width: 75%">
+        <img class="border app-code p-4" data-toggle="modal" data-target="#book-modal" src="{% static '7047_plone20site20admincov.jpg' %}" style="width: 75%">
       </div>
     </div>
   </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="book-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-body">
+        <img class="border app-code p-4" src="{% static '7047_plone20site20admincov.jpg' %}"> 
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <div class="block block-inverse app-high-praise" id="testimonials"
      style="background-image: url({% static 'iStock-951514270.jpg' %});">
@@ -262,11 +273,30 @@
       </div>
       <div class="col-sm-5 my-5 text-center">
         <p class="mb-5">
-          <img class="border app-code p-3" src="{% static 'ploneconf.png' %}" style="width: 75%">
+          <img class="border app-code p-3" data-toggle="modal" data-target="#conflogo-modal" src="{% static 'ploneconf.png' %}" style="width: 75%">
         </p>
         <p> 
-          <img class="border app-code p-3" src="{% static 'ploneconf-group.jpg' %}" style="width: 75%">
+          <img class="border app-code p-3" data-toggle="modal" data-target="#confgroup-modal" src="{% static 'ploneconf-group.jpg' %}" style="width: 75%">
         </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="conflogo-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-body">
+        <img class="border p-3 app-code" src="{% static 'ploneconf.png' %}"> 
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="confgroup-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-body">
+        <img class="border p-3 app-code" src="{% static 'ploneconf-group.jpg' %}"> 
       </div>
     </div>
   </div>
