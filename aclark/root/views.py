@@ -61,9 +61,14 @@ def contact(request):
     if request.method == "POST":
         form = ContactForm(request.POST)
         if form.is_valid():
+            first_name = form.cleaned_data["first_name"]
+            last_name = form.cleaned_data["last_name"]
+            company_name = form.cleaned_data["company_name"]
             message = form.cleaned_data["message"]
             sender = form.cleaned_data["email"]
-            message = "\n\n".join([message, sender])
+            message = "\n\n".join(
+                [first_name, last_name, company_name, message, sender]
+            )
             recipients = [EMAIL_FROM]
             subject = "Contact %s" % now().strftime("%m/%d/%Y %H:%M")
             send_mail(subject, message, EMAIL_FROM, recipients)
