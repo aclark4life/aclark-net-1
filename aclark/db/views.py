@@ -41,7 +41,6 @@ from .mail import mail_send
 from .misc import has_profile
 from .plot import get_plot
 from .serializers import ClientSerializer
-from .serializers import ProfileSerializer
 from .serializers import TestimonialSerializer
 from .edit import edit
 from .utils import get_index_items
@@ -66,14 +65,6 @@ class TestimonialViewSet(viewsets.ModelViewSet):
 
     queryset = Testimonial.objects.filter(active=True).order_by("-issue_date")
     serializer_class = TestimonialSerializer
-
-
-class ProfileViewSet(viewsets.ModelViewSet):
-    """
-    """
-
-    queryset = Profile.objects.filter(published=True).order_by("user__first_name")
-    serializer_class = ProfileSerializer
 
 
 @staff_member_required

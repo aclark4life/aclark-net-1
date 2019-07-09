@@ -24,7 +24,6 @@ from aclark.db import views as views_db
 router = routers.DefaultRouter()
 router.register(r"clients", views_db.ClientViewSet)
 router.register(r"testimonials", views_db.TestimonialViewSet)
-router.register(r"profiles", views_db.ProfileViewSet)
 
 urlpatterns = [
     url(r"^$", views_root.home, name="home"),
