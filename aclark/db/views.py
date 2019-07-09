@@ -111,7 +111,7 @@ def client_index(request):
 
 @staff_member_required
 def competency(request):
-    context = get_page_items(request=request)
+    context = get_page_items(request=request, client_model=Client)
     if context["pdf"]:
         company_name = context["config"].company_name
         company_name = slugify(company_name)

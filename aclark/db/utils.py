@@ -89,6 +89,7 @@ def get_index_items(**kwargs):
 def get_page_items(**kwargs):
 
     contact_model = kwargs.get("contact_model")
+    client_model = kwargs.get("client_model")
     estimate_model = kwargs.get("estimate_model")
     invoice_model = kwargs.get("invoice_model")
     project_model = kwargs.get("project_model")
@@ -226,6 +227,24 @@ def get_page_items(**kwargs):
     else:  # no model
         model_name = "home"
         # Items
+        if client_model:
+            # Via aclark/root/views.py
+            clients_government = client_model.objects.filter(
+                tags__name__in=["government"], published=True
+            )
+            clients_non_profit = client_model.objects.filter(
+                tags__name__in=["non-profit"], published=True
+            )
+            clients_private_sector = client_model.objects.filter(
+                tags__name__in=["private-sector"], published=True
+            )
+            clients_colleges_universities = client_model.objects.filter(
+                tags__name__in=["colleges-universities"], published=True
+            )
+            context["clients_government"] = clients_government
+            context["clients_non_profit"] = clients_non_profit
+            context["clients_private_sector"] = clients_private_sector
+            context["clients_colleges_universities"] = clients_colleges_universities
         if invoice_model:
             invoices = invoice_model.objects.filter(last_payment_date=None)
             invoices = invoices.order_by(*order_by["invoice"])
