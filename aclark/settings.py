@@ -167,3 +167,5 @@ LOGIN_URL = "/db"
 # DATABASES["default"]["ENGINE"] = "django.contrib.gis.db.backends.postgis"
 
 EMAIL_BACKEND = "django_amazon_ses.EmailBackend"
+
+ADMINS = [("Alex Clark", "aclark@aclark.net")]
