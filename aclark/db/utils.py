@@ -127,6 +127,9 @@ def get_page_items(**kwargs):
 
     last_payment_date = None
 
+    invoices = None
+    projects = None
+
     if model:
         model_name = model._meta.verbose_name
         if model_name == "client":
@@ -223,32 +226,39 @@ def get_page_items(**kwargs):
     else:  # no model
         model_name = "home"
         # Items
-        invoices = invoice_model.objects.filter(last_payment_date=None)
-        invoices = invoices.order_by(*order_by["invoice"])
-        projects = project_model.objects.filter(active=True, hidden=False)
-        projects = projects.order_by(*order_by["project"])
+        if invoice_model:
+            invoices = invoice_model.objects.filter(last_payment_date=None)
+            invoices = invoices.order_by(*order_by["invoice"])
+        if project_model:
+            projects = project_model.objects.filter(active=True, hidden=False)
+            projects = projects.order_by(*order_by["project"])
         if filter_by:
             times = time_model.objects.filter(**filter_by["time"])
         else:
-            times = time_model.objects.all()
-        times = times.order_by(*order_by["time"])
-        times = set_total(times)
-        items = set_items("invoice", items=invoices)
-        items = set_items("project", items=projects, _items=items)
-        items = set_items("time", items=times, _items=items)
+            if time_model:
+                times = time_model.objects.all()
+            else:
+                times = None
+        if times:
+            times = times.order_by(*order_by["time"])
+            times = set_total(times)
+            items = set_items("invoice", items=invoices)
+            items = set_items("project", items=projects, _items=items)
+            items = set_items("time", items=times, _items=items)
         # Paginate items
         page_num = get_query_string(request, "page")
         paginated = get_query_string(request, "paginated")
         if paginated:  # Paginate if paginated
             page_size = get_setting(request, "page_size")
-            if "times" in items:
-                items["times"] = paginate(
-                    items["times"], page_num=page_num, page_size=page_size
-                )
+            if items:
+                if "times" in items:
+                    items["times"] = paginate(
+                        items["times"], page_num=page_num, page_size=page_size
+                    )
         # Totals
 
-        gross = get_total("gross", invoices=invoices)
         hours = get_total("hours", times=times)
+        gross = get_total("gross", invoices=invoices)
         cost = get_total("cost", projects=projects)
         if gross and cost:
             net = gross - cost

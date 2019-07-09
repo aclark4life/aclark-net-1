@@ -2,6 +2,8 @@ def get_query_string(request, key):
     """
     Return calculated values for some query string keys, else return value.
     """
+    if not request:
+        return
     if key == "paginated":
         paginated = request.GET.get("paginated")
         if paginated == u"false":

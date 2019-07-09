@@ -110,6 +110,17 @@ def client_index(request):
 
 
 @staff_member_required
+def competency(request):
+    context = get_page_items(request=request)
+    if context["pdf"]:
+        company_name = context["config"].company_name
+        company_name = slugify(company_name)
+        filename = "%s-%s.pdf" % (company_name, "competency", pk)
+        return render_pdf(context, filename=filename, template="competency.html")
+    return render(request, "competency.html", context)
+
+
+@staff_member_required
 def contact_view(request, pk=None):
 
     context = get_page_items(
