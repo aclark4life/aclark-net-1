@@ -115,7 +115,7 @@ def competency(request):
     if context["pdf"]:
         company_name = context["config"].company_name
         company_name = slugify(company_name)
-        filename = "%s-%s.pdf" % (company_name, "competency", pk)
+        filename = "%s-%s.pdf" % (company_name, "competency")
         return render_pdf(context, filename=filename, template="competency.html")
     return render(request, "competency.html", context)
 
