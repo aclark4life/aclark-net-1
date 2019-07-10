@@ -1,6 +1,8 @@
 ACLARK.NET, LLC Website
 ================================================================================
 
+.. image:: https://travis-ci.org/aclark4life/aclarknet.svg?branch=master
+
 .. image:: Screenshot-2019-06-26-18.19.19.png
 
 | 
