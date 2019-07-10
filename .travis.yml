@@ -14,3 +14,4 @@ deploy:
   region: "us-east-1"  
   app: "aclark-net-2"
   env: "aclark-net-2"
+  bucket_name: "elasticbeanstalk-us-east-1-014889281015"
