@@ -232,6 +232,7 @@ def home(request):
         filter_by=filter_by,
         order_by=("-date",),
         request=request,
+        home_nav=True,
     )
     return render(request, "dashboard.html", context)
 

@@ -23,6 +23,7 @@ def get_index_items(**kwargs):
     order_by = kwargs.get("order_by")
     search_fields = kwargs.get("search_fields")
     page_size = kwargs.get("page_size")
+    home_nav = kwargs.get("home_nav")
 
     model_name = model._meta.verbose_name
     edit_url = "%s_edit" % model_name
@@ -62,6 +63,7 @@ def get_index_items(**kwargs):
 
     context["page"] = page_num
     context["paginated"] = paginated
+    context["home_nav"] = home_nav
 
     context["%s_nav" % model_name] = True
 
