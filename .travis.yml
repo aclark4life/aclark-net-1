@@ -1,5 +1,8 @@
 language: python
 script:
+  - make migrate
   - make t
 services:
   - postgresql
+before_install:
+  - createdb project_app
