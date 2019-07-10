@@ -1,3 +1,5 @@
 language: python
 script:
   - make t
+services:
+  - postgresql
