@@ -1,7 +1,15 @@
 ACLARK.NET, LLC Website
 ================================================================================
 
+Badges
+------
+
 .. image:: https://travis-ci.org/aclark4life/aclarknet.svg?branch=master
+
+- https://travis-ci.org/aclark4life/aclarknet
+
+Screenshots
+-----------
 
 .. image:: Screenshot-2019-06-26-18.19.19.png
 

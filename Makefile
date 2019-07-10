@@ -417,3 +417,6 @@ d:
 t:
 	coverage run --source='aclark' manage.py test aclark
 	coverage report
+
+skip:
+	git commit -a -m "Update [ci skip]"
