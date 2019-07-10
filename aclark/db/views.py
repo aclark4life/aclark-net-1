@@ -226,8 +226,8 @@ def home(request):
         filter_by = {
             "time": {"estimate": None, "user": request.user, "invoiced": False}
         }
-    context = get_index_items(
-        model=Time,
+    context = get_page_items(
+        time_model=Time,
         report_model=Report,
         filter_by=filter_by,
         order_by=("-date",),

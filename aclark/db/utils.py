@@ -263,6 +263,9 @@ def get_page_items(**kwargs):
         if service_model:
             services = service_model.objects.filter(active=True, hidden=False)
             context["services"] = services
+        if time_model:
+            times = time_model.objects.filter(**filter_by["time"])
+            items = set_items("time", items=times)
         # Paginate items
         page_num = get_query_string(request, "page")
         paginated = get_query_string(request, "paginated")
