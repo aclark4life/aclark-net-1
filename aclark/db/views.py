@@ -226,18 +226,11 @@ def home(request):
         filter_by = {
             "time": {"estimate": None, "user": request.user, "invoiced": False}
         }
-    context = get_page_items(
-        filter_by=filter_by,
-        invoice_model=Invoice,
-        order_by={
-            "invoice": ("-issue_date",),
-            "project": ("-updated",),
-            "time": ("-date",),
-        },
-        project_model=Project,
-        time_model=Time,
+    context = get_index_items(
+        model=Time,
         report_model=Report,
-        user_model=User,
+        filter_by=filter_by,
+        order_by=("-date",),
         request=request,
     )
     return render(request, "dashboard.html", context)
