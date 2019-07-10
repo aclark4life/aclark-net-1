@@ -47,6 +47,11 @@ urlpatterns = [
     url(r"^report$", views.report_index, name="report_index"),
     url(r"^report/add$", views.report_edit, name="report_edit"),
     url(r"^report/(?P<pk>\d+)/edit$", views.report_edit, name="report_edit"),
+    # Service
+    url(r"^service/(?P<pk>\d+)$", views.service_view, name="service_view"),
+    url(r"^service$", views.service_index, name="service_index"),
+    url(r"^service/add$", views.service_edit, name="service_edit"),
+    url(r"^service/(?P<pk>\d+)/edit$", views.service_edit, name="service_edit"),
     # Social
     url("", include("social_django.urls", namespace="social")),
     # Task

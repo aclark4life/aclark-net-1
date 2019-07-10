@@ -10,6 +10,7 @@ import os
 import random
 import requests
 from aclark.db.models import Client
+from aclark.db.models import Service
 
 # Create your views here.
 
@@ -29,7 +30,7 @@ def about(request):
 
 
 def blog(request):
-    return HttpResponseRedirect("http://blog.aclark.net")
+    return HttpResponseRedirect("https://blog.aclark.net")
 
 
 def clients(request):
@@ -95,6 +96,8 @@ def my_custom_error_view(request):
 
 def services(request):
     context = {}
+    services = Service.objects.filter(active=True, hidden=False)
+    context["services"] = services
     context["services_nav"] = True
     return render(request, "services.html", context)
 

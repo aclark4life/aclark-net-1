@@ -38,6 +38,7 @@ class BaseModel(models.Model):
     updated = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True)
     hidden = models.BooleanField(default=False)
+    tags = TaggableManager(blank=True, help_text="")
 
     class Meta:
         abstract = True
@@ -52,7 +53,6 @@ class Client(BaseModel):
     address = models.TextField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     url = models.URLField("Website", blank=True, null=True)
-    tags = TaggableManager(blank=True, help_text="")
 
     def __str__(self):
         if self.name:
@@ -368,6 +368,25 @@ class Report(BaseModel):
 
     def __str__(self):
         return "report-%s" % self.date
+
+
+class Service(BaseModel):
+    """
+    """
+
+    published = models.BooleanField(default=False)
+    name = models.CharField(max_length=300, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        if self.name:
+            return self.name
+        else:
+            return "-".join([self._meta.verbose_name, str(self.pk)])
+
+    # https://stackoverflow.com/a/6062320/185820
+    class Meta:
+        ordering = ["name"]
 
 
 class Testimonial(BaseModel):

@@ -6,10 +6,10 @@ from .models import Note
 from .models import Profile
 from .models import Project
 from .models import Report
+from .models import Service
 from .models import Task
 from .models import Time
 from django import forms
-from taggit.models import Tag
 from django.utils import timezone
 
 
@@ -225,6 +225,13 @@ class ReportForm(forms.ModelForm):
         required=False,
         initial=timezone.now(),
     )
+
+
+class ServiceForm(forms.ModelForm):
+    class Meta:
+        model = Service
+        fields = "__all__"
+        widgets = {"description": forms.widgets.TextInput(attrs={"class": "tinymce"})}
 
 
 class TaskForm(forms.ModelForm):

@@ -10,7 +10,6 @@ from django.utils.text import slugify
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
-from django.template.loader import render_to_string
 from rest_framework import viewsets
 from .forms import AdminProfileForm
 from .forms import AdminTimeForm
@@ -22,6 +21,7 @@ from .forms import NoteForm
 from .forms import ProfileForm
 from .forms import ProjectForm
 from .forms import ReportForm
+from .forms import ServiceForm
 from .forms import TaskForm
 from .forms import TimeForm
 from .models import Client
@@ -32,6 +32,7 @@ from .models import Note
 from .models import Profile
 from .models import Project
 from .models import Report
+from .models import Service
 from .models import SiteConfiguration
 from .models import Testimonial
 from .models import Task
@@ -111,13 +112,18 @@ def client_index(request):
 
 @staff_member_required
 def competency(request):
-    context = get_page_items(request=request, client_model=Client)
+    context = get_page_items(
+        site_config_model=SiteConfiguration,
+        request=request,
+        client_model=Client,
+        service_model=Service,
+    )
     if context["pdf"]:
         company_name = context["config"].company_name
         company_name = slugify(company_name)
         filename = "%s-%s.pdf" % (company_name, "competency")
         return render_pdf(context, filename=filename, template="competency.html")
-    return render(request, "competency.html", context)
+    return render(request, "competency_view.html", context)
 
 
 @staff_member_required
@@ -442,6 +448,29 @@ def report_index(request):
         search_fields=("id", "name", "gross", "net"),
     )
     return render(request, "report_index.html", context)
+
+
+@staff_member_required
+def service_edit(request, pk=None):
+    return edit(request, form_model=ServiceForm, model=Service, pk=pk)
+
+
+@staff_member_required
+def service_index(request):
+    context = get_index_items(
+        model=Service,
+        report_model=Report,
+        order_by=("-active", "name"),
+        request=request,
+        search_fields=("name",),
+    )
+    return render(request, "service_index.html", context)
+
+
+@staff_member_required
+def service_view(request, pk=None):
+    context = get_page_items(model=Service, pk=pk, request=request, report_model=Report)
+    return render(request, "service_view.html", context)
 
 
 @staff_member_required

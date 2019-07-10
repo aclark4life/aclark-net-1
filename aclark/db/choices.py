@@ -9,6 +9,7 @@ URL_NAMES = {
     "profile": ("user_view", "user_edit", "user_index"),
     "project": ("project_view", "project_edit", "project_index"),
     "report": ("report_view", "report_edit", "report_index"),
+    "service": ("service_view", "service_edit", "service_index"),
     "task": ("task_view", "task_edit", "task_index"),
     "time": ("time_view", "time_edit", "time_index"),
     "user": ("user_view", "user_edit", "user_index"),

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="block block-secondary">
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <h1>Core Competency</h1>
+      </div>
+      <div class="col-6">
+        <div class="text-right my-3">
+          <a target="_blank" class="btn btn-lg btn-outline-dark" href="{% url 'competency' %}?pdf=1">Export</a>
+        </div>
+      </div>
+    </div>
+{% include 'competency.html' %}
+
+  </div>
+</div>
+
+
+{% endblock %}

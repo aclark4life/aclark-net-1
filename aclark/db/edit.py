@@ -23,6 +23,7 @@ def edit(request, **kwargs):
     pk = kwargs.get("pk")
     project_model = kwargs.get("project_model")
     report_model = kwargs.get("report_model")
+    service_model = kwargs.get("service_model")
     user_model = kwargs.get("user_model")
     model_name = None
     new_time = False

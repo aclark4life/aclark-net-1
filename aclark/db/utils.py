@@ -88,6 +88,10 @@ def get_index_items(**kwargs):
 
 def get_page_items(**kwargs):
 
+    # Page items
+    model = kwargs.get("model")
+
+    # Extra models for page
     contact_model = kwargs.get("contact_model")
     client_model = kwargs.get("client_model")
     estimate_model = kwargs.get("estimate_model")
@@ -95,8 +99,8 @@ def get_page_items(**kwargs):
     project_model = kwargs.get("project_model")
     report_model = kwargs.get("report_model")
     time_model = kwargs.get("time_model")
+    service_model = kwargs.get("service_model")
 
-    model = kwargs.get("model")
     pk = kwargs.get("pk")
 
     filter_by = kwargs.get("filter_by")
@@ -130,6 +134,7 @@ def get_page_items(**kwargs):
 
     invoices = None
     projects = None
+    times = None
 
     if model:
         model_name = model._meta.verbose_name
@@ -198,6 +203,8 @@ def get_page_items(**kwargs):
                 item.net,
             )
             context["subject"] = item.name
+        elif model_name == "service":
+            item = get_object_or_404(model, pk=pk)
         elif model_name == "task":
             item = get_object_or_404(model, pk=pk)
         elif model_name == "time":
@@ -253,6 +260,9 @@ def get_page_items(**kwargs):
             projects = projects.order_by(*order_by["project"])
         if filter_by:
             times = time_model.objects.filter(**filter_by["time"])
+        if service_model:
+            services = service_model.objects.filter(active=True, hidden=False)
+            context["services"] = services
         else:
             if time_model:
                 times = time_model.objects.all()

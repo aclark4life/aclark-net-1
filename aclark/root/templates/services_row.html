@@ -1,0 +1,4 @@
+{% for service in services %}
+    <h2 id="{{ service.name|lower }}">{{ service.name }}</h2>
+    {{ service.description|safe }}
+{% endfor %}

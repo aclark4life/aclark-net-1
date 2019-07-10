@@ -68,6 +68,12 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link {% if service_nav %}active{% endif %}" href="{% url 'service_index' %}">
+              <span data-feather="activity"></span>
+              Services
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link {% if task_nav %}active{% endif %}" href="{% url 'task_index' %}">
               <span data-feather="activity"></span>
               Tasks

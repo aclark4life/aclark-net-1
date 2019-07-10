@@ -5,20 +5,6 @@ from aclark.db.models import Client
 from aclark.db.models import Contact
 from aclark.db.models import Estimate
 
-# Create your tests here.
-
-from django.test import TestCase
-
-# class Estimate(BaseModel):
-# class Invoice(BaseModel):
-# class Note(BaseModel):
-# class Profile(BaseModel):
-# class Project(BaseModel):
-# class Report(BaseModel):
-# class Testimonial(BaseModel):
-# class Task(BaseModel):
-# class Time(BaseModel):
-
 
 class SiteConfigurationTestCase(TestCase):
     def setUp(self):
