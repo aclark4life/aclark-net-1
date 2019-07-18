@@ -2,7 +2,7 @@
 {% block dashboard %}
     <div class="row my-3">
       <div class="col-6">
-        <h2>{{ item.name }}</h2>
+        <h2>{{ item.name|default:'Unnamed Client' }}</h2>
       </div>
       <div class="col-6">
         <div class="text-right">
