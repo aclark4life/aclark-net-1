@@ -185,10 +185,12 @@ def get_page_items(**kwargs):
             if order_by:
                 times = times.order_by(*order_by["time"])
                 invoices = invoices.order_by(*order_by["invoice"])
+            users = item.team.all()
             items = set_items("contact", items=contacts)
             items = set_items("estimate", items=estimates, _items=items)
             items = set_items("invoice", items=invoices, _items=items)
             items = set_items("time", items=times, _items=items)
+            items = set_items("user", items=users, _items=items)
         elif model_name == "report":
             item = get_object_or_404(model, pk=pk)
             reports = model.objects.filter(active=True).order_by("-date")
