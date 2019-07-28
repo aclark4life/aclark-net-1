@@ -228,9 +228,11 @@ def home(request):
         }
     context = get_page_items(
         time_model=Time,
+        invoice_model=Invoice,
+        project_model=Project,
         report_model=Report,
         filter_by=filter_by,
-        order_by=("-date",),
+        # order_by=("-date",),
         request=request,
         home_nav=True,
     )

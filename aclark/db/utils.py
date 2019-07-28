@@ -258,10 +258,12 @@ def get_page_items(**kwargs):
             context["clients_colleges_universities"] = clients_colleges_universities
         if invoice_model:
             invoices = invoice_model.objects.filter(last_payment_date=None)
-            invoices = invoices.order_by(*order_by["invoice"])
+            if order_by:
+                invoices = invoices.order_by(*order_by["invoice"])
         if project_model:
             projects = project_model.objects.filter(active=True, hidden=False)
-            projects = projects.order_by(*order_by["project"])
+            if order_by:
+                projects = projects.order_by(*order_by["project"])
         if service_model:
             services = service_model.objects.filter(active=True, hidden=False)
             context["services"] = services
@@ -282,8 +284,7 @@ def get_page_items(**kwargs):
         hours = get_total("hours", times=times)
         gross = get_total("gross", invoices=invoices)
         cost = get_total("cost", projects=projects)
-        if gross and cost:
-            net = gross - cost
+        net = gross - cost
     if report_model:
         reports = report_model.objects.filter(active=True).order_by("-date")
         if items:
