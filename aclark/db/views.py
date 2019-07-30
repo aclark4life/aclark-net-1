@@ -119,7 +119,7 @@ def competency(request):
         service_model=Service,
     )
     if context["pdf"]:
-        company_name = context["config"].company_name
+        company_name = context["config"].company.name
         company_name = slugify(company_name)
         filename = "%s-%s.pdf" % (company_name, "competency")
         return render_pdf(context, filename=filename, template="competency.html")
@@ -184,7 +184,7 @@ def estimate_view(request, pk=None):
         request=request,
     )
     if context["pdf"]:
-        company_name = context["config"].company_name
+        company_name = context["config"].company.name
         company_name = slugify(company_name)
         filename = "%s-%s-%s.pdf" % (company_name, "estimate", pk)
         return render_pdf(context, filename=filename, template="invoice.html")
@@ -251,7 +251,7 @@ def invoice_view(request, pk=None):
         report_model=Report,
     )
     if context["pdf"]:
-        # company_name = context["config"].company_name
+        # company_name = context["config"].company.name
         company_name = context["config"].company.name
         company_name = slugify(company_name)
         filename = "%s-%s-%s.pdf" % (company_name, "invoice", pk)
@@ -322,7 +322,7 @@ def note_view(request, pk=None):
         include_fields=("text", "title", "active", "hidden", "due"),
     )
     if context["pdf"]:
-        company_name = context["config"].company_name
+        company_name = context["config"].company.name
         company_name = slugify(company_name)
         item = context["item"]
         if item.title:
