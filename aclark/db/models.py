@@ -20,6 +20,14 @@ class SiteConfiguration(SingletonModel):
     site_name = models.CharField(max_length=255, default="Site Name")
     maintenance_mode = models.BooleanField(default=False)
 
+    company = models.ForeignKey(
+        "Company",
+        blank=True,
+        null=True,
+        limit_choices_to={"active": True},
+        on_delete=models.CASCADE,
+    )
+
     company_name = models.CharField(max_length=255, default="Company Name")
     company_address = models.TextField(blank=True, null=True)
 
@@ -98,6 +106,28 @@ class Contact(BaseModel):
             return " ".join([self.first_name])
         else:
             return "-".join([self._meta.verbose_name, str(self.pk)])
+
+
+class Company(BaseModel):
+    """
+    """
+
+    published = models.BooleanField(default=False)
+    name = models.CharField(max_length=300, blank=True, null=True)
+    address = models.TextField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    url = models.URLField("Website", blank=True, null=True)
+
+    def __str__(self):
+        if self.name:
+            return self.name
+        else:
+            return "-".join([self._meta.verbose_name, str(self.pk)])
+
+    # https://stackoverflow.com/a/6062320/185820
+    class Meta:
+        ordering = ["name"]
+        verbose_name_plural = "companies"
 
 
 class Estimate(BaseModel):

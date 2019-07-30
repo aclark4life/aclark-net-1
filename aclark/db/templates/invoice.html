@@ -26,9 +26,9 @@
                 <!-- Right column -->
                 <td valign="top" class="field-name border-right" align="right">From</td>
                 <td valign="top" class="field-value"> 
-                  <strong>{% if not pdf %}{{ config.company_name|default:'' }}{% else %}{{ config.company_name|default:''|linebreaksbr }}{% endif %}</strong>
+                  <strong>{% if not pdf %}{{ config.company.name|default:'' }}{% else %}{{ config.company.name|default:''|linebreaksbr }}{% endif %}</strong>
                   <br>
-                  {{ config.company_address|default:''|linebreaksbr }}
+                  {{ config.company.address|default:''|linebreaksbr }}
                 </td>
               </tr>
               <tr><!-- After "From" and before "Invoice For" --></tr>

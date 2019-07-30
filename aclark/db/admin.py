@@ -5,6 +5,7 @@ from import_export import widgets
 from import_export.admin import ImportExportModelAdmin
 from import_export.resources import ModelResource as ImportExportModelResource
 from .models import Client
+from .models import Company
 from .models import Contact
 from .models import Estimate
 from .models import Invoice
@@ -87,6 +88,12 @@ class ClientAdmin(ImportExportModelAdmin):
     """
 
     resource_class = ClientResource
+
+
+@admin.register(Company)
+class CompanyAdmin(ImportExportModelAdmin):
+    """
+    """
 
 
 class ContactResource(ImportExportModelResource):
