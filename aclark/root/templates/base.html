@@ -1,4 +1,5 @@
 {% load static %}
+{% load render_bundle from webpack_loader %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -22,6 +23,7 @@
 
     <link href="{% static 'assets/css/toolkit-startup.css' %}" rel="stylesheet">
     <link href="{% static 'assets/css/application-startup.css' %}" rel="stylesheet">
+    {% render_bundle 'main' 'css' %}
 
     <style>
       /* note: this is a hack for ios iframe for bootstrap themes shopify page */
@@ -46,6 +48,8 @@
     <!-- https://paulferrett.com/fontawesome-favicon/ -->
     <link rel="icon" href="{% static 'favicon.ico' %}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
+
+
   </head>
 <body>
 {% include 'stage.html' %}
@@ -329,6 +333,7 @@
 <script src="{% static 'assets/js/popper.min.js' %}"></script>
 <script src="{% static 'assets/js/toolkit.js' %}"></script>
 <script src="{% static 'assets/js/application.js' %}"></script>
+{% render_bundle 'main' 'js' %}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
