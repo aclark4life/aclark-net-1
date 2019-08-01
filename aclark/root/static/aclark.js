@@ -6,3 +6,13 @@ window.setTimeout(function() {
     });
 }, 1000);
 });
+
+
+/* globals Chart:false, feather:false */
+
+(function () {
+  'use strict'
+
+  feather.replace()
+
+}())
