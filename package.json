@@ -7,6 +7,7 @@
     "lib": "lib"
   },
   "dependencies": {
+    "@feathersjs/feathers": "^3.3.1",
     "bootstrap": "^4.3.1",
     "bootstrap-table": "^1.15.2",
     "css-loader": "^3.0.0",
@@ -21,9 +22,9 @@
     "popper.js": "^1.15.0",
     "style-loader": "^0.23.1",
     "url-loader": "^2.0.1",
+    "webpack": "^4.35.0",
     "webpack-bundle-tracker": "^0.4.2-beta",
-    "webpack-cli": "^3.3.5",
-    "webpack": "^4.35.0"
+    "webpack-cli": "^3.3.5"
   },
   "devDependencies": {},
   "scripts": {
