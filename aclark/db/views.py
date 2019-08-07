@@ -226,13 +226,18 @@ def home(request):
         filter_by = {
             "time": {"estimate": None, "user": request.user, "invoiced": False}
         }
+    order_by = {
+        "invoice": ("-issue_date",),
+        "project": ("-updated",),
+        "time": ("date", "updated")
+    }
     context = get_page_items(
         time_model=Time,
         invoice_model=Invoice,
         project_model=Project,
         report_model=Report,
         filter_by=filter_by,
-        # order_by=("-date",),
+        order_by=order_by,
         request=request,
         home_nav=True,
     )
