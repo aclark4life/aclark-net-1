@@ -21,9 +21,10 @@
     </title>
     <link href='https://fonts.googleapis.com/css?family=Lora:400,400italic|Work+Sans:300,400,500,600' rel='stylesheet' type='text/css'>
 
+    {% render_bundle 'main' 'css' %}
+
     <link href="{% static 'assets/css/toolkit-startup.css' %}" rel="stylesheet">
     <link href="{% static 'assets/css/application-startup.css' %}" rel="stylesheet">
-    {% render_bundle 'main' 'css' %}
 
     <style>
       /* note: this is a hack for ios iframe for bootstrap themes shopify page */
@@ -333,6 +334,7 @@
 <script src="{% static 'assets/js/popper.min.js' %}"></script>
 <script src="{% static 'assets/js/toolkit.js' %}"></script>
 <script src="{% static 'assets/js/application.js' %}"></script>
+
 {% render_bundle 'main' 'js' %}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
