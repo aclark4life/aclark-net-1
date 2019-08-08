@@ -229,7 +229,7 @@ def home(request):
     order_by = {
         "invoice": ("-issue_date",),
         "project": ("-updated",),
-        "time": ("date", "updated")
+        "time": ("date", "updated"),
     }
     context = get_page_items(
         time_model=Time,
