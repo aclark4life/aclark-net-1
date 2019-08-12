@@ -14,10 +14,16 @@ def get_total(field, **kwargs):
 
     if field == "gross" and invoices:
         gross = invoices.aggregate(amount=Sum(F("amount")))["amount"]
-        return gross
+        if gross is None:
+            return 0
+        else:
+            return gross
     elif field == "cost" and projects:
         cost = projects.aggregate(cost=Sum(F("cost")))["cost"]
-        return cost
+        if gross is None:
+            return 0
+        else:
+            return cost
     elif field == "hours" and times:
         hours = times.aggregate(hours=Sum(F("hours")))["hours"]
         return hours
