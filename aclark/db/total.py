@@ -4,29 +4,26 @@ from django.db.models import Sum
 
 def get_total(field, **kwargs):
     """
-    Given a field & queryset, calculate & return net, gross, cost sums; no object storage.
+    Given field & queryset calculate & return field sum
     """
-
-    # querysets
+    # queryset
     invoices = kwargs.get("invoices")
     projects = kwargs.get("projects")
     times = kwargs.get("times")
-
+    # field
+    gross = 0
+    cost = 0
+    hours = 0
     if field == "gross" and invoices:
         gross = invoices.aggregate(amount=Sum(F("amount")))["amount"]
-        if gross is None:
-            return 0
-        else:
-            return gross
+        return gross
     elif field == "cost" and projects:
         cost = projects.aggregate(cost=Sum(F("cost")))["cost"]
-        if cost is None:
-            return 0
-        else:
-            return cost
+        return cost
     elif field == "hours" and times:
         hours = times.aggregate(hours=Sum(F("hours")))["hours"]
         return hours
+    return 0
 
 
 def set_total(times, **kwargs):
