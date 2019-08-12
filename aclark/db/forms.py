@@ -173,7 +173,7 @@ class InvoiceForm(forms.ModelForm):
 class NoteForm(forms.ModelForm):
     class Meta:
         model = Note
-        fields = ("active", "hidden", "title", "text", "due_date")
+        fields = ("title", "text")
         widgets = {"text": forms.widgets.TextInput(attrs={"class": "tinymce"})}
 
 
