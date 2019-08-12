@@ -20,7 +20,7 @@ def get_total(field, **kwargs):
             return gross
     elif field == "cost" and projects:
         cost = projects.aggregate(cost=Sum(F("cost")))["cost"]
-        if gross is None:
+        if cost is None:
             return 0
         else:
             return cost
