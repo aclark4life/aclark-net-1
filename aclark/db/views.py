@@ -324,7 +324,7 @@ def note_view(request, pk=None):
         request=request,
         report_model=Report,
         site_config_model=SiteConfiguration,
-        include_fields=("text", "title", "active", "hidden", "due"),
+        include_fields=("created", "updated", "text", "title"),
     )
     if context["pdf"]:
         company_name = context["config"].company.name
