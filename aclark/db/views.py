@@ -360,7 +360,7 @@ def note_index(request, pk=None):
         report_model=Report,
         order_by=("-created",),
         request=request,
-        search_fields=("note", "title"),
+        search_fields=("text", "title"),
     )
     return render(request, "note_index.html", context)
 
