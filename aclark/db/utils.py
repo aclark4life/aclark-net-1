@@ -284,7 +284,9 @@ def get_page_items(**kwargs):
         hours = get_total("hours", times=times)
         gross = get_total("gross", invoices=invoices)
         cost = get_total("cost", projects=projects)
-        net = gross - cost
+        net = 0
+        if not gross is None and cost is None:
+            net = gross - cost
     if report_model:
         reports = report_model.objects.filter(active=True).order_by("-date")
         if items:
