@@ -110,7 +110,6 @@ def client_index(request):
     return render(request, "client_index.html", context)
 
 
-@staff_member_required
 def competency(request):
     context = get_page_items(
         site_config_model=SiteConfiguration,
