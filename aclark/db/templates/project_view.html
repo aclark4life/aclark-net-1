@@ -7,10 +7,7 @@
       <div class="col-6">
         <div class="text-right">
           <div class="btn-group dropdown">
-            <a class="btn btn-lg btn-outline-dark" href="{% url 'project_edit' pk=item.pk %}">Edit</a>
-            <button type="button" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <span class="sr-only">Toggle Dropdown</span>
-            </button>
+            <a class="btn btn-lg btn-outline-dark rounded" href="{% url 'project_edit' pk=item.pk %}">Edit</a>
             <div class="dropdown-menu">
 {% include 'actions.html' %}
             </div>

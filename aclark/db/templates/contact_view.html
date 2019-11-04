@@ -1,13 +1,10 @@
 {% extends 'dashboard.html' %}
 {% block dashboard %}
-    <div class="row">
+    <div class="row my-3">
       <div class="col-12">
         <div class="text-right">
-          <div class="btn-group dropdown my-3">
-            <a class="btn btn-lg btn-outline-dark" href="{% url 'contact_edit' pk=item.pk %}">Edit</a>
-            <button type="button" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <span class="sr-only">Toggle Dropdown</span>
-            </button>
+          <div class="btn-group dropdown">
+            <a class="btn btn-lg btn-outline-dark rounded" href="{% url 'contact_edit' pk=item.pk %}">Edit</a>
             <div class="dropdown-menu">
 {% include 'actions.html' %}
             </div>
