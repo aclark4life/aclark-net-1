@@ -211,7 +211,7 @@ def estimate_index(request):
         model=Estimate,
         report_model=Report,
         order_by=("-issue_date",),
-        search_fields=("subject",),
+        search_fields=("subject", "amount"),
         request=request,
     )
     return render(request, "estimate_index.html", context)
