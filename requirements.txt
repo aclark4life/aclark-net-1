@@ -2,7 +2,7 @@
 Babel==2.6.0
 Django==2.2.4
 Faker==1.0.5
-Pillow==6.1.0
+Pillow==6.2.0
 PyJWT==1.7.1
 PyPDF2==1.26.0
 PyYAML==5.1
