@@ -279,7 +279,7 @@ def invoice_edit(request, pk=None):
 
 @staff_member_required
 def invoice_index(request):
-    search_fields = ("client__name", "id", "issue_date", "project__name", "subject")
+    search_fields = ("client__name", "id", "issue_date", "project__name", "subject", "amount")
     context = get_index_items(
         model=Invoice,
         report_model=Report,
