@@ -328,9 +328,9 @@ def note_view(request, pk=None):
     if context["mail"]:
         message = context["message"]
         subject = context["subject"]
-        mail_send(message=message, subject=subject)
+        mail_send(html_message=message, subject=subject)
         messages.add_message(request, messages.INFO, "Note sent")
-        return render(request, "note.html", context)
+        return render(request, "note_view.html", context)
     if context["pdf"]:
         company_name = context["config"].company.name
         company_name = slugify(company_name)
