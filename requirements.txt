@@ -65,6 +65,7 @@ tablib==0.13.0
 text-unidecode==1.2
 unicodecsv==0.14.1
 urllib3==1.25.2
+wagtail==2.7
 webencodings==0.5.1
 xhtml2pdf==0.2.3
 xlrd==1.2.0
