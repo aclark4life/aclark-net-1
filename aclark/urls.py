@@ -32,6 +32,9 @@ router = routers.DefaultRouter()
 router.register(r"clients", views_db.ClientViewSet)
 router.register(r"testimonials", views_db.TestimonialViewSet)
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     url(r"^$", views_root.home, name="home"),
     url(r"^about$", views_root.about, name="about"),
@@ -48,6 +51,6 @@ urlpatterns = [
     re_path(r'^cms/', include(wagtailadmin_urls)),
     re_path(r'^documents/', include(wagtaildocs_urls)),
     re_path(r'^pages/', include(wagtail_urls)),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler500 = "aclark.root.views.my_custom_error_view"
