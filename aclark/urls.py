@@ -21,6 +21,13 @@ from rest_framework import routers
 from aclark.db import urls as urls_db
 from aclark.db import views as views_db
 
+
+from django.urls import path, re_path, include
+
+from wagtail.admin import urls as wagtailadmin_urls
+from wagtail.core import urls as wagtail_urls
+from wagtail.documents import urls as wagtaildocs_urls
+
 router = routers.DefaultRouter()
 router.register(r"clients", views_db.ClientViewSet)
 router.register(r"testimonials", views_db.TestimonialViewSet)
@@ -37,6 +44,10 @@ urlpatterns = [
     url(r"^about/team$", views_root.team, name="team"),
     url(r"^about/testimonials$", views_root.testimonials, name="testimonials"),
     url(r"^services$", views_root.services, name="services"),
+
+    re_path(r'^cms/', include(wagtailadmin_urls)),
+    re_path(r'^documents/', include(wagtaildocs_urls)),
+    re_path(r'^pages/', include(wagtail_urls)),
 ]
 
 handler500 = "aclark.root.views.my_custom_error_view"
