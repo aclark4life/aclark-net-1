@@ -232,6 +232,9 @@ def get_page_items(**kwargs):
             fields = get_fields(
                 item, include_fields=include_fields
             )  # fields_items.html
+            # E-Mail
+            context["message"] = item.text
+            context["subject"] = item.title
         else:
             item = get_object_or_404(model, pk=pk)
             items = set_items(model_name, items=items)
