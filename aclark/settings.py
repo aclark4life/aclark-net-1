@@ -49,6 +49,20 @@ INSTALLED_APPS = [
     "rest_framework",
     "import_export",
     "solo",
+
+    'wagtail.contrib.forms',
+    'wagtail.contrib.redirects',
+    'wagtail.embeds',
+    'wagtail.sites',
+    'wagtail.users',
+    'wagtail.snippets',
+    'wagtail.documents',
+    'wagtail.images',
+    'wagtail.search',
+    'wagtail.admin',
+    'wagtail.core',
+
+    'modelcluster',
 ]
 
 MIDDLEWARE = [
