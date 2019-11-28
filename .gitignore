@@ -4,3 +4,8 @@ include
 lib
 share
 src
+aclark/__pycache__/
+aclark/db/__pycache__/
+aclark/db/migrations/__pycache__/
+aclark/root/__pycache__/
+aclark/root/migrations/__pycache__/
