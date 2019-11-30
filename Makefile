@@ -431,19 +431,3 @@ pack: webpack-run
 .DEFAULT_GOAL=commit-push
 #install: npm-install
 #run: npm-run
-
-PROJECT=aclark
-APP=db
-webpack:
-	./node_modules/js-beautify/js/bin/js-beautify.js -r ./webpack.config.js
-	./node_modules/js-beautify/js/bin/js-beautify.js -r $(PROJECT)/root/static/index.js
-	rm -rf $(PROJECT)/root/static/webpack_bundles
-	./node_modules/.bin/webpack
-	git add $(PROJECT)/root/static/webpack_bundles
-d:
-	eb deploy
-t:
-	coverage run --source='aclark' manage.py test aclark
-	coverage report
-skip:
-	git commit -a -m "Update [ci skip]"
