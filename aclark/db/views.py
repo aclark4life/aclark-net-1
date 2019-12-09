@@ -171,11 +171,10 @@ def error(request):
 
 @staff_member_required
 def estimate_view(request, pk=None):
-    order_by = {"time": ("updated",)}
     context = get_page_items(
         model=Estimate,
         site_config_model=SiteConfiguration,
-        order_by=order_by,
+        order_by={"time": ("date", "updated")},  # For time entries
         pk=pk,
         project_model=Project,
         report_model=Report,
