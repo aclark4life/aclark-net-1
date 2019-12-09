@@ -169,7 +169,8 @@ def get_page_items(**kwargs):
         elif model_name == "invoice":
             item = get_object_or_404(model, pk=pk)
             times = time_model.objects.filter(estimate=None, invoice=item)
-            times = times.order_by(*order_by["time"])
+            if order_by:
+                times = times.order_by(*order_by["time"])
             times = set_total(times, invoice=item)
             items = set_items("time", items=times)
             last_payment_date = item.last_payment_date
