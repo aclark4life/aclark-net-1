@@ -30,26 +30,40 @@ def set_total(times, **kwargs):
     """
     """
     project = kwargs.get("project")
+    estimate = kwargs.get("estimate")
     invoice = kwargs.get("invoice")
     time_model = kwargs.get("time_model")
 
-    # Calculate & save invoice & time amounts
+    # Calculate & save invoice or estimate & time amounts
     amount = 0
     invoice_amount = 0
+    estimate_amount = 0
+
     for t in times:
         if t.task:
             if t.task.rate:
                 amount = t.task.rate * t.hours
         t.amount = "%.2f" % amount
         t.save()
-        invoice_amount += amount
+        if estimate:
+            estimate_amount += amount
+        elif invoice:
+            invoice_amount += amount
 
-    if invoice:
+    # Format
+    if estimate:
+        estimate.amount = "%.2f" % estimate_amount
+        estimate.save()
+
+    elif invoice:
         invoice.amount = "%.2f" % invoice_amount
         invoice.save()
 
+
     elif project:
         project.amount = "%.2f" % invoice_amount
+
+        # Per user cost
         cost = 0
         users = project.team.all()
         for user in users:
