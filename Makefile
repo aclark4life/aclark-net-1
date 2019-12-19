@@ -1,4 +1,4 @@
-# https://github.com/aclark4life/universal-project-makefile
+# https://github.com/aclark4life/makefile
 #
 # The MIT License (MIT)
 #
@@ -49,10 +49,11 @@
 #
 # https://www.gnu.org/software/make/manual/html_node/Using-Variables.html
 
-TMPDIR := $(shell mktemp -d)  # https://stackoverflow.com/a/589260/185820
+# https://stackoverflow.com/a/589260/185820
+TMPDIR := $(shell mktemp -d)
 UNAME := $(shell uname)
-PROJECT := project
-APP := app
+PROJECT = project
+APP = app
 
 # Git
 COMMIT_MESSAGE = "Update"
@@ -422,12 +423,11 @@ pack: webpack-run
 #-------------------------------------------------------------------------------
 
 # Custom
-
 # https://stackoverflow.com/a/49804748
 %: %-default
 	@ true
 
-# 
+PROJECT = aclark
+APP = net
 .DEFAULT_GOAL=commit-push
-#install: npm-install
-#run: npm-run
+install: pip-install
