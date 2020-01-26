@@ -113,3 +113,8 @@ def team(request):
     context = {}
     context["about_nav"] = True
     return render(request, "team.html", context)
+
+
+def news(request):
+    context = {}
+    return render(request, "base.html", context)
