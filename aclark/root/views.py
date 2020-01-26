@@ -117,4 +117,4 @@ def team(request):
 
 def news(request):
     context = {}
-    return render(request, "base.html", context)
+    return render(request, "news.html", context)
