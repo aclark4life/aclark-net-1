@@ -115,6 +115,6 @@ def team(request):
     return render(request, "team.html", context)
 
 
-def jobs(request):
+def careers(request):
     context = {}
-    return render(request, "jobs.html", context)
+    return render(request, "careers.html", context)
