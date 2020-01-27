@@ -84,7 +84,6 @@
               <a class="nav-link" href="{% url 'home' %}#technology">Technology</a>
               <a class="nav-link" href="{% url 'testimonials' %}">Testimonials</a>
               <a class="nav-link" href="{% url 'team' %}">Team</a>
-              <a class="nav-link" href="{% url 'careers' %}">Careers</a>
             </div>
           </li>
           <li class="nav-item px-1 dropdown">
@@ -97,6 +96,9 @@
           </li>
           <li class="nav-item px-1">
             <a class="nav-link {% if clients_nav %}border-bottom {% endif %}" href="{% url 'clients' %}">Clients</a>
+          </li>
+          <li class="nav-item px-1">
+            <a class="nav-link {% if clients_nav %}border-bottom {% endif %}" href="{% url 'careers' %}">Careers</a>
           </li>
           <li class="nav-item pl-5 ">
             <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
@@ -305,7 +307,6 @@
             <li><a class="text-muted" style="text-decoration: none" href="{% url 'home' %}#technology">Technology</a></li>
             <li><a class="text-muted" style="text-decoration: none" href="{% url 'testimonials' %}">Testimonials</a></li>
             <li><a class="text-muted" style="text-decoration: none" href="{% url 'team' %}">Team</a></li>
-            <li><a class="text-muted" style="text-decoration: none" href="{% url 'careers' %}">Careers</a></li>
           </ul>
         </div>
         <div class="col-md-2 mb-5">
