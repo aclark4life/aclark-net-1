@@ -46,7 +46,7 @@ urlpatterns = [
     url(r"^contact$", views_root.contact, name="contact"),
     url(r"^about/team$", views_root.team, name="team"),
     url(r"^about/testimonials$", views_root.testimonials, name="testimonials"),
-    url(r"^news$", views_root.news, name="news"),
+    url(r"^jobs$", views_root.jobs, name="jobs"),
     url(r"^services$", views_root.services, name="services"),
 
     re_path(r'^cms/', include(wagtailadmin_urls)),
