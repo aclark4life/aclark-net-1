@@ -26,6 +26,7 @@ def get_index_items(**kwargs):
     home_nav = kwargs.get("home_nav")
 
     model_name = model._meta.verbose_name
+    model_name = model_name.replace(" ", "_")
     edit_url = "%s_edit" % model_name
     view_url = "%s_view" % model_name
 
@@ -140,6 +141,7 @@ def get_page_items(**kwargs):
 
     if model:
         model_name = model._meta.verbose_name
+        model_name = model_name.replace(" ", "_")
         if model_name == "client":
             item = get_object_or_404(model, pk=pk)
             contacts = contact_model.objects.filter(client=item)

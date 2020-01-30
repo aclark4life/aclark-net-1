@@ -1,0 +1,30 @@
+          <table data-toggle="table" data-classes="table bg-light">
+            <thead>
+              <tr>
+                <th data-field="counter" data-width="50" data-sortable="true">#</th>
+                <th data-field="active" data-width="50" data-sort-name="hidden-active" data-sortable="true" {% if active %} data-visible="false" {% endif %} >Active</th>
+                <th data-field="hidden-active" data-sortable="true" data-visible="false">Hidden Active</th>
+                <th data-field="name" data-sort-name="hidden-name" data-sortable="true">Name</th>
+                <th data-field="hidden-name" data-sortable="true" data-visible="false">Hidden Name</th>
+                <th data-field="hidden-color" data-sortable="true" data-visible="false">Hidden Color</th>
+                <th data-field="rate" data-sortable="true">Rate</th>
+                <th data-field="unit" data-sortable="true">Unit</th>
+                <th data-field="unit" data-sortable="true">Client</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for item in items.task_orders %}
+              <tr class="table-{{ item.color }}">
+                <td>{{ forloop.counter }}</td>
+                <td><form action="{% url 'task_order_edit' item.pk %}" method="post">{% csrf_token %}<input type="hidden" value="off" name="checkbox-active"><input type="checkbox" value="on" name="checkbox-active" {% if item.active %} checked {% endif %} onChange="this.form.submit()"></form></td>
+                <td>{{ item.active }}</td>
+                <td><a href="{% url 'task_order_view' item.pk %}">{{ item.name|default:'Task' }}</a></td>
+                <td>{{ item.name|default:'' }}</td>
+                <td>{{ item.color|default:'' }}</td>
+                <td>{{ item.rate|default:'' }}</td>
+                <td><a href="{% url 'task_order_view' item.pk %}">{{ item.unit|default:'' }}</a> <a href="{% url 'task_order_edit' item.pk %}"><i class="far fa-edit"></i></a></td>
+                <td>{% if item.client %}<a href="{% url client_view item.client %}">{{ item.client }}</a>{% endif %}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>

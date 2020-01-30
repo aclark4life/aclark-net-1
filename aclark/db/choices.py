@@ -11,6 +11,7 @@ URL_NAMES = {
     "report": ("report_view", "report_edit", "report_index"),
     "service": ("service_view", "service_edit", "service_index"),
     "task": ("task_view", "task_edit", "task_index"),
+    "task order": ("task_order_view", "task_order_edit", "task_order_index"),
     "time": ("time_view", "time_edit", "time_index"),
     "user": ("user_view", "user_edit", "user_index"),
 }

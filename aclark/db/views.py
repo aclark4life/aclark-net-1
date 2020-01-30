@@ -526,13 +526,7 @@ def task_order_edit(request, pk=None):
 
 @staff_member_required
 def task_order_index(request):
-    context = get_index_items(
-        model=TaskOrder,
-        report_model=Report,
-        order_by=("-active", "name"),
-        request=request,
-        search_fields=("name",),
-    )
+    context = get_index_items(model=TaskOrder, report_model=Report, request=request,)
     return render(request, "task_order_index.html", context)
 
 
