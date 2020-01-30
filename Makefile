@@ -428,6 +428,10 @@ pack: webpack-run
 	@ true
 
 PROJECT = aclark
-APP = net
+APP = db
 .DEFAULT_GOAL=commit-push
 install: pip-install
+
+black:
+	black aclark/*.py
+	black aclark/*/*.py

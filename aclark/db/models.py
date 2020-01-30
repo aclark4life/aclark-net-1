@@ -533,3 +533,16 @@ class Time(BaseModel):
     # https://docs.djangoproject.com/en/1.9/ref/models/instances/#get-absolute-url
     def get_absolute_url(self, hostname):
         return "%s/%s" % (hostname, reverse("time_view", args=[str(self.id)]))
+
+
+class StatementOfWork(BaseModel):
+    """
+    """
+
+    class Meta:
+        verbose_name_plural = "Statements of work"
+
+
+class TaskOrder(BaseModel):
+    """
+    """

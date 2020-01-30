@@ -48,10 +48,9 @@ urlpatterns = [
     url(r"^about/testimonials$", views_root.testimonials, name="testimonials"),
     url(r"^careers$", views_root.careers, name="careers"),
     url(r"^services$", views_root.services, name="services"),
-
-    re_path(r'^cms/', include(wagtailadmin_urls)),
-    re_path(r'^documents/', include(wagtaildocs_urls)),
-    re_path(r'^pages/', include(wagtail_urls)),
+    re_path(r"^cms/", include(wagtailadmin_urls)),
+    re_path(r"^documents/", include(wagtaildocs_urls)),
+    re_path(r"^pages/", include(wagtail_urls)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler500 = "aclark.root.views.my_custom_error_view"
