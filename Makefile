@@ -293,7 +293,6 @@ serve: python-serve  # Alias
 python-clean:
 	find . -name \*.pyc | xargs rm -v
 python-flake:
-	-flake8 *.py
 	-flake8 $(PROJECT)/*.py
 	-flake8 $(PROJECT)/$(APP)/*.py
 pip-install:
@@ -435,3 +434,4 @@ install: pip-install
 black:
 	black aclark/*.py
 	black aclark/*/*.py
+flake: python-flake

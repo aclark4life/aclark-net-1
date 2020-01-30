@@ -59,6 +59,11 @@ urlpatterns = [
     url(r"^task/(?P<pk>\d+)/edit$", views.task_edit, name="task_edit"),
     url(r"^task/add$", views.task_edit, name="task_edit"),
     url(r"^task$", views.task_index, name="task_index"),
+    # Task Orders
+    url(r"^taskorder/(?P<pk>\d+)$", views.task_order_view, name="task_order_view"),
+    url(r"^taskorder/(?P<pk>\d+)/edit$", views.task_order_edit, name="task_order_edit"),
+    url(r"^taskorder/add$", views.task_order_edit, name="task_order_edit"),
+    url(r"^taskorder$", views.task_order_index, name="task_order_index"),
     # Time
     url(r"^time/(?P<pk>\d+)$", views.time_view, name="time_view"),
     url(r"^time/(?P<pk>\d+)/edit$", views.time_edit, name="time_edit"),
