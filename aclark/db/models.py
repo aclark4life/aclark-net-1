@@ -194,7 +194,7 @@ class Invoice(BaseModel):
     """
     Issue Date, Last Payment Date, Invoice ID, PO Number, Client, Subject,
     Invoice Amount, Paid Amount, Balance, Subtotal, Discount, Tax, Tax2,
-    Currency, Currency Symbol, Document Type
+    Currency, Currency Symbol
     """
 
     subject = models.CharField(max_length=300, blank=True, null=True)
