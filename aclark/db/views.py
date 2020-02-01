@@ -514,7 +514,7 @@ def task_index(request):
 @staff_member_required
 def task_order_view(request, pk=None):
     context = get_page_items(
-        model=TaskOrder, pk=pk, request=request, report_model=Report
+        model=TaskOrder, pk=pk, request=request, report_model=Report, time_model=Time,
     )
     return render(request, "task_order_view.html", context)
 
@@ -586,6 +586,7 @@ def time_edit(request, pk=None):
         project_model=Project,
         report_model=Report,
         task_model=Task,
+        task_order_model=TaskOrder,
         time_model=Time,
         pk=pk,
     )

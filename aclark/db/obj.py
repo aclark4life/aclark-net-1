@@ -135,6 +135,7 @@ def set_ref(obj, request, **kwargs):
     estimate_model = kwargs.get("estimate_model")
     invoice_model = kwargs.get("invoice_model")
     project_model = kwargs.get("project_model")
+    task_order_model = kwargs.get("task_order_model")
     model_name = obj._meta.verbose_name
     if model_name == "contact":
         query_client = get_query_string(request, "client")
@@ -177,9 +178,13 @@ def set_ref(obj, request, **kwargs):
         query_estimate = get_query_string(request, "estimate")
         query_invoice = get_query_string(request, "invoice")
         query_project = get_query_string(request, "project")
+        query_task_order = get_query_string(request, "task_order")
         if query_estimate:
             estimate = get_object_or_404(estimate_model, pk=query_estimate)
             obj.estimate = estimate
+        if query_task_order:
+            task_order = get_object_or_404(task_order_model, pk=query_task_order)
+            obj.task_order = task_order
         if query_invoice:
             invoice = get_object_or_404(invoice_model, pk=query_invoice)
             obj.invoice = invoice

@@ -98,6 +98,7 @@ def edit(request, **kwargs):
                 client_model=client_model,
                 estimate_model=estimate_model,
                 invoice_model=invoice_model,
+                task_order_model=task_order_model,
                 model=model,
                 project_model=project_model,
             )
