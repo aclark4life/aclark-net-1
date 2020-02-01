@@ -502,6 +502,9 @@ class Time(BaseModel):
     estimate = models.ForeignKey(
         Estimate, blank=True, null=True, on_delete=models.SET_NULL
     )
+    task_order = models.ForeignKey(
+        "TaskOrder", blank=True, null=True, on_delete=models.SET_NULL
+    )
     invoice = models.ForeignKey(
         Invoice,
         blank=True,

@@ -25,6 +25,7 @@ def edit(request, **kwargs):
     report_model = kwargs.get("report_model")
     service_model = kwargs.get("service_model")
     user_model = kwargs.get("user_model")
+    task_order_model = kwargs.get("task_order_model")
     model_name = None
     new_time = False
 
@@ -37,6 +38,7 @@ def edit(request, **kwargs):
             client_model=client_model,
             form_model=form_model,
             invoice_model=invoice_model,
+            task_order_model=task_order_model,
             model=model,
             project_model=project_model,
             user_model=user_model,
