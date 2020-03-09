@@ -549,3 +549,11 @@ class StatementOfWork(BaseModel):
 class TaskOrder(BaseModel):
     """
     """
+
+    name = models.CharField(max_length=300, blank=True, null=True)
+
+    def __str__(self):
+        if self.name:
+            return self.name
+        else:
+            return "-".join([self._meta.verbose_name, str(self.pk)])
