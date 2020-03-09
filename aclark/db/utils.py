@@ -103,6 +103,7 @@ def get_page_items(**kwargs):
     report_model = kwargs.get("report_model")
     time_model = kwargs.get("time_model")
     service_model = kwargs.get("service_model")
+    task_order_model = kwargs.get("task_order_model")
 
     pk = kwargs.get("pk")
 
@@ -176,6 +177,13 @@ def get_page_items(**kwargs):
             times = set_total(times, invoice=item)
             items = set_items("time", items=times)
             last_payment_date = item.last_payment_date
+        elif model_name == "task_order":
+            item = get_object_or_404(model, pk=pk)
+            times = time_model.objects.filter(task_order=item)
+            if order_by:
+                times = times.order_by(*order_by["time"])
+            times = set_total(times, task_order=item)
+            items = set_items("time", items=times)
         elif model_name == "project":
             item = get_object_or_404(model, pk=pk)
             contacts = contact_model.objects.all()
