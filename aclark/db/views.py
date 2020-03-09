@@ -256,8 +256,10 @@ def invoice_view(request, pk=None):
         report_model=Report,
     )
     if context["pdf"]:
-        # company_name = context["config"].company.name
-        company_name = context["config"].company.name
+        if hasattr(context["config"].company, "name"):
+            company_name = context["config"].company.name
+        else:
+            company_name = "Company Name"
         company_name = slugify(company_name)
         filename = "%s-%s-%s.pdf" % (company_name, "invoice", pk)
         return render_pdf(context, filename=filename, template="invoice.html")
