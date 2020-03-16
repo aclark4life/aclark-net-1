@@ -26,6 +26,7 @@ class AdminProfileForm(forms.ModelForm):
             "page_size",
             "published",
             "avatar_url",
+            "notifications",
         )
         widgets = {"bio": forms.widgets.TextInput(attrs={"class": "tinymce"})}
 
@@ -182,7 +183,7 @@ class NoteForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ("rate", "bio", "address", "job_title", "twitter_username")
+        fields = ("rate", "bio", "address", "job_title", "twitter_username", "notifications")
         widgets = {"bio": forms.widgets.TextInput(attrs={"class": "tinymce"})}
 
 
