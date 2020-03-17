@@ -183,7 +183,14 @@ class NoteForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ("rate", "bio", "address", "job_title", "twitter_username", "notifications")
+        fields = (
+            "rate",
+            "bio",
+            "address",
+            "job_title",
+            "twitter_username",
+            "notifications",
+        )
         widgets = {"bio": forms.widgets.TextInput(attrs={"class": "tinymce"})}
 
 
