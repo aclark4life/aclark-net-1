@@ -1,49 +1,49 @@
 {% load static %}
-  <div id="myCarousel" class="carousel slide m-0" data-ride="carousel">
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner">
-      <div class="carousel-item text-left active">
-        <img class="img-fluid" style="max-width: 100%; height: auto;" src="{% static 'iStock-1132941044.jpg' %}">
-
-        <div class="container">
-          <div class="carousel-caption text-left">
-            <h1 class="text-white font-weight-bold"><span class="d-none d-md-block">Expert</span> Consulting</h1>
-            <p class="lead text-white font-weight-bold d-none d-md-block">We provide expert level evaluation of technical environments and infrastructure. We advise and assist in the optimization and customization of the latest technology to meet each client's specific needs.</p>
-            <p class="d-none d-md-block"><a class="btn btn-lg btn-warning" href="{% url 'services' %}#consulting" role="button"><i class="fas fa-caret-right"></i>&nbsp;Consulting Services</a></p>
+    <div id="myCarousel" class="carousel slide m-0" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item text-left active">
+          <img class="img-fluid" style="max-width: 100%; height: auto;" src="{% static 'iStock-1132941044.jpg' %}">
+  
+          <div class="container">
+            <div class="carousel-caption text-left">
+              <h1 class="text-white font-weight-bold"><span class="d-none d-md-block">Expert</span> Consulting</h1>
+              <p class="lead text-white font-weight-bold d-none d-md-block">We provide expert level evaluation of technical environments and infrastructure. We advise and assist in the optimization and customization of the latest technology to meet each client's specific needs.</p>
+              <p class="d-none d-md-block"><a class="btn btn-lg btn-warning" href="{% url 'services' %}#consulting" role="button"><i class="fas fa-caret-right"></i>&nbsp;Consulting Services</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item text-left">
+          <img class="img-fluid" style="max-width: 100%; height: auto;" src="{% static 'iStock-1132941059.jpg' %}"> 
+          <div class="container">
+            <div class="carousel-caption text-left">
+              <h1 class="text-white font-weight-bold"><span class="d-none d-md-block">Quality</span> Software</h1>
+              <p class="lead text-white font-weight-bold d-none d-md-block">We excel at developing custom software and delivering exceptional results.</p>
+              <p class="d-none d-md-block"><a class="btn btn-lg btn-warning" href="{% url 'services' %}#software" role="button"><i class="fas fa-caret-right"></i>&nbsp;Software Services</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item text-left">
+          <img class="img-fluid" style="max-width: 100%; height: auto;" src="{% static 'iStock-1022887882.jpg' %}"> 
+          <div class="container">
+            <div class="carousel-caption text-left">
+              <h1 class="text-white font-weight-bold"><span class="d-none d-md-block">Reliable, Secure</span> Systems</h1>
+              <p class="lead text-white font-weight-bold d-none d-md-block">We are technology subject matter experts whose expertise includes open source software &amp; related technologies.</p> 
+              <p class="d-none d-md-block"><a class="btn btn-lg btn-warning" href="{% url 'services' %}#systems" role="button"><i class="fas fa-caret-right"></i>&nbsp;Systems Services</a></p>
+            </div>
           </div>
         </div>
       </div>
-      <div class="carousel-item text-left">
-        <img class="img-fluid" style="max-width: 100%; height: auto;" src="{% static 'iStock-1132941059.jpg' %}"> 
-        <div class="container">
-          <div class="carousel-caption text-left">
-            <h1 class="text-white font-weight-bold"><span class="d-none d-md-block">Quality</span> Software</h1>
-            <p class="lead text-white font-weight-bold d-none d-md-block">We excel at developing custom software and delivering exceptional results.</p>
-            <p class="d-none d-md-block"><a class="btn btn-lg btn-warning" href="{% url 'services' %}#software" role="button"><i class="fas fa-caret-right"></i>&nbsp;Software Services</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item text-left">
-        <img class="img-fluid" style="max-width: 100%; height: auto;" src="{% static 'iStock-1022887882.jpg' %}"> 
-        <div class="container">
-          <div class="carousel-caption text-left">
-            <h1 class="text-white font-weight-bold"><span class="d-none d-md-block">Reliable, Secure</span> Systems</h1>
-            <p class="lead text-white font-weight-bold d-none d-md-block">We are technology subject matter experts whose expertise includes open source software &amp; related technologies.</p> 
-            <p class="d-none d-md-block"><a class="btn btn-lg btn-warning" href="{% url 'services' %}#systems" role="button"><i class="fas fa-caret-right"></i>&nbsp;Systems Services</a></p>
-          </div>
-        </div>
-      </div>
+      <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
     </div>
-    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>

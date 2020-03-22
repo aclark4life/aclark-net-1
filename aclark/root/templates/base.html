@@ -26,116 +26,110 @@
     <link href="{% static 'assets/css/toolkit-startup.css' %}" rel="stylesheet">
     <link href="{% static 'assets/css/application-startup.css' %}" rel="stylesheet">
 
-    {% block head %}
-    {% endblock %}
+{% block head %}
+{% endblock %}
     <!-- https://paulferrett.com/fontawesome-favicon/ -->
     <link rel="icon" href="{% static 'favicon.ico' %}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.css">
   </head>
-<body>
+  <body>
 {% include 'stage.html' %}
-<div class="stage" id="stage">
-  <div class="block block-inverse app-header" 
-       style="background-color: #3883AC; background-position: -40px 0px;  padding-bottom: 2rem; margin-bottom: 0; background-image: url({% static 'startup-1.jpg' %}); background-repeat: repeat-x">
-    <div class="container py-4 fixed-top app-navbar">
-    <nav class="navbar navbar-transparent navbar-padded navbar-expand-md">
-      <a class="navbar-brand mr-auto" href="{% url 'home' %}" style="background-color: transparent">
-        <span class="border border-light p-3" style="font-size: 120%">ACLARK.NET</span>
-      </a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-target="#stage"
-        data-toggle="stage"
-        data-distance="-250">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="d-none d-md-block text-uppercase">
-        <ul class="navbar-nav">
-          <li class="nav-item px-1">
-            <a class="nav-link {% if home_nav %}border-bottom {% endif %}" href="{% url 'home' %}">Home</a>
-          </li>
-          <li class="nav-item px-1 dropdown"><!-- https://stackoverflow.com/a/29668214/185820 -->
-            <a class="nav-link {% if about_nav %}border-bottom {% endif %}" href="{% url 'about' %}" id="navbarDropdown" role="button" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
-              About
-            </a>
-            <div class="dropdown-menu text-capitalize" aria-labelledby="navbarDropdown">
-              <a class="nav-link" href="{% url 'home' %}#mission">Mission</a>
-              <a class="nav-link" href="{% url 'home' %}#pillow">Pillow</a>
-              <a class="nav-link" href="{% url 'home' %}#technology">Technology</a>
-              <a class="nav-link" href="{% url 'testimonials' %}">Testimonials</a>
-              <a class="nav-link" href="{% url 'team' %}">Team</a>
-            </div>
-          </li>
-          <li class="nav-item px-1 dropdown">
-            <a class="nav-link {% if services_nav %}border-bottom {% endif %}" href="{% url 'services' %}">Services</a>
-            <div class="dropdown-menu text-capitalize" aria-labelledby="navbarDropdown">
-              <a class="nav-link" href="{% url 'services' %}#consulting">Consulting</a>
-              <a class="nav-link" href="{% url 'services' %}#software">Software</a>
-              <a class="nav-link" href="{% url 'services' %}#systems">Systems</a>
-            </div>
-          </li>
-          <li class="nav-item px-1">
-            <a class="nav-link {% if clients_nav %}border-bottom {% endif %}" href="{% url 'clients' %}">Clients</a>
-          </li>
-          <li class="nav-item px-1">
-            <a class="nav-link {% if clients_nav %}border-bottom {% endif %}" href="{% url 'careers' %}">Careers</a>
-          </li>
-          <li class="nav-item pl-5 ">
-            <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
-          </li>
-          {% if request.user.is_authenticated %}
-          <li class="nav-item px-1 dropdown dropleft">
-            <a id="user-menu" class="nav-link" href="{% url 'dashboard' %}"><i class="far fa-user-circle"></i></a>
-            <div class="dropdown-menu text-capitalize" aria-labelledby="navbarDropdown">
-              <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
-              <a class="nav-link" href="{% url 'user_view' request.user.id  %}">Profile</a>
-              {% if request.user.is_staff %}<a target="_blank" class="nav-link" href="{% url 'admin:index' %}">Admin</a>{% endif %}
-              {% if request.user.is_staff %}<a target="_blank" class="nav-link" href="{% url 'wagtailredirects:index' %}">CMS</a>{% endif %}
-              {% if request.user.is_staff %}<a target="_blank" class="nav-link" href="/api">API</a>{% endif %}
-              {% if request.user.is_staff %}<a class="nav-link" href="{% url 'competency' %}">Competency</a>{% endif %}
-              <a class="nav-link" href="{% url 'logout' %}">Sign out</a>
-            </div>
-          </li>
-          {% endif %}
-        </ul>
+    <div class="stage" id="stage">
+      <div class="block block-inverse app-header" 
+           style="background-color: #3883AC; background-position: -40px 0px;  padding-bottom: 2rem; margin-bottom: 0; background-image: url({% static 'startup-1.jpg' %}); background-repeat: repeat-x">
+        <div class="container py-4 fixed-top app-navbar">
+        <nav class="navbar navbar-transparent navbar-padded navbar-expand-md">
+          <a class="navbar-brand mr-auto" href="{% url 'home' %}" style="background-color: transparent">
+            <span class="border border-light p-3" style="font-size: 120%">ACLARK.NET</span>
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-target="#stage"
+            data-toggle="stage"
+            data-distance="-250">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="d-none d-md-block text-uppercase">
+            <ul class="navbar-nav">
+              <li class="nav-item px-1">
+                <a class="nav-link {% if home_nav %}border-bottom {% endif %}" href="{% url 'home' %}">Home</a>
+              </li>
+              <li class="nav-item px-1 dropdown"><!-- https://stackoverflow.com/a/29668214/185820 -->
+                <a class="nav-link {% if about_nav %}border-bottom {% endif %}" href="{% url 'about' %}" id="navbarDropdown" role="button" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
+                  About
+                </a>
+                <div class="dropdown-menu text-capitalize" aria-labelledby="navbarDropdown">
+                  <a class="nav-link" href="{% url 'home' %}#mission">Mission</a>
+                  <a class="nav-link" href="{% url 'home' %}#pillow">Pillow</a>
+                  <a class="nav-link" href="{% url 'home' %}#technology">Technology</a>
+                  <a class="nav-link" href="{% url 'testimonials' %}">Testimonials</a>
+                  <a class="nav-link" href="{% url 'team' %}">Team</a>
+                </div>
+              </li>
+              <li class="nav-item px-1 dropdown">
+                <a class="nav-link {% if services_nav %}border-bottom {% endif %}" href="{% url 'services' %}">Services</a>
+                <div class="dropdown-menu text-capitalize" aria-labelledby="navbarDropdown">
+                  <a class="nav-link" href="{% url 'services' %}#consulting">Consulting</a>
+                  <a class="nav-link" href="{% url 'services' %}#software">Software</a>
+                  <a class="nav-link" href="{% url 'services' %}#systems">Systems</a>
+                </div>
+              </li>
+              <li class="nav-item px-1">
+                <a class="nav-link {% if clients_nav %}border-bottom {% endif %}" href="{% url 'clients' %}">Clients</a>
+              </li>
+              <li class="nav-item px-1">
+                <a class="nav-link {% if clients_nav %}border-bottom {% endif %}" href="{% url 'careers' %}">Careers</a>
+              </li>
+              <li class="nav-item pl-5 ">
+                <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+              </li>
+              {% if request.user.is_authenticated %}
+              <li class="nav-item px-1 dropdown dropleft">
+                <a id="user-menu" class="nav-link" href="{% url 'dashboard' %}"><i class="far fa-user-circle"></i></a>
+                <div class="dropdown-menu text-capitalize" aria-labelledby="navbarDropdown">
+                  <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+                  <a class="nav-link" href="{% url 'user_view' request.user.id  %}">Profile</a>
+                  {% if request.user.is_staff %}<a target="_blank" class="nav-link" href="{% url 'admin:index' %}">Admin</a>{% endif %}
+                  {% if request.user.is_staff %}<a target="_blank" class="nav-link" href="{% url 'wagtailredirects:index' %}">CMS</a>{% endif %}
+                  {% if request.user.is_staff %}<a target="_blank" class="nav-link" href="/api">API</a>{% endif %}
+                  {% if request.user.is_staff %}<a class="nav-link" href="{% url 'competency' %}">Competency</a>{% endif %}
+                  <a class="nav-link" href="{% url 'logout' %}">Sign out</a>
+                </div>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+        </nav>
       </div>
-    </nav>
-  </div>
-</div>
-
+    </div>
 {% include 'messages.html' %}
-
 {% block content %}
-
-<div class="block d-none d-md-block app-ribbon py-5">
-  <div class="container text-xs-center"> 
-    <h5 class="text-white pb-4 text-uppercase">Professional Python&reg; and open source consulting &amp; programming since 2004</h5>
-  </div>
-</div>
-
-{% include 'carousel.html' %}
-
-<div class="block m-0 py-4 app-price-plans">
-  <div class="container text-xs-center my-5">
-    <h6 class="text-dark" id="mission">Mission</h6>
-    <p class="text-dark text-left">Since 2004, our goal has been to advance the use of open source software and related technologies. We are the organizers and leaders of DC Python, a 501(c)(3) organization. Alex Clark is the creator and project lead for Pillow. We were the lead organizers and hosts of Plone Conference 2008. We provide successful open source software development, consulting, training, hosting and support for numerous companies and organizations, from Amtrak to USAID, in the U.S. and around the world. The focus of our past, current, and future endeavors is on reinforcing and expanding our commitment, outreach, and involvement with both open source technology and the community that depends on it.</p>
-  </div>
-</div>
-
-<div class="block block-inverse block-secondary app-code-block" id="pillow">
-  <div class="container">
-    <div class="row app-align-center">
-      <div class="col-md-6 order-2 order-md-1">
-        <h6 class="text-muted text-uppercase">Pillow</h6>
-        <h2 class="mb-3">Python Imaging Library</h2>
-        <p class="lead mt-3"><img class="float-left mr-3" style="width: 50px" src="{% static 'pillow-logo.png' %}">In 2010, Alex Clark created Pillow, a software development fork of the venerable Python Imaging Library. As of early 2017, Pillow has been downloaded over <strong>15 million times</strong>, can be found in many major Linux distributions such as Ubuntu and Fedora Core, and is used by Fortune-100-serving companies like Atlassian.
-        <img class="float-right m-3" style="width: 150px" src="{% static 'Tidelift_logo_for-dark.png' %}">
-        As of 2019, professional Pillow support is available from <a target="_blank" style="text-decoration: none" href="https://tidelift.com/subscription/pkg/pypi-pillow">Tidelift</a>.</p>
-        <a target="_blank" class="text-white border btn btn-lg btn-borderless" href="https://tidelift.com/subscription/pkg/pypi-pillow">Request a Demo</a>
+    <div class="block d-none d-md-block app-ribbon py-5">
+      <div class="container text-xs-center"> 
+        <h5 class="text-white pb-4 text-uppercase">Professional Python&reg; and open source consulting &amp; programming since 2004</h5>
       </div>
-      <div class="col-md-5 ml-auto order-1 order-md-2">
+    </div>
+{% include 'carousel.html' %}
+    <div class="block m-0 py-4 app-price-plans">
+      <div class="container text-xs-center my-5">
+        <h6 class="text-dark" id="mission">Mission</h6>
+        <p class="text-dark text-left">Since 2004, our goal has been to advance the use of open source software and related technologies. We are the organizers and leaders of DC Python, a 501(c)(3) organization. Alex Clark is the creator and project lead for Pillow. We were the lead organizers and hosts of Plone Conference 2008. We provide successful open source software development, consulting, training, hosting and support for numerous companies and organizations, from Amtrak to USAID, in the U.S. and around the world. The focus of our past, current, and future endeavors is on reinforcing and expanding our commitment, outreach, and involvement with both open source technology and the community that depends on it.</p>
+      </div>
+    </div>
+    <div class="block block-inverse block-secondary app-code-block" id="pillow">
+      <div class="container">
+        <div class="row app-align-center">
+          <div class="col-md-6 order-2 order-md-1">
+            <h6 class="text-muted text-uppercase">Pillow</h6>
+            <h2 class="mb-3">Python Imaging Library</h2>
+            <p class="lead mt-3"><img class="float-left mr-3" style="width: 50px" src="{% static 'pillow-logo.png' %}">In 2010, Alex Clark created Pillow, a software development fork of the venerable Python Imaging Library. As of early 2017, Pillow has been downloaded over <strong>15 million times</strong>, can be found in many major Linux distributions such as Ubuntu and Fedora Core, and is used by Fortune-100-serving companies like Atlassian.
+            <img class="float-right m-3" style="width: 150px" src="{% static 'Tidelift_logo_for-dark.png' %}">
+            As of 2019, professional Pillow support is available from <a target="_blank" style="text-decoration: none" href="https://tidelift.com/subscription/pkg/pypi-pillow">Tidelift</a>.</p>
+            <a target="_blank" class="text-white border btn btn-lg btn-borderless" href="https://tidelift.com/subscription/pkg/pypi-pillow">Request a Demo</a>
+          </div>
+          <div class="col-md-5 ml-auto order-1 order-md-2">
 <pre class="app-code">
 <span>1</span> >>> from PIL import Image
 <span>2</span> >>> im = Image.open("hopper.ppm")
@@ -143,212 +137,208 @@
 <span>4</span> >>> from __future__ import print_function
 <span>5</span> >>> print(im.format, im.size, im.mode)
 <span>6</span> PPM (512, 512) RGB</pre>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="block block-secondary block-inverse">
-  <div class="container">
-    <div class="row app-align-center">
-      <div class="col-md-6 col-sm-12 mr-auto">
-        <h6 class="text-white text-uppercase">Publications</h6>
-        <p class="lead">The approach presented in Alex Clark's instructional text book, "Plone 3.3 Site Administration", helps users create, deploy, and maintain all versions of Plone up to and including Plone 5. The text covers Plone basics from a site administrator's perspective including (but not limited to) instructions on how to learn the use of Buildout to develop, deploy, and maintain a modern Plone site; enhance the functionality and appearance of your web site by using third-party add-ons; and features many useful Buildout recipes from the Python Package Index.</p>
-        <a target="_blank" class="text-white btn btn-lg border border-mute mt-5" href="https://www.packtpub.com/web-development/plone-33-site-administration">Buy Book</a>
-      </div>
-      <div class="col-sm-5 my-5 text-center">
-        <img class="border app-code p-4" src="{% static '7047_plone20site20admincov.jpg' %}" style="width: 75%">
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div class="block block-inverse app-high-praise" id="testimonials"
-     style="background-image: url({% static 'iStock-951514270.jpg' %});">
-    <div class="container">
-      <div class="row app-align-center py-3">
-        <div class="col-sm-7 col-md-5 py-5 testimonial">
-          <h6 class="text-white text-uppercase mb-2 d-none d-md-block">Testimonials</h6>
-          <h2 class="mb-4 d-none d-md-block">&quot;{{ testimonial.description }}&quot;</h2>
-          <p class="mb-4 text-white d-none d-md-block">{{ testimonial.name }}&comma; {{ testimonial.title }}</p>
-          <a class="btn btn-lg border text-white" href="{% url 'testimonials' %}" role="button">Testimonials</a>
+          </div>
         </div>
       </div>
-  </div>
-</div>
-
-<div class="block app-ribbon py-4 d-none d-md-block">
-  <div class="container text-xs-center"> 
-    <img class="col-2" src="{% static 'amtrak-logo__white.svg' %}">
-    <img class="col-2" src="{% static 'nasa-logo.png' %}">
-    <img class="col-2" src="{% static 'National_Geographic_Logo_2016.png' %}">
-    <img class="col-2" src="{% static 'Horizontal_RGB_294.png' %}">
-    <a class="text-white" href="{% url 'clients' %}"><i class="fas fa-ellipsis-h"></i></a>
-  </div>
-</div>
-<div class="block block-secondary" id="technology">
-  <div class="container text-xs-center">
-    <div class="row mb-5 justify-content-center">
-      <div class="col-10 col-sm-8 col-lg-6">
-        <h6 class="text-dark text-uppercase mb-2">Technology</h6>
-        <h2 class="mb-4">Preferred tools: using great tools yields great results.</h2>
+    </div>
+    <div class="block block-secondary block-inverse">
+      <div class="container">
+        <div class="row app-align-center">
+          <div class="col-md-6 col-sm-12 mr-auto">
+            <h6 class="text-white text-uppercase">Publications</h6>
+            <p class="lead">The approach presented in Alex Clark's instructional text book, "Plone 3.3 Site Administration", helps users create, deploy, and maintain all versions of Plone up to and including Plone 5. The text covers Plone basics from a site administrator's perspective including (but not limited to) instructions on how to learn the use of Buildout to develop, deploy, and maintain a modern Plone site; enhance the functionality and appearance of your web site by using third-party add-ons; and features many useful Buildout recipes from the Python Package Index.</p>
+            <a target="_blank" class="text-white btn btn-lg border border-mute mt-5" href="https://www.packtpub.com/web-development/plone-33-site-administration">Buy Book</a>
+          </div>
+          <div class="col-sm-5 my-5 text-center">
+            <img class="border app-code p-4" src="{% static '7047_plone20site20admincov.jpg' %}" style="width: 75%">
+          </div>
+        </div>
       </div>
     </div>
-    <div class="row app-marketing-grid">
-      <div class="col-md-4 px-4 mb-5">
-        <h2 class="mb-4">Amazon Web Services</h2>
-        <i class="fab fa-aws fa-5x"></i>
-      </div>
-      <div class="col-md-4 px-4 mb-5">
-        <h2 class="mb-4">Bootstrap</h2>
-        <i class="fab fa-bootstrap fa-5x"></i>
-      </div>
-      <div class="col-md-4 px-4 mb-5">
-        <h2 class="mb-4">Drupal</h2>
-        <i class="fab fa-drupal fa-5x"></i>
-      </div>
-    </div>
-    <div class="row app-marketing-grid">
-      <div class="col-md-4 px-4 mb-5">
-        <h2 class="mb-4">Font Awesome</h2>
-        <i class="fab fa-font-awesome fa-5x"></i>
-      </div>
-      <div class="col-md-4 px-4 mb-5">
-        <h2 class="mb-4">GitHub</h2>
-        <i class="fab fa-github fa-5x"></i>
-      </div>
-      <div class="col-md-4 px-4 mb-5">
-        <h2 class="mb-4">JavaScript</h2>
-        <i class="fab fa-js fa-5x"></i>
+    <div class="block block-inverse app-high-praise" id="testimonials"
+         style="background-image: url({% static 'iStock-951514270.jpg' %});">
+        <div class="container">
+          <div class="row app-align-center py-3">
+            <div class="col-sm-7 col-md-5 py-5 testimonial">
+              <h6 class="text-white text-uppercase mb-2 d-none d-md-block">Testimonials</h6>
+              <h2 class="mb-4 d-none d-md-block">&quot;{{ testimonial.description }}&quot;</h2>
+              <p class="mb-4 text-white d-none d-md-block">{{ testimonial.name }}&comma; {{ testimonial.title }}</p>
+              <a class="btn btn-lg border text-white" href="{% url 'testimonials' %}" role="button">Testimonials</a>
+            </div>
+          </div>
       </div>
     </div>
-    <div class="row app-marketing-grid">
-      <div class="col-md-4 px-4 mb-5">
-        <h2 class="mb-4">Jenkins</h2>
-        <i class="fab fa-jenkins fa-5x"></i>
-      </div>
-      <div class="col-md-4 px-4 mb-5">
-        <h2 class="mb-4">Linux</h2>
-        <i class="fab fa-linux fa-5x"></i>
-      </div>
-      <div class="col-md-4 px-4 mb-5">
-        <h2 class="mb-4">NPM</h2>
-        <i class="fab fa-npm fa-5x"></i>
+    <div class="block app-ribbon py-4 d-none d-md-block">
+      <div class="container text-xs-center"> 
+        <img class="col-2" src="{% static 'amtrak-logo__white.svg' %}">
+        <img class="col-2" src="{% static 'nasa-logo.png' %}">
+        <img class="col-2" src="{% static 'National_Geographic_Logo_2016.png' %}">
+        <img class="col-2" src="{% static 'Horizontal_RGB_294.png' %}">
+        <a class="text-white" href="{% url 'clients' %}"><i class="fas fa-ellipsis-h"></i></a>
       </div>
     </div>
-    <div class="row app-marketing-grid">
-      <div class="col-md-4 px-4 mb-5">
-        <h2 class="mb-4">PHP</h2>
-        <i class="fab fa-php fa-5x"></i>
-      </div>
-      <div class="col-md-4 px-4 mb-5">
-        <h2 class="mb-4">Python</h2>
-        <i class="fab fa-python fa-5x"></i>
-      </div>
-      <div class="col-md-4 px-4 mb-5">
-        <h2 class="mb-4">Swift</h2>
-        <i class="fab fa-apple fa-5x"></i>
+    <div class="block block-secondary" id="technology">
+      <div class="container text-xs-center">
+        <div class="row mb-5 justify-content-center">
+          <div class="col-10 col-sm-8 col-lg-6">
+            <h6 class="text-dark text-uppercase mb-2">Technology</h6>
+            <h2 class="mb-4">Preferred tools: using great tools yields great results.</h2>
+          </div>
+        </div>
+        <div class="row app-marketing-grid">
+          <div class="col-md-4 px-4 mb-5">
+            <h2 class="mb-4">Amazon Web Services</h2>
+            <i class="fab fa-aws fa-5x"></i>
+          </div>
+          <div class="col-md-4 px-4 mb-5">
+            <h2 class="mb-4">Bootstrap</h2>
+            <i class="fab fa-bootstrap fa-5x"></i>
+          </div>
+          <div class="col-md-4 px-4 mb-5">
+            <h2 class="mb-4">Drupal</h2>
+            <i class="fab fa-drupal fa-5x"></i>
+          </div>
+        </div>
+        <div class="row app-marketing-grid">
+          <div class="col-md-4 px-4 mb-5">
+            <h2 class="mb-4">Font Awesome</h2>
+            <i class="fab fa-font-awesome fa-5x"></i>
+          </div>
+          <div class="col-md-4 px-4 mb-5">
+            <h2 class="mb-4">GitHub</h2>
+            <i class="fab fa-github fa-5x"></i>
+          </div>
+          <div class="col-md-4 px-4 mb-5">
+            <h2 class="mb-4">JavaScript</h2>
+            <i class="fab fa-js fa-5x"></i>
+          </div>
+        </div>
+        <div class="row app-marketing-grid">
+          <div class="col-md-4 px-4 mb-5">
+            <h2 class="mb-4">Jenkins</h2>
+            <i class="fab fa-jenkins fa-5x"></i>
+          </div>
+          <div class="col-md-4 px-4 mb-5">
+            <h2 class="mb-4">Linux</h2>
+            <i class="fab fa-linux fa-5x"></i>
+          </div>
+          <div class="col-md-4 px-4 mb-5">
+            <h2 class="mb-4">NPM</h2>
+            <i class="fab fa-npm fa-5x"></i>
+          </div>
+        </div>
+        <div class="row app-marketing-grid">
+          <div class="col-md-4 px-4 mb-5">
+            <h2 class="mb-4">PHP</h2>
+            <i class="fab fa-php fa-5x"></i>
+          </div>
+          <div class="col-md-4 px-4 mb-5">
+            <h2 class="mb-4">Python</h2>
+            <i class="fab fa-python fa-5x"></i>
+          </div>
+          <div class="col-md-4 px-4 mb-5">
+            <h2 class="mb-4">Swift</h2>
+            <i class="fab fa-apple fa-5x"></i>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-
-<div class="block block-inverse block-secondary">
-  <div class="container">
-    <div class="row app-align-center">
-      <div class="col-md-6 col-sm-12 mr-auto">
-        <h6 class="text-uppercase">Plone Conference 2008</h6>
-        <p class="lead">We created a 501(c)(3) non-profit organization, DC Python (ZPUGDC, Inc.) in 2008 to expand our outreach to the users and supporters of open source technology. The organization focuses primarily on the local Washington, D.C., Maryland and Virginia Python community. One of our most significant contributions through our involvement with DC Python was the organization and hosting of Plone Conference 2008.</p>
-        <p class="lead">Our leadership of the DC Python organization continues today. We provide the management and facilitation of regular monthly meetings, sprints, and many other Python-related events and activities. We also maintain the entity in order to ensure a continued commitment to its mission.</p>
-        <a target="_blank" class="btn btn-lg border border-mute mt-5 text-light" href="https://dcpython.org">Learn More</a>
-      </div>
-      <div class="col-sm-5 my-5 text-center">
-        <p class="mb-5">
-          <img class="border app-code p-3" src="{% static 'ploneconf.png' %}" style="width: 75%">
-        </p>
-        <p> 
-          <img class="border app-code p-3" src="{% static 'ploneconf-group.jpg' %}" style="width: 75%">
-        </p>
+    
+    <div class="block block-inverse block-secondary">
+      <div class="container">
+        <div class="row app-align-center">
+          <div class="col-md-6 col-sm-12 mr-auto">
+            <h6 class="text-uppercase">Plone Conference 2008</h6>
+            <p class="lead">We created a 501(c)(3) non-profit organization, DC Python (ZPUGDC, Inc.) in 2008 to expand our outreach to the users and supporters of open source technology. The organization focuses primarily on the local Washington, D.C., Maryland and Virginia Python community. One of our most significant contributions through our involvement with DC Python was the organization and hosting of Plone Conference 2008.</p>
+            <p class="lead">Our leadership of the DC Python organization continues today. We provide the management and facilitation of regular monthly meetings, sprints, and many other Python-related events and activities. We also maintain the entity in order to ensure a continued commitment to its mission.</p>
+            <a target="_blank" class="btn btn-lg border border-mute mt-5 text-light" href="https://dcpython.org">Learn More</a>
+          </div>
+          <div class="col-sm-5 my-5 text-center">
+            <p class="mb-5">
+              <img class="border app-code p-3" src="{% static 'ploneconf.png' %}" style="width: 75%">
+            </p>
+            <p> 
+              <img class="border app-code p-3" src="{% static 'ploneconf-group.jpg' %}" style="width: 75%">
+            </p>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-
+  
 {% endblock %}
-
-<div class="block block-inverse app-footer">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-5">
-          <h6 class="text-uppercase">Blog</h6>
-          <ul class="list-unstyled list-spaced">
-            <li class="text-muted">
-              <p>Alex Clark has been blogging since 2007 about a variety of technical and other topics. Read his blog to learn about Django, Pillow, Plone, Python, Open Source and more.</p>
-            </li>
-          </ul>
-          <a target="_blank" class="btn btn-transparent border-light btn-lg text-light mb-5" href="https://blog.aclark.net">View Blog</a>
+  
+    <div class="block block-inverse app-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5">
+              <h6 class="text-uppercase">Blog</h6>
+              <ul class="list-unstyled list-spaced">
+                <li class="text-muted">
+                  <p>Alex Clark has been blogging since 2007 about a variety of technical and other topics. Read his blog to learn about Django, Pillow, Plone, Python, Open Source and more.</p>
+                </li>
+              </ul>
+              <a target="_blank" class="btn btn-transparent border-light btn-lg text-light mb-5" href="https://blog.aclark.net">View Blog</a>
+            </div>
+            <div class="col-md-2 ml-auto mb-5">
+              <ul class="list-unstyled list-spaced">
+                <li class="mb-2"><h6 class="text-uppercase"><a style="text-decoration: none" href="{% url 'about' %}">About</a></h6></li>
+                <li><a class="text-muted" style="text-decoration: none" href="{% url 'home' %}#mission">Mission</a></li>
+                <li><a class="text-muted" style="text-decoration: none" href="{% url 'home' %}#pillow">Pillow</a></li>
+                <li><a class="text-muted" style="text-decoration: none" href="{% url 'home' %}#technology">Technology</a></li>
+                <li><a class="text-muted" style="text-decoration: none" href="{% url 'testimonials' %}">Testimonials</a></li>
+                <li><a class="text-muted" style="text-decoration: none" href="{% url 'team' %}">Team</a></li>
+              </ul>
+            </div>
+            <div class="col-md-2 mb-5">
+              <ul class="list-unstyled list-spaced">
+                <li class="mb-2"><h6 class="text-uppercase"><a style="text-decoration: none" href="{% url 'services' %}">Services</a></h6></li>
+                <li><a class="text-muted" style="text-decoration: none" href="{% url 'services' %}#consulting">Consulting</a></li>
+                <li><a class="text-muted" style="text-decoration: none" href="{% url 'services' %}#software">Software</a></li>
+                <li><a class="text-muted" style="text-decoration: none" href="{% url 'services' %}#systems">Systems</a></li>
+              </ul>
+            </div>
+            <div class="col-md-2 mb-5">
+              <ul class="list-unstyled list-spaced">
+                <li class="mb-2"><h6 class="text-uppercase"><a style="text-decoration: none" href="{% url 'dashboard' %}">Staff</a></h6></li>
+                <li>{% if not request.user.is_anonymous %}<a class="text-muted" style="text-decoration: none" href="{% url 'dashboard' %}">Dashboard</a>{% else %}<a class="text-muted" style="text-decoration: none" href="{% url 'login' %}">Sign In</a>{% endif %}</li>
+                <li>{% if not request.user.is_anonymous %}<a class="text-muted" style="text-decoration: none" href="{% url 'user_view' request.user.id %}">Profile</a>{% endif %}</li>
+                <li>{% if request.user.is_staff %}<a class="text-muted" style="text-decoration: none" href="{% url 'admin:index' %}">Admin</a>{% endif %}
+                <li>{% if not request.user.is_anonymous %}<a class="text-muted" style="text-decoration: none" href="{% url 'logout' %}?next={% url 'home' %}">Sign out</a>{% endif %}</li>
+              </ul>
+            </div>
+            <span class="mx-auto text-muted">&copy; 2020 ACLARKNET LLC. All Rights Reserved.
+              <a class="text-muted" href="{% url 'contact' %}">Contact Us.</a>
+              <a target="_blank" href="https://facebook.com/aclarknet"><i class="fab fa-facebook"></i></a>
+              <a target="_blank" href="https://linkedin.com/company/aclarknetllc"><i class="fab fa-linkedin"></i></a>
+              <a target="_blank" href="https://twitter.com/aclarknet"><i class="fab fa-twitter"></i></a>
+            </span>
+          </div>
         </div>
-        <div class="col-md-2 ml-auto mb-5">
-          <ul class="list-unstyled list-spaced">
-            <li class="mb-2"><h6 class="text-uppercase"><a style="text-decoration: none" href="{% url 'about' %}">About</a></h6></li>
-            <li><a class="text-muted" style="text-decoration: none" href="{% url 'home' %}#mission">Mission</a></li>
-            <li><a class="text-muted" style="text-decoration: none" href="{% url 'home' %}#pillow">Pillow</a></li>
-            <li><a class="text-muted" style="text-decoration: none" href="{% url 'home' %}#technology">Technology</a></li>
-            <li><a class="text-muted" style="text-decoration: none" href="{% url 'testimonials' %}">Testimonials</a></li>
-            <li><a class="text-muted" style="text-decoration: none" href="{% url 'team' %}">Team</a></li>
-          </ul>
-        </div>
-        <div class="col-md-2 mb-5">
-          <ul class="list-unstyled list-spaced">
-            <li class="mb-2"><h6 class="text-uppercase"><a style="text-decoration: none" href="{% url 'services' %}">Services</a></h6></li>
-            <li><a class="text-muted" style="text-decoration: none" href="{% url 'services' %}#consulting">Consulting</a></li>
-            <li><a class="text-muted" style="text-decoration: none" href="{% url 'services' %}#software">Software</a></li>
-            <li><a class="text-muted" style="text-decoration: none" href="{% url 'services' %}#systems">Systems</a></li>
-          </ul>
-        </div>
-        <div class="col-md-2 mb-5">
-          <ul class="list-unstyled list-spaced">
-            <li class="mb-2"><h6 class="text-uppercase"><a style="text-decoration: none" href="{% url 'dashboard' %}">Staff</a></h6></li>
-            <li>{% if not request.user.is_anonymous %}<a class="text-muted" style="text-decoration: none" href="{% url 'dashboard' %}">Dashboard</a>{% else %}<a class="text-muted" style="text-decoration: none" href="{% url 'login' %}">Sign In</a>{% endif %}</li>
-            <li>{% if not request.user.is_anonymous %}<a class="text-muted" style="text-decoration: none" href="{% url 'user_view' request.user.id %}">Profile</a>{% endif %}</li>
-            <li>{% if request.user.is_staff %}<a class="text-muted" style="text-decoration: none" href="{% url 'admin:index' %}">Admin</a>{% endif %}
-            <li>{% if not request.user.is_anonymous %}<a class="text-muted" style="text-decoration: none" href="{% url 'logout' %}?next={% url 'home' %}">Sign out</a>{% endif %}</li>
-          </ul>
-        </div>
-        <span class="mx-auto text-muted">&copy; 2020 ACLARKNET LLC. All Rights Reserved.
-          <a class="text-muted" href="{% url 'contact' %}">Contact Us.</a>
-          <a target="_blank" href="https://facebook.com/aclarknet"><i class="fab fa-facebook"></i></a>
-          <a target="_blank" href="https://linkedin.com/company/aclarknetllc"><i class="fab fa-linkedin"></i></a>
-          <a target="_blank" href="https://twitter.com/aclarknet"><i class="fab fa-twitter"></i></a>
-        </span>
       </div>
     </div>
-  </div>
-</div>
-
-
-<script src="{% static 'assets/js/jquery.min.js' %}"></script>
-<script src="{% static 'assets/js/popper.min.js' %}"></script>
-<script src="{% static 'assets/js/toolkit.js' %}"></script>
-<script src="{% static 'assets/js/application.js' %}"></script>
-
-{% render_bundle 'main' 'js' %}
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/js/all.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
-<script>
-(function () {
-  'use strict'
-
-  feather.replace()
-
-}())
-</script>
-
+  
+  
+    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/js/toolkit.js' %}"></script>
+    <script src="{% static 'assets/js/application.js' %}"></script>
+    
+    {% render_bundle 'main' 'js' %}
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/js/all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+    <script>
+    (function () {
+      'use strict'
+    
+      feather.replace()
+    
+    }())
+    </script>
+    
 {% block script %}
 {% endblock %}
-
-</body>
+  
+  </body>
 </html>
