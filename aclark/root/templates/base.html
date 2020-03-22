@@ -26,24 +26,6 @@
     <link href="{% static 'assets/css/toolkit-startup.css' %}" rel="stylesheet">
     <link href="{% static 'assets/css/application-startup.css' %}" rel="stylesheet">
 
-    <style>
-      /* note: this is a hack for ios iframe for bootstrap themes shopify page */
-      /* this chunk of css is not part of the toolkit :) */
-      /* …curses ios, etc… */
-      @media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
-        body {
-          width: 1px;
-          min-width: 100%;
-          *width: 100%;
-        }
-        #stage {
-          height: 1px;
-          overflow: auto;
-          min-height: 100vh;
-          -webkit-overflow-scrolling: touch;
-        }
-      }
-    </style>
     {% block head %}
     {% endblock %}
     <!-- https://paulferrett.com/fontawesome-favicon/ -->
