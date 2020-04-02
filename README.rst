@@ -1,12 +1,7 @@
-ACLARK.NET, LLC Website
+ACLARK NET, LLC Website
 ================================================================================
 
-Badges
-------
-
-.. image:: https://travis-ci.org/aclark4life/aclarknet.svg?branch=master
-
-- https://travis-ci.org/aclark4life/aclarknet
+`The best professional website of all time, ever. <https://twitter.com/aclark4life/status/1144009802676355072>`_
 
 Screenshots
 -----------
