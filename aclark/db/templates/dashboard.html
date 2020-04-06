@@ -101,27 +101,15 @@
 {% endif %}
         </ul>
 {% if request.user.is_staff %}
-
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
           <a class="text-muted" style="text-decoration: none" href="{% url 'report_index' %}">Saved reports</a>
           <a class="d-flex align-items-center text-muted" href="{% url 'report_edit' %}">
             <span data-feather="plus-circle"></span>
           </a>
         </h6>
-        <ul class="nav flex-column mb-2">
-{% for report in items.reports %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'report_view' report.id %}">
-              <span data-feather="file-text"></span>
-              {{ report.name|default:'Untitled report' }}
-            </a>
-          </li>
-{% endfor %}
-        </ul>
 {% endif %}
       </div>
     </nav>
-
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 m-0 p-0 mb-5">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 border-bottom">
         <h1 class="h2">Dashboard</h1>
@@ -133,7 +121,6 @@
         </div>
         {% endif %}
       </div>
-
 {% block dashboard %}
 {% include 'total_table.html' %}
 {% with items=items.times %}
