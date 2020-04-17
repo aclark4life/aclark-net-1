@@ -335,4 +335,4 @@ vm: vagrant-init  # Alias
 #APP = app
 .DEFAULT_GOAL=commit-push
 #install: pip-install
-#serve: django-serve
+serve: django-serve
