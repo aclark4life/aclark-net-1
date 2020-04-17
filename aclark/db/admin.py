@@ -4,6 +4,7 @@ from import_export import fields
 from import_export import widgets
 from import_export.admin import ImportExportModelAdmin
 from import_export.resources import ModelResource as ImportExportModelResource
+from .models import Account
 from .models import Client
 from .models import Company
 from .models import Contact
@@ -395,6 +396,12 @@ class StatementOfWorkAdmin(ImportExportModelAdmin):
 
 
 @admin.register(TaskOrder)
+class TaskOrderAdmin(ImportExportModelAdmin):
+    """
+    """
+
+
+@admin.register(Account)
 class TaskOrderAdmin(ImportExportModelAdmin):
     """
     """

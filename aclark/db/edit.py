@@ -13,6 +13,7 @@ def edit(request, **kwargs):
     """
     context = {}
     obj = None
+    account_model = kwargs.get("account_model")
     client_model = kwargs.get("client_model")
     contact_model = kwargs.get("contact_model")
     estimate_model = kwargs.get("estimate_model")
@@ -35,6 +36,7 @@ def edit(request, **kwargs):
 
     if pk is None:  # New obj
         form = get_form(
+            account_model=account_model,
             client_model=client_model,
             form_model=form_model,
             invoice_model=invoice_model,
@@ -95,6 +97,7 @@ def edit(request, **kwargs):
             set_ref(
                 obj,
                 request,
+                account_model=account_model,
                 client_model=client_model,
                 estimate_model=estimate_model,
                 invoice_model=invoice_model,
@@ -112,7 +115,9 @@ def edit(request, **kwargs):
     context["item"] = obj
     context["pk"] = pk
 
-    if model_name == "client":
+    if model_name == "account":
+        context["account_nav"] = True
+    elif model_name == "client":
         context["client_nav"] = True
     elif model_name == "contact":
         context["contact_nav"] = True

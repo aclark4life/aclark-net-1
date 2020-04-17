@@ -1,3 +1,4 @@
+from .models import Account
 from .models import Client
 from .models import Contact
 from .models import Estimate
@@ -52,6 +53,12 @@ class AdminTimeForm(forms.ModelForm):
         required=False,
         initial=timezone.now(),
     )
+
+
+class AccountForm(forms.ModelForm):
+    class Meta:
+        model = Account
+        fields = "__all__"
 
 
 class ClientForm(forms.ModelForm):

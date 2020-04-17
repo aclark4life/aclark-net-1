@@ -11,6 +11,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 from rest_framework import viewsets
+from .forms import AccountForm
 from .forms import AdminProfileForm
 from .forms import AdminTimeForm
 from .forms import ClientForm
@@ -25,6 +26,7 @@ from .forms import ServiceForm
 from .forms import TaskForm
 from .forms import TaskOrderForm
 from .forms import TimeForm
+from .models import Account
 from .models import Client
 from .models import Contact
 from .models import Estimate
@@ -68,6 +70,48 @@ class TestimonialViewSet(viewsets.ModelViewSet):
 
     queryset = Testimonial.objects.filter(active=True).order_by("-issue_date")
     serializer_class = TestimonialSerializer
+
+
+@staff_member_required
+def account_view(request, pk=None):
+    order_by = {
+        "contact": ("-active",),
+        "project": ("-updated",),
+        "estimate": ("-issue_date",),
+        "invoice": ("-issue_date",),
+    }
+    context = get_page_items(
+        contact_model=Contact,
+        invoice_model=Invoice,
+        estimate_model=Estimate,
+        note_model=Note,
+        model=Account,
+        order_by=order_by,
+        pk=pk,
+        project_model=Project,
+        report_model=Report,
+        request=request,
+    )
+    return render(request, "account_view.html", context)
+
+
+@staff_member_required
+def account_edit(request, pk=None):
+    return edit(
+        request, report_model=Report, form_model=AccountForm, model=Account, pk=pk
+    )
+
+
+@staff_member_required
+def account_index(request):
+    context = get_index_items(
+        model=Account,
+        report_model=Report,
+        order_by=("-active", "name"),
+        request=request,
+        search_fields=("address", "name"),
+    )
+    return render(request, "account_index.html", context)
 
 
 @staff_member_required

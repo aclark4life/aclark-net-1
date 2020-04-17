@@ -5,6 +5,11 @@ from . import views
 urlpatterns = [
     url(r"^$", views.home, name="dashboard"),
     url(r"^auth/", include("django.contrib.auth.urls")),
+    # Account
+    url(r"^account/(?P<pk>\d+)$", views.account_view, name="account_view"),
+    url(r"^account/(?P<pk>\d+)/edit$", views.account_edit, name="account_edit"),
+    url(r"^account/add$", views.account_edit, name="account_edit"),
+    url(r"^account$", views.account_index, name="account_index"),
     # Client
     url(r"^client/(?P<pk>\d+)$", views.client_view, name="client_view"),
     url(r"^client/(?P<pk>\d+)/edit$", views.client_edit, name="client_edit"),

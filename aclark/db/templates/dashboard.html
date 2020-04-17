@@ -33,6 +33,12 @@
             <span>Tools</span>
           </h6>
           <li class="nav-item">
+            <a class="nav-link {% if account_nav %}active{% endif %}" href="{% url 'account_index' %}">
+              <span data-feather="users"></span>
+              Accounts
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link {% if client_nav %}active{% endif %}" href="{% url 'client_index' %}">
               <span data-feather="users"></span>
               Clients

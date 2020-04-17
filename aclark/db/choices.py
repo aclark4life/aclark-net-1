@@ -1,6 +1,7 @@
 # https://github.com/goinnn/django-multiselectfield
 
 URL_NAMES = {
+    "account": ("account_view", "account_edit", "account_index"),
     "client": ("client_view", "client_edit", "client_index"),
     "contact": ("contact_view", "contact_edit", "contact_index"),
     "estimate": ("estimate_view", "estimate_edit", "estimate_index"),
