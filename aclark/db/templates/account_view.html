@@ -17,7 +17,7 @@
 
 <ul class="list-unstyled">
   <li><h1>{{ item.name }}</h1></li>
-  <li><h2>{{ item.number }}</h2></li>
+  <li><h2>{{ item.number|default:'' }}</h2></li>
   <li><a class="btn btn-lg btn-light" style="text-decoration: none" target="_blank" href="{{ item.url }}">{{ item.url }}</a></li>
 </ul>
 
