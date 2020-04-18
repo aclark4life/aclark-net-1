@@ -15,10 +15,26 @@
 {% include 'delete_form.html' %}
 {% include 'field_table.html' %}
 
-<ul class="list-unstyled">
-  <li><h1>{{ item.name }}</h1></li>
-  <li><h3>{{ item.number|default:'' }}</h3></li>
-  <li><a class="btn btn-lg btn-light" style="text-decoration: none" target="_blank" href="{{ item.url }}">{{ item.url }}</a></li>
-</ul>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <ul class="list-unstyled">
+        <li><h1>{{ item.name }}</h1></li>
+        <li><h3>{{ item.number|default:'' }}</h3></li>
+        <li><a class="btn btn-lg btn-light" style="text-decoration: none" target="_blank" href="{{ item.url }}">{{ item.url }}</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      {% if item.note.all %}<h2>Notes</h2>{% endif %}
+      <ul>
+      {% for note in item.note.all %}
+        <li>{{ note.text|safe }}</li>
+      {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
 
 {% endblock %}
