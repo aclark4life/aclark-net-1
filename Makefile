@@ -331,8 +331,8 @@ vm: vagrant-init  # Alias
 %: %-default
 	@ true
 
-#PROJECT = project
-#APP = app
+PROJECT = aclark
+APP = db
 .DEFAULT_GOAL=commit-push
 #install: pip-install
 serve: django-serve

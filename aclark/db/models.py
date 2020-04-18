@@ -565,6 +565,7 @@ class Account(BaseModel):
     """
 
     name = models.CharField(max_length=300, blank=True, null=True)
+    number = models.CharField(max_length=300, blank=True, null=True)
     url = models.URLField(max_length=300, blank=True, null=True)
 
     def __str__(self):
