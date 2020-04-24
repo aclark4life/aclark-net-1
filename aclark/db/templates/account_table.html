@@ -22,7 +22,7 @@
                 </td>
                 <td>{{ item.name|default:'' }}</td>
                 <td>{{ item.number|default:'' }}</td>
-                <td><a href="{{ item.url }}" target="_blank"><i class="fas fa-external-link-alt"></i></a></td>
+                <td>{% if item.url %}<a href="{{ item.url }}" target="_blank"><i class="fas fa-external-link-alt"></i></a>{% endif %}</td>
               </tr>
             {% endfor %}
             </tbody>
