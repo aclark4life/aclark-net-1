@@ -1,7 +1,10 @@
 {% extends 'dashboard.html' %}
 {% block dashboard %}
     <div class="row my-3">
-      <div class="col-12">
+      <div class="col-6">
+        <h2>{{ item.name|default:'Unnamed Client' }}</h2>
+      </div>
+      <div class="col-6">
         <div class="text-right">
           <div class="btn-group dropdown">
             <a class="btn btn-lg btn-outline-dark rounded" href="{% url 'account_edit' pk=item.pk %}">Edit</a>
@@ -9,34 +12,24 @@
 {% include 'actions.html' %}
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3">
+        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+          <a class="nav-link active btn-light" id="v-pills-url-tab" data-toggle="pill" href="#v-pills-url" role="tab" aria-controls="v-pills-address" aria-selected="false">URL</a>
+        </div>
+      </div>
+      <div class="col-9">
+        <div class="tab-content" id="v-pills-tabContent">
+          <div class="tab-pane fade show active" id="v-pills-url" role="tabpanel" aria-labelledby="v-pills-url-tab">
+            <h1>URL</h1>
+            <a class="btn btn-lg btn-light" style="text-decoration: none" target="_blank" href="{{ item.url }}"><i class="mr-1 fas fa-external-link-alt"></i>{{ item.url }}</a>
+          </div>
+        </div>
       </div>
     </div>
 {% include 'copy_form.html' %}
 {% include 'delete_form.html' %}
-{% include 'field_table.html' %}
-
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <ul class="list-unstyled">
-        <li><h1>{{ item.name|default:'' }}</h1></li>
-        <li><h3>{{ item.number|default:'' }}</h3></li>
-        {% if item.url %}
-            <li><a class="btn btn-lg btn-light" style="text-decoration: none" target="_blank" href="{{ item.url }}">{{ item.url }}</a></li>
-        {% endif %}
-      </ul>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      {% if item.note.all %}<h2>Notes</h2>{% endif %}
-      <ul>
-      {% for note in item.note.all %}
-        <li>{{ note.text|safe }}</li>
-      {% endfor %}
-      </ul>
-    </div>
-  </div>
-</div>
-
 {% endblock %}
