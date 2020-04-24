@@ -20,6 +20,7 @@
         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
           <a class="nav-link active btn-light" id="v-pills-url-tab" data-toggle="pill" href="#v-pills-url" role="tab" aria-controls="v-pills-address" aria-selected="false">URL</a>
           <a class="nav-link btn-light" id="v-pills-number-tab" data-toggle="pill" href="#v-pills-number" role="tab" aria-controls="v-pills-address" aria-selected="false">Number</a>
+          <a class="nav-link btn-light" id="v-pills-notes-tab" data-toggle="pill" href="#v-pills-notes" role="tab" aria-controls="v-pills-address" aria-selected="false">Notes</a>
         </div>
       </div>
       <div class="col-9">
@@ -34,6 +35,20 @@
             {% if item.number %}
             <p class="display-4">{{ item.number }}</p>
             {% endif %}
+          </div>
+          <div class="tab-pane fade show" id="v-pills-notes" role="tabpanel" aria-labelledby="v-pills-notes-tab">
+            {% for note in item.note.all %}
+            <div class="card">
+              <div class="card-header">
+                {{ note.title|default:'Note' }}
+              </div>
+              <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                  <p>{{ note.text|safe }}</p>
+                </blockquote>
+              </div>
+            </div>
+            {% endfor %}
           </div>
         </div>
       </div>
