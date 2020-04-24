@@ -58,7 +58,7 @@ class AdminTimeForm(forms.ModelForm):
 class AccountForm(forms.ModelForm):
     class Meta:
         model = Account
-        fields = "__all__"
+        exclude = ("tags", "active", "hidden")
 
 
 class ClientForm(forms.ModelForm):
