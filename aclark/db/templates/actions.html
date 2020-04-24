@@ -7,7 +7,7 @@
                   <a class="dropdown-item" href="{% url 'contact_edit' %}?client={{ item.pk }}"><i class="fa fa-plus mr-1"></i>Contact</a>
                   <a class="dropdown-item" href="{% url 'estimate_edit' %}?client={{ item.pk }}"><i class="fa fa-plus mr-1"></i>Estimate</a>
                   <a class="dropdown-item" href="{% url 'project_edit' %}?client={{ item.pk }}"><i class="fa fa-plus mr-1"></i>Project</a>
-{% elif model_name == 'invoice' %} 
+{% elif model_name == 'invoice' %}
                   <h6 class="dropdown-header">Add</h6>
                   <a class="dropdown-item" href="{% url 'time_edit' %}?invoice={{ item.pk|unlocalize }}"><i class="fa fa-plus"></i>Time</a>
                   <a class="dropdown-item" href="{% url 'note_edit' %}?invoice={{ item.pk }}"><i class="fa fa-plus mr-1"></i>Note</a>
@@ -16,7 +16,7 @@
                   <a class="dropdown-item" href="" data-toggle="modal" data-target=".bd-invoiced-false-modal-sm"><i class="far fa-square mr-1"></i>Not sent</a>
                   <h6 class="dropdown-header">Export</h6>
                   <a target="_blank" class="dropdown-item" href="{% url 'invoice_view' item.pk %}?pdf=1"><i class="fa fa-file-pdf mr-1"></i>Export</a>
-{% elif model_name == 'estimate' %} 
+{% elif model_name == 'estimate' %}
                   <h6 class="dropdown-header">Add</h6>
                   <a class="dropdown-item" href="{% url 'time_edit' %}?estimate={{ item.pk|unlocalize }}"><i class="fa fa-plus mr-1"></i>Time</a>
                   <a class="dropdown-item" href="{% url 'note_edit' %}?estimate={{ item.pk }}"><i class="fa fa-plus mr-1"></i>Note</a>
@@ -25,17 +25,18 @@
 {% elif model_name == 'task_order' %}
                   <h6 class="dropdown-header">Add</h6>
                   <a class="dropdown-item" href="{% url 'time_edit' %}?task_order={{ item.pk|unlocalize }}"><i class="fa fa-plus mr-1"></i>Time</a>
-{% elif model_name == 'note' %} 
+{% elif model_name == 'note' %}
                   <h6 class="dropdown-header">Export</h6>
                   <a class="dropdown-item" href="{% url 'note_view' item.pk %}?mail=1"><i class="fab fa-mailchimp mr-1"></i>Export</a>
                   <a target="_blank" class="dropdown-item" href="{% url 'note_view' item.pk %}?pdf=1"><i class="fa fa-file-pdf mr-1"></i>Export</a>
 {% elif model_name == 'project' %}
                   <h6 class="dropdown-header">Add</h6>
                   <a class="dropdown-item" href="{% url 'invoice_edit' %}?client={{ item.client.pk }}&project={{ item.pk }}"><i class="fa fa-plus"></i>Invoice</a>
-{% elif model_name == 'report' %} 
+{% elif model_name == 'report' %}
                   <h6 class="dropdown-header">Export</h6>
                   <a class="dropdown-item" href="{% url 'report_view' item.pk %}?mail=1"><i class="fab fa-mailchimp mr-1"></i>Export</a>
-{% elif model_name == 'account' %} 
+{% elif model_name == 'account' %}
+                  <a class="dropdown-item" href="{% url 'account_edit' %}"><i class="fa fa-plus"></i>Account</a>
                   <a class="dropdown-item" href="{% url 'note_edit' %}?account={{ item.pk }}"><i class="fa fa-plus mr-1"></i>Note</a>
 {% endif %}
                   <h6 class="dropdown-header">Actions</h6>
