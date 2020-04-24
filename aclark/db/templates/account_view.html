@@ -19,14 +19,20 @@
       <div class="col-3">
         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
           <a class="nav-link active btn-light" id="v-pills-url-tab" data-toggle="pill" href="#v-pills-url" role="tab" aria-controls="v-pills-address" aria-selected="false">URL</a>
+          <a class="nav-link btn-light" id="v-pills-number-tab" data-toggle="pill" href="#v-pills-number" role="tab" aria-controls="v-pills-address" aria-selected="false">Number</a>
         </div>
       </div>
       <div class="col-9">
         <div class="tab-content" id="v-pills-tabContent">
-          <div class="tab-pane fade show active" id="v-pills-url" role="tabpanel" aria-labelledby="v-pills-url-tab">
-            <h1>URL</h1>
+          <div class="tab-pane fade show active text-center mt-5" id="v-pills-url" role="tabpanel" aria-labelledby="v-pills-url-tab">
             {% if item.url %}
-            <a class="btn btn-lg btn-light" style="text-decoration: none" target="_blank" href="{{ item.url }}"><i class="mr-1 fas fa-external-link-alt"></i>{{ item.url }}</a>
+            <p class="badge badge-primary">{{ item.url }}</p>
+            <p><a href="{{ item.url }}" class="btn btn-lg btn-light btn-outline-dark" target="_blank"><i class="text-muted fas fa-external-link-alt fa-2x"></i></a></p>
+            {% endif %}
+          </div>
+          <div class="tab-pane fade show text-center mt-5" id="v-pills-number" role="tabpanel" aria-labelledby="v-pills-number-tab">
+            {% if item.number %}
+            <p class="display-4">{{ item.number }}</p>
             {% endif %}
           </div>
         </div>
