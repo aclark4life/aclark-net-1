@@ -408,6 +408,7 @@ def note_edit(request, pk=None):
         model=Note,
         client_model=Client,
         invoice_model=Invoice,
+        account_model=Account,
         pk=pk,
     )
 

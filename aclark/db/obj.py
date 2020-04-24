@@ -131,6 +131,7 @@ def set_ref(obj, request, **kwargs):
     """
     Set object field references after create or edit
     """
+    account_model = kwargs.get("account_model")
     client_model = kwargs.get("client_model")
     estimate_model = kwargs.get("estimate_model")
     invoice_model = kwargs.get("invoice_model")
@@ -158,6 +159,7 @@ def set_ref(obj, request, **kwargs):
     elif model_name == "note":
         query_client = get_query_string(request, "client")
         query_invoice = get_query_string(request, "invoice")
+        query_account = get_query_string(request, "account")
         if query_client:
             client = get_object_or_404(client_model, pk=query_client)
             client.note.add(obj)
@@ -166,6 +168,10 @@ def set_ref(obj, request, **kwargs):
             invoice = get_object_or_404(invoice_model, pk=query_invoice)
             invoice.note.add(obj)
             invoice.save()
+        elif query_account:
+            account = get_object_or_404(account_model, pk=query_account)
+            account.note.add(obj)
+            account.save()
     elif model_name == "project":
         query_client = get_query_string(request, "client")
         if query_client:
