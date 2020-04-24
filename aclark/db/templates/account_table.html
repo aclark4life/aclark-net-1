@@ -8,6 +8,7 @@
                 <th data-field="hidden-name" data-sortable="true" data-visible="false">Hidden Name</th>
                 <th data-field="number" data-sortable="false">Number</th>
                 <th data-field="url" data-sortable="false">URL</th>
+                <th data-field="url" data-sortable="false">Notes</th>
               </tr>
             </thead>
             <tbody>
@@ -23,6 +24,7 @@
                 <td>{{ item.name|default:'' }}</td>
                 <td>{{ item.number|default:'' }}</td>
                 <td>{% if item.url %}<a href="{{ item.url }}" target="_blank"><i class="fas fa-external-link-alt"></i></a>{% endif %}</td>
+                <td>{% if item.note.all %}<a href="{% url 'account_view' item.pk %}"><i class="fas fa-external-link-alt"></i></a>{% endif %}</td>
               </tr>
             {% endfor %}
             </tbody>
