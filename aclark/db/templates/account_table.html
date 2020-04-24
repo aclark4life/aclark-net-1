@@ -6,6 +6,8 @@
                 <th data-field="hidden-active" data-sortable="true" data-visible="false">Hidden Active</th>
                 <th data-field="name" data-sort-name="hidden-name" data-sortable="true">Name</th>
                 <th data-field="hidden-name" data-sortable="true" data-visible="false">Hidden Name</th>
+                <th data-field="number" data-sortable="false">Number</th>
+                <th data-field="url" data-sortable="false">URL</th>
               </tr>
             </thead>
             <tbody>
@@ -19,6 +21,8 @@
                   <a href="{% url 'account_edit' item.pk %}"><i class="far fa-edit"></i></a>
                 </td>
                 <td>{{ item.name|default:'' }}</td>
+                <td>{{ item.number|default:'' }}</td>
+                <td><a href="{{ item.url }}" target="_blank"><i class="fas fa-external-link-alt"></i></a></td>
               </tr>
             {% endfor %}
             </tbody>
