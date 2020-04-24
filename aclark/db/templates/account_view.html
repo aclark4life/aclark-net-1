@@ -21,7 +21,9 @@
       <ul class="list-unstyled">
         <li><h1>{{ item.name|default:'' }}</h1></li>
         <li><h3>{{ item.number|default:'' }}</h3></li>
-        <li><a class="btn btn-lg btn-light" style="text-decoration: none" target="_blank" href="{{ item.url }}">{{ item.url }}</a></li>
+        {% if item.url %}
+            <li><a class="btn btn-lg btn-light" style="text-decoration: none" target="_blank" href="{{ item.url }}">{{ item.url }}</a></li>
+        {% endif %}
       </ul>
     </div>
   </div>
