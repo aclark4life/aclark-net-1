@@ -38,9 +38,15 @@
           </div>
           <div class="tab-pane fade show" id="v-pills-notes" role="tabpanel" aria-labelledby="v-pills-notes-tab">
             {% for note in item.note.all %}
-            <div class="card">
+            <div class="card border mb-5">
               <div class="card-header">
-                {{ note.title|default:'Note' }}
+                <span class="display-4">{{ note.title|default:'Note' }}</span>
+                <div class="btn-toolbar my-3 float-right" role="toolbar" aria-label="Toolbar with button groups">
+                  <div class="btn-group mr-2" role="group" aria-label="Second group">
+                    <a class="btn btn-outline-dark" href="{% url 'note_edit' note.pk %}"><i class="far fa-edit"></i></a>
+                    <a class="btn btn-outline-dark" href="{% url 'note_view' note.pk %}"><i class="far fa-sticky-note"></i></a>
+                  </div>
+                </div>
               </div>
               <div class="card-body">
                 <blockquote class="blockquote mb-0">
