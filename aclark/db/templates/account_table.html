@@ -19,7 +19,7 @@
                   <a href="{% url 'account_view' item.pk %}">{{ item.name|default:'Account' }}</a>
                   <a href="{% url 'account_edit' item.pk %}"><i class="far fa-edit"></i></a>
                   {% if item.url %}<a href="{{ item.url }}" target="_blank"><i class="fas fa-external-link-alt"></i></a>{% endif %}
-                  {% if item.note.all %}<a href="{% url 'account_view' item.pk %}"><i class="far fa-sticky-note"></i></a>{% endif %}
+                  {% if item.note.all %}<i class="far fa-sticky-note"></i>{% endif %}
                 </td>
                 <td>{{ item.name|default:'' }}</td>
                 <td>{{ item.number|default:'' }}</td>
