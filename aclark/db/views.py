@@ -109,7 +109,7 @@ def account_index(request):
         report_model=Report,
         order_by=("-active", "name"),
         request=request,
-        search_fields=("address", "name"),
+        search_fields=("name",),
     )
     return render(request, "account_index.html", context)
 

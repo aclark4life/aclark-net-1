@@ -8,6 +8,6 @@ include base.mk
 
 #PROJECT = project
 #APP = app
-#.DEFAULT_GOAL=commit-push
+.DEFAULT_GOAL=commit-push
 #install: pip-install
-#serve: django-serve
+serve: django-serve
