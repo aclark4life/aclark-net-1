@@ -17,7 +17,7 @@
                 <td>{{ item.active }}</td>
                 <td>
                   <a style="text-decoration: none" href="{% url 'account_view' item.pk %}">{{ item.name|default:'Account' }}</a>
-                  <a href="{% url 'account_edit' item.pk %}"><i class="far fa-edit"></i></a>
+                  <a href="{% url 'account_edit' item.pk %}"><i class="fas fa-edit"></i></a>
                   {% if item.url %}<a href="{{ item.url }}" target="_blank"><i class="fas fa-external-link-alt"></i></a>{% endif %}
                   {% if item.note.all %}<i class="far fa-sticky-note"></i>{% endif %}
                 </td>
