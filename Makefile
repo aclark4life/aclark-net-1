@@ -6,8 +6,8 @@ include base.mk
 #
 # https://stackoverflow.com/a/49804748
 
-#PROJECT = project
-#APP = app
+PROJECT = aclark
+APP = db
 .DEFAULT_GOAL=commit-push
 #install: pip-install
 serve: django-serve
