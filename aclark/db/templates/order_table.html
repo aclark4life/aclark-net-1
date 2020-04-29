@@ -1,0 +1,26 @@
+          <table data-toggle="table" data-classes="table bg-light">
+            <thead>
+              <tr>
+                <th data-valign="top" data-width="50" data-sortable="true">#</th>
+                <th data-valign="top" data-width="50" data-sort-name="hidden-active" data-sortable="true" data-valign="top" {% if active %} data-visible="false" {% endif %}>Active</th> 
+                <th data-valign="top" data-field="hidden-active" data-sortable="true" data-visible="false">Hidden Active</th>
+                <th data-valign="top" data-width="100" data-sortable="true">Created</th>
+                <th data-valign="top" data-width="100" data-sortable="true">Updated</th>
+                <th data-valign="top" data-sortable="true">Title</th>
+                <th data-valign="top" data-sortable="true">Order</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for item in items.orders %}
+              <tr>
+                <td>{{ forloop.counter }}</a></td>
+                <td><form action="{% url 'order_edit' item.pk %}" method="post">{% csrf_token %}<input type="hidden" value="off" name="checkbox-active"><input type="checkbox" value="on" name="checkbox-active"{% if item.active %} checked {% endif %} onChange="this.form.submit()"></form></td>
+                <td>{{ item.active }}</td>
+                <td>{{ item.created }}</td>
+                <td>{{ item.updated }}</td>
+                <td><a href="{% url 'order_view' item.pk %}">{{ item.title|default:'Order' }}</a> <a href="{% url 'order_edit' item.pk %}"><i class="far fa-edit"></i></a></td>
+                <td>{{ item.order|safe }}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>

@@ -4,6 +4,7 @@ from .models import Contact
 from .models import Estimate
 from .models import Invoice
 from .models import Note
+from .models import Order
 from .models import Profile
 from .models import Project
 from .models import Report
@@ -182,6 +183,13 @@ class InvoiceForm(forms.ModelForm):
 class NoteForm(forms.ModelForm):
     class Meta:
         model = Note
+        fields = ("title", "text")
+        widgets = {"text": forms.widgets.TextInput(attrs={"class": "tinymce"})}
+
+
+class OrderForm(forms.ModelForm):
+    class Meta:
+        model = Order
         fields = ("title", "text")
         widgets = {"text": forms.widgets.TextInput(attrs={"class": "tinymce"})}
 

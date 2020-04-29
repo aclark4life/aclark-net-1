@@ -1,0 +1,17 @@
+{% extends 'dashboard.html' %}
+{% block dashboard %}
+    <div class="row my-3">
+      <div class="col-12">
+        <div class="text-right">
+          <div class="btn-group dropdown">
+            <a class="btn btn-lg btn-outline-dark rounded" href="{% url 'order_edit' pk=item.pk %}">Edit</a>
+            <div class="dropdown-menu">
+{% include 'actions.html' %}
+            </div>
+          </div>
+      </div>
+    </div>
+{% include 'copy_form.html' %}
+{% include 'delete_form.html' %}
+{% include 'field_table.html' %}
+{% endblock %}

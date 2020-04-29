@@ -19,6 +19,7 @@ from .forms import ContactForm
 from .forms import EstimateForm
 from .forms import InvoiceForm
 from .forms import NoteForm
+from .forms import OrderForm
 from .forms import ProfileForm
 from .forms import ProjectForm
 from .forms import ReportForm
@@ -32,6 +33,7 @@ from .models import Contact
 from .models import Estimate
 from .models import Invoice
 from .models import Note
+from .models import Order
 from .models import Profile
 from .models import Project
 from .models import Report
@@ -423,6 +425,45 @@ def note_index(request, pk=None):
         search_fields=("text", "title"),
     )
     return render(request, "note_index.html", context)
+
+
+@staff_member_required
+def order_view(request, pk=None):
+    context = get_page_items(
+        model=Order,
+        pk=pk,
+        request=request,
+        report_model=Report,
+        site_config_model=SiteConfiguration,
+        include_fields=("created", "updated", "text", "title"),
+    )
+    return render(request, "order_view.html", context)
+
+
+@staff_member_required
+def order_edit(request, pk=None):
+    return edit(
+        request,
+        report_model=Report,
+        form_model=OrderForm,
+        model=Order,
+        client_model=Client,
+        invoice_model=Invoice,
+        account_model=Account,
+        pk=pk,
+    )
+
+
+@staff_member_required
+def order_index(request, pk=None):
+    context = get_index_items(
+        model=Order,
+        report_model=Report,
+        order_by=("-created",),
+        request=request,
+        search_fields=("text", "title"),
+    )
+    return render(request, "order_index.html", context)
 
 
 @staff_member_required

@@ -1,0 +1,18 @@
+{% extends 'dashboard.html' %}
+{% block dashboard %}
+{% include 'search.html' %}
+    <div class="row">
+      <div class="col-12">
+        <div class="text-right">
+          <a class="btn btn-lg btn-outline-dark" href="{% url 'order_edit' %}">Add Order</a>
+        </div>
+      </div>
+    </div>
+{% with items=items.orders %}
+{% include 'pagination.html' %}
+{% endwith %}
+{% include 'order_table.html' %}
+{% with items=items.orders %}
+{% include 'pagination.html' %}
+{% endwith %}
+{% endblock %}

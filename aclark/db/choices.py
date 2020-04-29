@@ -7,6 +7,7 @@ URL_NAMES = {
     "estimate": ("estimate_view", "estimate_edit", "estimate_index"),
     "invoice": ("invoice_view", "invoice_edit", "invoice_index"),
     "note": ("note_view", "note_edit", "note_index"),
+    "order": ("order_view", "order_edit", "order_index"),
     "profile": ("user_view", "user_edit", "user_index"),
     "project": ("project_view", "project_edit", "project_index"),
     "report": ("report_view", "report_edit", "report_index"),
