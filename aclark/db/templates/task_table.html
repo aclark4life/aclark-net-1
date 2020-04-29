@@ -22,7 +22,7 @@
                 <td>{{ item.name|default:'' }}</td>
                 <td>{{ item.color|default:'' }}</td>
                 <td>{{ item.rate|default:'' }}</td>
-                <td><a href="{% url 'task_view' item.pk %}">{{ item.unit|default:'' }}</a> <a href="{% url 'task_edit' item.pk %}"><i class="far fa-edit"></i></a></td>
+                <td><a style="text-decoration: none" href="{% url 'task_view' item.pk %}">{{ item.unit|default:'' }}</a> <a href="{% url 'task_edit' item.pk %}"><i class="far fa-edit"></i></a></td>
                 <td>{% if item.client %}<a href="{% url client_view item.client %}">{{ item.client }}</a>{% endif %}</td>
               </tr>
             {% endfor %}
