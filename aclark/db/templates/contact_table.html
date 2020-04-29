@@ -19,7 +19,14 @@
                 <td>{{ item.active }}</td>
                 <td>{{ item.last_name|default:'' }}</td>
                 <td>{{ item.first_name|default:'' }}</td>
-                <td>{% if item.email %}<a href="{% url 'contact_view' item.pk %}">{{ item.email }}</a> <a href="{% url 'contact_edit' item.pk %}"><i class="far fa-edit"></i></a>{% else %}<a href="{% url 'contact_view' item.pk %}">Email@Address</a>{% endif %}</td>
+                <td>
+                  {% if item.email %}
+                  <a style="text-decoration: none" href="{% url 'contact_view' item.pk %}">{{ item.email }}</a>
+                  <a href="{% url 'contact_edit' item.pk %}"><i class="far fa-edit"></i></a>
+                  {% else %}
+                  <a style="text-decoration: none" href="{% url 'contact_view' item.pk %}">Email@Address</a>
+                  {% endif %}
+                </td>
                 <td>{% if item.client %}<a href="{% url 'client_view' item.client.pk %}">{{ item.client }}</a> <a href="{% url 'client_edit' item.client.pk %}"><i class="far fa-edit"></i></a>{% endif %}</td>
                 <td>{{ item.title|default:'' }}</td>
               </tr>
