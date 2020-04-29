@@ -15,7 +15,7 @@
                 <td><form action="{% url edit_url item.pk %}" method="post">{% csrf_token %}<input type="hidden" value="off" name="checkbox-active"><input type="checkbox" value="on" name="checkbox-active"{% if item.active %} checked {% endif %} onChange="this.form.submit()"></form></td>
                 <td>{{ item.active }}</td>
                 <td>
-                  <a href="{% url view_url item.pk %}">{{ item.name|default:'Item' }}</a>
+                  <a style="text-decoration: none" href="{% url view_url item.pk %}">{{ item.name|default:'Item' }}</a>
                   <a href="{% url edit_url item.pk %}"><i class="far fa-edit"></i></a>
                 </td>
                 <td>{{ item.name|default:'Item' }}</td>
