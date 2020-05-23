@@ -17,9 +17,11 @@ from django.utils import timezone
 
 
 DOC_TYPES = [
-    ('invoice', 'Invoice'),
-    ('estimate', 'estimate'),
-    ('proposal', 'proposal'),
+    ("Invoice", "invoice"),
+    ("Estimate", "estimate"),
+    ("Proposal", "proposal"),
+    ("Statement of Work", "sow"),
+    ("Task Order", "to"),
 ]
 
 
@@ -187,7 +189,6 @@ class InvoiceForm(forms.ModelForm):
         initial=timezone.now(),
     )
     doc_type = forms.CharField(widget=forms.Select(choices=DOC_TYPES))
-
 
 
 class NoteForm(forms.ModelForm):
