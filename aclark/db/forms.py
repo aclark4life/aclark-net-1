@@ -243,7 +243,7 @@ class ProjectForm(forms.ModelForm):
 class ReportForm(forms.ModelForm):
     class Meta:
         model = Report
-        exclude = ("icon_name", "icon_size", "icon_color")
+        exclude = ("icon_name", "icon_size", "icon_color", "hidden")
 
     invoices = forms.ModelMultipleChoiceField(
         required=False, queryset=Invoice.objects.all().order_by("-issue_date")
