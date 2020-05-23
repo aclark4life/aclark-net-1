@@ -11,3 +11,4 @@ APP = db
 .DEFAULT_GOAL=commit-push
 install: pip-install
 serve: django-serve
+
