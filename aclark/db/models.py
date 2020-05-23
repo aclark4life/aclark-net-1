@@ -258,6 +258,8 @@ class Invoice(BaseModel):
     class Meta:
         ordering = ["subject"]
 
+    doc_type = models.CharField(max_length=300, blank=True, null=True)
+
 
 class Order(BaseModel):
     """

@@ -16,6 +16,17 @@ from django import forms
 from django.utils import timezone
 
 
+DOC_TYPES = [
+    'invoice',
+    'estimate',
+    'proposal',
+]
+
+
+class DocTypeForm(forms.Form):
+    doc_type = forms.CharField(widget=forms.Select(choices=DOC_TYPES))
+
+
 class AdminProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
