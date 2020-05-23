@@ -17,14 +17,10 @@ from django.utils import timezone
 
 
 DOC_TYPES = [
-    'invoice',
-    'estimate',
-    'proposal',
+    ('invoice', 'Invoice'),
+    ('estimate', 'estimate'),
+    ('proposal', 'proposal'),
 ]
-
-
-class DocTypeForm(forms.Form):
-    doc_type = forms.CharField(widget=forms.Select(choices=DOC_TYPES))
 
 
 class AdminProfileForm(forms.ModelForm):
@@ -158,6 +154,7 @@ class InvoiceForm(forms.ModelForm):
             "due_date",
             "last_payment_date",
             "note",
+            "doc_type",
         )
 
     issue_date = forms.DateField(
@@ -189,6 +186,8 @@ class InvoiceForm(forms.ModelForm):
         required=False,
         initial=timezone.now(),
     )
+    doc_type = forms.CharField(widget=forms.Select(choices=DOC_TYPES))
+
 
 
 class NoteForm(forms.ModelForm):
