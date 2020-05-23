@@ -17,11 +17,11 @@ from django.utils import timezone
 
 
 DOC_TYPES = [
-    ("Invoice", "invoice"),
-    ("Estimate", "estimate"),
-    ("Proposal", "proposal"),
-    ("Statement of Work", "sow"),
-    ("Task Order", "to"),
+    ("Invoice", "Invoice"),
+    ("Estimate", "Estimate"),
+    ("Proposal", "Proposal"),
+    ("Statement of Work", "Statement of Work"),
+    ("Task Order", "Task Order"),
 ]
 
 
