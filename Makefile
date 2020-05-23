@@ -9,5 +9,5 @@ include base.mk
 PROJECT = aclark
 APP = db
 .DEFAULT_GOAL=commit-push
-#install: pip-install
+install: pip-install
 serve: django-serve
