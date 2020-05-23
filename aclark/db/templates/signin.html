@@ -6,17 +6,22 @@
          <div class="col-sm-12 text-center">
            <form class="form-signin" action="{% url 'login' %}" method="POST">{% csrf_token %}
              <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+             <p class="">Please sign in with your username and password or use dropdown menu to reset password or sign in with Google.</p>
              <label for="inputEmail" class="sr-only">Username</label>
              <input type="text" id="inputEmail" name="username" class="form-control" placeholder="Username" required autofocus>
              <label for="inputPassword" class="sr-only">Password</label>
              <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
-             <div class="btn-group dropdown">
-               <button type="submit" class="btn btn-lg btn-dark rounded">Sign in</button>
-               <div class="dropdown-menu">
-                 <a class="dropdown-item" href="/db/login/google-oauth2/?next=/db/">Sign in with Google</a>
-                 <a class="dropdown-item" href="{% url 'password_reset' %}">Password reset</a>
-               </div>
-             </div>
+            <!-- https://getbootstrap.com/docs/4.0/components/dropdowns/#split-button-dropdowns -->
+            <div class="btn-group">
+              <button type="submit" class="btn btn-dark btn-lg">Sign In</button>
+              <button type="button" class="btn btn-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item text-dark" href="/db/login/google-oauth2/?next=/db/">Sign in with Google</a>
+                <a class="dropdown-item text-dark" href="{% url 'password_reset' %}">Password reset</a>
+              </div>
+            </div>
            </form>
         </div>
       </div>
