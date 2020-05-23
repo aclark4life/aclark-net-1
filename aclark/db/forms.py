@@ -65,7 +65,7 @@ class AccountForm(forms.ModelForm):
 class ClientForm(forms.ModelForm):
     class Meta:
         model = Client
-        exclude = ('tags', 'active', 'hidden', 'published')
+        exclude = ("tags", "active", "hidden", "published")
 
 
 class ContactForm(forms.ModelForm):
@@ -215,19 +215,18 @@ class ProjectForm(forms.ModelForm):
             "active",
             "hidden",
             "tags",
+            "code",
+            "total_hours",
+            "billable_hours",
+            "amount",
+            "budget",
+            "budget_spent",
+            "budget_remaining",
+            "total_costs",
+            "team_costs",
+            "cost",
+            "expenses",
         )
-
-    start_date = forms.DateField(
-        widget=forms.DateInput(attrs={"type": "date", "class": "col-2"}),
-        required=False,
-        initial=timezone.now(),
-    )
-
-    end_date = forms.DateField(
-        widget=forms.DateInput(attrs={"type": "date", "class": "col-2"}),
-        required=False,
-        initial=timezone.now(),
-    )
 
 
 class ReportForm(forms.ModelForm):

@@ -12,3 +12,5 @@ APP = db
 install: pip-install
 serve: django-serve
 
+black:
+	black aclark/db/*.py
