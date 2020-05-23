@@ -65,7 +65,7 @@ class AccountForm(forms.ModelForm):
 class ClientForm(forms.ModelForm):
     class Meta:
         model = Client
-        fields = "__all__"
+        exclude = ('tags', 'active', 'hidden', 'published')
 
 
 class ContactForm(forms.ModelForm):
@@ -211,15 +211,10 @@ class ProfileForm(forms.ModelForm):
 class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
-        fields = (
+        exclude = (
             "active",
             "hidden",
-            "name",
-            "start_date",
-            "end_date",
-            "client",
-            "task",
-            "team",
+            "tags",
         )
 
     start_date = forms.DateField(
