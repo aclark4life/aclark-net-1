@@ -57,6 +57,12 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link {% if estimate_nav %}active{% endif %}" href="{% url 'estimate_index' %}">
+              <span data-feather="file"></span>
+              Estimates
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link {% if contact_nav %}active{% endif %}" href="{% url 'contact_index' %}">
               <span data-feather="users"></span>
               Contacts
