@@ -13,6 +13,7 @@ docx = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
 def render_doc(context, **kwargs):
     """
     """
+
     # https://python-docx.readthedocs.io/en/latest/#what-it-can-do
     document = Document()
     filename = kwargs.get("filename")
@@ -28,6 +29,7 @@ def render_doc(context, **kwargs):
 def render_pdf(context, **kwargs):
     """
     """
+
     filename = kwargs.get("filename")
     template = kwargs.get("template")
     response = HttpResponse(content_type="application/pdf")

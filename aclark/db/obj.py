@@ -22,6 +22,7 @@ def obj_process(
     Process object based on task, typically performing some task followed by
     the appropriate redir.
     """
+
     http_ref = None
     if request:
         http_ref = request.META.get("HTTP_REFERER")

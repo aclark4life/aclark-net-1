@@ -26,6 +26,9 @@ DOC_TYPES = [
 
 
 class AdminProfileForm(forms.ModelForm):
+    """
+    """
+
     class Meta:
         model = Profile
         fields = (
@@ -43,6 +46,9 @@ class AdminProfileForm(forms.ModelForm):
 
 
 class AdminTimeForm(forms.ModelForm):
+    """
+    """
+
     class Meta:
         model = Time
         fields = (
@@ -66,18 +72,27 @@ class AdminTimeForm(forms.ModelForm):
 
 
 class AccountForm(forms.ModelForm):
+    """
+    """
+
     class Meta:
         model = Account
         exclude = ("tags", "active", "hidden")
 
 
 class ClientForm(forms.ModelForm):
+    """
+    """
+
     class Meta:
         model = Client
         exclude = ("tags", "active", "hidden", "published")
 
 
 class ContactForm(forms.ModelForm):
+    """
+    """
+
     class Meta:
         model = Contact
         fields = (
@@ -94,6 +109,9 @@ class ContactForm(forms.ModelForm):
 
 
 class EstimateForm(forms.ModelForm):
+    """
+    """
+
     class Meta:
         model = Estimate
         fields = (
@@ -192,6 +210,9 @@ class InvoiceForm(forms.ModelForm):
 
 
 class NoteForm(forms.ModelForm):
+    """
+    """
+
     class Meta:
         model = Note
         fields = ("title", "text")
@@ -199,6 +220,9 @@ class NoteForm(forms.ModelForm):
 
 
 class OrderForm(forms.ModelForm):
+    """
+    """
+
     class Meta:
         model = Order
         fields = ("title", "text")
@@ -206,6 +230,9 @@ class OrderForm(forms.ModelForm):
 
 
 class ProfileForm(forms.ModelForm):
+    """
+    """
+
     class Meta:
         model = Profile
         fields = (
@@ -220,6 +247,9 @@ class ProfileForm(forms.ModelForm):
 
 
 class ProjectForm(forms.ModelForm):
+    """
+    """
+
     class Meta:
         model = Project
         exclude = (
@@ -241,6 +271,9 @@ class ProjectForm(forms.ModelForm):
 
 
 class ReportForm(forms.ModelForm):
+    """
+    """
+
     class Meta:
         model = Report
         exclude = ("icon_name", "icon_size", "icon_color", "hidden")
@@ -257,6 +290,9 @@ class ReportForm(forms.ModelForm):
 
 
 class ServiceForm(forms.ModelForm):
+    """
+    """
+
     class Meta:
         model = Service
         fields = "__all__"
@@ -264,18 +300,27 @@ class ServiceForm(forms.ModelForm):
 
 
 class TaskForm(forms.ModelForm):
+    """
+    """
+
     class Meta:
         model = Task
         exclude = ("icon_name", "icon_size", "icon_color", "color")
 
 
 class TaskOrderForm(forms.ModelForm):
+    """
+    """
+
     class Meta:
         model = TaskOrder
         fields = "__all__"
 
 
 class TimeForm(forms.ModelForm):
+    """
+    """
+
     class Meta:
         model = Time
         fields = ("date", "project", "hours", "description")

@@ -8,6 +8,7 @@ def get_form(**kwargs):
     """
     Return appropriate form based on new or edit
     """
+
     client_model = kwargs.get("client_model")
     form_model = kwargs.get("form_model")
     invoice_model = kwargs.get("invoice_model")

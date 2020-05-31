@@ -11,6 +11,7 @@ from .query import get_query_string
 def get_plot(request):  # http://stackoverflow.com/a/5515994/185820
     """
     """
+
     demo = get_query_string(request, "demo")
     if demo:
         costs = [[3000, "2018-01-01"], [4000, "2018-02-01"], [3000, "2018-03-01"]]

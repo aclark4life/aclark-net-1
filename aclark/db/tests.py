@@ -7,6 +7,9 @@ from aclark.db.models import Estimate
 
 
 class SiteConfigurationTestCase(TestCase):
+    """
+    """
+
     def setUp(self):
         self.config = SiteConfiguration.get_solo()
 
@@ -18,6 +21,9 @@ class SiteConfigurationTestCase(TestCase):
 
 
 class BaseModelTestCase(TestCase):
+    """
+    """
+
     def setUp(self):
         self.base = BaseModel()
 
@@ -29,6 +35,9 @@ class BaseModelTestCase(TestCase):
 
 
 class ClientTestCase(TestCase):
+    """
+    """
+
     def setUp(self):
         self.client = Client()
 
@@ -39,6 +48,9 @@ class ClientTestCase(TestCase):
 
 
 class ContactTestCase(TestCase):
+    """
+    """
+
     def setUp(self):
         self.contact = Contact(first_name="Alex", last_name="Clark")
 
@@ -50,14 +62,15 @@ class ContactTestCase(TestCase):
 
 
 class EstimateTestCase(TestCase):
+    """
+    """
+
     def setUp(self):
         self.estimate = Estimate(
             subject="Enthusiastically reinvent plug-and-play platforms"
         )
 
     def test_contact(self):
-        """
-        """
         self.assertEqual(
             self.estimate.subject, "Enthusiastically reinvent plug-and-play platforms"
         )

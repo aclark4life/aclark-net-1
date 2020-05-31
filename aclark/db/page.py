@@ -7,6 +7,7 @@ def paginate(items, orphans=None, page_num=None, page_size=None):
     """
     Paginate items
     """
+
     # Get a paginator
     try:
         paginator = Paginator(items, page_size, orphans=orphans)

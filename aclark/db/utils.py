@@ -90,6 +90,8 @@ def get_index_items(**kwargs):
 
 
 def get_page_items(**kwargs):
+    """
+    """
 
     # Page items
     model = kwargs.get("model")

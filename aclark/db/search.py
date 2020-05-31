@@ -14,6 +14,9 @@ def get_search_results(
     order_by=None,
     request=None,
 ):
+    """
+    """
+
     query = []
     model_name = model._meta.verbose_name
     for field in search_fields:

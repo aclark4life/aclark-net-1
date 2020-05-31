@@ -11,6 +11,7 @@ from .query import get_query_string
 def edit(request, **kwargs):
     """
     """
+
     context = {}
     obj = None
     account_model = kwargs.get("account_model")

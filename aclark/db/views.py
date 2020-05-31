@@ -55,8 +55,6 @@ from .utils import get_page_items
 
 FOUR_O_3 = "Sorry, you are not allowed to see that."
 
-# Create your views here.
-
 
 class ClientViewSet(viewsets.ModelViewSet):
     """
@@ -76,6 +74,9 @@ class TestimonialViewSet(viewsets.ModelViewSet):
 
 @staff_member_required
 def account_view(request, pk=None):
+    """
+    """
+
     order_by = {
         "contact": ("-active",),
         "project": ("-updated",),
@@ -99,6 +100,9 @@ def account_view(request, pk=None):
 
 @staff_member_required
 def account_edit(request, pk=None):
+    """
+    """
+
     return edit(
         request, report_model=Report, form_model=AccountForm, model=Account, pk=pk
     )
@@ -106,6 +110,9 @@ def account_edit(request, pk=None):
 
 @staff_member_required
 def account_index(request):
+    """
+    """
+
     context = get_index_items(
         model=Account,
         report_model=Report,
@@ -118,6 +125,9 @@ def account_index(request):
 
 @staff_member_required
 def client_view(request, pk=None):
+    """
+    """
+
     order_by = {
         "contact": ("-active",),
         "project": ("-updated",),
@@ -141,6 +151,9 @@ def client_view(request, pk=None):
 
 @staff_member_required
 def client_edit(request, pk=None):
+    """
+    """
+
     return edit(
         request, report_model=Report, form_model=ClientForm, model=Client, pk=pk
     )
@@ -148,6 +161,9 @@ def client_edit(request, pk=None):
 
 @staff_member_required
 def client_index(request):
+    """
+    """
+
     context = get_index_items(
         model=Client,
         report_model=Report,
@@ -159,6 +175,9 @@ def client_index(request):
 
 
 def competency(request):
+    """
+    """
+
     context = get_page_items(
         site_config_model=SiteConfiguration,
         request=request,
@@ -175,6 +194,8 @@ def competency(request):
 
 @staff_member_required
 def contact_view(request, pk=None):
+    """
+    """
 
     context = get_page_items(
         model=Contact,
@@ -188,6 +209,9 @@ def contact_view(request, pk=None):
 
 @staff_member_required
 def contact_edit(request, pk=None):
+    """
+    """
+
     return edit(
         request,
         report_model=Report,
@@ -201,6 +225,9 @@ def contact_edit(request, pk=None):
 
 @staff_member_required
 def contact_index(request):
+    """
+    """
+
     context = get_index_items(
         model=Contact,
         report_model=Report,
@@ -219,6 +246,9 @@ def error(request):
 
 @staff_member_required
 def estimate_view(request, pk=None):
+    """
+    """
+
     context = get_page_items(
         model=Estimate,
         site_config_model=SiteConfiguration,
@@ -240,6 +270,9 @@ def estimate_view(request, pk=None):
 
 @staff_member_required
 def estimate_edit(request, pk=None):
+    """
+    """
+
     return edit(
         request,
         form_model=EstimateForm,
@@ -254,6 +287,9 @@ def estimate_edit(request, pk=None):
 
 @staff_member_required
 def estimate_index(request):
+    """
+    """
+
     context = get_index_items(
         model=Estimate,
         report_model=Report,
@@ -266,6 +302,9 @@ def estimate_index(request):
 
 @login_required
 def home(request):
+    """
+    """
+
     if request.user.is_staff:
         filter_by = {"time": {"estimate": None, "invoiced": False}}
     else:
@@ -292,6 +331,9 @@ def home(request):
 
 @staff_member_required
 def invoice_view(request, pk=None):
+    """
+    """
+
     context = get_page_items(
         model=Invoice,
         site_config_model=SiteConfiguration,
@@ -315,6 +357,9 @@ def invoice_view(request, pk=None):
 
 @staff_member_required
 def invoice_edit(request, pk=None):
+    """
+    """
+
     return edit(
         request,
         report_model=Report,
@@ -328,6 +373,9 @@ def invoice_edit(request, pk=None):
 
 @staff_member_required
 def invoice_index(request):
+    """
+    """
+
     search_fields = (
         "client__name",
         "id",
@@ -347,6 +395,9 @@ def invoice_index(request):
 
 
 def login(request):
+    """
+    """
+
     context = {}
     context["login"] = True
     if request.method == "POST":
@@ -365,6 +416,9 @@ def login(request):
 
 
 def logout(request):
+    """
+    """
+
     auth_logout(request)
     # Redirect to a success page.
     messages.add_message(request, messages.INFO, "Logout succeeded")
@@ -373,6 +427,9 @@ def logout(request):
 
 @staff_member_required
 def note_view(request, pk=None):
+    """
+    """
+
     context = get_page_items(
         model=Note,
         pk=pk,
@@ -403,6 +460,9 @@ def note_view(request, pk=None):
 
 @staff_member_required
 def note_edit(request, pk=None):
+    """
+    """
+
     return edit(
         request,
         report_model=Report,
@@ -417,6 +477,9 @@ def note_edit(request, pk=None):
 
 @staff_member_required
 def note_index(request, pk=None):
+    """
+    """
+
     context = get_index_items(
         model=Note,
         report_model=Report,
@@ -429,6 +492,9 @@ def note_index(request, pk=None):
 
 @staff_member_required
 def order_view(request, pk=None):
+    """
+    """
+
     context = get_page_items(
         model=Order,
         pk=pk,
@@ -442,6 +508,9 @@ def order_view(request, pk=None):
 
 @staff_member_required
 def order_edit(request, pk=None):
+    """
+    """
+
     return edit(
         request,
         report_model=Report,
@@ -456,6 +525,9 @@ def order_edit(request, pk=None):
 
 @staff_member_required
 def order_index(request, pk=None):
+    """
+    """
+
     context = get_index_items(
         model=Order,
         report_model=Report,
@@ -468,11 +540,17 @@ def order_index(request, pk=None):
 
 @staff_member_required
 def plot(request):
+    """
+    """
+
     return get_plot(request)
 
 
 @staff_member_required
 def project_view(request, pk=None):
+    """
+    """
+
     context = get_page_items(
         model=Project,
         contact_model=Contact,
@@ -494,6 +572,9 @@ def project_view(request, pk=None):
 
 @staff_member_required
 def project_edit(request, pk=None):
+    """
+    """
+
     return edit(
         request,
         report_model=Report,
@@ -506,6 +587,9 @@ def project_edit(request, pk=None):
 
 @staff_member_required
 def project_index(request, pk=None):
+    """
+    """
+
     context = get_index_items(
         model=Project,
         report_model=Report,
@@ -518,6 +602,9 @@ def project_index(request, pk=None):
 
 @staff_member_required
 def report_view(request, pk=None):
+    """
+    """
+
     context = get_page_items(model=Report, pk=pk, request=request)
     if context["mail"]:
         message = context["message"]
@@ -531,6 +618,9 @@ def report_view(request, pk=None):
 
 @staff_member_required
 def report_edit(request, pk=None):
+    """
+    """
+
     return edit(
         request,
         report_model=Report,
@@ -544,6 +634,9 @@ def report_edit(request, pk=None):
 
 @staff_member_required
 def report_index(request):
+    """
+    """
+
     context = get_index_items(
         model=Report,
         order_by=("-date",),
@@ -555,11 +648,17 @@ def report_index(request):
 
 @staff_member_required
 def service_edit(request, pk=None):
+    """
+    """
+
     return edit(request, form_model=ServiceForm, model=Service, pk=pk)
 
 
 @staff_member_required
 def service_index(request):
+    """
+    """
+
     context = get_index_items(
         model=Service,
         report_model=Report,
@@ -572,12 +671,18 @@ def service_index(request):
 
 @staff_member_required
 def service_view(request, pk=None):
+    """
+    """
+
     context = get_page_items(model=Service, pk=pk, request=request, report_model=Report)
     return render(request, "service_view.html", context)
 
 
 @staff_member_required
 def task_view(request, pk=None):
+    """
+    """
+
     context = get_page_items(
         model=Task,
         pk=pk,
@@ -590,11 +695,17 @@ def task_view(request, pk=None):
 
 @staff_member_required
 def task_edit(request, pk=None):
+    """
+    """
+
     return edit(request, form_model=TaskForm, model=Task, pk=pk)
 
 
 @staff_member_required
 def task_index(request):
+    """
+    """
+
     context = get_index_items(
         model=Task,
         report_model=Report,
@@ -607,6 +718,9 @@ def task_index(request):
 
 @staff_member_required
 def task_order_view(request, pk=None):
+    """
+    """
+
     context = get_page_items(
         model=TaskOrder, pk=pk, request=request, report_model=Report, time_model=Time,
     )
@@ -615,11 +729,17 @@ def task_order_view(request, pk=None):
 
 @staff_member_required
 def task_order_edit(request, pk=None):
+    """
+    """
+
     return edit(request, form_model=TaskOrderForm, model=TaskOrder, pk=pk)
 
 
 @staff_member_required
 def task_order_index(request):
+    """
+    """
+
     context = get_index_items(model=TaskOrder, report_model=Report, request=request,)
     return render(request, "task_order_index.html", context)
 
@@ -630,6 +750,7 @@ def time_view(request, pk=None):
     Authenticated users can only view their own time entries unless
     they are staff.
     """
+
     time = get_object_or_404(Time, pk=pk)
     if not request.user.is_staff and not time.user:  # No user
         messages.add_message(request, messages.WARNING, FOUR_O_3)
@@ -656,6 +777,7 @@ def time_edit(request, pk=None):
     Authenticated users can only edit their own time entries unless
     they are staff.
     """
+
     if pk is not None:
         time = get_object_or_404(Time, pk=pk)
         if not request.user.is_staff and not time.user:  # No user
@@ -688,6 +810,9 @@ def time_edit(request, pk=None):
 
 @staff_member_required
 def time_index(request):
+    """
+    """
+
     search_fields = (
         "client__name",
         "date",
@@ -712,6 +837,9 @@ def time_index(request):
 
 @login_required
 def user_view(request, pk=None):
+    """
+    """
+
     if not request.user.pk == int(pk) and not request.user.is_staff:
         messages.add_message(request, messages.WARNING, FOUR_O_3)
         return HttpResponseRedirect(reverse("home"))
@@ -741,6 +869,9 @@ def user_view(request, pk=None):
 
 @login_required
 def user_edit(request, pk=None):
+    """
+    """
+
     if pk is not None:
         if has_profile(request.user):
             if not request.user.pk == int(pk) and not request.user.is_staff:
@@ -757,6 +888,9 @@ def user_edit(request, pk=None):
 
 @staff_member_required
 def user_index(request):
+    """
+    """
+
     context = get_index_items(
         report_model=Report,
         model=User,

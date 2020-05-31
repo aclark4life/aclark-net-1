@@ -6,6 +6,7 @@ def get_total(field, **kwargs):
     """
     Given field & queryset calculate & return field sum
     """
+
     # queryset
     invoices = kwargs.get("invoices")
     projects = kwargs.get("projects")
@@ -29,6 +30,7 @@ def get_total(field, **kwargs):
 def set_total(times, **kwargs):
     """
     """
+
     project = kwargs.get("project")
     estimate = kwargs.get("estimate")
     invoice = kwargs.get("invoice")

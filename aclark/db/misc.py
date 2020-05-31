@@ -10,6 +10,7 @@ def gravatar_url(email):
     MD5 hash of email address for use with Gravatar. Return generic
     if none exists.
     """
+
     try:
         return gravatar_url % md5(email.lower()).hexdigest()
     except AttributeError:
@@ -24,6 +25,7 @@ def set_items(model_name, items=None, _items={}):
     instead of:
         for item in reports
     """
+
     i = {}
     i["%ss" % model_name] = items
 

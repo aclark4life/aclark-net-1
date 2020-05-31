@@ -5,6 +5,7 @@ def get_recipients(obj):
     """
     Returns first name and email address
     """
+
     if not obj:
         return []
     model_name = obj._meta.verbose_name
@@ -24,6 +25,7 @@ def mail_create(obj, **kwargs):
     """
     Create message and subject based on object type, else create test
     """
+
     first_name = kwargs.get("first_name")
     hostname = kwargs.get("hostname")
     mail_from = kwargs.get("mail_from")
@@ -53,6 +55,7 @@ def mail_proc(obj, request, **kwargs):
     """
     Iterate over recipients, create & send message.
     """
+
     hostname = request.META.get("HTTP_HOST")
     recipients = get_recipients(obj)
     for first_name, email_address in recipients:
@@ -72,6 +75,7 @@ def mail_send(**kwargs):
     """
     Call Django send_mail
     """
+
     mail_from = kwargs.get("mail_from", "aclark@aclark.net")
     mail_to = kwargs.get("mail_to", "aclark@aclark.net")
     html_message = kwargs.get("html_message")
