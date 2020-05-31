@@ -30,10 +30,12 @@ admin.site.register(SiteConfiguration, SingletonModelAdmin)
 
 class BooleanWidget(widgets.Widget):
     """
-    Convert strings to boolean values
     """
 
     def clean(self, value):
+        """
+        Return eval string value
+        """
         if value == "Yes":
             return True
         else:
@@ -42,10 +44,12 @@ class BooleanWidget(widgets.Widget):
 
 class DecimalWidget(widgets.Widget):
     """
-    Convert strings to decimal values
     """
 
     def clean(self, value):
+        """
+        Return eval string value
+        """
         if value:
             return Decimal(value.replace(",", ""))
         else:
