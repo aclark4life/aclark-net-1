@@ -9,9 +9,6 @@ from phonenumber_field.modelfields import PhoneNumberField
 from taggit.managers import TaggableManager
 from uuid import uuid4
 
-
-# Create your models here.
-
 # https://github.com/lazybird/django-solo
 from solo.models import SingletonModel
 
