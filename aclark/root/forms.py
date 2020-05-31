@@ -4,6 +4,9 @@ from captcha.widgets import ReCaptchaV3
 
 
 class ContactForm(forms.Form):
+    """
+    """
+
     first_name = forms.CharField(label="First Name")
     last_name = forms.CharField(label="Last Name")
     company_name = forms.CharField(label="Company Name", required=False)

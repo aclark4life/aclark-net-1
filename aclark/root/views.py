@@ -20,6 +20,9 @@ EMAIL_FROM = "aclark@aclark.net"
 
 
 def about(request):
+    """
+    """
+
     context = {}
     testimonials = requests.get(TESTIMONIAL_URL).json()
     context["testimonial"] = random.choice(testimonials)
@@ -28,6 +31,9 @@ def about(request):
 
 
 def blog(request):
+    """
+    """
+
     return HttpResponseRedirect("https://blog.aclark.net")
 
 
@@ -54,6 +60,9 @@ def clients(request):
 
 
 def contact(request):
+    """
+    """
+
     context = {}
     now = timezone.datetime.now
     msg = "Message sent"
@@ -80,6 +89,9 @@ def contact(request):
 
 
 def home(request):
+    """
+    """
+
     context = {}
     testimonials = requests.get(TESTIMONIAL_URL).json()
     context["testimonial"] = random.choice(testimonials)
@@ -88,11 +100,17 @@ def home(request):
 
 
 def my_custom_error_view(request):
+    """
+    """
+
     context = {}
     return render(request, "error.html", context)
 
 
 def services(request):
+    """
+    """
+
     context = {}
     services = Service.objects.filter(active=True, hidden=False)
     context["services"] = services
@@ -101,6 +119,9 @@ def services(request):
 
 
 def testimonials(request):
+    """
+    """
+
     context = {}
     testimonials = requests.get(TESTIMONIAL_URL).json()
     context["testimonials"] = testimonials
@@ -108,11 +129,17 @@ def testimonials(request):
 
 
 def team(request):
+    """
+    """
+
     context = {}
     context["about_nav"] = True
     return render(request, "team.html", context)
 
 
 def careers(request):
+    """
+    """
+
     context = {}
     return render(request, "careers.html", context)
