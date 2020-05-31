@@ -578,7 +578,13 @@ def service_view(request, pk=None):
 
 @staff_member_required
 def task_view(request, pk=None):
-    context = get_page_items(model=Task, pk=pk, request=request, report_model=Report)
+    context = get_page_items(
+        model=Task,
+        pk=pk,
+        request=request,
+        report_model=Report,
+        include_fields=("name",),
+    )
     return render(request, "task_view.html", context)
 
 

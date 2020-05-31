@@ -222,6 +222,9 @@ def get_page_items(**kwargs):
             item = get_object_or_404(model, pk=pk)
         elif model_name == "task":
             item = get_object_or_404(model, pk=pk)
+            fields = get_fields(
+                item, include_fields=include_fields
+            )  # fields_items.html
         elif model_name == "time":
             item = get_object_or_404(model, pk=pk)
             fields = get_fields(
