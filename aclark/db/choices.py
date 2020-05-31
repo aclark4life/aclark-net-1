@@ -1,5 +1,3 @@
-# https://github.com/goinnn/django-multiselectfield
-
 URL_NAMES = {
     "account": ("account_view", "account_edit", "account_index"),
     "client": ("client_view", "client_edit", "client_index"),

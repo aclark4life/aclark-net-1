@@ -6,7 +6,6 @@ from rest_framework import routers
 from aclark.db import urls as urls_db
 from aclark.db import views as views_db
 
-
 from django.urls import path, re_path, include
 
 from wagtail.admin import urls as wagtailadmin_urls

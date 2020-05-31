@@ -12,12 +12,10 @@ import requests
 from aclark.db.models import Client
 from aclark.db.models import Service
 
-# Create your views here.
 
 BASE_URL = "https://%s" % os.environ.get("API_HOST", "aclark.net")
 TESTIMONIAL_URL = "%s/api/testimonials/?format=json" % BASE_URL
 PROFILE_URL = "%s/api/profiles/?format=json" % BASE_URL
-
 EMAIL_FROM = "aclark@aclark.net"
 
 
