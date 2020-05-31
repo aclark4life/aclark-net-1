@@ -6,14 +6,24 @@
                     {% if request.user.is_staff %}<th>Cost</th>{% endif %}
                     {% if request.user.is_staff %}<th>Gross</th>{% endif %}
                     {% if request.user.is_staff %}<th>Net</th>{% endif %}
-                    <th data-width="50">Total Hours</th>
+                    <th data-width=""><h5>Total Hours</h5></th>
                   </thead>
                   <tbody>
                     <tr>
                       {% if request.user.is_staff %}<td><strong class="text-danger">{{ cost|default:0|intcomma }}</strong></td>{% endif %}
                       {% if request.user.is_staff %}<td><strong class="text-info">{{ gross|default:0|intcomma }}</strong></td>{% endif %}
                       {% if request.user.is_staff %}<td><strong class="text-success">{{ net|default:0|intcomma }}</strong></td>{% endif %}
-                      <td>{{ hours|default:0 }}</td>
+                      <td>
+                        <table>
+                          <thead>
+                            <th>Entered&nbsp;</th>
+                            <th>Approved</th>
+                          </thead>
+                          <tr>
+                            <td>{{ hours_entered|default:0 }}</td><td>{{ hours_approved|default:0 }}</td>
+                          </tr>
+                        </table>
+                      </td>
                     </tr>
                   </tbody>
                 </table>

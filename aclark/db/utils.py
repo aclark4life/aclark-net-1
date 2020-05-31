@@ -124,7 +124,8 @@ def get_page_items(**kwargs):
 
     net = 0
     gross = 0
-    hours = 0
+    hours_entered = 0
+    hours_approved = 0
     cost = 0
 
     context = {}
@@ -236,13 +237,17 @@ def get_page_items(**kwargs):
             item = get_object_or_404(model, pk=pk)
             projects = project_model.objects.filter(team__in=[item], active=True)
             projects = projects.order_by(*order_by["project"])
-            times = time_model.objects.filter(estimate=None, invoiced=False, user=item)
-            times = times.order_by(*order_by["time"])
             contacts = contact_model.objects.all()
             fields = get_fields(
                 item.profile, include_fields=include_fields
             )  # fields_table.html
-            hours = get_total("hours", times=times)
+            # Hours entered
+            times = time_model.objects.filter(estimate=None, invoiced=False, user=item)
+            times = times.order_by(*order_by["time"])
+            hours_entered = get_total("hours", times=times)
+            # Hours approved
+            times = times.filter(invoice__isnull=False)
+            hours_approved = get_total("hours", times=times)
         elif model_name == "note":
             item = get_object_or_404(model, pk=pk)
             fields = get_fields(
@@ -300,10 +305,14 @@ def get_page_items(**kwargs):
                         items["times"], page_num=page_num, page_size=page_size
                     )
         # Totals
-        hours = get_total("hours", times=times)
         gross = get_total("gross", invoices=invoices)
         cost = get_total("cost", projects=projects)
         net = gross - cost
+        # Hours entered
+        hours_entered = get_total("hours", times=times)
+        # Hours approved
+        times = times.filter(invoice__isnull=False)
+        hours_approved = get_total("hours", times=times)
     if report_model:
         reports = report_model.objects.filter(active=True).order_by("-date")
         if items:
@@ -313,7 +322,8 @@ def get_page_items(**kwargs):
     context["item"] = item
     context["net"] = net
     context["gross"] = gross
-    context["hours"] = hours
+    context["hours_entered"] = hours_entered
+    context["hours_approved"] = hours_approved
     context["cost"] = cost
     context["items"] = items
     context["model_name"] = model_name
