@@ -1,16 +1,14 @@
 import dj_database_url
 import os
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-SECRET_KEY = "!qn8-$=&ov&jqb6phq3z+i)#dp0@brz()&9+yb2pr8rd%o)z+0"
-
 if os.environ.get("DEBUG"):
     DEBUG = True
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = []
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+SECRET_KEY = "!qn8-$=&ov&jqb6phq3z+i)#dp0@brz()&9+yb2pr8rd%o)z+0"
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -83,10 +81,6 @@ DATABASES = {
 }
 
 AUTH_PASSWORD_VALIDATORS = [
-    # {
-    #     'NAME':
-    #     'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    # },
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
@@ -103,14 +97,18 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = "/static/"
+
 STATIC_ROOT = "static"
+
 ALLOWED_HOSTS = ["*"]
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
     },
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
+
 DATABASES = {
     "default": dj_database_url.config(
         default=os.environ.get(
@@ -135,12 +133,17 @@ AUTHENTICATION_BACKENDS = (
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 NOCAPTCHA = True
+
 RECAPTCHA_PUBLIC_KEY = os.environ.get("RECAPTCHA_PUBLIC_KEY", "")
+
 RECAPTCHA_PRIVATE_KEY = os.environ.get("RECAPTCHA_PRIVATE_KEY", "")
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ.get("SOCIAL_AUTH_GOOGLE_OAUTH2_KEY")
+
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get("SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET")
+
 SOCIAL_AUTH_REDIRECT_IS_HTTPS = True
+
 LOGIN_URL = "/db"
 
 EMAIL_BACKEND = "django_amazon_ses.EmailBackend"
@@ -148,6 +151,7 @@ EMAIL_BACKEND = "django_amazon_ses.EmailBackend"
 ADMINS = [("Alex Clark", "aclark@aclark.net")]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
 MEDIA_URL = "/media/"
 
 WAGTAIL_SITE_NAME = "My Example Site"
