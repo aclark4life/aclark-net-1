@@ -583,7 +583,7 @@ def task_view(request, pk=None):
         pk=pk,
         request=request,
         report_model=Report,
-        include_fields=("name",),
+        include_fields=("name", "rate"),
     )
     return render(request, "task_view.html", context)
 
