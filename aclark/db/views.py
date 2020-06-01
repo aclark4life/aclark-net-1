@@ -43,6 +43,7 @@ from .models import Testimonial
 from .models import Task
 from .models import TaskOrder
 from .models import Time
+from .export import render_doc
 from .export import render_pdf
 from .mail import mail_send
 from .misc import has_profile
@@ -438,6 +439,19 @@ def note_view(request, pk=None):
         site_config_model=SiteConfiguration,
         include_fields=("created", "updated", "text", "title"),
     )
+    if context["config"].company:
+        company_name = context["config"].company.name
+        company_name = slugify(company_name)
+    else:
+        company_name = "company"
+    item = context["item"]
+    if item.title:
+        note_title = item.title
+        note_title = slugify(note_title)
+        filename = "%s-%s" % (company_name, note_title)
+    else:
+        filename = "%s-%s-%s" % (company_name, "note", pk)
+        item.title = "Title"
     if context["mail"]:
         message = context["message"]
         subject = context["subject"]
@@ -445,16 +459,11 @@ def note_view(request, pk=None):
         messages.add_message(request, messages.INFO, "Note sent")
         return render(request, "note_view.html", context)
     if context["pdf"]:
-        company_name = context["config"].company.name
-        company_name = slugify(company_name)
-        item = context["item"]
-        if item.title:
-            note_title = item.title
-            note_title = slugify(note_title)
-            filename = "%s-%s.pdf" % (company_name, note_title)
-        else:
-            filename = "%s-%s-%s.pdf" % (company_name, "note", pk)
+        filename = ".".join((filename, "pdf"))
         return render_pdf(context, filename=filename, template="note.html")
+    if context["doc"]:
+        filename = ".".join((filename, "doc"))
+        return render_doc(context, filename=filename, template="note.html")
     return render(request, "note_view.html", context)
 
 

@@ -1,9 +1,6 @@
 from django.http import HttpResponse
 from django_xhtml2pdf.utils import generate_pdf
 from docx import Document
-from docx.enum.text import WD_ALIGN_PARAGRAPH
-from docx import Document
-from docx.shared import Inches
 from io import StringIO
 from lxml import etree
 
@@ -19,7 +16,30 @@ def render_doc(context, **kwargs):
     filename = kwargs.get("filename")
     item = context["item"]
     document.add_heading(item.title, 0)
-    # p = document.add_paragraph(item.note)
+    root = etree.fromstring(item.text)
+    for elem in root.iter():
+        if elem.tag == "h1":
+            document.add_heading(elem.text, level=1)
+            document.add_paragraph("")
+        if elem.tag == "h2":
+            document.add_heading(elem.text, level=2)
+            document.add_paragraph("")
+        if elem.tag == "h3":
+            document.add_heading(elem.text, level=3)
+            document.add_paragraph("")
+        if elem.tag == "h4":
+            document.add_heading(elem.text, level=4)
+            document.add_paragraph("")
+        if elem.tag == "h5":
+            document.add_heading(elem.text, level=5)
+            document.add_paragraph("")
+        if elem.tag == "h6":
+            document.add_heading(elem.text, level=6)
+            document.add_paragraph("")
+        if elem.tag == "p":
+            document.add_paragraph(elem.text)
+            document.add_paragraph("")
+
     response = HttpResponse(content_type=docx)
     response["Content-Disposition"] = "attachment; filename=%s" % filename
     document.save(response)
