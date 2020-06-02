@@ -156,7 +156,7 @@ MEDIA_URL = "/media/"
 
 WAGTAIL_SITE_NAME = "My Example Site"
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 
 AWS_DEFAULT_ACL = None
 
