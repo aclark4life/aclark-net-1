@@ -42,11 +42,6 @@ urlpatterns = [
     url(r"^note/(?P<pk>\d+)/edit$", views.note_edit, name="note_edit"),
     url(r"^note/add$", views.note_edit, name="note_edit"),
     url(r"^note$", views.note_index, name="note_index"),
-    # Order
-    url(r"^order/(?P<pk>\d+)$", views.order_view, name="order_view"),
-    url(r"^order/(?P<pk>\d+)/edit$", views.order_edit, name="order_edit"),
-    url(r"^order/add$", views.order_edit, name="order_edit"),
-    url(r"^order$", views.order_index, name="order_index"),
     # Project
     url(r"^project/(?P<pk>\d+)$", views.project_view, name="project_view"),
     url(r"^project/(?P<pk>\d+)/edit$", views.project_edit, name="project_edit"),

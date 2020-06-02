@@ -258,23 +258,6 @@ class Invoice(BaseModel):
     doc_type = models.CharField(max_length=300, blank=True, null=True)
 
 
-class Order(BaseModel):
-    """
-    """
-
-    date_arrived = models.DateField("Due", blank=True, null=True)
-    date_expected = models.DateField("Due", blank=True, null=True)
-    date_shipped = models.DateField("Due", blank=True, null=True)
-    title = models.CharField(max_length=300, blank=True, null=True)
-    text = models.TextField(blank=True, null=True)
-
-    def __str__(self):
-        if self.title:
-            return self.title
-        else:
-            return "-".join([self._meta.verbose_name, str(self.pk)])
-
-
 class Note(BaseModel):
     """
     """

@@ -11,7 +11,6 @@ from .models import Contact
 from .models import Estimate
 from .models import Invoice
 from .models import Note
-from .models import Order
 from .models import Profile
 from .models import Project
 from .models import Report
@@ -233,12 +232,6 @@ class InvoiceAdmin(ImportExportModelAdmin):
 
 @admin.register(Note)
 class NoteAdmin(ImportExportModelAdmin):
-    """
-    """
-
-
-@admin.register(Order)
-class OrderAdmin(ImportExportModelAdmin):
     """
     """
 
