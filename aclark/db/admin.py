@@ -15,9 +15,7 @@ from .models import Order
 from .models import Profile
 from .models import Project
 from .models import Report
-from .models import StatementOfWork
 from .models import Task
-from .models import TaskOrder
 from .models import Testimonial
 from .models import Time
 
@@ -398,21 +396,3 @@ class TimeAdmin(ImportExportModelAdmin):
     """
 
     resource_class = TimeResource
-
-
-@admin.register(StatementOfWork)
-class StatementOfWorkAdmin(ImportExportModelAdmin):
-    """
-    """
-
-
-@admin.register(TaskOrder)
-class TaskOrderAdmin(ImportExportModelAdmin):
-    """
-    """
-
-
-@admin.register(Account)
-class TaskOrderAdmin(ImportExportModelAdmin):
-    """
-    """

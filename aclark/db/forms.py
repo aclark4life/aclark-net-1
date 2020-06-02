@@ -10,7 +10,6 @@ from .models import Project
 from .models import Report
 from .models import Service
 from .models import Task
-from .models import TaskOrder
 from .models import Time
 from django import forms
 from django.utils import timezone
@@ -306,15 +305,6 @@ class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
         exclude = ("icon_name", "icon_size", "icon_color", "color")
-
-
-class TaskOrderForm(forms.ModelForm):
-    """
-    """
-
-    class Meta:
-        model = TaskOrder
-        fields = "__all__"
 
 
 class TimeForm(forms.ModelForm):

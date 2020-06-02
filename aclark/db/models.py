@@ -519,9 +519,6 @@ class Time(BaseModel):
     estimate = models.ForeignKey(
         Estimate, blank=True, null=True, on_delete=models.SET_NULL
     )
-    task_order = models.ForeignKey(
-        "TaskOrder", blank=True, null=True, on_delete=models.SET_NULL
-    )
     invoice = models.ForeignKey(
         Invoice,
         blank=True,
@@ -553,27 +550,6 @@ class Time(BaseModel):
     # https://docs.djangoproject.com/en/1.9/ref/models/instances/#get-absolute-url
     def get_absolute_url(self, hostname):
         return "%s/%s" % (hostname, reverse("time_view", args=[str(self.id)]))
-
-
-class StatementOfWork(BaseModel):
-    """
-    """
-
-    class Meta:
-        verbose_name_plural = "Statements of work"
-
-
-class TaskOrder(BaseModel):
-    """
-    """
-
-    name = models.CharField(max_length=300, blank=True, null=True)
-
-    def __str__(self):
-        if self.name:
-            return self.name
-        else:
-            return "-".join([self._meta.verbose_name, str(self.pk)])
 
 
 class Account(BaseModel):

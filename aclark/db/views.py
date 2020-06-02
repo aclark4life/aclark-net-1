@@ -25,7 +25,6 @@ from .forms import ProjectForm
 from .forms import ReportForm
 from .forms import ServiceForm
 from .forms import TaskForm
-from .forms import TaskOrderForm
 from .forms import TimeForm
 from .models import Account
 from .models import Client
@@ -41,7 +40,6 @@ from .models import Service
 from .models import SiteConfiguration
 from .models import Testimonial
 from .models import Task
-from .models import TaskOrder
 from .models import Time
 from .export import render_doc
 from .export import render_pdf
@@ -730,34 +728,6 @@ def task_index(request):
     return render(request, "task_index.html", context)
 
 
-@staff_member_required
-def task_order_view(request, pk=None):
-    """
-    """
-
-    context = get_page_items(
-        model=TaskOrder, pk=pk, request=request, report_model=Report, time_model=Time,
-    )
-    return render(request, "task_order_view.html", context)
-
-
-@staff_member_required
-def task_order_edit(request, pk=None):
-    """
-    """
-
-    return edit(request, form_model=TaskOrderForm, model=TaskOrder, pk=pk)
-
-
-@staff_member_required
-def task_order_index(request):
-    """
-    """
-
-    context = get_index_items(model=TaskOrder, report_model=Report, request=request,)
-    return render(request, "task_order_index.html", context)
-
-
 @login_required
 def time_view(request, pk=None):
     """
@@ -816,7 +786,6 @@ def time_edit(request, pk=None):
         project_model=Project,
         report_model=Report,
         task_model=Task,
-        task_order_model=TaskOrder,
         time_model=Time,
         pk=pk,
     )
