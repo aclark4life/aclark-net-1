@@ -14,7 +14,7 @@ attrs==19.3.0
 awsebcli
 backports.csv==1.0.7
 bcrypt==3.1.7
-beautifulsoup4==4.6.0
+beautifulsoup4==4.8.2
 blessed==1.17.2
 boto3==1.9.138
 botocore
@@ -98,7 +98,7 @@ text-unidecode==1.2
 texttable==1.6.2
 unicodecsv==0.14.1
 urllib3==1.25.2
-wagtail==2.8.2
+wagtail==2.9
 wcwidth==0.1.8
 webencodings==0.5.1
 websocket-client==0.57.0
