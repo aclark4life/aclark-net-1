@@ -121,6 +121,7 @@ def get_page_items(**kwargs):
     doc = get_query_string(request, "doc")
     mail = get_query_string(request, "mail")
     pdf = get_query_string(request, "pdf")
+    xls = get_query_string(request, "xls")
 
     net = 0
     gross = 0
@@ -333,6 +334,7 @@ def get_page_items(**kwargs):
     context["doc"] = doc
     context["mail"] = mail
     context["pdf"] = pdf
+    context["xls"] = xls
     context["request"] = request  # Include request
     context["fields"] = fields
     context["config"] = config

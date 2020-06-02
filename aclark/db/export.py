@@ -3,6 +3,8 @@ from django_xhtml2pdf.utils import generate_pdf
 from docx import Document
 from io import StringIO
 from lxml import etree
+from openpyxl import Workbook
+from openpyxl.utils import get_column_letter
 
 docx = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
 
@@ -55,3 +57,27 @@ def render_pdf(context, **kwargs):
     response = HttpResponse(content_type="application/pdf")
     response["Content-Disposition"] = "filename=%s" % filename
     return generate_pdf(template, context=context, file_object=response)
+
+
+def render_xls(context, **kwargs):
+    """
+    """
+
+    # https://openpyxl.readthedocs.io/en/stable/usage.html#write-a-workbook
+    workbook = Workbook()
+    filename = kwargs.get("filename")
+    item = context["item"]
+    sheet1 = workbook.active
+    sheet1.title = "range names"
+    for row in range(1, 40):
+        sheet1.append(range(600))
+    sheet2 = workbook.create_sheet(title="Pi")
+    sheet2["F5"] = 3.14
+    sheet3 = workbook.create_sheet(title="Data")
+    for row in range(10, 20):
+        for col in range(27, 54):
+            sheet3.cell(column=col, row=row, value="{0}".format(get_column_letter(col)))
+    response = HttpResponse(content_type="xlsx")
+    response["Content-Disposition"] = "attachment; filename=%s" % filename
+    workbook.save(response)
+    return response

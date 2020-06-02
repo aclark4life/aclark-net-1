@@ -45,6 +45,7 @@ from .models import TaskOrder
 from .models import Time
 from .export import render_doc
 from .export import render_pdf
+from .export import render_xls
 from .mail import mail_send
 from .misc import has_profile
 from .plot import get_plot
@@ -344,14 +345,18 @@ def invoice_view(request, pk=None):
         time_model=Time,
         report_model=Report,
     )
+    if hasattr(context["config"].company, "name"):
+        company_name = context["config"].company.name
+    else:
+        company_name = "Company Name"
+    company_name = slugify(company_name)
+    filename = "%s-%s-%s" % (company_name, "invoice", pk)
     if context["pdf"]:
-        if hasattr(context["config"].company, "name"):
-            company_name = context["config"].company.name
-        else:
-            company_name = "Company Name"
-        company_name = slugify(company_name)
-        filename = "%s-%s-%s.pdf" % (company_name, "invoice", pk)
+        filename = ".".join((filename, "pdf"))
         return render_pdf(context, filename=filename, template="invoice.html")
+    elif context["xls"]:
+        filename = ".".join((filename, "xlsx"))
+        return render_xls(context, filename=filename, template="invoice.html")
     else:
         return render(request, "invoice_view.html", context)
 
