@@ -68,7 +68,7 @@ maxminddb==1.5.2
 numpy==1.16.3
 oauthlib==3.0.1
 odfpy==1.4.0
-openpyxl==2.6.2
+openpyxl==3.0.3
 paramiko==2.7.1
 pathspec==0.5.9
 phonenumberslite==8.10.10
