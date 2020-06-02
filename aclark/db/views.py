@@ -6,7 +6,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.models import User
 from django.urls import reverse
-from django.utils.text import slugify
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
@@ -183,9 +182,7 @@ def competency(request):
         service_model=Service,
     )
     if context["pdf"]:
-        company_name = context["config"].company.name
-        company_name = slugify(company_name)
-        filename = "%s-%s.pdf" % (company_name, "competency")
+        filename = "%s-%s.pdf" % (context["company_name"], "competency")
         return render_pdf(context, filename=filename, template="competency.html")
     return render(request, "competency_view.html", context)
 
@@ -258,9 +255,7 @@ def estimate_view(request, pk=None):
         request=request,
     )
     if context["pdf"]:
-        company_name = context["config"].company.name
-        company_name = slugify(company_name)
-        filename = "%s-%s-%s.pdf" % (company_name, "estimate", pk)
+        filename = "%s-%s-%s.pdf" % (context["company_name"], "estimate", pk)
         return render_pdf(context, filename=filename, template="invoice.html")
     else:
         return render(request, "estimate_view.html", context)
@@ -341,12 +336,7 @@ def invoice_view(request, pk=None):
         time_model=Time,
         report_model=Report,
     )
-    if hasattr(context["config"].company, "name"):
-        company_name = context["config"].company.name
-    else:
-        company_name = "Company Name"
-    company_name = slugify(company_name)
-    filename = "%s-%s-%s" % (company_name, "invoice", pk)
+    filename = "%s-%s-%s" % (context["company_name"], "invoice", pk)
     if context["pdf"]:
         filename = ".".join((filename, "pdf"))
         return render_pdf(context, filename=filename, template="invoice.html")
@@ -440,18 +430,13 @@ def note_view(request, pk=None):
         site_config_model=SiteConfiguration,
         include_fields=("created", "updated", "text", "title"),
     )
-    if context["config"].company:
-        company_name = context["config"].company.name
-        company_name = slugify(company_name)
-    else:
-        company_name = "company"
     item = context["item"]
     if item.title:
         note_title = item.title
         note_title = slugify(note_title)
-        filename = "%s-%s" % (company_name, note_title)
+        filename = "%s-%s" % (context["company_name"], note_title)
     else:
-        filename = "%s-%s-%s" % (company_name, "note", pk)
+        filename = "%s-%s-%s" % (context["company_name"], "note", pk)
         item.title = "Title"
     if context["mail"]:
         message = context["message"]

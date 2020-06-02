@@ -1,6 +1,7 @@
 from django.db.models import F
 from django.db.models import Sum
 from django.shortcuts import get_object_or_404
+from django.utils.text import slugify
 from .fields import get_fields
 from .misc import set_items
 from .misc import get_setting
@@ -135,14 +136,22 @@ def get_page_items(**kwargs):
     model_name = None
     fields = None
     config = None
-    if site_config_model:
-        config = site_config_model.get_solo()
 
     last_payment_date = None
 
     invoices = None
     projects = None
     times = None
+
+    site_config = None
+    if site_config_model:
+        site_config = site_config_model.get_solo()
+
+    company_name = "Company"
+    if config:
+        if hasattr(config.company, "name"):
+            company_name = config.company.name
+            company_name = slugify(company_name)
 
     if model:
         model_name = model._meta.verbose_name
@@ -337,7 +346,8 @@ def get_page_items(**kwargs):
     context["xls"] = xls
     context["request"] = request  # Include request
     context["fields"] = fields
-    context["config"] = config
+    context["config"] = site_config
     context["last_payment_date"] = last_payment_date
+    context["company_name"] = company_name
 
     return context
