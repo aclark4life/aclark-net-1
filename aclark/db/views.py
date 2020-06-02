@@ -444,10 +444,10 @@ def note_view(request, pk=None):
         mail_send(html_message=message, subject=subject)
         messages.add_message(request, messages.INFO, "Note sent")
         return render(request, "note_view.html", context)
-    if context["pdf"]:
+    elif context["pdf"]:
         filename = ".".join((filename, "pdf"))
         return render_pdf(context, filename=filename, template="note.html")
-    if context["doc"]:
+    elif context["doc"]:
         filename = ".".join((filename, "doc"))
         return render_doc(context, filename=filename, template="note.html")
     return render(request, "note_view.html", context)
@@ -559,6 +559,9 @@ def report_view(request, pk=None):
         mail_send(message=message, subject=subject)
         messages.add_message(request, messages.INFO, "Report sent")
         return render(request, "report_view.html", context)
+    elif context["pdf"]:
+        filename = "%s-%s-%s.pdf" % (context["company_name"], "report", pk)
+        return render_pdf(context, filename=filename, template="report.html")
     else:
         return render(request, "report_view.html", context)
 
