@@ -14,5 +14,6 @@ serve: django-serve
 
 black:
 	black aclark/db/*.py
+	black aclark/db/management/commands/*.py
 	black aclark/root/*.py
 	black aclark/*.py
