@@ -20,6 +20,7 @@ DOC_TYPES = [
     ("Proposal", "Proposal"),
     ("Statement of Work", "Statement of Work"),
     ("Task Order", "Task Order"),
+    ("Independent Government Cost Estimate", "Independent Government Cost Estimate"),
 ]
 
 

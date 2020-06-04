@@ -6,8 +6,6 @@ from lxml import etree
 from openpyxl import Workbook
 from openpyxl.utils import get_column_letter
 
-docx = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-
 
 def render_doc(context, **kwargs):
     """
@@ -42,7 +40,7 @@ def render_doc(context, **kwargs):
             document.add_paragraph(elem.text)
             document.add_paragraph("")
 
-    response = HttpResponse(content_type=docx)
+    response = HttpResponse(content_type="docx")
     response["Content-Disposition"] = "attachment; filename=%s" % filename
     document.save(response)
     return response
