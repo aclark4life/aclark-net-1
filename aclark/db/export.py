@@ -100,6 +100,7 @@ def render_xls_igce(context, **kwargs):
     sheet1.append(["Instructions".upper()])
     sheet1.column_dimensions["B"].width = 111.7
     sheet1["A1"].font = bold
+    sheet1.merge_cells("A1:AI")
     sheet1.append(
         [
             "",
