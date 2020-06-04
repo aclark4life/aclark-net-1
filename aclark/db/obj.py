@@ -44,20 +44,20 @@ def obj_process(
         http_ref = request.META.get("HTTP_REFERER")
     if task == "url":
         if page_type == "view":
-            url_name = choices.URL_NAMES[model_name][0]
+            url_name = URL_NAMES[model_name][0]
             template_name = "%s.html" % url_name
             return template_name, url_name
         elif page_type == "copy":
-            url_name = choices.URL_NAMES[model_name][1]
+            url_name = URL_NAMES[model_name][1]
             return url_name
         elif page_type == "edit":
-            template_name = "%s.html" % choices.URL_NAMES[model_name][1]
+            template_name = "%s.html" % URL_NAMES[model_name][1]
             return template_name
         elif page_type == "dashboard":
             url_name = "dashboard"
             return url_name
         elif page_type == "index":
-            url_name = choices.URL_NAMES[model_name][2]
+            url_name = URL_NAMES[model_name][2]
             return url_name
     elif task == "copy":
         dup = obj
