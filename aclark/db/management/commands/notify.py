@@ -19,10 +19,10 @@ class Command(BaseCommand):
                 first_name = recipient[0]
                 email_address = recipient[1]
                 notifications = recipient[2]
-                email_message = "Test"
+                email_message = "Hey %s" % first_name
                 email_subject = "Test"
                 if notifications:
-                    mail_send(message=email_message, subject=email_subject)
+                    mail_send(mail_to=email_address, message=email_message, subject=email_subject)
                     self.stdout.write(
                         self.style.SUCCESS("Successfully notified: %s" % recipient[0])
                     )
