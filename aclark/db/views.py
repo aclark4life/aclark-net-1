@@ -42,6 +42,7 @@ from .models import Time
 from .export import render_doc
 from .export import render_pdf
 from .export import render_xls
+from .export import render_xls_igce
 from .mail import mail_send
 from .misc import has_profile
 from .plot import get_plot
@@ -343,7 +344,7 @@ def invoice_view(request, pk=None):
         return render_pdf(context, filename=filename, template="invoice.html")
     elif context["xls"]:
         filename = ".".join((filename, "xlsx"))
-        if context["item"].doc_type == "Independent Government Cost Estimate":
+        if context["doc_type"] == "Independent Government Cost Estimate":
             return render_xls_igce(context, filename=filename, template="invoice.html")
         else:
             return render_xls(context, filename=filename, template="invoice.html")

@@ -4,6 +4,8 @@ from docx import Document
 from lxml import etree
 from openpyxl import Workbook
 
+# from openpyxl.utils import get_column_letter
+
 
 def render_doc(context, **kwargs):
     """
@@ -86,13 +88,29 @@ def render_xls_igce(context, **kwargs):
     """
     """
 
-    # https://openpyxl.readthedocs.io/en/stable/usage.html#write-a-workbook
     workbook = Workbook()
     filename = kwargs.get("filename")
     item = context["item"]
     sheet1 = workbook.active
+    sheet1.title = "Instructions"
+    sheet1.append(
+        ["Instructions".upper(),]
+    )
+    sheet1.append(
+        [
+            "",
+            "This template is being provided as a tool to assist the acquisition workforce in developing an IGCE for a Firm Fixed Price Product or Service.",
+        ]
+    )
+    sheet1.append(
+        [
+            "1.",
+            "The exact amount of a vendor’s quote must NOT be used as the basis for a program office’s IGCE.",
+        ]
+    )
+    sheet2 = workbook.create_sheet(title="FFP IGCE")
     for entry in item.time_set.all():
-        sheet1.append(
+        sheet2.append(
             [
                 entry.date,
                 entry.task.name,
@@ -101,13 +119,6 @@ def render_xls_igce(context, **kwargs):
                 entry.task.rate,
             ]
         )
-
-    sheet2 = workbook.create_sheet(title="Pi")
-    sheet2["F5"] = 3.14
-    sheet3 = workbook.create_sheet(title="Data")
-    for row in range(10, 20):
-        for col in range(27, 54):
-            sheet3.cell(column=col, row=row, value="{0}".format(get_column_letter(col)))
 
     response = HttpResponse(content_type="xlsx")
     response["Content-Disposition"] = "attachment; filename=%s" % filename

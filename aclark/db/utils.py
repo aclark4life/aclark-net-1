@@ -142,6 +142,8 @@ def get_page_items(**kwargs):
     projects = None
     times = None
 
+    doc_type = "Invoice"
+
     site_config = None
     if site_config_model:
         site_config = site_config_model.get_solo()
@@ -189,6 +191,7 @@ def get_page_items(**kwargs):
             times = set_total(times, invoice=item)
             items = set_items("time", items=times)
             last_payment_date = item.last_payment_date
+            doc_type = item.doc_type
         elif model_name == "task_order":
             item = get_object_or_404(model, pk=pk)
             times = time_model.objects.filter(task_order=item)
@@ -348,5 +351,6 @@ def get_page_items(**kwargs):
     context["config"] = site_config
     context["last_payment_date"] = last_payment_date
     context["company_name"] = company_name
+    context["doc_type"] = doc_type
 
     return context
