@@ -9,6 +9,7 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
+from django.utils.text import slugify
 from rest_framework import viewsets
 from .forms import AccountForm
 from .forms import AdminProfileForm
