@@ -1,10 +1,8 @@
 from django.http import HttpResponse
 from django_xhtml2pdf.utils import generate_pdf
 from docx import Document
-from io import StringIO
 from lxml import etree
 from openpyxl import Workbook
-from openpyxl.utils import get_column_letter
 
 
 def render_doc(context, **kwargs):
