@@ -93,9 +93,7 @@ def render_xls_igce(context, **kwargs):
     item = context["item"]
     sheet1 = workbook.active
     sheet1.title = "Instructions"
-    sheet1.append(
-        ["Instructions".upper(),]
-    )
+    sheet1.append(["Instructions".upper()])
     sheet1.append(
         [
             "",
@@ -106,6 +104,24 @@ def render_xls_igce(context, **kwargs):
         [
             "1.",
             "The exact amount of a vendor’s quote must NOT be used as the basis for a program office’s IGCE.",
+        ]
+    )
+    sheet1.append(
+        [
+            "2.",
+            "The program office must conduct all necessary research to compile an accurate and complete IGCE, independent of the vendor’s pricing/cost information.",
+        ]
+    )
+    sheet1.append(
+        [
+            "3.",
+            "The program office should use the results of the market reaearch to substaniate the IGCE.",
+        ]
+    )
+    sheet1.append(
+        [
+            "4.",
+            "The program office provide a narrative to document the basis of the IGCE.",
         ]
     )
     sheet2 = workbook.create_sheet(title="FFP IGCE")
