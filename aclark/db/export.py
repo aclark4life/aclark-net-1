@@ -5,6 +5,7 @@ from lxml import etree
 from openpyxl import Workbook
 
 # from openpyxl.utils import get_column_letter
+from openpyxl.styles import Font
 
 
 def render_doc(context, **kwargs):
@@ -91,9 +92,12 @@ def render_xls_igce(context, **kwargs):
     workbook = Workbook()
     filename = kwargs.get("filename")
     item = context["item"]
+    bold = Font(bold=True)
+
     sheet1 = workbook.active
     sheet1.title = "Instructions"
     sheet1.append(["Instructions".upper()])
+    sheet1["A1"].font = bold
     sheet1.append(
         [
             "",
