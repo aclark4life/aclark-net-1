@@ -106,7 +106,6 @@ def get_page_items(**kwargs):
     report_model = kwargs.get("report_model")
     time_model = kwargs.get("time_model")
     service_model = kwargs.get("service_model")
-    task_order_model = kwargs.get("task_order_model")
 
     pk = kwargs.get("pk")
 

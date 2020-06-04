@@ -23,6 +23,7 @@ URL_NAMES = {
     "user": ("user_view", "user_edit", "user_index"),
 }
 
+
 def obj_process(
     obj,
     app_settings_model=None,
