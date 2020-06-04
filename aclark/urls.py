@@ -1,23 +1,23 @@
 from aclark.root import views as views_root
 from django.conf.urls import url
 from django.conf.urls import include
+from django.conf.urls import re_path
 from django.contrib import admin
 from rest_framework import routers
 from aclark.db import urls as urls_db
 from aclark.db import views as views_db
 
-from django.urls import path, re_path, include
-
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
+
+from django.conf import settings
+from django.conf.urls.static import static
 
 router = routers.DefaultRouter()
 router.register(r"clients", views_db.ClientViewSet)
 router.register(r"testimonials", views_db.TestimonialViewSet)
 
-from django.conf import settings
-from django.conf.urls.static import static
 
 urlpatterns = [
     url(r"^$", views_root.home, name="home"),

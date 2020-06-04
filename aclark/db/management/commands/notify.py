@@ -1,4 +1,5 @@
 from django.core.management.base import BaseCommand
+
 # from django.core.management.base import CommandError
 from aclark.db.models import Project
 from aclark.db.mail import get_recipients
@@ -22,7 +23,11 @@ class Command(BaseCommand):
                 email_message = "Hey %s" % first_name
                 email_subject = "Test"
                 if notifications:
-                    mail_send(mail_to=email_address, message=email_message, subject=email_subject)
+                    mail_send(
+                        mail_to=email_address,
+                        message=email_message,
+                        subject=email_subject,
+                    )
                     self.stdout.write(
                         self.style.SUCCESS("Successfully notified: %s" % recipient[0])
                     )

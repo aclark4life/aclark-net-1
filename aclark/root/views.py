@@ -1,11 +1,9 @@
 from .forms import ContactForm
-from django.conf import settings
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.utils import timezone
 import os
 import random
 import requests
@@ -64,7 +62,6 @@ def contact(request):
     """
 
     context = {}
-    now = timezone.datetime.now
     msg = "Message sent"
     if request.method == "POST":
         form = ContactForm(request.POST)
