@@ -104,6 +104,7 @@ def render_xls_igce(context, **kwargs):
             "This template is being provided as a tool to assist the acquisition workforce in developing an IGCE for a Firm Fixed Price Product or Service.",
         ]
     )
+    sheet1.append([])
     sheet1.append(
         [
             "1.",
