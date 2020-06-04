@@ -343,7 +343,10 @@ def invoice_view(request, pk=None):
         return render_pdf(context, filename=filename, template="invoice.html")
     elif context["xls"]:
         filename = ".".join((filename, "xlsx"))
-        return render_xls(context, filename=filename, template="invoice.html")
+        if context["item"].doc_type == "Independent Government Cost Estimate":
+            return render_xls_igce(context, filename=filename, template="invoice.html")
+        else:
+            return render_xls(context, filename=filename, template="invoice.html")
     else:
         return render(request, "invoice_view.html", context)
 

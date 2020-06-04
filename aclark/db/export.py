@@ -76,12 +76,38 @@ def render_xls(context, **kwargs):
             ]
         )
 
-    # sheet2 = workbook.create_sheet(title="Pi")
-    # sheet2["F5"] = 3.14
-    # sheet3 = workbook.create_sheet(title="Data")
-    # for row in range(10, 20):
-    #     for col in range(27, 54):
-    #         sheet3.cell(column=col, row=row, value="{0}".format(get_column_letter(col)))
+    response = HttpResponse(content_type="xlsx")
+    response["Content-Disposition"] = "attachment; filename=%s" % filename
+    workbook.save(response)
+    return response
+
+
+def render_xls_igce(context, **kwargs):
+    """
+    """
+
+    # https://openpyxl.readthedocs.io/en/stable/usage.html#write-a-workbook
+    workbook = Workbook()
+    filename = kwargs.get("filename")
+    item = context["item"]
+    sheet1 = workbook.active
+    for entry in item.time_set.all():
+        sheet1.append(
+            [
+                entry.date,
+                entry.task.name,
+                entry.description,
+                entry.hours,
+                entry.task.rate,
+            ]
+        )
+
+    sheet2 = workbook.create_sheet(title="Pi")
+    sheet2["F5"] = 3.14
+    sheet3 = workbook.create_sheet(title="Data")
+    for row in range(10, 20):
+        for col in range(27, 54):
+            sheet3.cell(column=col, row=row, value="{0}".format(get_column_letter(col)))
 
     response = HttpResponse(content_type="xlsx")
     response["Content-Disposition"] = "attachment; filename=%s" % filename
