@@ -139,6 +139,7 @@ def render_xls(context, **kwargs):
     for entry in item.time_set.all():
         sheet1.append(
             [
+                '',
                 entry.date,
                 entry.task.name,
                 entry.description,
