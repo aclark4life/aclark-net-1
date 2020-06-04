@@ -19,7 +19,7 @@ black:
 	black aclark/*.py
 
 flake:
-	flake8 aclark/db/*.py
-	flake8 aclark/db/management/commands/*.py
-	flake8 aclark/root/*.py
-	flake8 aclark/*.py
+	flake8 --max-line-length 100 aclark/db/*.py
+	flake8 --max-line-length 100 aclark/db/management/commands/*.py
+	flake8 --max-line-length 100 aclark/root/*.py
+	flake8 --max-line-length 100 aclark/*.py
