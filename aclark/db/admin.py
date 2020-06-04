@@ -25,6 +25,12 @@ from aclark.db.models import SiteConfiguration
 admin.site.register(SiteConfiguration, SingletonModelAdmin)
 
 
+@admin.register(Account)
+class AccountAdmin(ImportExportModelAdmin):
+    """
+    """
+
+
 class BooleanWidget(widgets.Widget):
     """
     """
