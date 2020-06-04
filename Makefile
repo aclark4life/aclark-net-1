@@ -17,3 +17,9 @@ black:
 	black aclark/db/management/commands/*.py
 	black aclark/root/*.py
 	black aclark/*.py
+
+flake:
+	flake8 aclark/db/*.py
+	flake8 aclark/db/management/commands/*.py
+	flake8 aclark/root/*.py
+	flake8 aclark/*.py
