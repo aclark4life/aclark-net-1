@@ -1,4 +1,5 @@
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
+# from django.core.management.base import CommandError
 from aclark.db.models import Project
 from aclark.db.mail import get_recipients
 from aclark.db.mail import mail_send
