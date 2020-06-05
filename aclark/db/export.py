@@ -6,6 +6,7 @@ from openpyxl import Workbook
 
 # from openpyxl.utils import get_column_letter
 from openpyxl.styles import Font
+from openpyxl.styles import PatternFill
 
 
 def render_xls_igce(context, **kwargs):
@@ -87,6 +88,10 @@ def render_xls_igce(context, **kwargs):
     sheet2.column_dimensions["B"].width = 48
     sheet2.column_dimensions["C"].width = 48
     sheet2.column_dimensions["D"].width = 48
+
+    # https://stackoverflow.com/a/50209914
+    sheet2['B4'].fill = PatternFill(start_color="D3D3D3", end_color="D3D3D3", fill_type = "solid")
+
     # sheet2.merge_cells("B2:B4")
     for entry in item.time_set.all():
         sheet2.append(
