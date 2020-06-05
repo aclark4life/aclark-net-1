@@ -60,6 +60,7 @@ def render_xls_igce(context, **kwargs):
     sheet2.append(["TITLE:"])
     sheet2.append(["Detailed Price Summary"])
     sheet2.append(["Contract Line Item Description", "Estimate 1", "Estimate 2", "Estimate 3"])
+	sheet2.append(["", "Quantity", "Unit", "Unit Price", "Total Price", "Quantity", "Unit", "Unit Price", "Total Price", "Quantity", "Unit", "Unit Price", "Total Price"])
     sheet2["A1"].font = bold
     sheet2["A2"].font = bold
     sheet2["A3"].font = bold
