@@ -85,20 +85,20 @@ def render_xls_igce(context, **kwargs):
     sheet2["A3"].font = bold
     sheet2["A4"].font = bold
 
-
     sheet2["B5"].font = bold
     sheet2["C5"].font = bold
     sheet2["D5"].font = bold
     sheet2["E5"].font = bold
+
     sheet2["F5"].font = bold
     sheet2["G5"].font = bold
     sheet2["H5"].font = bold
     sheet2["I5"].font = bold
+
     sheet2["J5"].font = bold
     sheet2["K5"].font = bold
     sheet2["L5"].font = bold
     sheet2["M5"].font = bold
-    sheet2["N5"].font = bold
 
     sheet2.column_dimensions["A"].width = 48
 
@@ -111,6 +111,10 @@ def render_xls_igce(context, **kwargs):
     sheet2['F4'].fill = PatternFill(start_color="D3D3D3", end_color="D3D3D3", fill_type = "solid")
     sheet2['J4'].fill = PatternFill(start_color="D3D3D3", end_color="D3D3D3", fill_type = "solid")
 
+    sheet2['E6'].fill = PatternFill(start_color="D3D3D3", end_color="D3D3D3", fill_type = "solid")
+    sheet2['I6'].fill = PatternFill(start_color="D3D3D3", end_color="D3D3D3", fill_type = "solid")
+    sheet2['M6'].fill = PatternFill(start_color="D3D3D3", end_color="D3D3D3", fill_type = "solid")
+
     sheet2["B4"].font = bold
     sheet2["F4"].font = bold
     sheet2["J4"].font = bold
@@ -119,7 +123,6 @@ def render_xls_igce(context, **kwargs):
         sheet2.append(
             [
                 "",
-                entry.date,
                 entry.task.name,
                 entry.description,
                 entry.hours,
