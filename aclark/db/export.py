@@ -113,7 +113,8 @@ def render_xls_igce(context, **kwargs):
     sheet2['C4'].fill = PatternFill(start_color="D3D3D3", end_color="D3D3D3", fill_type = "solid")
     sheet2['D4'].fill = PatternFill(start_color="D3D3D3", end_color="D3D3D3", fill_type = "solid")
 
-    # sheet2.merge_cells("B2:B4")
+    sheet2.merge_cells("B4:E4")
+
     for entry in item.time_set.all():
         sheet2.append(
             [
