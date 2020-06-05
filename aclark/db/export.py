@@ -59,8 +59,10 @@ def render_xls_igce(context, **kwargs):
     sheet2.append(["FFP IGCE TEMPLATE"])
     sheet2.append(["TITLE:"])
     sheet2.append(["Detailed Price Summary"])
+    sheet2.append(["Contract Line Item Description", "Estimate 1", "Estimate 2", "Estimate 3"])
     sheet2["A1"].font = bold
     sheet2["A2"].font = bold
+    sheet2["A3"].font = bold
     sheet2.column_dimensions["A"].width = 48
     for entry in item.time_set.all():
         sheet2.append(
