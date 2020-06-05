@@ -132,8 +132,6 @@ def render_xls_igce(context, **kwargs):
     sheet2["F4"].font = bold
     sheet2["J4"].font = bold
 
-    row = sheet2.max_row
-
     entries = []
     for entry in item.time_set.all():
         entries.append(entry.task.name)
@@ -141,15 +139,15 @@ def render_xls_igce(context, **kwargs):
         entries.append(entry.hours)
         entries.append(entry.task.rate)
 
-    sheet2["E" + str(row + 1)].fill = PatternFill(
-        start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
-    )
-    sheet2["I" + str(row + 1)].fill = PatternFill(
-        start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
-    )
-    sheet2["M" + str(row + 1)].fill = PatternFill(
-        start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
-    )
+    # sheet2["E" + str(sheet2.max_row + 1)].fill = PatternFill(
+    #     start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
+    # )
+    # sheet2["I" + str(sheet2.max_row + 1)].fill = PatternFill(
+    #     start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
+    # )
+    # sheet2["M" + str(sheet2.max_row + 1)].fill = PatternFill(
+    #     start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
+    # )
 
     entries.insert(0, "")
     sheet2.append(entries)
