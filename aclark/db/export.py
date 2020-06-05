@@ -101,13 +101,7 @@ def render_xls_igce(context, **kwargs):
     sheet2["N5"].font = bold
 
     sheet2.column_dimensions["A"].width = 48
-    # sheet2.column_dimensions["B"].width = 48
-    # sheet2.column_dimensions["C"].width = 48
-    # sheet2.column_dimensions["D"].width = 48
 
-    sheet2["B4"].font = bold
-    sheet2["C4"].font = bold
-    sheet2["D4"].font = bold
 
     sheet2.merge_cells("B4:E4")
     sheet2.merge_cells("F4:I4")
@@ -117,6 +111,10 @@ def render_xls_igce(context, **kwargs):
     sheet2['B4'].fill = PatternFill(start_color="D3D3D3", end_color="D3D3D3", fill_type = "solid")
     sheet2['F4'].fill = PatternFill(start_color="D3D3D3", end_color="D3D3D3", fill_type = "solid")
     sheet2['J4'].fill = PatternFill(start_color="D3D3D3", end_color="D3D3D3", fill_type = "solid")
+
+    sheet2["B4"].font = bold
+    sheet2["F4"].font = bold
+    sheet2["J4"].font = bold
 
     for entry in item.time_set.all():
         sheet2.append(
