@@ -139,18 +139,19 @@ def render_xls_igce(context, **kwargs):
         entries.append(entry.hours)
         entries.append(entry.task.rate)
 
-    # sheet2["E" + str(sheet2.max_row + 1)].fill = PatternFill(
-    #     start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
-    # )
-    # sheet2["I" + str(sheet2.max_row + 1)].fill = PatternFill(
-    #     start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
-    # )
-    # sheet2["M" + str(sheet2.max_row + 1)].fill = PatternFill(
-    #     start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
-    # )
-
     entries.insert(0, "")
     sheet2.append(entries)
+
+    sheet2["E" + str(sheet2.max_row)].fill = PatternFill(
+        start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
+    )
+    sheet2["I" + str(sheet2.max_row)].fill = PatternFill(
+        start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
+    )
+    sheet2["M" + str(sheet2.max_row)].fill = PatternFill(
+        start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
+    )
+
     sheet2.append(["Line Item Subtotal"])
 
     # sheet2['B16'].fill = PatternFill(start_color="00008B", end_color="00008B", fill_type = "solid")
