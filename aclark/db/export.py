@@ -102,7 +102,6 @@ def render_xls_igce(context, **kwargs):
 
     sheet2.column_dimensions["A"].width = 48
 
-
     sheet2.merge_cells("B4:E4")
     sheet2.merge_cells("F4:I4")
     sheet2.merge_cells("J4:M4")
@@ -127,6 +126,9 @@ def render_xls_igce(context, **kwargs):
                 entry.task.rate,
             ]
         )
+
+    sheet2.append(["Line Item Subtotal", "", "", "", "", "", "", "", "", "", "", "", ""])
+    sheet2['B16'].fill = PatternFill(start_color="00008B", end_color="00008B", fill_type = "solid")
 
     response = HttpResponse(content_type="xlsx")
     response["Content-Disposition"] = "attachment; filename=%s" % filename
