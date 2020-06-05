@@ -61,7 +61,7 @@ def render_xls_igce(context, **kwargs):
     sheet2.append(["TITLE:"])
     sheet2.append(["Detailed Price Summary"])
     sheet2.append(
-        ["Contract Line Item Description", "Estimate 1", "Estimate 2", "Estimate 3"]
+        ["Contract Line Item Description", "Estimate 1", "", "", "", "Estimate 2", "", "", "", "Estimate 3"]
     )
     sheet2.append(
         [
