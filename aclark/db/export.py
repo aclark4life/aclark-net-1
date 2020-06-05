@@ -61,7 +61,18 @@ def render_xls_igce(context, **kwargs):
     sheet2.append(["TITLE:"])
     sheet2.append(["Detailed Price Summary"])
     sheet2.append(
-        ["Contract Line Item Description", "Estimate 1", "", "", "", "Estimate 2", "", "", "", "Estimate 3"]
+        [
+            "Contract Line Item Description",
+            "Estimate 1",
+            "",
+            "",
+            "",
+            "Estimate 2",
+            "",
+            "",
+            "",
+            "Estimate 3",
+        ]
     )
     sheet2.append(
         [
@@ -107,9 +118,15 @@ def render_xls_igce(context, **kwargs):
     sheet2.merge_cells("J4:M4")
 
     # https://stackoverflow.com/a/50209914
-    sheet2['B4'].fill = PatternFill(start_color="D3D3D3", end_color="D3D3D3", fill_type = "solid")
-    sheet2['F4'].fill = PatternFill(start_color="D3D3D3", end_color="D3D3D3", fill_type = "solid")
-    sheet2['J4'].fill = PatternFill(start_color="D3D3D3", end_color="D3D3D3", fill_type = "solid")
+    sheet2["B4"].fill = PatternFill(
+        start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
+    )
+    sheet2["F4"].fill = PatternFill(
+        start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
+    )
+    sheet2["J4"].fill = PatternFill(
+        start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
+    )
 
     sheet2["B4"].font = bold
     sheet2["F4"].font = bold
@@ -117,13 +134,7 @@ def render_xls_igce(context, **kwargs):
 
     for entry in item.time_set.all():
         sheet2.append(
-            [
-                "",
-                entry.task.name,
-                entry.description,
-                entry.hours,
-                entry.task.rate,
-            ]
+            ["", entry.task.name, entry.description, entry.hours, entry.task.rate,]
         )
 
     sheet2.append(["Line Item Subtotal"])
