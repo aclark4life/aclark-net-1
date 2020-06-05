@@ -63,7 +63,11 @@ def render_xls_igce(context, **kwargs):
     sheet2["A1"].font = bold
     sheet2["A2"].font = bold
     sheet2["A3"].font = bold
+    sheet2["A4"].font = bold
     sheet2.column_dimensions["A"].width = 48
+    sheet2.column_dimensions["B"].width = 48
+    sheet2.column_dimensions["C"].width = 48
+    sheet2.column_dimensions["D"].width = 48
     for entry in item.time_set.all():
         sheet2.append(
             [
