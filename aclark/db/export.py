@@ -84,6 +84,22 @@ def render_xls_igce(context, **kwargs):
     sheet2["A2"].font = bold
     sheet2["A3"].font = bold
     sheet2["A4"].font = bold
+
+
+    sheet2["B5"].font = bold
+    sheet2["C5"].font = bold
+    sheet2["D5"].font = bold
+    sheet2["E5"].font = bold
+    sheet2["F5"].font = bold
+    sheet2["G5"].font = bold
+    sheet2["H5"].font = bold
+    sheet2["I5"].font = bold
+    sheet2["J5"].font = bold
+    sheet2["K5"].font = bold
+    sheet2["L5"].font = bold
+    sheet2["M5"].font = bold
+    sheet2["N5"].font = bold
+
     sheet2.column_dimensions["A"].width = 48
     sheet2.column_dimensions["B"].width = 48
     sheet2.column_dimensions["C"].width = 48
