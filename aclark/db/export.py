@@ -87,7 +87,7 @@ def render_xls_igce(context, **kwargs):
     sheet2.column_dimensions["B"].width = 48
     sheet2.column_dimensions["C"].width = 48
     sheet2.column_dimensions["D"].width = 48
-    sheet2.merge_cells("B2:B4")
+    # sheet2.merge_cells("B2:B4")
     for entry in item.time_set.all():
         sheet2.append(
             [
