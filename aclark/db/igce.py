@@ -146,8 +146,8 @@ def render_xls(context, **kwargs):
     #                                                                              #
     #                                                       Soul-crushing pain     #
     #                                                       only occurs with       #
-    #                                                       prolonged editing      #
-    #                                                       in Excel. This house   #
+    #                                                       prolonged use of       #
+    #                                                       Excel. This house      #
     #                                                       is clean.              #
     #                                                                              #
     #  What have we learned?                                                       #
