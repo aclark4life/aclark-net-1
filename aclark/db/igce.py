@@ -131,8 +131,8 @@ def render_xls(context, **kwargs):
 
     ################################################################################
     #                                                                              #
-    #  Conversation with myself about this code                                    #
-    #  ----------------------------------------                                    #
+    #  Conversation with myself                                                    #
+    #  ------------------------                                                    #
     #                                                                              #
     #                                                                              #
     #  Oh snap, all this Python just to                                            #
@@ -145,8 +145,8 @@ def render_xls(context, **kwargs):
     #  to test your output?                                                        #
     #                                                                              #
     #                                                       Soul-crushing pain     #
-    #                                                       only occurs during     #
-    #                                                       prolonged field edits  #
+    #                                                       only occurs with       #
+    #                                                       prolonged editing      #
     #                                                       in Excel. This house   #
     #                                                       is clean.              #
     #                                                                              #
