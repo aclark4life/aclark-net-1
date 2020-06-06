@@ -190,7 +190,7 @@ def render_xls(context, **kwargs):
         start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
     )
 
-    sheet2.append("Total Estimated Amount")
+    sheet2.append(["Total Estimated Amount"])
     sheet2["A" + str(sheet2.max_row)].font = bold
 
     response = HttpResponse(content_type="xlsx")
