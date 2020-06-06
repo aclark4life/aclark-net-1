@@ -155,9 +155,6 @@ def render_xls(context, **kwargs):
     #                                                       Python4life.           #
     #                                                                              #
     #                                                                              #
-    #                                                                              #
-    #                                                                              #
-    #                                                                              #
     #            No copies of Excel were harmed during the writing                 #
     #            of this code, although some expletives were hurled.               #
     #                                                                              #
