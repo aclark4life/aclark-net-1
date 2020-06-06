@@ -151,49 +151,59 @@ def render_xls(context, **kwargs):
 
     sheet2.append(["Line Item Subtotal"])
 
-    sheet2["B" + str(sheet2.max_row)].fill = PatternFill(
-        start_color="00008B", end_color="00008B", fill_type="solid"
-    )
-    sheet2["C" + str(sheet2.max_row)].fill = PatternFill(
-        start_color="00008B", end_color="00008B", fill_type="solid"
-    )
-    sheet2["D" + str(sheet2.max_row)].fill = PatternFill(
-        start_color="00008B", end_color="00008B", fill_type="solid"
-    )
-    sheet2["E" + str(sheet2.max_row)].fill = PatternFill(
-        start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
-    )
-
-    sheet2["F" + str(sheet2.max_row)].fill = PatternFill(
-        start_color="00008B", end_color="00008B", fill_type="solid"
-    )
-    sheet2["G" + str(sheet2.max_row)].fill = PatternFill(
-        start_color="00008B", end_color="00008B", fill_type="solid"
-    )
-    sheet2["H" + str(sheet2.max_row)].fill = PatternFill(
-        start_color="00008B", end_color="00008B", fill_type="solid"
-    )
-    sheet2["I" + str(sheet2.max_row)].fill = PatternFill(
-        start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
-    )
-
-    sheet2["J" + str(sheet2.max_row)].fill = PatternFill(
-        start_color="00008B", end_color="00008B", fill_type="solid"
-    )
-    sheet2["K" + str(sheet2.max_row)].fill = PatternFill(
-        start_color="00008B", end_color="00008B", fill_type="solid"
-    )
-    sheet2["L" + str(sheet2.max_row)].fill = PatternFill(
-        start_color="00008B", end_color="00008B", fill_type="solid"
-    )
-    sheet2["M" + str(sheet2.max_row)].fill = PatternFill(
-        start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
-    )
+    blue_i_fy(sheet)
 
     sheet2.append(["Total Estimated Amount"])
     sheet2["A" + str(sheet2.max_row)].font = bold
+
+    blue_i_fy(sheet)
 
     response = HttpResponse(content_type="xlsx")
     response["Content-Disposition"] = "attachment; filename=%s" % filename
     workbook.save(response)
     return response
+
+
+def blue_i_fy(sheet):
+    """
+    Rain blue all over
+    """
+
+    sheet["B" + str(sheet2.max_row)].fill = PatternFill(
+        start_color="00008B", end_color="00008B", fill_type="solid"
+    )
+    sheet["C" + str(sheet.max_row)].fill = PatternFill(
+        start_color="00008B", end_color="00008B", fill_type="solid"
+    )
+    sheet["D" + str(sheet.max_row)].fill = PatternFill(
+        start_color="00008B", end_color="00008B", fill_type="solid"
+    )
+    sheet["E" + str(sheet.max_row)].fill = PatternFill(
+        start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
+    )
+
+    sheet["F" + str(sheet.max_row)].fill = PatternFill(
+        start_color="00008B", end_color="00008B", fill_type="solid"
+    )
+    sheet["G" + str(sheet.max_row)].fill = PatternFill(
+        start_color="00008B", end_color="00008B", fill_type="solid"
+    )
+    sheet["H" + str(sheet.max_row)].fill = PatternFill(
+        start_color="00008B", end_color="00008B", fill_type="solid"
+    )
+    sheet["I" + str(sheet.max_row)].fill = PatternFill(
+        start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
+    )
+
+    sheet["J" + str(sheet.max_row)].fill = PatternFill(
+        start_color="00008B", end_color="00008B", fill_type="solid"
+    )
+    sheet["K" + str(sheet.max_row)].fill = PatternFill(
+        start_color="00008B", end_color="00008B", fill_type="solid"
+    )
+    sheet["L" + str(sheet.max_row)].fill = PatternFill(
+        start_color="00008B", end_color="00008B", fill_type="solid"
+    )
+    sheet["M" + str(sheet.max_row)].fill = PatternFill(
+        start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
+    )
