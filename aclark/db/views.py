@@ -42,7 +42,7 @@ from .models import Time
 from .export import render_doc
 from .export import render_pdf
 from .export import render_xls
-from .export import render_xls_igce
+from .igce import render_xls as render_xls_igce
 from .mail import mail_send
 from .misc import has_profile
 from .plot import get_plot
