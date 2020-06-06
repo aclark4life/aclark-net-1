@@ -129,6 +129,25 @@ def render_xls(context, **kwargs):
     sheet2["F4"].font = bold
     sheet2["J4"].font = bold
 
+    ################################################################################
+    #                                                                              #
+    # Conversation with myself                                                     #
+    #                                                                              #
+    #  Oh snap, all this Python just to                                            #
+    #  put a few values into a spreadsheet                                         #
+    #  without running Excel?                                                      #
+    #                                                       A thousand times yes.  #
+    #                                                                              #
+    #  But don't you still have to run it                                          #
+    #  to test your output?                                                        #
+    #                                                                              #
+    #                                                       Soul-crushing only     #
+    #                                                       occurs during          #
+    #                                                       prolonged cell edits   #
+    #                                                       in Excel. This house   #
+    #                                                       is clean.              #
+    #                                                                              #
+    ################################################################################
     entries = []
     for entry in item.time_set.all():
         entries.append(entry.task.name)
