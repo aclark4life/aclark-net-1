@@ -5,8 +5,8 @@ from lxml import etree
 from openpyxl import Workbook
 
 # from openpyxl.utils import get_column_letter
-from openpyxl.styles import Font
-from openpyxl.styles import PatternFill
+# from openpyxl.styles import Font
+# from openpyxl.styles import PatternFill
 
 
 def render_doc(context, **kwargs):
