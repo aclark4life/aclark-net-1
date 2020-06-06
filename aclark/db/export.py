@@ -164,7 +164,7 @@ def render_xls_igce(context, **kwargs):
         start_color="00008B", end_color="00008B", fill_type="solid"
     )
     sheet2["E" + str(sheet2.max_row)].fill = PatternFill(
-        start_color="00008B", end_color="D3D3D3", fill_type="solid"
+        start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
     )
 
     response = HttpResponse(content_type="xlsx")
