@@ -169,7 +169,7 @@ def blueify(sheet):
     Rain blue all over
     """
 
-    sheet["B" + str(sheet2.max_row)].fill = PatternFill(
+    sheet["B" + str(sheet.max_row)].fill = PatternFill(
         start_color="00008B", end_color="00008B", fill_type="solid"
     )
     sheet["C" + str(sheet.max_row)].fill = PatternFill(
