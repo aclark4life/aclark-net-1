@@ -164,6 +164,32 @@ def render_xls(context, **kwargs):
         start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
     )
 
+    sheet2["F" + str(sheet2.max_row)].fill = PatternFill(
+        start_color="00008B", end_color="00008B", fill_type="solid"
+    )
+    sheet2["G" + str(sheet2.max_row)].fill = PatternFill(
+        start_color="00008B", end_color="00008B", fill_type="solid"
+    )
+    sheet2["H" + str(sheet2.max_row)].fill = PatternFill(
+        start_color="00008B", end_color="00008B", fill_type="solid"
+    )
+    sheet2["I" + str(sheet2.max_row)].fill = PatternFill(
+        start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
+    )
+
+    sheet2["J" + str(sheet2.max_row)].fill = PatternFill(
+        start_color="00008B", end_color="00008B", fill_type="solid"
+    )
+    sheet2["K" + str(sheet2.max_row)].fill = PatternFill(
+        start_color="00008B", end_color="00008B", fill_type="solid"
+    )
+    sheet2["L" + str(sheet2.max_row)].fill = PatternFill(
+        start_color="00008B", end_color="00008B", fill_type="solid"
+    )
+    sheet2["M" + str(sheet2.max_row)].fill = PatternFill(
+        start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
+    )
+
     response = HttpResponse(content_type="xlsx")
     response["Content-Disposition"] = "attachment; filename=%s" % filename
     workbook.save(response)
