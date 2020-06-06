@@ -154,7 +154,18 @@ def render_xls_igce(context, **kwargs):
 
     sheet2.append(["Line Item Subtotal"])
 
-    # sheet2['B16'].fill = PatternFill(start_color="00008B", end_color="00008B", fill_type = "solid")
+    sheet2["B" + str(sheet2.max_row)].fill = PatternFill(
+        start_color="00008B", end_color="00008B", fill_type="solid"
+    )
+    sheet2["C" + str(sheet2.max_row)].fill = PatternFill(
+        start_color="00008B", end_color="00008B", fill_type="solid"
+    )
+    sheet2["D" + str(sheet2.max_row)].fill = PatternFill(
+        start_color="00008B", end_color="00008B", fill_type="solid"
+    )
+    sheet2["E" + str(sheet2.max_row)].fill = PatternFill(
+        start_color="00008B", end_color="D3D3D3", fill_type="solid"
+    )
 
     response = HttpResponse(content_type="xlsx")
     response["Content-Disposition"] = "attachment; filename=%s" % filename
