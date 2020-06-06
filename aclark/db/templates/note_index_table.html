@@ -19,7 +19,7 @@
                 <td>{{ item.created }}</td>
                 <td>{{ item.updated }}</td>
                 <td><a style="text-decoration: none" href="{% url 'note_view' item.pk %}">{{ item.title|default:'Note' }}</a> <a href="{% url 'note_edit' item.pk %}"><i class="far fa-edit"></i></a></td>
-                <td>{{ item.note|safe }}</td>
+                <td>{{ item.text|safe }}</td>
               </tr>
             {% endfor %}
             </tbody>
