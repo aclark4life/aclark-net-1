@@ -131,21 +131,29 @@ def render_xls(context, **kwargs):
 
     ################################################################################
     #                                                                              #
-    # Conversation with myself                                                     #
+    #  Conversation with myself about this code                                    #
+    #  ----------------------------------------                                    #
+    #                                                                              #
     #                                                                              #
     #  Oh snap, all this Python just to                                            #
     #  put a few values into a spreadsheet                                         #
     #  without running Excel?                                                      #
     #                                                       A thousand times yes.  #
     #                                                                              #
+    #                                                                              #
     #  But don't you still have to run it                                          #
     #  to test your output?                                                        #
     #                                                                              #
-    #                                                       Soul-crushing only     #
-    #                                                       occurs during          #
-    #                                                       prolonged cell edits   #
+    #                                                       Soul-crushing pain     #
+    #                                                       only occurs during     #
+    #                                                       prolonged field edits  #
     #                                                       in Excel. This house   #
     #                                                       is clean.              #
+    #                                                                              #
+    #  What have we learned?                                                       #
+    #                                                                              #
+    #                                                       Python4life.           #
+    #                                                                              #
     #                                                                              #
     ################################################################################
     entries = []
