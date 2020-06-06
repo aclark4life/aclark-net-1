@@ -141,7 +141,7 @@ def render_xls(context, **kwargs):
     #                                                       A thousand times yes.  #
     #                                                                              #
     #                                                                              #
-    #  But don't you still have to run it                                          #
+    #  But don't you still have to run Excel                                       #
     #  to test your output?                                                        #
     #                                                                              #
     #                                                       Soul-crushing pain     #
