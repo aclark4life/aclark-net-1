@@ -151,12 +151,12 @@ def render_xls(context, **kwargs):
 
     sheet2.append(["Line Item Subtotal"])
 
-    blue_i_fy(sheet)
+    blueify(sheet2)
 
     sheet2.append(["Total Estimated Amount"])
     sheet2["A" + str(sheet2.max_row)].font = bold
 
-    blue_i_fy(sheet)
+    blueify(sheet2)
 
     response = HttpResponse(content_type="xlsx")
     response["Content-Disposition"] = "attachment; filename=%s" % filename
@@ -164,7 +164,7 @@ def render_xls(context, **kwargs):
     return response
 
 
-def blue_i_fy(sheet):
+def blueify(sheet):
     """
     Rain blue all over
     """
