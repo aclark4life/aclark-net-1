@@ -156,7 +156,7 @@ def render_xls(context, **kwargs):
     #                                                                              #
     #                                                                              #
     #            No copies of Excel were harmed during the writing                 #
-    #            of this code, although some expletives were hurled.               #
+    #            of this code, but many expletives were used.                      #
     #                                                                              #
     ################################################################################
     entries = []
