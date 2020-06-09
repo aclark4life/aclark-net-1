@@ -202,12 +202,30 @@ def render_xls(context, **kwargs):
 
     sheet2.append(["Narrative:"])
     sheet2["A" + str(sheet2.max_row)].font = bold
-    sheet2.append(["Estimate #1—Vendor"])
-    sheet2["A" + str(sheet2.max_row)].font = bold
-    sheet2.append(["Estimate #2—Vendor"])
-    sheet2["A" + str(sheet2.max_row)].font = bold
-    sheet2.append(["Estimate #3—Vendor"])
-    sheet2["A" + str(sheet2.max_row)].font = bold
+
+    ################################################################################
+    #                                                                              #
+    #  Conversation with myself                                                    #
+    #  ------------------------                                                    #
+    #                                                                              #
+    #  Here we go again. So you're going                                           #
+    #  to write all this Python                                                    #
+    #  to avoid manually entering a few cells                                      #
+    #  in Excel?                                                                   #
+    #                                                                              #
+    #                                            My kingdom to avoid Excel!        #
+    #                                                                              #
+    ################################################################################
+
+    count = 1
+    for entry in item.time_set.all():
+        sheet2.append(["Estimate %s—Vendor" % str(count)] )
+        sheet2["A" + str(sheet2.max_row)].font = bold
+        sheet2.append(entry.task.name)
+        sheet2.append(entry.description)
+        sheet2.append(entry.hours)
+        sheet2.append(entry.task.rate)
+        count += 1
 
     response = HttpResponse(content_type="xlsx")
     response["Content-Disposition"] = "attachment; filename=%s" % filename
