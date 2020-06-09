@@ -202,9 +202,9 @@ def render_xls(context, **kwargs):
 
     sheet2.append(["Narrative:"])
     sheet2["A" + str(sheet2.max_row)].font = bold
-    sheet2.append(["Estimate #1","Vendor"])
-    sheet2.append(["Estimate #2","Vendor"])
-    sheet2.append(["Estimate #3","Vendor"])
+    sheet2.append(["Estimate #1—Vendor"])
+    sheet2.append(["Estimate #2—Vendor"])
+    sheet2.append(["Estimate #3—Vendor"])
 
     response = HttpResponse(content_type="xlsx")
     response["Content-Disposition"] = "attachment; filename=%s" % filename
