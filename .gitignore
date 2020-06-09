@@ -1,19 +1,2 @@
-.DS_Store
-.Python
-bin
-include
-lib
-share
-src
-aclark/__pycache__/
-aclark/db/__pycache__/
-aclark/db/migrations/__pycache__/
-aclark/root/__pycache__/
-aclark/root/migrations/__pycache__/
-
-# Elastic Beanstalk Files
-.elasticbeanstalk/*
-!.elasticbeanstalk/*.cfg.yml
-!.elasticbeanstalk/*.global.yml
-
-node_modules/
+# created by virtualenv automatically
+*
