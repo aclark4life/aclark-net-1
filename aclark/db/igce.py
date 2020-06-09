@@ -203,17 +203,6 @@ def render_xls(context, **kwargs):
     return response
 
 
-def greenify(sheet):
-    """
-    Bring the green
-    """
-
-    sheet["B" + str(sheet.max_row)].fill = PatternFill(
-        start_color="00FF00", end_color="00FF00", fill_type="solid"
-    )
-
-
-
 def blueify(sheet):
     """
     Rain down blue
@@ -256,4 +245,49 @@ def blueify(sheet):
     )
     sheet["M" + str(sheet.max_row)].fill = PatternFill(
         start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
+    )
+
+
+def greenify(sheet):
+    """
+    Bring the green
+    """
+
+    sheet["B" + str(sheet.max_row)].fill = PatternFill(
+        start_color="00FF00", end_color="00FF00", fill_type="solid"
+    )
+    sheet["C" + str(sheet.max_row)].fill = PatternFill(
+        start_color="00FF00", end_color="00FF00", fill_type="solid"
+    )
+    sheet["D" + str(sheet.max_row)].fill = PatternFill(
+        start_color="00FF00", end_color="00FF00", fill_type="solid"
+    )
+    sheet["E" + str(sheet.max_row)].fill = PatternFill(
+        start_color="00FF00", end_color="00FF00", fill_type="solid"
+    )
+
+    sheet["F" + str(sheet.max_row)].fill = PatternFill(
+        start_color="00FF00", end_color="00FF00", fill_type="solid"
+    )
+    sheet["G" + str(sheet.max_row)].fill = PatternFill(
+        start_color="00FF00", end_color="00FF00", fill_type="solid"
+    )
+    sheet["H" + str(sheet.max_row)].fill = PatternFill(
+        start_color="00FF00", end_color="00FF00", fill_type="solid"
+    )
+    sheet["I" + str(sheet.max_row)].fill = PatternFill(
+        start_color="00FF00", end_color="00FF00", fill_type="solid"
+    )
+
+    sheet["J" + str(sheet.max_row)].fill = PatternFill(
+        start_color="00FF00", end_color="00FF00", fill_type="solid"
+    )
+    sheet["K" + str(sheet.max_row)].fill = PatternFill(
+        start_color="00FF00", end_color="00FF00", fill_type="solid"
+    )
+    sheet["L" + str(sheet.max_row)].fill = PatternFill(
+        start_color="00FF00", end_color="00FF00", fill_type="solid"
+    )
+    sheet["M" + str(sheet.max_row)].fill = PatternFill(
+        start_color="00FF00", end_color="00FF00", fill_type="solid"
     )
