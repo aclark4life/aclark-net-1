@@ -187,6 +187,12 @@ def render_xls(context, **kwargs):
     sheet2["A" + str(sheet2.max_row)].font = bold
 
     blueify(sheet2)
+
+
+    sheet2.append(["Total Combined Amount".upper()])
+
+    greenify(sheet2)
+
     workbook.active = 1
 
     response = HttpResponse(content_type="xlsx")
@@ -197,9 +203,20 @@ def render_xls(context, **kwargs):
     return response
 
 
+def greenify(sheet):
+    """
+    Bring the green
+    """
+
+    sheet["B" + str(sheet.max_row)].fill = PatternFill(
+        start_color="00FF00", end_color="00FF00", fill_type="solid"
+    )
+
+
+
 def blueify(sheet):
     """
-    Rain blue all over
+    Rain down blue
     """
 
     sheet["B" + str(sheet.max_row)].fill = PatternFill(
