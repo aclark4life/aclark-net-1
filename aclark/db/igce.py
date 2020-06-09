@@ -187,7 +187,7 @@ def render_xls(context, **kwargs):
     sheet2["A" + str(sheet2.max_row)].font = bold
 
     blueify(sheet2)
-    workbook.active(1)
+    workbook.active = 2
 
     response = HttpResponse(content_type="xlsx")
     response["Content-Disposition"] = "attachment; filename=%s" % filename
