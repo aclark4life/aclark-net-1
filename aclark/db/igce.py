@@ -180,24 +180,28 @@ def render_xls(context, **kwargs):
     )
 
     sheet2.append(["Line Item Subtotal"])
-
     blueify(sheet2)
 
     sheet2.append(["Total Estimated Amount"])
     sheet2["A" + str(sheet2.max_row)].font = bold
-
     blueify(sheet2)
 
     sheet2.append(["Total Combined Amount".upper()])
     sheet2["A" + str(sheet2.max_row)].font = bold
-
     greenify(sheet2)
 
-    workbook.active = 1
+    sheet2.merge_cells("B" + str(sheet2.max_row) + ":E" + str(sheet2.max_row))
+    sheet2.merge_cells("F" + str(sheet2.max_row) + ":I" + str(sheet2.max_row))
+    sheet2.merge_cells("J" + str(sheet2.max_row) + ":M" + str(sheet2.max_row))
+
+    sheet2.append(["Total Average Amount".upper()])
+    sheet2["A" + str(sheet2.max_row)].font = bold
+    greenify(sheet2)
 
     response = HttpResponse(content_type="xlsx")
     response["Content-Disposition"] = "attachment; filename=%s" % filename
 
+    workbook.active = 1
     workbook.save(response)
 
     return response
@@ -291,6 +295,3 @@ def greenify(sheet):
     sheet["M" + str(sheet.max_row)].fill = PatternFill(
         start_color="00FF00", end_color="00FF00", fill_type="solid"
     )
-    sheet.merge_cells("B" + str(sheet.max_row) + ":E" + str(sheet.max_row))
-    sheet.merge_cells("F" + str(sheet.max_row) + ":I" + str(sheet.max_row))
-    sheet.merge_cells("J" + str(sheet.max_row) + ":M" + str(sheet.max_row))
