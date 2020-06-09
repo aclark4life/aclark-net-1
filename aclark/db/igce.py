@@ -188,7 +188,6 @@ def render_xls(context, **kwargs):
 
     blueify(sheet2)
 
-
     sheet2.append(["Total Combined Amount".upper()])
 
     greenify(sheet2)
@@ -291,4 +290,4 @@ def greenify(sheet):
     sheet["M" + str(sheet.max_row)].fill = PatternFill(
         start_color="00FF00", end_color="00FF00", fill_type="solid"
     )
-    sheet.merge_cells("B" + str(sheet2.max_row) + ":E" + str(sheet2.max_row))
+    sheet.merge_cells("B" + str(sheet.max_row) + ":E" + str(sheet.max_row))
