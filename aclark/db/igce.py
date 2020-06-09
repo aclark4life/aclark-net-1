@@ -161,6 +161,8 @@ def render_xls(context, **kwargs):
     ################################################################################
     entries = []
     for entry in item.time_set.all():
+        if not entry.task:
+            continue
         entries.append(entry.task.name)
         entries.append(entry.description)
         entries.append(entry.hours)
