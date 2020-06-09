@@ -291,3 +291,5 @@ def greenify(sheet):
         start_color="00FF00", end_color="00FF00", fill_type="solid"
     )
     sheet.merge_cells("B" + str(sheet.max_row) + ":E" + str(sheet.max_row))
+    sheet.merge_cells("F" + str(sheet.max_row) + ":I" + str(sheet.max_row))
+    sheet.merge_cells("J" + str(sheet.max_row) + ":M" + str(sheet.max_row))
