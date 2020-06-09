@@ -189,6 +189,7 @@ def render_xls(context, **kwargs):
     blueify(sheet2)
 
     sheet2.append(["Total Combined Amount".upper()])
+    sheet2["A" + str(sheet2.max_row)].font = bold
 
     greenify(sheet2)
 
