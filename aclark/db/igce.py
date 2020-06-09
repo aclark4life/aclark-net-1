@@ -221,10 +221,10 @@ def render_xls(context, **kwargs):
     for entry in item.time_set.all():
         sheet2.append(["Estimate %s—Vendor" % str(count)] )
         sheet2["A" + str(sheet2.max_row)].font = bold
-        sheet2.append(entry.task.name)
-        sheet2.append(entry.description)
-        sheet2.append(entry.hours)
-        sheet2.append(entry.task.rate)
+        sheet2.append([entry.task.name])
+        sheet2.append([entry.description])
+        sheet2.append([entry.hours])
+        sheet2.append([entry.task.rate])
         count += 1
 
     response = HttpResponse(content_type="xlsx")
