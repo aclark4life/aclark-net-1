@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from openpyxl import Workbook
 
-# from openpyxl.utils import get_column_letter
+from openpyxl.utils import get_column_letter
 from openpyxl.styles import Font
 from openpyxl.styles import PatternFill
 
@@ -57,77 +57,12 @@ def render_xls(context, **kwargs):
     sheet2.append(["FFP IGCE TEMPLATE"])
     sheet2.append(["TITLE:"])
     sheet2.append(["Detailed Price Summary"])
-    sheet2.append(
-        [
-            "Contract Line Item Description",
-            "Estimate 1",
-            "",
-            "",
-            "",
-            "Estimate 2",
-            "",
-            "",
-            "",
-            "Estimate 3",
-        ]
-    )
-    sheet2.append(
-        [
-            "",
-            "Quantity",
-            "Unit",
-            "Unit Price",
-            "Total Price",
-            "Quantity",
-            "Unit",
-            "Unit Price",
-            "Total Price",
-            "Quantity",
-            "Unit",
-            "Unit Price",
-            "Total Price",
-        ]
-    )
+
     sheet2["A1"].font = bold
     sheet2["A2"].font = bold
     sheet2["A3"].font = bold
-    sheet2["A4"].font = bold
-
-    sheet2["B5"].font = bold
-    sheet2["C5"].font = bold
-    sheet2["D5"].font = bold
-    sheet2["E5"].font = bold
-
-    sheet2["F5"].font = bold
-    sheet2["G5"].font = bold
-    sheet2["H5"].font = bold
-    sheet2["I5"].font = bold
-
-    sheet2["J5"].font = bold
-    sheet2["K5"].font = bold
-    sheet2["L5"].font = bold
-    sheet2["M5"].font = bold
 
     sheet2.column_dimensions["A"].width = 48
-
-    sheet2.merge_cells("B4:E4")
-    sheet2.merge_cells("F4:I4")
-    sheet2.merge_cells("J4:M4")
-
-    # https://stackoverflow.com/a/50209914
-    sheet2["B4"].fill = PatternFill(
-        start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
-    )
-    sheet2["F4"].fill = PatternFill(
-        start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
-    )
-    sheet2["J4"].fill = PatternFill(
-        start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
-    )
-
-    sheet2["B4"].font = bold
-    sheet2["F4"].font = bold
-    sheet2["J4"].font = bold
 
     ################################################################################
     #                                                                              #
@@ -159,6 +94,69 @@ def render_xls(context, **kwargs):
     #            of this code, but many expletives were used.                      #
     #                                                                              #
     ################################################################################
+
+    column_index = 2
+
+    count = 1
+    entries = []
+    for entry in item.time_set.all():
+        entries.append("Estimate %s" % str(count))
+        entries.append("")
+        entries.append("")
+        entries.append("")
+        count += 1
+    entries.insert(0, "Contract Line Item Description")
+    sheet2.append(entries)
+    sheet2["A4"].font = bold
+
+    for cell in range(len(entries) - 1):
+        # https://stackoverflow.com/a/50209914
+        sheet2[
+            get_column_letter(column_index + cell) + str(sheet2.max_row)
+        ].fill = PatternFill(
+            start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
+        )
+
+    # Merge cells
+    letter_start = "B"
+    merge = []
+    for cell in range(len(entries) - 1):
+        if (column_index + cell) % 4 == 1:
+            merge.append(
+                letter_start
+                + str(sheet2.max_row)
+                + ":"
+                + get_column_letter(column_index + cell)
+                + str(sheet2.max_row)
+            )
+            letter_start = get_column_letter(column_index + cell + 1)
+    for cells in merge:
+        sheet2.merge_cells(cells)
+
+    # Bold
+    sheet2[get_column_letter(column_index) + str(sheet2.max_row)].font = bold
+    for cell in range(len(entries) - 1):
+        if (column_index + cell) % 4 == 1:
+            sheet2[
+                get_column_letter(column_index + cell + 1) + str(sheet2.max_row)
+            ].font = bold
+
+    entries = []
+    for entry in item.time_set.all():
+        entries.append("Quantity")
+        entries.append("Unit")
+        entries.append("Unit Price")
+        entries.append("Total Price")
+    entries.insert(0, "")
+    sheet2.append(entries)
+
+    # Bold
+    sheet2[get_column_letter(column_index) + str(sheet2.max_row)].font = bold
+    for cell in range(len(entries) - 1):
+        sheet2[
+            get_column_letter(column_index + cell + 1) + str(sheet2.max_row)
+        ].font = bold
+
     entries = []
     for entry in item.time_set.all():
         if not entry.task:
@@ -167,42 +165,39 @@ def render_xls(context, **kwargs):
         entries.append(entry.description)
         entries.append(entry.hours)
         entries.append(entry.task.rate)
-
     entries.insert(0, "")
     sheet2.append(entries)
 
-    sheet2["E" + str(sheet2.max_row)].fill = PatternFill(
-        start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
-    )
-    sheet2["I" + str(sheet2.max_row)].fill = PatternFill(
-        start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
-    )
-    sheet2["M" + str(sheet2.max_row)].fill = PatternFill(
-        start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
-    )
+    for cell in range(len(entries) - 1):
+        if (column_index + cell) % 4 == 1:
+            sheet2[
+                get_column_letter(column_index + cell) + str(sheet2.max_row)
+            ].fill = PatternFill(
+                start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
+            )
 
     sheet2.append(["Line Item Subtotal"])
     blueify(sheet2)
-
+    
     sheet2.append(["Total Estimated Amount"])
     sheet2["A" + str(sheet2.max_row)].font = bold
     blueify(sheet2)
-
+    
     sheet2.append(["Total Combined Amount".upper()])
     sheet2["A" + str(sheet2.max_row)].font = bold
     greenify(sheet2)
-
+    
     sheet2.merge_cells("B" + str(sheet2.max_row) + ":E" + str(sheet2.max_row))
     sheet2.merge_cells("F" + str(sheet2.max_row) + ":I" + str(sheet2.max_row))
     sheet2.merge_cells("J" + str(sheet2.max_row) + ":M" + str(sheet2.max_row))
-
+    
     sheet2.append(["Total Average Amount".upper()])
     sheet2["A" + str(sheet2.max_row)].font = bold
     greenify(sheet2)
-
+    
     sheet2.append(["Narrative:"])
     sheet2["A" + str(sheet2.max_row)].font = bold
-
+    
     ################################################################################
     #                                                                              #
     #  Conversation with myself                                                    #
@@ -216,7 +211,7 @@ def render_xls(context, **kwargs):
     #                                            My kingdom to avoid Excel!        #
     #                                                                              #
     ################################################################################
-
+    
     count = 1
     for entry in item.time_set.all():
         sheet2.append(["Estimate %s—Vendor" % str(count)] )
@@ -226,7 +221,7 @@ def render_xls(context, **kwargs):
         sheet2.append([entry.hours])
         sheet2.append([entry.task.rate])
         count += 1
-
+    
     response = HttpResponse(content_type="xlsx")
     response["Content-Disposition"] = "attachment; filename=%s" % filename
 
@@ -235,92 +230,91 @@ def render_xls(context, **kwargs):
 
     return response
 
-
 def blueify(sheet):
-    """
-    Rain down blue
-    """
+   """
+   Rain down blue
+   """
 
-    sheet["B" + str(sheet.max_row)].fill = PatternFill(
-        start_color="00008B", end_color="00008B", fill_type="solid"
-    )
-    sheet["C" + str(sheet.max_row)].fill = PatternFill(
-        start_color="00008B", end_color="00008B", fill_type="solid"
-    )
-    sheet["D" + str(sheet.max_row)].fill = PatternFill(
-        start_color="00008B", end_color="00008B", fill_type="solid"
-    )
-    sheet["E" + str(sheet.max_row)].fill = PatternFill(
-        start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
-    )
+   sheet["B" + str(sheet.max_row)].fill = PatternFill(
+       start_color="00008B", end_color="00008B", fill_type="solid"
+   )
+   sheet["C" + str(sheet.max_row)].fill = PatternFill(
+       start_color="00008B", end_color="00008B", fill_type="solid"
+   )
+   sheet["D" + str(sheet.max_row)].fill = PatternFill(
+       start_color="00008B", end_color="00008B", fill_type="solid"
+   )
+   sheet["E" + str(sheet.max_row)].fill = PatternFill(
+       start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
+   )
 
-    sheet["F" + str(sheet.max_row)].fill = PatternFill(
-        start_color="00008B", end_color="00008B", fill_type="solid"
-    )
-    sheet["G" + str(sheet.max_row)].fill = PatternFill(
-        start_color="00008B", end_color="00008B", fill_type="solid"
-    )
-    sheet["H" + str(sheet.max_row)].fill = PatternFill(
-        start_color="00008B", end_color="00008B", fill_type="solid"
-    )
-    sheet["I" + str(sheet.max_row)].fill = PatternFill(
-        start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
-    )
+   sheet["F" + str(sheet.max_row)].fill = PatternFill(
+       start_color="00008B", end_color="00008B", fill_type="solid"
+   )
+   sheet["G" + str(sheet.max_row)].fill = PatternFill(
+       start_color="00008B", end_color="00008B", fill_type="solid"
+   )
+   sheet["H" + str(sheet.max_row)].fill = PatternFill(
+       start_color="00008B", end_color="00008B", fill_type="solid"
+   )
+   sheet["I" + str(sheet.max_row)].fill = PatternFill(
+       start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
+   )
 
-    sheet["J" + str(sheet.max_row)].fill = PatternFill(
-        start_color="00008B", end_color="00008B", fill_type="solid"
-    )
-    sheet["K" + str(sheet.max_row)].fill = PatternFill(
-        start_color="00008B", end_color="00008B", fill_type="solid"
-    )
-    sheet["L" + str(sheet.max_row)].fill = PatternFill(
-        start_color="00008B", end_color="00008B", fill_type="solid"
-    )
-    sheet["M" + str(sheet.max_row)].fill = PatternFill(
-        start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
-    )
+   sheet["J" + str(sheet.max_row)].fill = PatternFill(
+       start_color="00008B", end_color="00008B", fill_type="solid"
+   )
+   sheet["K" + str(sheet.max_row)].fill = PatternFill(
+       start_color="00008B", end_color="00008B", fill_type="solid"
+   )
+   sheet["L" + str(sheet.max_row)].fill = PatternFill(
+       start_color="00008B", end_color="00008B", fill_type="solid"
+   )
+   sheet["M" + str(sheet.max_row)].fill = PatternFill(
+       start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
+   )
 
 
 def greenify(sheet):
-    """
-    Bring the green
-    """
+   """
+   Bring the green
+   """
 
-    sheet["B" + str(sheet.max_row)].fill = PatternFill(
-        start_color="00FF00", end_color="00FF00", fill_type="solid"
-    )
-    sheet["C" + str(sheet.max_row)].fill = PatternFill(
-        start_color="00FF00", end_color="00FF00", fill_type="solid"
-    )
-    sheet["D" + str(sheet.max_row)].fill = PatternFill(
-        start_color="00FF00", end_color="00FF00", fill_type="solid"
-    )
-    sheet["E" + str(sheet.max_row)].fill = PatternFill(
-        start_color="00FF00", end_color="00FF00", fill_type="solid"
-    )
+   sheet["B" + str(sheet.max_row)].fill = PatternFill(
+       start_color="00FF00", end_color="00FF00", fill_type="solid"
+   )
+   sheet["C" + str(sheet.max_row)].fill = PatternFill(
+       start_color="00FF00", end_color="00FF00", fill_type="solid"
+   )
+   sheet["D" + str(sheet.max_row)].fill = PatternFill(
+       start_color="00FF00", end_color="00FF00", fill_type="solid"
+   )
+   sheet["E" + str(sheet.max_row)].fill = PatternFill(
+       start_color="00FF00", end_color="00FF00", fill_type="solid"
+   )
 
-    sheet["F" + str(sheet.max_row)].fill = PatternFill(
-        start_color="00FF00", end_color="00FF00", fill_type="solid"
-    )
-    sheet["G" + str(sheet.max_row)].fill = PatternFill(
-        start_color="00FF00", end_color="00FF00", fill_type="solid"
-    )
-    sheet["H" + str(sheet.max_row)].fill = PatternFill(
-        start_color="00FF00", end_color="00FF00", fill_type="solid"
-    )
-    sheet["I" + str(sheet.max_row)].fill = PatternFill(
-        start_color="00FF00", end_color="00FF00", fill_type="solid"
-    )
+   sheet["F" + str(sheet.max_row)].fill = PatternFill(
+       start_color="00FF00", end_color="00FF00", fill_type="solid"
+   )
+   sheet["G" + str(sheet.max_row)].fill = PatternFill(
+       start_color="00FF00", end_color="00FF00", fill_type="solid"
+   )
+   sheet["H" + str(sheet.max_row)].fill = PatternFill(
+       start_color="00FF00", end_color="00FF00", fill_type="solid"
+   )
+   sheet["I" + str(sheet.max_row)].fill = PatternFill(
+       start_color="00FF00", end_color="00FF00", fill_type="solid"
+   )
 
-    sheet["J" + str(sheet.max_row)].fill = PatternFill(
-        start_color="00FF00", end_color="00FF00", fill_type="solid"
-    )
-    sheet["K" + str(sheet.max_row)].fill = PatternFill(
-        start_color="00FF00", end_color="00FF00", fill_type="solid"
-    )
-    sheet["L" + str(sheet.max_row)].fill = PatternFill(
-        start_color="00FF00", end_color="00FF00", fill_type="solid"
-    )
-    sheet["M" + str(sheet.max_row)].fill = PatternFill(
-        start_color="00FF00", end_color="00FF00", fill_type="solid"
-    )
+   sheet["J" + str(sheet.max_row)].fill = PatternFill(
+       start_color="00FF00", end_color="00FF00", fill_type="solid"
+   )
+   sheet["K" + str(sheet.max_row)].fill = PatternFill(
+       start_color="00FF00", end_color="00FF00", fill_type="solid"
+   )
+   sheet["L" + str(sheet.max_row)].fill = PatternFill(
+       start_color="00FF00", end_color="00FF00", fill_type="solid"
+   )
+   sheet["M" + str(sheet.max_row)].fill = PatternFill(
+       start_color="00FF00", end_color="00FF00", fill_type="solid"
+   )
