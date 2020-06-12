@@ -535,10 +535,10 @@ class Time(BaseModel):
         "Unit", default=1.0, blank=True, null=True, max_digits=12, decimal_places=2
     )
     unit_price = models.DecimalField(
-        "Unit", default=1.0, blank=True, null=True, max_digits=12, decimal_places=2
+        "Unit Price", default=1.0, blank=True, null=True, max_digits=12, decimal_places=2
     )
     total_price = models.DecimalField(
-        "Unit", default=1.0, blank=True, null=True, max_digits=12, decimal_places=2
+        "Total Price", default=1.0, blank=True, null=True, max_digits=12, decimal_places=2
     )
 
     def __str__(self):
