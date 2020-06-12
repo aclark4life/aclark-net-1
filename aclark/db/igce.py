@@ -262,6 +262,9 @@ def render_xls(context, **kwargs):
         )
 
     sheet2.append(["Narrative:"])
+    # Bold cell
+    sheet2["A" + str(sheet2.max_row)].font = bold
+
     sheet2.append(
         [
             "The government estimates the cost of the Confocal Laser Scanning Microscope with the features essential to the programs needs is $26730."
@@ -273,9 +276,6 @@ def render_xls(context, **kwargs):
             "The estimate is based upon the comparison the published commercial price for a Confocal Laser Scanning Microscope of similar features and functionality from three (3) major manufacturers."
         ]
     )
-
-    # Bold cell
-    sheet2["A" + str(sheet2.max_row)].font = bold
 
     ################################################################################
     #                                                                              #
