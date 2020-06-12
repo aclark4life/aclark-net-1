@@ -179,11 +179,15 @@ def render_xls(context, **kwargs):
     sheet2.append(["Line Item Subtotal"])
     for cell in range(len(entries) - 1):
         if (column_index + cell) % 4 == 1:
-            sheet2[get_column_letter(column_index + cell) + str(sheet2.max_row)].fill = PatternFill(
+            sheet2[
+                get_column_letter(column_index + cell) + str(sheet2.max_row)
+            ].fill = PatternFill(
                 start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
             )
         else:
-            sheet2[get_column_letter(column_index + cell) + str(sheet2.max_row)].fill = PatternFill(
+            sheet2[
+                get_column_letter(column_index + cell) + str(sheet2.max_row)
+            ].fill = PatternFill(
                 start_color="00008B", end_color="00008B", fill_type="solid"
             )
 
@@ -191,11 +195,15 @@ def render_xls(context, **kwargs):
     sheet2["A" + str(sheet2.max_row)].font = bold
     for cell in range(len(entries) - 1):
         if (column_index + cell) % 4 == 1:
-            sheet2[get_column_letter(column_index + cell) + str(sheet2.max_row)].fill = PatternFill(
+            sheet2[
+                get_column_letter(column_index + cell) + str(sheet2.max_row)
+            ].fill = PatternFill(
                 start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
             )
         else:
-            sheet2[get_column_letter(column_index + cell) + str(sheet2.max_row)].fill = PatternFill(
+            sheet2[
+                get_column_letter(column_index + cell) + str(sheet2.max_row)
+            ].fill = PatternFill(
                 start_color="00008B", end_color="00008B", fill_type="solid"
             )
 
