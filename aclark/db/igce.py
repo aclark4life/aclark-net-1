@@ -177,11 +177,27 @@ def render_xls(context, **kwargs):
             )
 
     sheet2.append(["Line Item Subtotal"])
-    blueify(sheet2)
+    for cell in range(len(entries) - 1):
+        if (column_index + cell) % 4 == 1:
+            sheet2[get_column_letter(column_index + cell) + str(sheet2.max_row)].fill = PatternFill(
+                start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
+            )
+        else:
+            sheet2[get_column_letter(column_index + cell) + str(sheet2.max_row)].fill = PatternFill(
+                start_color="00008B", end_color="00008B", fill_type="solid"
+            )
 
     sheet2.append(["Total Estimated Amount"])
     sheet2["A" + str(sheet2.max_row)].font = bold
-    blueify(sheet2)
+    for cell in range(len(entries) - 1):
+        if (column_index + cell) % 4 == 1:
+            sheet2[get_column_letter(column_index + cell) + str(sheet2.max_row)].fill = PatternFill(
+                start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
+            )
+        else:
+            sheet2[get_column_letter(column_index + cell) + str(sheet2.max_row)].fill = PatternFill(
+                start_color="00008B", end_color="00008B", fill_type="solid"
+            )
 
     sheet2.append(["Total Combined Amount".upper()])
     sheet2["A" + str(sheet2.max_row)].font = bold
@@ -229,25 +245,6 @@ def render_xls(context, **kwargs):
     workbook.save(response)
 
     return response
-
-
-def blueify(sheet):
-    """
-    Rain down blue
-    """
-
-    sheet["B" + str(sheet.max_row)].fill = PatternFill(
-        start_color="00008B", end_color="00008B", fill_type="solid"
-    )
-    sheet["C" + str(sheet.max_row)].fill = PatternFill(
-        start_color="00008B", end_color="00008B", fill_type="solid"
-    )
-    sheet["D" + str(sheet.max_row)].fill = PatternFill(
-        start_color="00008B", end_color="00008B", fill_type="solid"
-    )
-    sheet["E" + str(sheet.max_row)].fill = PatternFill(
-        start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
-    )
 
 
 def greenify(sheet):
