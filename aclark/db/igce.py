@@ -20,6 +20,7 @@ def render_xls(context, **kwargs):
     # https://stackoverflow.com/a/14450572
     sheet1.append(["Instructions".upper()])
     sheet1.column_dimensions["B"].width = 111.7
+    # Bold cell
     sheet1["A1"].font = bold
     sheet1.merge_cells("A1:Z1")
     sheet1.append(
@@ -58,6 +59,7 @@ def render_xls(context, **kwargs):
     sheet2.append(["TITLE:"])
     sheet2.append(["Detailed Price Summary"])
 
+    # Bold cells
     sheet2["A1"].font = bold
     sheet2["A2"].font = bold
     sheet2["A3"].font = bold
@@ -89,6 +91,7 @@ def render_xls(context, **kwargs):
         count += 1
     entries.insert(0, "Contract Line Item Description")
     sheet2.append(entries)
+    # Bold cell
     sheet2["A4"].font = bold
 
     for cell in range(len(entries) - 1):
@@ -131,7 +134,7 @@ def render_xls(context, **kwargs):
     for cells in merge:
         sheet2.merge_cells(cells)
 
-    # Bold
+    # Bold cells
     sheet2[get_column_letter(column_index) + str(sheet2.max_row)].font = bold
     for cell in range(len(entries) - 1):
         if (column_index + cell) % 4 == 1:
@@ -148,7 +151,7 @@ def render_xls(context, **kwargs):
     entries.insert(0, "")
     sheet2.append(entries)
 
-    # Bold
+    # Bold cells
     sheet2[get_column_letter(column_index) + str(sheet2.max_row)].font = bold
     for cell in range(len(entries) - 1):
         sheet2[
@@ -190,6 +193,7 @@ def render_xls(context, **kwargs):
             )
 
     sheet2.append(["Total Estimated Amount"])
+    # Bold cell
     sheet2["A" + str(sheet2.max_row)].font = bold
     for cell in range(len(entries) - 1):
         if (column_index + cell) % 4 == 1:
@@ -206,6 +210,7 @@ def render_xls(context, **kwargs):
             )
 
     sheet2.append(["Total Combined Amount".upper()])
+    # Bold cell
     sheet2["A" + str(sheet2.max_row)].font = bold
     for cell in range(len(entries) - 1):
         sheet2[
@@ -243,6 +248,7 @@ def render_xls(context, **kwargs):
         sheet2.merge_cells(cells)
 
     sheet2.append(["Total Average Amount".upper()])
+    # Bold cell
     sheet2["A" + str(sheet2.max_row)].font = bold
     for cell in range(len(entries) - 1):
         sheet2[
@@ -252,6 +258,7 @@ def render_xls(context, **kwargs):
         )
 
     sheet2.append(["Narrative:"])
+    # Bold cell
     sheet2["A" + str(sheet2.max_row)].font = bold
 
     ################################################################################
