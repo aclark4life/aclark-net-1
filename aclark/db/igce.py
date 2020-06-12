@@ -75,24 +75,6 @@ def render_xls(context, **kwargs):
     #  without running Excel?                                                      #
     #                                                       A thousand times yes.  #
     #                                                                              #
-    #                                                                              #
-    #  But don't you still have to run Excel                                       #
-    #  to test your output?                                                        #
-    #                                                                              #
-    #                                                       Soul-crushing pain     #
-    #                                                       only occurs with       #
-    #                                                       prolonged use of       #
-    #                                                       Excel. This house      #
-    #                                                       is clean.              #
-    #                                                                              #
-    #  What have we learned?                                                       #
-    #                                                                              #
-    #                                                       Python4life.           #
-    #                                                                              #
-    #                                                                              #
-    #            No copies of Excel were harmed during the writing                 #
-    #            of this code, but many expletives were used.                      #
-    #                                                                              #
     ################################################################################
 
     column_index = 2
@@ -116,6 +98,22 @@ def render_xls(context, **kwargs):
         ].fill = PatternFill(
             start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
         )
+
+    ################################################################################
+    #                                                                              #
+    #  Conversation with myself                                                    #
+    #  ------------------------                                                    #
+    #                                                                              #
+    #  But don't you still have to run Excel                                       #
+    #  to test your output?                                                        #
+    #                                                                              #
+    #                                                       Soul-crushing pain     #
+    #                                                       only occurs with       #
+    #                                                       prolonged use of       #
+    #                                                       Excel. This house      #
+    #                                                       is clean.              #
+    #                                                                              #
+    ################################################################################
 
     # Merge cells
     letter_start = "B"
@@ -216,6 +214,18 @@ def render_xls(context, **kwargs):
             start_color="00FF00", end_color="00FF00", fill_type="solid"
         )
 
+    ################################################################################
+    #                                                                              #
+    #  Conversation with myself                                                    #
+    #  ------------------------                                                    #
+    #                                                                              #
+    #  What have we learned?                                                       #
+    #                                                                              #
+    #                                                       Python4life.           #
+    #                                                                              #
+    #                                                                              #
+    ################################################################################
+
     # Merge cells
     letter_start = "B"
     merge = []
@@ -255,6 +265,9 @@ def render_xls(context, **kwargs):
     #  in Excel?                                                                   #
     #                                                                              #
     #                                            My kingdom to avoid Excel!        #
+    #                                                                              #
+    #            No copies of Excel were harmed during the writing                 #
+    #            of this code, but many expletives were used.                      #
     #                                                                              #
     ################################################################################
 
