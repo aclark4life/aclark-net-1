@@ -71,7 +71,6 @@ def render_xls(context, **kwargs):
     #  Conversation with myself                                                    #
     #  ------------------------                                                    #
     #                                                                              #
-    #                                                                              #
     #  Oh snap, all this Python just to                                            #
     #  put a few values into a spreadsheet                                         #
     #  without running Excel?                                                      #
@@ -94,6 +93,7 @@ def render_xls(context, **kwargs):
     # Bold cell
     sheet2["A4"].font = bold
 
+    # Fill cells
     for cell in range(len(entries) - 1):
         # https://stackoverflow.com/a/50209914
         sheet2[
@@ -169,6 +169,7 @@ def render_xls(context, **kwargs):
     entries.insert(0, "")
     sheet2.append(entries)
 
+    # Fill cells
     for cell in range(len(entries) - 1):
         if (column_index + cell) % 4 == 1:
             sheet2[
@@ -178,6 +179,7 @@ def render_xls(context, **kwargs):
             )
 
     sheet2.append(["Line Item Subtotal"])
+    # Fill cells
     for cell in range(len(entries) - 1):
         if (column_index + cell) % 4 == 1:
             sheet2[
@@ -195,6 +197,7 @@ def render_xls(context, **kwargs):
     sheet2.append(["Total Estimated Amount"])
     # Bold cell
     sheet2["A" + str(sheet2.max_row)].font = bold
+    # Fill cells
     for cell in range(len(entries) - 1):
         if (column_index + cell) % 4 == 1:
             sheet2[
@@ -212,6 +215,7 @@ def render_xls(context, **kwargs):
     sheet2.append(["Total Combined Amount".upper()])
     # Bold cell
     sheet2["A" + str(sheet2.max_row)].font = bold
+    # Fill cells
     for cell in range(len(entries) - 1):
         sheet2[
             get_column_letter(column_index + cell) + str(sheet2.max_row)
@@ -227,7 +231,6 @@ def render_xls(context, **kwargs):
     #  What have we learned?                                                       #
     #                                                                              #
     #                                                       Python4life.           #
-    #                                                                              #
     #                                                                              #
     ################################################################################
 
@@ -250,6 +253,7 @@ def render_xls(context, **kwargs):
     sheet2.append(["Total Average Amount".upper()])
     # Bold cell
     sheet2["A" + str(sheet2.max_row)].font = bold
+    # Fill cells
     for cell in range(len(entries) - 1):
         sheet2[
             get_column_letter(column_index + cell) + str(sheet2.max_row)
