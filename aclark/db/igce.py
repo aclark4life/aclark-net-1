@@ -162,10 +162,10 @@ def render_xls(context, **kwargs):
     for entry in item.time_set.all():
         if not entry.task:
             continue
-        entries.append(entry.task.name)
-        entries.append(entry.description)
-        entries.append(entry.hours)
-        entries.append(entry.task.rate)
+        entries.append(entry.quantity)
+        entries.append(entry.unit)
+        entries.append(entry.unit_price)
+        entries.append(entry.total_price)
     entries.insert(0, "")
     sheet2.append(entries)
 
@@ -262,6 +262,18 @@ def render_xls(context, **kwargs):
         )
 
     sheet2.append(["Narrative:"])
+    sheet2.append(
+        [
+            "The government estimates the cost of the Confocal Laser Scanning Microscope with the features essential to the programs needs is $26730."
+        ]
+    )
+    sheet2.append([""])
+    sheet2.append(
+        [
+            "The estimate is based upon the comparison the published commercial price for a Confocal Laser Scanning Microscope of similar features and functionality from three (3) major manufacturers."
+        ]
+    )
+
     # Bold cell
     sheet2["A" + str(sheet2.max_row)].font = bold
 
@@ -284,12 +296,12 @@ def render_xls(context, **kwargs):
 
     count = 1
     for entry in item.time_set.all():
-        sheet2.append(["Estimate %s—Vendor" % str(count)])
+        sheet2.append(["Estimate %s—%s" % (str(count), entry.description)])
         sheet2["A" + str(sheet2.max_row)].font = bold
-        sheet2.append([entry.task.name])
-        sheet2.append([entry.description])
-        sheet2.append([entry.hours])
-        sheet2.append([entry.task.rate])
+        sheet2.append([entry.quantity])
+        sheet2.append([entry.unit])
+        sheet2.append([entry.unit_price])
+        sheet2.append([entry.total_price])
         count += 1
 
     response = HttpResponse(content_type="xlsx")

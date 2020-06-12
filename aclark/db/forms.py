@@ -60,6 +60,10 @@ class AdminTimeForm(forms.ModelForm):
             "user",
             "task",
             "invoiced",
+            "quantity",
+            "unit",
+            "unit_price",
+            "total_price",
         )
         widgets = {"hours": forms.widgets.NumberInput(attrs={"class": "col-2"})}
 
