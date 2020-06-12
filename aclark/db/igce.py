@@ -209,15 +209,37 @@ def render_xls(context, **kwargs):
 
     sheet2.append(["Total Combined Amount".upper()])
     sheet2["A" + str(sheet2.max_row)].font = bold
-    greenify(sheet2)
+    for cell in range(len(entries) - 1):
+        sheet2[
+            get_column_letter(column_index + cell) + str(sheet2.max_row)
+        ].fill = PatternFill(
+            start_color="00FF00", end_color="00FF00", fill_type="solid"
+        )
 
-    sheet2.merge_cells("B" + str(sheet2.max_row) + ":E" + str(sheet2.max_row))
-    sheet2.merge_cells("F" + str(sheet2.max_row) + ":I" + str(sheet2.max_row))
-    sheet2.merge_cells("J" + str(sheet2.max_row) + ":M" + str(sheet2.max_row))
+    # Merge cells
+    letter_start = "B"
+    merge = []
+    for cell in range(len(entries) - 1):
+        if (column_index + cell) % 4 == 1:
+            merge.append(
+                letter_start
+                + str(sheet2.max_row)
+                + ":"
+                + get_column_letter(column_index + cell)
+                + str(sheet2.max_row)
+            )
+            letter_start = get_column_letter(column_index + cell + 1)
+    for cells in merge:
+        sheet2.merge_cells(cells)
 
     sheet2.append(["Total Average Amount".upper()])
     sheet2["A" + str(sheet2.max_row)].font = bold
-    greenify(sheet2)
+    for cell in range(len(entries) - 1):
+        sheet2[
+            get_column_letter(column_index + cell) + str(sheet2.max_row)
+        ].fill = PatternFill(
+            start_color="00FF00", end_color="00FF00", fill_type="solid"
+        )
 
     sheet2.append(["Narrative:"])
     sheet2["A" + str(sheet2.max_row)].font = bold
@@ -253,22 +275,3 @@ def render_xls(context, **kwargs):
     workbook.save(response)
 
     return response
-
-
-def greenify(sheet):
-    """
-    Bring the green
-    """
-
-    sheet["B" + str(sheet.max_row)].fill = PatternFill(
-        start_color="00FF00", end_color="00FF00", fill_type="solid"
-    )
-    sheet["C" + str(sheet.max_row)].fill = PatternFill(
-        start_color="00FF00", end_color="00FF00", fill_type="solid"
-    )
-    sheet["D" + str(sheet.max_row)].fill = PatternFill(
-        start_color="00FF00", end_color="00FF00", fill_type="solid"
-    )
-    sheet["E" + str(sheet.max_row)].fill = PatternFill(
-        start_color="00FF00", end_color="00FF00", fill_type="solid"
-    )
