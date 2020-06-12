@@ -160,8 +160,6 @@ def render_xls(context, **kwargs):
 
     entries = []
     for entry in item.time_set.all():
-        if not entry.task:
-            continue
         entries.append(entry.quantity)
         entries.append(entry.unit)
         entries.append(entry.unit_price)
