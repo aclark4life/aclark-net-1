@@ -5,3 +5,7 @@
 !.elasticbeanstalk/*.global.yml
 
 __pycache__
+bin/
+lib/
+share/
+src/
