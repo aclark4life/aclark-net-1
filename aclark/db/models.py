@@ -531,9 +531,7 @@ class Time(BaseModel):
     quantity = models.DecimalField(
         "Quantity", default=1.0, blank=True, null=True, max_digits=12, decimal_places=2
     )
-    unit = models.DecimalField(
-        "Unit", default=1.0, blank=True, null=True, max_digits=12, decimal_places=2
-    )
+    unit = models.CharField(max_length=2, blank=True, null=True)
     unit_price = models.DecimalField(
         "Unit Price",
         default=1.0,
