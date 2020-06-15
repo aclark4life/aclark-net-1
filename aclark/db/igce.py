@@ -55,8 +55,8 @@ def render_xls(context, **kwargs):
         ]
     )
     sheet2 = workbook.create_sheet(title="FFP IGCE")
-    sheet2.append(["FFP IGCE TEMPLATE"])
-    sheet2.append(["TITLE:"])
+    sheet2.append(["FFP IGCE"])
+    sheet2.append(["Title:".upper(), item.subject])
     sheet2.append(["Detailed Price Summary"])
 
     # Bold cells
