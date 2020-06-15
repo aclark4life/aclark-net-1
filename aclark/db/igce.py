@@ -167,6 +167,14 @@ def render_xls(context, **kwargs):
     entries.insert(0, "")
     sheet2.append(entries)
 
+    # https://openpyxl.readthedocs.io/en/stable/usage.html#using-formulae
+    column_total = []
+    for cell in range(len(entries) - 1):
+        if (column_index + cell) % 4 == 1:
+            column_total.append(
+                get_column_letter(column_index + cell) + str(sheet2.max_row)
+            )
+
     # Fill cells
     for cell in range(len(entries) - 1):
         if (column_index + cell) % 4 == 1:
@@ -220,6 +228,8 @@ def render_xls(context, **kwargs):
         ].fill = PatternFill(
             start_color="00FF00", end_color="00FF00", fill_type="solid"
         )
+
+    sheet2["B" + str(sheet2.max_row)] = "=SUM(%s)" % "+".join(column_total)
 
     ################################################################################
     #                                                                              #
@@ -289,9 +299,6 @@ def render_xls(context, **kwargs):
     #                                                                              #
     #                                            My kingdom to avoid Excel!        #
     #                                                                              #
-    #            No copies of Excel were harmed during the writing                 #
-    #            of this code, but many expletives were used.                      #
-    #                                                                              #
     ################################################################################
 
     count = 1
@@ -303,6 +310,21 @@ def render_xls(context, **kwargs):
         sheet2.append([entry.unit_price])
         sheet2.append([entry.total_price])
         count += 1
+
+    ################################################################################
+    #                                                                              #
+    #  Conversation with myself                                                    #
+    #  ------------------------                                                    #
+    #                                                                              #
+    #  This is it! Finally nearing the end.                                        #
+    #  Was it worth it?                                                            #
+    #                                                                              #
+    #                                         Weeping silent tears of joy, yes!!   #
+    #                                                                              #
+    #            No copies of Excel were harmed during the writing                 #
+    #            of this code, but many expletives were used.                      #
+    #                                                                              #
+    ################################################################################
 
     response = HttpResponse(content_type="xlsx")
     response["Content-Disposition"] = "attachment; filename=%s" % filename
