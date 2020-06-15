@@ -229,6 +229,7 @@ def render_xls(context, **kwargs):
             start_color="00FF00", end_color="00FF00", fill_type="solid"
         )
 
+    # https://openpyxl.readthedocs.io/en/stable/usage.html#using-formulae
     sheet2["B" + str(sheet2.max_row)] = "=SUM(%s)" % "+".join(column_total)
 
     ################################################################################
@@ -268,6 +269,8 @@ def render_xls(context, **kwargs):
         ].fill = PatternFill(
             start_color="00FF00", end_color="00FF00", fill_type="solid"
         )
+
+
 
     sheet2.append(["Narrative:"])
     # Bold cell
