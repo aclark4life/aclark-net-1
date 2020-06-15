@@ -230,7 +230,8 @@ def render_xls(context, **kwargs):
         )
 
     # https://openpyxl.readthedocs.io/en/stable/usage.html#using-formulae
-    sheet2["B" + str(sheet2.max_row)] = "=SUM(%s)" % "+".join(column_total)
+    total_combined_amount_cell = "B" + str(sheet2.max_row)
+    sheet2[total_combined_amount_cell] = "=SUM(%s)" % "+".join(column_total)
 
     ################################################################################
     #                                                                              #
