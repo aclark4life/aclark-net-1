@@ -151,6 +151,16 @@ def render_xls(context, **kwargs):
     entries.insert(0, "")
     sheet2.append(entries)
 
+    # Blank line
+    entries = []
+    for entry in item.time_set.all():
+        entries.append("")
+        entries.append("")
+        entries.append("")
+        entries.append("")
+    entries.insert(0, "")
+    sheet2.append(entries)
+
     # Bold cells
     sheet2[get_column_letter(column_index) + str(sheet2.max_row)].font = bold
     for cell in range(len(entries) - 1):
@@ -164,7 +174,7 @@ def render_xls(context, **kwargs):
         entries.append(entry.unit)
         entries.append(entry.unit_price)
         entries.append(entry.total_price)
-    entries.insert(0, "")
+    entries.insert(0, item.subject)
     sheet2.append(entries)
 
     # https://openpyxl.readthedocs.io/en/stable/usage.html#using-formulae
@@ -183,6 +193,17 @@ def render_xls(context, **kwargs):
             ].fill = PatternFill(
                 start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
             )
+
+    # Blank lines
+    for line in range(1, 8):
+        entries = []
+        for entry in item.time_set.all():
+            entries.append("")
+            entries.append("")
+            entries.append("")
+            entries.append("")
+        entries.insert(0, "")
+        sheet2.append(entries)
 
     sheet2.append(["Line Item Subtotal"])
     # Fill cells
