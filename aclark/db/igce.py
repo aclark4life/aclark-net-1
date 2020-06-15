@@ -195,7 +195,7 @@ def render_xls(context, **kwargs):
             )
 
     # Blank lines
-    for line in range(1, 8):
+    for line in range(0, 8):
         entries = []
         for entry in item.time_set.all():
             entries.append("")
@@ -204,6 +204,25 @@ def render_xls(context, **kwargs):
             entries.append("")
         entries.insert(0, "")
         sheet2.append(entries)
+
+    # Fill more cells
+    for count in range(0, 8):
+        for cell in range(len(entries) - 1):
+            if (column_index + cell) % 4 == 1:
+                sheet2[
+                    get_column_letter(column_index + cell) + str(sheet2.max_row - count)
+                ].fill = PatternFill(
+                    start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
+                )
+
+    # Fill cells
+    for cell in range(len(entries) - 1):
+        if (column_index + cell) % 4 == 1:
+            sheet2[
+                get_column_letter(column_index + cell) + str(sheet2.max_row)
+            ].fill = PatternFill(
+                start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
+            )
 
     sheet2.append(["Line Item Subtotal"])
     # Fill cells
