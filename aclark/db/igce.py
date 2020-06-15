@@ -271,8 +271,6 @@ def render_xls(context, **kwargs):
             start_color="00FF00", end_color="00FF00", fill_type="solid"
         )
 
-
-
     sheet2.append(["Narrative:"])
     # Bold cell
     sheet2["A" + str(sheet2.max_row)].font = bold
