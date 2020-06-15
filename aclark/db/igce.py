@@ -230,8 +230,7 @@ def render_xls(context, **kwargs):
         )
 
     # https://openpyxl.readthedocs.io/en/stable/usage.html#using-formulae
-    total_combined_amount_cell = "B" + str(sheet2.max_row)
-    sheet2[total_combined_amount_cell] = "=SUM(%s)" % "+".join(column_total)
+    sheet2["B" + str(sheet2.max_row)] = "=SUM(%s)" % "+".join(column_total)
 
     ################################################################################
     #                                                                              #
@@ -247,8 +246,10 @@ def render_xls(context, **kwargs):
     # Merge cells
     letter_start = "B"
     merge = []
+    count = 0
     for cell in range(len(entries) - 1):
         if (column_index + cell) % 4 == 1:
+            count += 1
             merge.append(
                 letter_start
                 + str(sheet2.max_row)
@@ -260,7 +261,7 @@ def render_xls(context, **kwargs):
     for cells in merge:
         sheet2.merge_cells(cells)
 
-    sheet2.append(["Total Average Amount".upper()])
+    sheet2.append(["Total Average Value".upper()])
     # Bold cell
     sheet2["A" + str(sheet2.max_row)].font = bold
     # Fill cells
@@ -270,6 +271,11 @@ def render_xls(context, **kwargs):
         ].fill = PatternFill(
             start_color="00FF00", end_color="00FF00", fill_type="solid"
         )
+
+    sheet2["E" + str(sheet2.max_row)] = "=SUM((%s)/%s)" % (
+        "+".join(column_total),
+        count,
+    )
 
     sheet2.append(["Narrative:"])
     # Bold cell
