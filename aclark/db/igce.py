@@ -313,9 +313,6 @@ def render_xls(context, **kwargs):
     for entry in item.time_set.all():
         sheet2.append(["Estimate %s—%s" % (str(count), entry.description)])
         sheet2["A" + str(sheet2.max_row)].font = bold
-        sheet2.append([entry.quantity])
-        sheet2.append([entry.unit])
-        sheet2.append([entry.unit_price])
         sheet2.append([entry.total_price])
         count += 1
 
