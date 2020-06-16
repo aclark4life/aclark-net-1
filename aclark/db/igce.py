@@ -4,6 +4,8 @@ from openpyxl import Workbook
 from openpyxl.utils import get_column_letter
 from openpyxl.styles import Font
 from openpyxl.styles import PatternFill
+from openpyxl.styles import Side
+from openpyxl.styles import Border
 
 
 def render_xls(context, **kwargs):
@@ -20,8 +22,7 @@ def render_xls(context, **kwargs):
     # https://stackoverflow.com/a/14450572
     sheet1.append(["Instructions".upper()])
     sheet1.column_dimensions["B"].width = 111.7
-    # Bold cell
-    sheet1["A1"].font = bold
+    # Merge cells
     sheet1.merge_cells("A1:Z1")
     sheet1.append(
         [
@@ -63,6 +64,10 @@ def render_xls(context, **kwargs):
     sheet2["A1"].font = bold
     sheet2["A2"].font = bold
     sheet2["A3"].font = bold
+
+    # Set border
+    border = Side(border_style="thin", color="000000")
+    sheet2["A3"].border = Border(bottom=border)
 
     sheet2.column_dimensions["A"].width = 48
 
@@ -134,9 +139,12 @@ def render_xls(context, **kwargs):
     for cells in merge:
         sheet2.merge_cells(cells)
 
-    # Bold cells
+    # Bold cells and set border
     sheet2[get_column_letter(column_index) + str(sheet2.max_row)].font = bold
     for cell in range(len(entries) - 1):
+        sheet2[
+            get_column_letter(column_index + cell) + str(sheet2.max_row)
+        ].border = Border(top=border, bottom=border)
         if (column_index + cell) % 4 == 1:
             sheet2[
                 get_column_letter(column_index + cell + 1) + str(sheet2.max_row)
