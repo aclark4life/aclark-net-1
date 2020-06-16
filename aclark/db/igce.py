@@ -6,6 +6,7 @@ from openpyxl.styles import Font
 from openpyxl.styles import PatternFill
 from openpyxl.styles import Side
 from openpyxl.styles import Border
+from openpyxl.styles import Alignment
 
 
 def render_xls(context, **kwargs):
@@ -145,6 +146,9 @@ def render_xls(context, **kwargs):
         sheet2[
             get_column_letter(column_index + cell) + str(sheet2.max_row)
         ].border = Border(top=border, bottom=border)
+        sheet2[
+            get_column_letter(column_index + cell) + str(sheet2.max_row)
+        ].alignment = Alignment(horizontal="center", vertical="center")
         if (column_index + cell) % 4 == 1:
             sheet2[
                 get_column_letter(column_index + cell + 1) + str(sheet2.max_row)
