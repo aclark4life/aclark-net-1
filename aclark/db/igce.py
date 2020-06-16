@@ -378,6 +378,7 @@ def render_xls(context, **kwargs):
         sheet2.append([item.subject])
         sheet2.append([entry.total_price])
         count += 1
+    sheet2["B2"].font = bold
 
     ################################################################################
     #                                                                              #
