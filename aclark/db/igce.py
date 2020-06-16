@@ -7,20 +7,22 @@ from openpyxl.styles import PatternFill
 from openpyxl.styles import Side
 from openpyxl.styles import Border
 from openpyxl.styles import Alignment
+from openpyxl.styles.numbers import FORMAT_CURRENCY_USD_SIMPLE
 
 
 def render_xls(context, **kwargs):
     """
     """
 
+    bold = Font(bold=True)
+    border = Side(border_style="thin", color="000000")
+    filename = kwargs.get("filename")
+    item = context["item"]
+    workbook = Workbook()
+
     ################################################################################
     # Sheet 1                                                                      #
     ################################################################################
-
-    workbook = Workbook()
-    filename = kwargs.get("filename")
-    item = context["item"]
-    bold = Font(bold=True)
 
     sheet1 = workbook.active
     sheet1.title = "Instructions"
@@ -66,20 +68,19 @@ def render_xls(context, **kwargs):
     ################################################################################
 
     sheet2 = workbook.create_sheet(title="FFP IGCE")
+    sheet2.column_dimensions["A"].width = 48
+    column_index = 2
+    letter_start = "B"
+
     sheet2.append(["FFP IGCE"])
     sheet2.append(["Title:".upper(), item.subject])
     sheet2.append(["Detailed Price Summary"])
 
-    # Bold cells
+    # Bold cells, set border
     sheet2["A1"].font = bold
     sheet2["A2"].font = bold
     sheet2["A3"].font = bold
-
-    # Set border
-    border = Side(border_style="thin", color="000000")
     sheet2["A3"].border = Border(bottom=border)
-
-    sheet2.column_dimensions["A"].width = 48
 
     ################################################################################
     #                                                                              #
@@ -92,8 +93,6 @@ def render_xls(context, **kwargs):
     #                                                       A thousand times yes.  #
     #                                                                              #
     ################################################################################
-
-    column_index = 2
 
     count = 1
     entries = []
@@ -134,7 +133,6 @@ def render_xls(context, **kwargs):
     ################################################################################
 
     # Merge cells
-    letter_start = "B"
     merge = []
     for cell in range(len(entries) - 1):
         if (column_index + cell) % 4 == 1:
@@ -215,6 +213,13 @@ def render_xls(context, **kwargs):
             column_total.append(
                 get_column_letter(column_index + cell) + str(sheet2.max_row)
             )
+
+    # Currency
+    for cell in range(len(entries) - 1):
+        if (column_index + cell) % 4 == 1:
+            sheet2[
+                get_column_letter(column_index + cell) + str(sheet2.max_row)
+            ].number_format = FORMAT_CURRENCY_USD_SIMPLE
 
     # Fill cells
     for cell in range(len(entries) - 1):
