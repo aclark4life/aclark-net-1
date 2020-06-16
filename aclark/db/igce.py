@@ -163,6 +163,16 @@ def render_xls(context, **kwargs):
     entries.insert(0, "")
     sheet2.append(entries)
 
+    # Bold and center and border
+    for cell in range(len(entries) - 1):
+        sheet2[get_column_letter(column_index + cell) + str(sheet2.max_row)].font = bold
+        sheet2[
+            get_column_letter(column_index + cell) + str(sheet2.max_row)
+        ].alignment = Alignment(horizontal="center", vertical="center")
+        sheet2[
+            get_column_letter(column_index + cell) + str(sheet2.max_row)
+        ].border = Border(bottom=border, right=border)
+
     # Blank line
     entries = []
     for entry in item.time_set.all():
