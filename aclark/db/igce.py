@@ -13,6 +13,10 @@ def render_xls(context, **kwargs):
     """
     """
 
+    ################################################################################
+    # Sheet 1                                                                      #
+    ################################################################################
+
     workbook = Workbook()
     filename = kwargs.get("filename")
     item = context["item"]
@@ -56,6 +60,11 @@ def render_xls(context, **kwargs):
             "The program office provide a narrative to document the basis of the IGCE.",
         ]
     )
+
+    ################################################################################
+    # Sheet 1                                                                      #
+    ################################################################################
+
     sheet2 = workbook.create_sheet(title="FFP IGCE")
     sheet2.append(["FFP IGCE"])
     sheet2.append(["Title:".upper(), item.subject])
