@@ -126,7 +126,6 @@ def render_xls(context, **kwargs):
     sheet2["A3"].font = bold
     sheet2["A3"].border = Border(bottom=border)
 
-
     # Row 4
 
     count = 1
@@ -152,7 +151,6 @@ def render_xls(context, **kwargs):
         ].fill = PatternFill(
             start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
         )
-
 
     # Merge cells
     merge = []
@@ -222,7 +220,6 @@ def render_xls(context, **kwargs):
         sheet2[
             get_column_letter(column_index + cell + 1) + str(sheet2.max_row)
         ].font = bold
-
 
     # Row 7
 
@@ -345,7 +342,6 @@ def render_xls(context, **kwargs):
     # https://openpyxl.readthedocs.io/en/stable/usage.html#using-formulae
     sheet2["B" + str(sheet2.max_row)] = "=SUM(%s)" % "+".join(column_total)
 
-
     # Merge cells
     letter_start = "B"
     merge = []
@@ -402,7 +398,6 @@ def render_xls(context, **kwargs):
     )
     sheet2.append([""])
 
-
     count = 1
     for entry in item.time_set.all():
         sheet2.append(["Estimate %s—%s" % (str(count), entry.description)])
@@ -411,7 +406,6 @@ def render_xls(context, **kwargs):
         sheet2.append([entry.total_price])
         count += 1
     sheet2["B2"].font = bold
-
 
     response = HttpResponse(content_type="xlsx")
     response["Content-Disposition"] = "attachment; filename=%s" % filename
