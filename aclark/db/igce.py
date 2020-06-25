@@ -204,6 +204,7 @@ def render_xls(context, **kwargs):
         sheet2[
             get_column_letter(column_index + cell) + str(sheet2.max_row)
         ].border = Border(bottom=border, right=border)
+        sheet2.column_dimensions[get_column_letter(column_index + cell)].width = 12
 
     #########
     # Row 6 #
