@@ -193,17 +193,18 @@ def render_xls(context, **kwargs):
     #########
     # Row 5 #
     #########
-    entries = []
+    row_5_col_data = []
     for i in range(time_set_count):
-        entries.append("Quantity")
-        entries.append("Unit")
-        entries.append("Unit Price")
-        entries.append("Total Price")
-    entries.insert(0, "")
-    sheet2.append(entries)
+        row_5_col_data.append("Quantity")
+        row_5_col_data.append("Unit")
+        row_5_col_data.append("Unit Price")
+        row_5_col_data.append("Total Price")
+    row_5_col_data.insert(0, "")
+    sheet2.append(row_5_col_data)
 
     # Bold and center and border
-    for cell in range(len(entries) - 1):
+    row_5_col_num = len(row_5_col_data) - 1
+    for cell in range(row_5_col_num):
         sheet2[get_column_letter(column_index + cell) + str(sheet2.max_row)].font = bold
         sheet2[
             get_column_letter(column_index + cell) + str(sheet2.max_row)
@@ -232,6 +233,9 @@ def render_xls(context, **kwargs):
         sheet2[
             get_column_letter(column_index + cell + 1) + str(sheet2.max_row)
         ].font = bold
+        sheet2[
+            get_column_letter(column_index + cell) + str(sheet2.max_row)
+        ].border = Border(bottom=border, right=border)
 
     #########
     # Row 7 #
@@ -269,6 +273,9 @@ def render_xls(context, **kwargs):
             ].fill = PatternFill(
                 start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
             )
+        sheet2[
+            get_column_letter(column_index + cell) + str(sheet2.max_row)
+        ].border = Border(bottom=border, right=border)
 
     ############
     # Row 8-15 #
