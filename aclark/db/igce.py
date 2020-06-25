@@ -255,6 +255,13 @@ def render_xls(context, **kwargs):
             sheet2[
                 get_column_letter(column_index + cell - 1) + str(sheet2.max_row)
             ].number_format = FORMAT_CURRENCY_USD_SIMPLE
+            sheet2[get_column_letter(column_index + cell) + str(sheet2.max_row)] = (
+                "=%s*%s"
+                % (
+                    get_column_letter(column_index + cell - 1) + str(sheet2.max_row),
+                    get_column_letter(column_index + cell - 3) + str(sheet2.max_row),
+                )
+            )
 
     # Fill cells
     for cell in range(row_7_col_num):
