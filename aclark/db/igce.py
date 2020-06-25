@@ -64,7 +64,6 @@ def render_xls(context, **kwargs):
     ################################################################################
     # Sheet 1                                                                      #
     ################################################################################
-
     sheet1 = workbook.active
     sheet1.title = "Instructions"
     # https://stackoverflow.com/a/14450572
