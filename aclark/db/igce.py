@@ -72,8 +72,11 @@ def render_xls(context, **kwargs):
     column_index = 2
     letter_start = "B"
 
+    # Row 1
     sheet2.append(["FFP IGCE"])
+    # Row 2
     sheet2.append(["Title:".upper(), item.subject])
+    # Row 3
     sheet2.append(["Detailed Price Summary"])
 
     # Bold cells, set border
@@ -91,16 +94,6 @@ def render_xls(context, **kwargs):
     #  put a few values into a spreadsheet                                         #
     #  without running Excel?                                                      #
     #                                                       A thousand times yes.  #
-    #                                                                              #
-    #  What's actually happening                                                   #
-    #  -------------------------                                                   #
-    #                                                                              #
-    #  Iterate through line items 
-    #                                                                              #
-    #                                                                              #
-    #                                                                              #
-    #                                                                              #
-    #                                                                              #
     #                                                                              #
     ################################################################################
 
