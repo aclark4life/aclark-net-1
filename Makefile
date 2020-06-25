@@ -29,4 +29,5 @@ pygraphviz-install:
 
 
 db-init:
+	-dropdb project_app
 	createdb project_app
