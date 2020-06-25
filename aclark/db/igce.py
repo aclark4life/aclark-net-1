@@ -189,6 +189,8 @@ def render_xls(context, **kwargs):
             get_column_letter(column_index + cell) + str(sheet2.max_row)
         ].border = Border(bottom=border, right=border)
 
+    # Row 6
+
     # Blank line
     entries = []
     for i in range(time_set_count):
@@ -205,6 +207,9 @@ def render_xls(context, **kwargs):
         sheet2[
             get_column_letter(column_index + cell + 1) + str(sheet2.max_row)
         ].font = bold
+
+
+    # Row 7
 
     entries = []
     for entry in item.time_set.all():
@@ -239,10 +244,12 @@ def render_xls(context, **kwargs):
                 start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
             )
 
+    # Row 8-15
+
     # Blank lines
     for line in range(0, 8):
         entries = []
-        for entry in item.time_set.all():
+        for i in range(time_set_count):
             entries.append("")
             entries.append("")
             entries.append("")
@@ -269,6 +276,8 @@ def render_xls(context, **kwargs):
                 start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
             )
 
+    # Row 16
+
     sheet2.append(["Line Item Subtotal"])
     # Fill cells
     for cell in range(len(entries) - 1):
@@ -284,6 +293,8 @@ def render_xls(context, **kwargs):
             ].fill = PatternFill(
                 start_color="00008B", end_color="00008B", fill_type="solid"
             )
+
+    # Row 17
 
     sheet2.append(["Total Estimated Amount"])
     # Bold cell
@@ -302,6 +313,8 @@ def render_xls(context, **kwargs):
             ].fill = PatternFill(
                 start_color="00008B", end_color="00008B", fill_type="solid"
             )
+
+    # Row 18
 
     sheet2.append(["Total Combined Amount".upper()])
     # Bold cell
