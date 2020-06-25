@@ -100,21 +100,22 @@ def render_xls(context, **kwargs):
     # Row 4
 
     count = 1
-    entries = []
+    row_4_col_data = []
     time_set_count = item.time_set.count()
     for i in range(time_set_count):
-        entries.append("Estimate %s" % str(count))
-        entries.append("")
-        entries.append("")
-        entries.append("")
+        row_4_col_data.append("Estimate %s" % str(count))
+        row_4_col_data.append("")
+        row_4_col_data.append("")
+        row_4_col_data.append("")
         count += 1
-    entries.insert(0, "Contract Line Item Description")
-    sheet2.append(entries)
+    row_4_col_data.insert(0, "Contract Line Item Description")
+    sheet2.append(row_4_col_data)
     # Bold cell
     sheet2["A4"].font = bold
 
     # Fill cells
-    for cell in range(len(entries) - 1):
+    row_4_col_num = len(row_4_col_data) - 1
+    for cell in range(row_4_col_num):
         # https://stackoverflow.com/a/50209914
         sheet2[
             get_column_letter(column_index + cell) + str(sheet2.max_row)
@@ -140,7 +141,7 @@ def render_xls(context, **kwargs):
 
     # Merge cells
     merge = []
-    for cell in range(len(entries) - 1):
+    for cell in range(row_4_col_num):
         if (column_index + cell) % 4 == 1:
             merge.append(
                 letter_start
@@ -155,7 +156,7 @@ def render_xls(context, **kwargs):
 
     # Bold cells and set border
     sheet2[get_column_letter(column_index) + str(sheet2.max_row)].font = bold
-    for cell in range(len(entries) - 1):
+    for cell in range(row_4_col_num):
         sheet2[
             get_column_letter(column_index + cell) + str(sheet2.max_row)
         ].border = Border(top=border, bottom=border)
