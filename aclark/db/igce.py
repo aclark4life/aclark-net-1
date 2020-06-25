@@ -326,7 +326,8 @@ def render_xls(context, **kwargs):
             line_item_subtotal_formula = "=SUM("
             for count in range(0, 9):
                 line_item_subtotal_formula += "%s+" % (
-                    get_column_letter(column_index + cell) + str(sheet2.max_row - count - 1)
+                    get_column_letter(column_index + cell)
+                    + str(sheet2.max_row - count - 1)
                 )
             line_item_subtotal_formula = line_item_subtotal_formula[:-1]
             line_item_subtotal_formula += ")"
@@ -335,7 +336,9 @@ def render_xls(context, **kwargs):
             ].fill = PatternFill(
                 start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
             )
-            sheet2[get_column_letter(column_index + cell) + str(sheet2.max_row)] = line_item_subtotal_formula
+            sheet2[
+                get_column_letter(column_index + cell) + str(sheet2.max_row)
+            ] = line_item_subtotal_formula
             sheet2[
                 get_column_letter(column_index + cell) + str(sheet2.max_row)
             ].number_format = FORMAT_CURRENCY_USD_SIMPLE
