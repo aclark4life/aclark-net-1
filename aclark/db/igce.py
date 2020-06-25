@@ -113,11 +113,19 @@ def render_xls(context, **kwargs):
     column_index = 2
     letter_start = "B"
 
-    # Row 1
+    #########
+    # Row 1 #
+    #########
     sheet2.append(["FFP IGCE"])
-    # Row 2
+
+    #########
+    # Row 2 #
+    #########
     sheet2.append(["Title:".upper(), item.subject])
-    # Row 3
+
+    #########
+    # Row 3 #
+    #########
     sheet2.append(["Detailed Price Summary"])
 
     # Bold cells, set border
@@ -126,8 +134,9 @@ def render_xls(context, **kwargs):
     sheet2["A3"].font = bold
     sheet2["A3"].border = Border(bottom=border)
 
-    # Row 4
-
+    #########
+    # Row 4 #
+    #########
     count = 1
     row_4_col_data = []
     time_set_count = item.time_set.count()
@@ -181,8 +190,9 @@ def render_xls(context, **kwargs):
                 get_column_letter(column_index + cell + 1) + str(sheet2.max_row)
             ].font = bold
 
-    # Row 5
-
+    #########
+    # Row 5 #
+    #########
     entries = []
     for i in range(time_set_count):
         entries.append("Quantity")
@@ -202,7 +212,9 @@ def render_xls(context, **kwargs):
             get_column_letter(column_index + cell) + str(sheet2.max_row)
         ].border = Border(bottom=border, right=border)
 
-    # Row 6
+    #########
+    # Row 6 #
+    #########
 
     # Blank line
     entries = []
@@ -221,7 +233,9 @@ def render_xls(context, **kwargs):
             get_column_letter(column_index + cell + 1) + str(sheet2.max_row)
         ].font = bold
 
-    # Row 7
+    #########
+    # Row 7 #
+    #########
 
     entries = []
     for entry in item.time_set.all():
@@ -256,7 +270,9 @@ def render_xls(context, **kwargs):
                 start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
             )
 
-    # Row 8-15
+    ############
+    # Row 8-15 #
+    ############
 
     # Blank lines
     for line in range(0, 8):
@@ -288,7 +304,9 @@ def render_xls(context, **kwargs):
                 start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
             )
 
-    # Row 16
+    ##########
+    # Row 16 #
+    ##########
 
     sheet2.append(["Line Item Subtotal"])
     # Fill cells
@@ -306,7 +324,9 @@ def render_xls(context, **kwargs):
                 start_color="00008B", end_color="00008B", fill_type="solid"
             )
 
-    # Row 17
+    ##########
+    # Row 17 #
+    ##########
 
     sheet2.append(["Total Estimated Amount"])
     # Bold cell
@@ -326,7 +346,9 @@ def render_xls(context, **kwargs):
                 start_color="00008B", end_color="00008B", fill_type="solid"
             )
 
-    # Row 18
+    ##########
+    # Row 18 #
+    ##########
 
     sheet2.append(["Total Combined Amount".upper()])
     # Bold cell
@@ -360,7 +382,9 @@ def render_xls(context, **kwargs):
     for cells in merge:
         sheet2.merge_cells(cells)
 
-    # Row 19
+    ##########
+    # Row 19 #
+    ##########
 
     sheet2.append(["Total Average Value".upper()])
     # Bold cell
@@ -378,7 +402,9 @@ def render_xls(context, **kwargs):
         count,
     )
 
-    # Row 20
+    ##########
+    # Row 20 #
+    ##########
 
     sheet2.append(["Narrative:"])
     # Bold cell
