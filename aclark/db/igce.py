@@ -218,18 +218,19 @@ def render_xls(context, **kwargs):
     #########
 
     # Blank line
-    entries = []
+    row_6_col_data = []
     for i in range(time_set_count):
-        entries.append("")
-        entries.append("")
-        entries.append("")
-        entries.append("")
-    entries.insert(0, "")
-    sheet2.append(entries)
+        row_6_col_data.append("")
+        row_6_col_data.append("")
+        row_6_col_data.append("")
+        row_6_col_data.append("")
+    row_6_col_data.insert(0, "")
+    sheet2.append(row_6_col_data)
 
     # Bold cells
+    row_6_col_num = len(row_6_col_data) - 1
     sheet2[get_column_letter(column_index) + str(sheet2.max_row)].font = bold
-    for cell in range(len(entries) - 1):
+    for cell in range(row_6_col_num):
         sheet2[
             get_column_letter(column_index + cell + 1) + str(sheet2.max_row)
         ].font = bold
