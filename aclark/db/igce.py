@@ -92,11 +92,22 @@ def render_xls(context, **kwargs):
     #  without running Excel?                                                      #
     #                                                       A thousand times yes.  #
     #                                                                              #
+    #  What's actually happening                                                   #
+    #  -------------------------                                                   #
+    #                                                                              #
+    #  Iterate through line items 
+    #                                                                              #
+    #                                                                              #
+    #                                                                              #
+    #                                                                              #
+    #                                                                              #
+    #                                                                              #
     ################################################################################
 
     count = 1
     entries = []
-    for entry in item.time_set.all():
+    time_set_count = item.time_set.count()
+    for i in range(time_set_count):
         entries.append("Estimate %s" % str(count))
         entries.append("")
         entries.append("")
@@ -162,7 +173,7 @@ def render_xls(context, **kwargs):
             ].font = bold
 
     entries = []
-    for entry in item.time_set.all():
+    for i in range(time_set_count):
         entries.append("Quantity")
         entries.append("Unit")
         entries.append("Unit Price")
@@ -182,7 +193,7 @@ def render_xls(context, **kwargs):
 
     # Blank line
     entries = []
-    for entry in item.time_set.all():
+    for i in range(time_set_count):
         entries.append("")
         entries.append("")
         entries.append("")
