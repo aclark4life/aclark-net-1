@@ -241,7 +241,6 @@ def render_xls(context, **kwargs):
     #########
     # Row 7 #
     #########
-
     row_7_col_data = []
     for entry in item.time_set.all():
         row_7_col_data.append(entry.quantity)
@@ -250,7 +249,6 @@ def render_xls(context, **kwargs):
         row_7_col_data.append(entry.total_price)
     row_7_col_data.insert(0, item.subject)
     sheet2.append(row_7_col_data)
-
     # https://openpyxl.readthedocs.io/en/stable/usage.html#using-formulae
     row_7_col_num = len(row_7_col_data) - 1
     column_total = []
@@ -259,14 +257,12 @@ def render_xls(context, **kwargs):
             column_total.append(
                 get_column_letter(column_index + cell) + str(sheet2.max_row)
             )
-
     # Currency
     for cell in range(row_7_col_num):
         if (column_index + cell) % 4 == 1:
             sheet2[
                 get_column_letter(column_index + cell) + str(sheet2.max_row)
             ].number_format = FORMAT_CURRENCY_USD_SIMPLE
-
     # Fill cells
     for cell in range(row_7_col_num):
         if (column_index + cell) % 4 == 1:
@@ -282,9 +278,7 @@ def render_xls(context, **kwargs):
     ############
     # Row 8-15 #
     ############
-
-    # Blank lines
-    for line in range(0, 8):
+    for line in range(0, 8):  # Blank lines
         entries = []
         for i in range(time_set_count):
             entries.append("")
@@ -310,7 +304,6 @@ def render_xls(context, **kwargs):
     ##########
     # Row 16 #
     ##########
-
     sheet2.append(["Line Item Subtotal"])
     # Fill cells and set border
     for cell in range(len(entries) - 1):
@@ -333,7 +326,6 @@ def render_xls(context, **kwargs):
     ##########
     # Row 17 #
     ##########
-
     sheet2.append(["Total Estimated Amount"])
     # Bold cell
     sheet2["A" + str(sheet2.max_row)].font = bold
@@ -359,7 +351,6 @@ def render_xls(context, **kwargs):
     ##########
     # Row 18 #
     ##########
-
     sheet2.append(["Total Combined Amount".upper()])
     # Bold cell
     sheet2["A" + str(sheet2.max_row)].font = bold
@@ -374,10 +365,8 @@ def render_xls(context, **kwargs):
         sheet2[
             get_column_letter(column_index + cell) + str(sheet2.max_row)
         ].border = Border(bottom=border, right=border)
-
     # https://openpyxl.readthedocs.io/en/stable/usage.html#using-formulae
     sheet2["B" + str(sheet2.max_row)] = "=SUM(%s)" % "+".join(column_total)
-
     # Merge cells
     letter_start = "B"
     merge = []
@@ -399,7 +388,6 @@ def render_xls(context, **kwargs):
     ##########
     # Row 19 #
     ##########
-
     sheet2.append(["Total Average Value".upper()])
     # Bold cell
     sheet2["A" + str(sheet2.max_row)].font = bold
@@ -417,17 +405,15 @@ def render_xls(context, **kwargs):
 
     sheet2["E" + str(sheet2.max_row)] = "=SUM((%s)/%s)" % (
         "+".join(column_total),
-        count
+        count,
     )
 
     ##########
     # Row 20 #
     ##########
-
     sheet2.append(["Narrative:"])
     # Bold cell
     sheet2["A" + str(sheet2.max_row)].font = bold
-
     sheet2.append([""])
     sheet2.append(
         [
@@ -441,7 +427,6 @@ def render_xls(context, **kwargs):
         ]
     )
     sheet2.append([""])
-
     count = 1
     for entry in item.time_set.all():
         sheet2.append(["Estimate %s—%s" % (str(count), entry.description)])
@@ -450,11 +435,8 @@ def render_xls(context, **kwargs):
         sheet2.append([entry.total_price])
         count += 1
     sheet2["B2"].font = bold
-
     response = HttpResponse(content_type="xlsx")
     response["Content-Disposition"] = "attachment; filename=%s" % filename
-
     workbook.active = 1
     workbook.save(response)
-
     return response
