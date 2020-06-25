@@ -1,4 +1,4 @@
-# https://github.com/aclark4life/makefile
+# https://github.com/aclark4life/project-makefile
 #
 # The MIT License (MIT)
 #
@@ -242,6 +242,24 @@ deploy-default:
 	eb deploy
 d: deploy  # Alias
 
+#########
+# MySQL #
+#########
+
+my-init-default:
+	-mysqladmin -u root drop $(PROJECT)_$(APP)
+	-mysqladmin -u root create $(PROJECT)_$(APP)
+
+#########
+# Plone #
+#########
+
+plone-serve-default:
+	plone fg
+
+plone-install-default:
+	buildout
+
 #######
 # Pip #
 #######
@@ -290,9 +308,8 @@ python-virtualenv-2-7-default:
 	virtualenv --python=python2.7 .
 python-virtualenv-3-7-default:
 	virtualenv --python=python3.7 .
-python-virtualenv: python-virtualenv-3-7  # Alias
-virtualenv: python-virtualenv-3-7  # Alias
-virtualenv-2: python-virtualenv-2-7  # Alias
+python-virtualenv-3-8-default:
+	virtualenv --python=python3.8 .
 
 ##########
 # Sphinx #

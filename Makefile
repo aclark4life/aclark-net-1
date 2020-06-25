@@ -11,7 +11,7 @@ APP = db
 .DEFAULT_GOAL=commit-push
 install: pip-install
 serve: django-serve
-
+virtualenv: python-virtualenv-3-8
 black:
 	black aclark/db/*.py
 	black aclark/db/management/commands/*.py
