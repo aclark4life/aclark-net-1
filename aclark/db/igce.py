@@ -107,7 +107,6 @@ def render_xls(context, **kwargs):
     ################################################################################
     # Sheet 2                                                                      #
     ################################################################################
-
     sheet2 = workbook.create_sheet(title="FFP IGCE")
     sheet2.column_dimensions["A"].width = 48
     column_index = 2
@@ -150,7 +149,6 @@ def render_xls(context, **kwargs):
     sheet2.append(row_4_col_data)
     # Bold cell
     sheet2["A4"].font = bold
-
     # Fill cells
     row_4_col_num = len(row_4_col_data) - 1
     for cell in range(row_4_col_num):
@@ -160,7 +158,6 @@ def render_xls(context, **kwargs):
         ].fill = PatternFill(
             start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
         )
-
     # Merge cells
     merge = []
     for cell in range(row_4_col_num):
@@ -175,7 +172,6 @@ def render_xls(context, **kwargs):
             letter_start = get_column_letter(column_index + cell + 1)
     for cells in merge:
         sheet2.merge_cells(cells)
-
     # Bold cells and set border
     sheet2[get_column_letter(column_index) + str(sheet2.max_row)].font = bold
     for cell in range(row_4_col_num):
@@ -201,7 +197,6 @@ def render_xls(context, **kwargs):
         row_5_col_data.append("Total Price")
     row_5_col_data.insert(0, "")
     sheet2.append(row_5_col_data)
-
     # Bold and center and border
     row_5_col_num = len(row_5_col_data) - 1
     for cell in range(row_5_col_num):
@@ -216,9 +211,7 @@ def render_xls(context, **kwargs):
     #########
     # Row 6 #
     #########
-
-    # Blank line
-    row_6_col_data = []
+    row_6_col_data = []  # Blank line
     for i in range(time_set_count):
         row_6_col_data.append("")
         row_6_col_data.append("")
@@ -226,7 +219,6 @@ def render_xls(context, **kwargs):
         row_6_col_data.append("")
     row_6_col_data.insert(0, "")
     sheet2.append(row_6_col_data)
-
     # Bold cells
     row_6_col_num = len(row_6_col_data) - 1
     sheet2[get_column_letter(column_index) + str(sheet2.max_row)].font = bold
