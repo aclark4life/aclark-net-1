@@ -242,32 +242,33 @@ def render_xls(context, **kwargs):
     # Row 7 #
     #########
 
-    entries = []
+    row_7_col_data = []
     for entry in item.time_set.all():
-        entries.append(entry.quantity)
-        entries.append(entry.unit)
-        entries.append(entry.unit_price)
-        entries.append(entry.total_price)
-    entries.insert(0, item.subject)
-    sheet2.append(entries)
+        row_7_col_data.append(entry.quantity)
+        row_7_col_data.append(entry.unit)
+        row_7_col_data.append(entry.unit_price)
+        row_7_col_data.append(entry.total_price)
+    row_7_col_data.insert(0, item.subject)
+    sheet2.append(row_7_col_data)
 
     # https://openpyxl.readthedocs.io/en/stable/usage.html#using-formulae
+    row_7_col_num = len(row_7_col_data) - 1
     column_total = []
-    for cell in range(len(entries) - 1):
+    for cell in range(row_7_col_num):
         if (column_index + cell) % 4 == 1:
             column_total.append(
                 get_column_letter(column_index + cell) + str(sheet2.max_row)
             )
 
     # Currency
-    for cell in range(len(entries) - 1):
+    for cell in range(row_7_col_num):
         if (column_index + cell) % 4 == 1:
             sheet2[
                 get_column_letter(column_index + cell) + str(sheet2.max_row)
             ].number_format = FORMAT_CURRENCY_USD_SIMPLE
 
     # Fill cells
-    for cell in range(len(entries) - 1):
+    for cell in range(row_7_col_num):
         if (column_index + cell) % 4 == 1:
             sheet2[
                 get_column_letter(column_index + cell) + str(sheet2.max_row)
