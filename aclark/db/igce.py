@@ -13,6 +13,47 @@ from openpyxl.styles.numbers import FORMAT_CURRENCY_USD_SIMPLE
 def render_xls(context, **kwargs):
     """
     """
+    ################################################################################
+    #                                                                              #
+    #  Conversation with myself                                                    #
+    #  ------------------------                                                    #
+    #                                                                              #
+    #  Oh snap, all this Python just to                                            #
+    #  put a few values into a spreadsheet                                         #
+    #  without running Excel?                                                      #
+    #                                                       A thousand times yes.  #
+    #                                                                              #
+    #                                                                              #
+    #  But don't you still have to run Excel                                       #
+    #  to test your output?                                                        #
+    #                                                                              #
+    #                                                       Soul-crushing pain     #
+    #                                                       only occurs with       #
+    #                                                       prolonged use of       #
+    #                                                       Excel. This house      #
+    #                                                       is clean.              #
+    #                                                                              #
+    #  Here we go again. So you're going                                           #
+    #  to write all this Python                                                    #
+    #  to avoid manually entering a few cells                                      #
+    #  in Excel?                                                                   #
+    #                                                                              #
+    #                                            My kingdom to avoid Excel!        #
+    #                                                                              #
+    #  This is it! Finally nearing the end.                                        #
+    #  Was it worth it?                                                            #
+    #                                                                              #
+    #                                         Weeping silent tears of joy, yes!!   #
+    #                                                                              #
+    #  What have we learned?                                                       #
+    #                                                                              #
+    #                                                       Python4life.           #
+    #                                                                              #
+    #            No copies of Excel were harmed during the writing                 #
+    #            of this code, but many expletives were used.                      #
+    #                                                                              #
+    #                                                                              #
+    ################################################################################
 
     bold = Font(bold=True)
     border = Side(border_style="thin", color="000000")
@@ -85,17 +126,6 @@ def render_xls(context, **kwargs):
     sheet2["A3"].font = bold
     sheet2["A3"].border = Border(bottom=border)
 
-    ################################################################################
-    #                                                                              #
-    #  Conversation with myself                                                    #
-    #  ------------------------                                                    #
-    #                                                                              #
-    #  Oh snap, all this Python just to                                            #
-    #  put a few values into a spreadsheet                                         #
-    #  without running Excel?                                                      #
-    #                                                       A thousand times yes.  #
-    #                                                                              #
-    ################################################################################
 
     # Row 4
 
@@ -123,21 +153,6 @@ def render_xls(context, **kwargs):
             start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
         )
 
-    ################################################################################
-    #                                                                              #
-    #  Conversation with myself                                                    #
-    #  ------------------------                                                    #
-    #                                                                              #
-    #  But don't you still have to run Excel                                       #
-    #  to test your output?                                                        #
-    #                                                                              #
-    #                                                       Soul-crushing pain     #
-    #                                                       only occurs with       #
-    #                                                       prolonged use of       #
-    #                                                       Excel. This house      #
-    #                                                       is clean.              #
-    #                                                                              #
-    ################################################################################
 
     # Merge cells
     merge = []
@@ -330,16 +345,6 @@ def render_xls(context, **kwargs):
     # https://openpyxl.readthedocs.io/en/stable/usage.html#using-formulae
     sheet2["B" + str(sheet2.max_row)] = "=SUM(%s)" % "+".join(column_total)
 
-    ################################################################################
-    #                                                                              #
-    #  Conversation with myself                                                    #
-    #  ------------------------                                                    #
-    #                                                                              #
-    #  What have we learned?                                                       #
-    #                                                                              #
-    #                                                       Python4life.           #
-    #                                                                              #
-    ################################################################################
 
     # Merge cells
     letter_start = "B"
@@ -397,19 +402,6 @@ def render_xls(context, **kwargs):
     )
     sheet2.append([""])
 
-    ################################################################################
-    #                                                                              #
-    #  Conversation with myself                                                    #
-    #  ------------------------                                                    #
-    #                                                                              #
-    #  Here we go again. So you're going                                           #
-    #  to write all this Python                                                    #
-    #  to avoid manually entering a few cells                                      #
-    #  in Excel?                                                                   #
-    #                                                                              #
-    #                                            My kingdom to avoid Excel!        #
-    #                                                                              #
-    ################################################################################
 
     count = 1
     for entry in item.time_set.all():
@@ -420,20 +412,6 @@ def render_xls(context, **kwargs):
         count += 1
     sheet2["B2"].font = bold
 
-    ################################################################################
-    #                                                                              #
-    #  Conversation with myself                                                    #
-    #  ------------------------                                                    #
-    #                                                                              #
-    #  This is it! Finally nearing the end.                                        #
-    #  Was it worth it?                                                            #
-    #                                                                              #
-    #                                         Weeping silent tears of joy, yes!!   #
-    #                                                                              #
-    #            No copies of Excel were harmed during the writing                 #
-    #            of this code, but many expletives were used.                      #
-    #                                                                              #
-    ################################################################################
 
     response = HttpResponse(content_type="xlsx")
     response["Content-Disposition"] = "attachment; filename=%s" % filename
