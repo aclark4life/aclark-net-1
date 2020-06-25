@@ -288,7 +288,6 @@ def render_xls(context, **kwargs):
             entries.append("")
         entries.insert(0, "")
         sheet2.append(entries)
-
     # Fill more cells and set border
     for count in range(0, 8):
         for cell in range(len(entries) - 1):
