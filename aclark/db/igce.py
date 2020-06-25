@@ -312,7 +312,7 @@ def render_xls(context, **kwargs):
     ##########
 
     sheet2.append(["Line Item Subtotal"])
-    # Fill cells
+    # Fill cells and set border
     for cell in range(len(entries) - 1):
         if (column_index + cell) % 4 == 1:
             sheet2[
@@ -326,6 +326,9 @@ def render_xls(context, **kwargs):
             ].fill = PatternFill(
                 start_color="00008B", end_color="00008B", fill_type="solid"
             )
+        sheet2[
+            get_column_letter(column_index + cell) + str(sheet2.max_row)
+        ].border = Border(bottom=border, right=border)
 
     ##########
     # Row 17 #
@@ -348,6 +351,10 @@ def render_xls(context, **kwargs):
             ].fill = PatternFill(
                 start_color="00008B", end_color="00008B", fill_type="solid"
             )
+        # Border
+        sheet2[
+            get_column_letter(column_index + cell) + str(sheet2.max_row)
+        ].border = Border(bottom=border, right=border)
 
     ##########
     # Row 18 #
@@ -363,6 +370,10 @@ def render_xls(context, **kwargs):
         ].fill = PatternFill(
             start_color="00FF00", end_color="00FF00", fill_type="solid"
         )
+        # Border
+        sheet2[
+            get_column_letter(column_index + cell) + str(sheet2.max_row)
+        ].border = Border(bottom=border, right=border)
 
     # https://openpyxl.readthedocs.io/en/stable/usage.html#using-formulae
     sheet2["B" + str(sheet2.max_row)] = "=SUM(%s)" % "+".join(column_total)
@@ -399,10 +410,14 @@ def render_xls(context, **kwargs):
         ].fill = PatternFill(
             start_color="00FF00", end_color="00FF00", fill_type="solid"
         )
+        # Border
+        sheet2[
+            get_column_letter(column_index + cell) + str(sheet2.max_row)
+        ].border = Border(bottom=border, right=border)
 
     sheet2["E" + str(sheet2.max_row)] = "=SUM((%s)/%s)" % (
         "+".join(column_total),
-        count,
+        count
     )
 
     ##########
