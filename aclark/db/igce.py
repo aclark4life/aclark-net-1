@@ -303,15 +303,18 @@ def render_xls(context, **kwargs):
                 ].fill = PatternFill(
                     start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
                 )
-
-    # Fill cells
-    for cell in range(len(entries) - 1):
-        if (column_index + cell) % 4 == 1:
             sheet2[
-                get_column_letter(column_index + cell) + str(sheet2.max_row)
-            ].fill = PatternFill(
-                start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
-            )
+                get_column_letter(column_index + cell) + str(sheet2.max_row - count)
+            ].border = Border(bottom=border, right=border)
+
+    # # Fill cells
+    # for cell in range(len(entries) - 1):
+    #     if (column_index + cell) % 4 == 1:
+    #         sheet2[
+    #             get_column_letter(column_index + cell) + str(sheet2.max_row)
+    #         ].fill = PatternFill(
+    #             start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
+    #         )
 
     ##########
     # Row 16 #
