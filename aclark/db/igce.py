@@ -323,20 +323,19 @@ def render_xls(context, **kwargs):
     # Fill cells and set border + formula + currency
     for cell in range(row_x_col_num - 1):
         if (column_index + cell) % 4 == 1:
-            line_item_subtotal_formula = ""
-            for count in range(0, 8):
+            line_item_subtotal_formula = "=SUM("
+            for count in range(0, 9):
                 line_item_subtotal_formula += "%s+" % (
-                    get_column_letter(column_index + cell) + str(sheet2.max_row - count)
+                    get_column_letter(column_index + cell) + str(sheet2.max_row - count - 1)
                 )
             line_item_subtotal_formula = line_item_subtotal_formula[:-1]
+            line_item_subtotal_formula += ")"
             sheet2[
                 get_column_letter(column_index + cell) + str(sheet2.max_row)
             ].fill = PatternFill(
                 start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
             )
-            # sheet2[get_column_letter(column_index + cell) + str(sheet2.max_row)] = (
-            #     "=SUM(%s)" % line_item_subtotal_formula
-            # )
+            sheet2[get_column_letter(column_index + cell) + str(sheet2.max_row)] = line_item_subtotal_formula
             sheet2[
                 get_column_letter(column_index + cell) + str(sheet2.max_row)
             ].number_format = FORMAT_CURRENCY_USD_SIMPLE
