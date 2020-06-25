@@ -9,7 +9,7 @@ include base.mk
 PROJECT = aclark
 APP = db
 .DEFAULT_GOAL=commit-push
-install: pip-install
+install: pygraphviz-install pip-install
 serve: django-serve
 virtualenv: python-virtualenv-3-8
 black:
