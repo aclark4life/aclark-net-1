@@ -41,11 +41,3 @@ Issues
 
     pip install --install-option="--include-path=/usr/local/include/" \
         --install-option="--library-path=/usr/local/lib/" pygraphviz
-
-
-Custom Error Template
-~~~~~~~~~~~~~~~~~~~~~
-
-And when the unthinkable happens, we keep it classy:
-
-.. image:: Screenshot-2019-07-08-16.50.39.png
