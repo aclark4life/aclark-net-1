@@ -23,3 +23,7 @@ flake:
 	-flake8 --max-line-length 100 aclark/db/management/commands/*.py
 	-flake8 --max-line-length 100 aclark/root/*.py
 	-flake8 --max-line-length 100 aclark/*.py
+
+pygraphviz-install:
+	pip install --install-option="--include-path=/usr/local/include/" --install-option="--library-path=/usr/local/lib/" pygraphviz
+
