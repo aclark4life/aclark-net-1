@@ -97,6 +97,8 @@ def render_xls(context, **kwargs):
     #                                                                              #
     ################################################################################
 
+    # Row 4
+
     count = 1
     entries = []
     time_set_count = item.time_set.count()
@@ -164,6 +166,8 @@ def render_xls(context, **kwargs):
             sheet2[
                 get_column_letter(column_index + cell + 1) + str(sheet2.max_row)
             ].font = bold
+
+    # Row 5
 
     entries = []
     for i in range(time_set_count):
