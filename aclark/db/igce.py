@@ -54,7 +54,6 @@ def render_xls(context, **kwargs):
     #                                                                              #
     #                                                                              #
     ################################################################################
-
     bold = Font(bold=True)
     border = Side(border_style="thin", color="000000")
     filename = kwargs.get("filename")
@@ -125,7 +124,6 @@ def render_xls(context, **kwargs):
     # Row 3 #
     #########
     sheet2.append(["Detailed Price Summary"])
-
     # Bold cells, set border
     sheet2["A1"].font = bold
     sheet2["A2"].font = bold
