@@ -247,7 +247,7 @@ def render_xls(context, **kwargs):
             column_total.append(
                 get_column_letter(column_index + cell) + str(sheet2.max_row)
             )
-    # Currency
+    # Currency + formula
     for cell in range(row_7_col_num):
         if (column_index + cell) % 4 == 1:
             sheet2[
@@ -297,6 +297,20 @@ def render_xls(context, **kwargs):
                 ].fill = PatternFill(
                     start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
                 )
+                sheet2[
+                    get_column_letter(column_index + cell) + str(sheet2.max_row - count)
+                ] = (
+                    "=%s*%s"
+                    % (
+                        get_column_letter(column_index + cell - 1)
+                        + str(sheet2.max_row - count),
+                        get_column_letter(column_index + cell - 3)
+                        + str(sheet2.max_row - count),
+                    )
+                )
+                sheet2[
+                    get_column_letter(column_index + cell) + str(sheet2.max_row - count)
+                ].number_format = FORMAT_CURRENCY_USD_SIMPLE
             sheet2[
                 get_column_letter(column_index + cell) + str(sheet2.max_row - count)
             ].border = Border(bottom=border, right=border)
