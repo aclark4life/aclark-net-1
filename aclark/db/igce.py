@@ -280,17 +280,18 @@ def render_xls(context, **kwargs):
     # Row 8-15 #
     ############
     for line in range(0, 8):  # Blank lines
-        entries = []
+        row_x_col_data = []
         for i in range(time_set_count):
-            entries.append("")
-            entries.append("")
-            entries.append("")
-            entries.append("")
-        entries.insert(0, "")
-        sheet2.append(entries)
+            row_x_col_data.append("")
+            row_x_col_data.append("")
+            row_x_col_data.append("")
+            row_x_col_data.append("")
+        row_x_col_data.insert(0, "")
+        sheet2.append(row_x_col_data)
     # Fill more cells and set border + formula + currency
+    row_x_col_num = len(row_x_col_data)
     for count in range(0, 8):
-        for cell in range(len(entries) - 1):
+        for cell in range(row_x_col_num - 1):
             if (column_index + cell) % 4 == 1:
                 sheet2[
                     get_column_letter(column_index + cell) + str(sheet2.max_row - count)
@@ -320,7 +321,7 @@ def render_xls(context, **kwargs):
     ##########
     sheet2.append(["Line Item Subtotal"])
     # Fill cells and set border
-    for cell in range(len(entries) - 1):
+    for cell in range(row_x_col_num - 1):
         if (column_index + cell) % 4 == 1:
             sheet2[
                 get_column_letter(column_index + cell) + str(sheet2.max_row)
@@ -344,7 +345,7 @@ def render_xls(context, **kwargs):
     # Bold cell
     sheet2["A" + str(sheet2.max_row)].font = bold
     # Fill cells
-    for cell in range(len(entries) - 1):
+    for cell in range(row_x_col_num - 1):
         if (column_index + cell) % 4 == 1:
             sheet2[
                 get_column_letter(column_index + cell) + str(sheet2.max_row)
@@ -369,7 +370,7 @@ def render_xls(context, **kwargs):
     # Bold cell
     sheet2["A" + str(sheet2.max_row)].font = bold
     # Fill cells
-    for cell in range(len(entries) - 1):
+    for cell in range(row_x_col_num - 1):
         sheet2[
             get_column_letter(column_index + cell) + str(sheet2.max_row)
         ].fill = PatternFill(
@@ -385,7 +386,7 @@ def render_xls(context, **kwargs):
     letter_start = "B"
     merge = []
     count = 0
-    for cell in range(len(entries) - 1):
+    for cell in range(row_x_col_num - 1):
         if (column_index + cell) % 4 == 1:
             count += 1
             merge.append(
@@ -406,7 +407,7 @@ def render_xls(context, **kwargs):
     # Bold cell
     sheet2["A" + str(sheet2.max_row)].font = bold
     # Fill cells
-    for cell in range(len(entries) - 1):
+    for cell in range(row_x_col_num - 1):
         sheet2[
             get_column_letter(column_index + cell) + str(sheet2.max_row)
         ].fill = PatternFill(
