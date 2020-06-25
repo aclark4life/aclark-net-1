@@ -27,3 +27,6 @@ flake:
 pygraphviz-install:
 	pip install --install-option="--include-path=/usr/local/include/" --install-option="--library-path=/usr/local/lib/" pygraphviz
 
+
+db-init:
+	createdb project_app
