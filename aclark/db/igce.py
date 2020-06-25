@@ -359,6 +359,8 @@ def render_xls(context, **kwargs):
     for cells in merge:
         sheet2.merge_cells(cells)
 
+    # Row 19
+
     sheet2.append(["Total Average Value".upper()])
     # Bold cell
     sheet2["A" + str(sheet2.max_row)].font = bold
@@ -374,6 +376,8 @@ def render_xls(context, **kwargs):
         "+".join(column_total),
         count,
     )
+
+    # Row 20
 
     sheet2.append(["Narrative:"])
     # Bold cell
