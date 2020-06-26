@@ -1,0 +1,14 @@
+{% extends 'dashboard.html' %}
+{% block dashboard %}
+{% include 'search.html' %}
+    <div class="row">
+      <div class="col-12">
+        <div class="text-right">
+          <a class="btn btn-lg btn-outline-dark" href="{% url edit_url %}">Add Company</a>
+        </div>
+      </div>
+    </div>
+{% with items=items.companys %}
+{% include 'item_table.html' %}
+{% endwith %}
+{% endblock %}

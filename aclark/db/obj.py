@@ -8,6 +8,7 @@ from .query import get_query_string
 URL_NAMES = {
     "account": ("account_view", "account_edit", "account_index"),
     "client": ("client_view", "client_edit", "client_index"),
+    "company": ("company_view", "company_edit", "company_index"),
     "contact": ("contact_view", "contact_edit", "contact_index"),
     "estimate": ("estimate_view", "estimate_edit", "estimate_index"),
     "invoice": ("invoice_view", "invoice_edit", "invoice_index"),

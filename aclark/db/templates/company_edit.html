@@ -1,0 +1,12 @@
+{% extends 'dashboard.html' %}
+{% load crispy_forms_tags %}
+{% block dashboard %}
+    <div class="row">
+      <div class="col-12">
+        <form action="" method="post">{% csrf_token %}
+        {{ form|crispy }}
+{% include 'save.html' %}
+        </form>
+      </div>
+    </div>
+{% endblock %}

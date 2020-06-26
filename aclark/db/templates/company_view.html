@@ -4,7 +4,7 @@
       <div class="col-12">
         <div class="text-right">
           <div class="btn-group dropdown">
-            <a class="btn btn-lg btn-outline-dark rounded" href="{% url 'service_edit' pk=item.pk %}">Edit</a>
+            <a class="btn btn-lg btn-outline-dark rounded" href="{% url 'company_edit' pk=item.pk %}">Edit</a>
             <div class="dropdown-menu">
 {% include 'actions.html' %}
             </div>
@@ -12,7 +12,7 @@
         </div>
       </div>
     </div>
-<h1>{{ item.name|default:'Service' }}</h1>
+<h1>{{ item.name|default:'Company' }}</h1>
 {{ item.description|safe }}
 {% include 'copy_form.html' %}
 {% include 'delete_form.html' %}

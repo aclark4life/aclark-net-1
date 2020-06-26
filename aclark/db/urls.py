@@ -17,6 +17,11 @@ urlpatterns = [
     url(r"^client$", views.client_index, name="client_index"),
     # Competency
     url(r"^competency$", views.competency, name="competency"),
+    # Company
+    url(r"^company/(?P<pk>\d+)$", views.company_view, name="company_view"),
+    url(r"^company$", views.company_index, name="company_index"),
+    url(r"^company/add$", views.company_edit, name="company_edit"),
+    url(r"^company/(?P<pk>\d+)/edit$", views.company_edit, name="company_edit"),
     # Contact
     url(r"^contact/(?P<pk>\d+)$", views.contact_view, name="contact_view"),
     url(r"^contact/(?P<pk>\d+)/edit$", views.contact_edit, name="contact_edit"),

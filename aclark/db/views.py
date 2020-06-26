@@ -15,6 +15,7 @@ from .forms import AccountForm
 from .forms import AdminProfileForm
 from .forms import AdminTimeForm
 from .forms import ClientForm
+from .forms import CompanyForm
 from .forms import ContactForm
 from .forms import EstimateForm
 from .forms import InvoiceForm
@@ -27,6 +28,7 @@ from .forms import TaskForm
 from .forms import TimeForm
 from .models import Account
 from .models import Client
+from .models import Company
 from .models import Contact
 from .models import Estimate
 from .models import Invoice
@@ -187,6 +189,38 @@ def competency(request):
         filename = "%s-%s.pdf" % (context["company_name"], "competency")
         return render_pdf(context, filename=filename, template="competency.html")
     return render(request, "competency_view.html", context)
+
+
+@staff_member_required
+def company_edit(request, pk=None):
+    """
+    """
+
+    return edit(request, form_model=CompanyForm, model=Company, pk=pk)
+
+
+@staff_member_required
+def company_index(request):
+    """
+    """
+
+    context = get_index_items(
+        model=Company,
+        report_model=Report,
+        order_by=("-active", "name"),
+        request=request,
+        search_fields=("name",),
+    )
+    return render(request, "company_index.html", context)
+
+
+@staff_member_required
+def company_view(request, pk=None):
+    """
+    """
+
+    context = get_page_items(model=Company, pk=pk, request=request, report_model=Report)
+    return render(request, "company_view.html", context)
 
 
 @staff_member_required

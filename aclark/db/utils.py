@@ -144,16 +144,14 @@ def get_page_items(**kwargs):
 
     doc_type = "Invoice"
 
+    company_name = "Company"
     site_config = None
     if site_config_model:
         site_config = site_config_model.get_solo()
-
-    company_name = "Company"
-    if config:
-        if hasattr(config.company, "name"):
-            company_name = config.company.name
+    if site_config:
+        if hasattr(site_config.company, "name"):
+            company_name = site_config.company.name
             company_name = slugify(company_name)
-
     if model:
         model_name = model._meta.verbose_name
         model_name = model_name.replace(" ", "_")

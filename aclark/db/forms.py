@@ -1,5 +1,6 @@
 from .models import Account
 from .models import Client
+from .models import Company
 from .models import Contact
 from .models import Estimate
 from .models import Invoice
@@ -90,6 +91,15 @@ class ClientForm(forms.ModelForm):
     class Meta:
         model = Client
         exclude = ("tags", "active", "hidden", "published")
+
+
+class CompanyForm(forms.ModelForm):
+    """
+    """
+
+    class Meta:
+        model = Company
+        fields = "__all__"
 
 
 class ContactForm(forms.ModelForm):
