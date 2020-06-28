@@ -1,13 +1,9 @@
 {% extends 'dashboard.html' %}
 {% block dashboard %}
 {% include 'search.html' %}
-    <div class="row">
-      <div class="col-12">
-        <div class="text-right">
-          <a class="btn btn-lg btn-outline-dark" href="{% url 'client_edit' %}">Add Client</a>
-        </div>
-      </div>
-    </div>
+{% with url="client_edit" btn_text="Add Client" %}
+{% include 'add_button.html' %}
+{% endwith %}
 {% with items=items.clients %}
 {% include 'pagination.html' %}
 {% endwith %}

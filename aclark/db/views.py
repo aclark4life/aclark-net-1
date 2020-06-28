@@ -827,6 +827,21 @@ def user_view(request, pk=None):
         return render(request, "user_view.html", context)
 
 
+def user_add(request, pk=None):
+    """
+    # https://docs.djangoproject.com/en/3.0/topics/auth/default/#creating-users
+
+    >>> from django.contrib.auth.models import User
+    >>> user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
+
+    # At this point, user is a User object that has already been saved
+    # to the database. You can continue to change its attributes
+    # if you want to change other fields.
+    >>> user.last_name = 'Lennon'
+    >>> user.save()
+    """
+
+
 @login_required
 def user_edit(request, pk=None):
     """

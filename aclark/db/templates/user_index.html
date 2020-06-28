@@ -1,6 +1,9 @@
 {% extends 'dashboard.html' %}
 {% block dashboard %}
 {% include 'search.html' %}
+{% with url="user_edit" btn_text="Add User" %}
+{% include 'add_button.html' %}
+{% endwith %}
 {% with users=items.users %}
 {% include 'pagination.html' %}
 {% endwith %}
