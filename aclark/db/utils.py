@@ -134,7 +134,6 @@ def get_page_items(**kwargs):
     items = None
     model_name = None
     fields = None
-    config = None
 
     last_payment_date = None
 

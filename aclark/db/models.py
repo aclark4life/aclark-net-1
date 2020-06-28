@@ -339,7 +339,7 @@ class Project(BaseModel):
         on_delete=models.CASCADE,
         limit_choices_to={"active": True},
     )
-    name = models.CharField("Project Name", max_length=300, blank=True, null=True)
+    name = models.CharField("Name", max_length=300, blank=True, null=True)
     task = models.ForeignKey(
         "Task",
         blank=True,
