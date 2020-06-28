@@ -366,6 +366,12 @@ def render_xls(context, **kwargs):
             ].fill = PatternFill(
                 start_color="D3D3D3", end_color="D3D3D3", fill_type="solid"
             )
+            sheet2[
+                get_column_letter(column_index + cell) + str(sheet2.max_row)
+            ] = "=%s" % get_column_letter(column_index + cell) + str(sheet2.max_row - 1)
+            sheet2[
+                get_column_letter(column_index + cell) + str(sheet2.max_row)
+            ].number_format = FORMAT_CURRENCY_USD_SIMPLE
         else:
             sheet2[
                 get_column_letter(column_index + cell) + str(sheet2.max_row)
@@ -396,6 +402,7 @@ def render_xls(context, **kwargs):
         ].border = Border(bottom=border, right=border)
     # https://openpyxl.readthedocs.io/en/stable/usage.html#using-formulae
     sheet2["B" + str(sheet2.max_row)] = "=SUM(%s)" % "+".join(column_total)
+    sheet2["B" + str(sheet2.max_row)].number_format = FORMAT_CURRENCY_USD_SIMPLE
     # Merge cells
     letter_start = "B"
     merge = []
@@ -436,6 +443,7 @@ def render_xls(context, **kwargs):
         "+".join(column_total),
         count,
     )
+    sheet2["E" + str(sheet2.max_row)].number_format = FORMAT_CURRENCY_USD_SIMPLE
 
     ##########
     # Row 20 #
