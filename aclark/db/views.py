@@ -579,7 +579,7 @@ def project_index(request, pk=None):
     context = get_index_items(
         model=Project,
         report_model=Report,
-        order_by=("name", "-active", "-created"),
+        order_by=("-active", "name"),
         request=request,
         search_fields=("id", "name"),
     )
