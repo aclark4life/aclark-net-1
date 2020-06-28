@@ -52,19 +52,19 @@ class AdminTimeForm(forms.ModelForm):
     class Meta:
         model = Time
         fields = (
+            "invoiced",
+            "user",
             "date",
             "hours",
             "description",
-            "estimate",
-            "invoice",
-            "project",
-            "user",
-            "task",
-            "invoiced",
             "quantity",
             "unit",
             "unit_price",
             "total_price",
+            "estimate",
+            "invoice",
+            "project",
+            "task",
         )
         widgets = {"hours": forms.widgets.NumberInput(attrs={"class": "col-2"})}
 
