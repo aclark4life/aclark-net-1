@@ -109,6 +109,7 @@ def render_xls(context, **kwargs):
     sheet2.column_dimensions["A"].width = 48
     column_index = 2
     letter_start = "B"
+    entries = item.time_set.all()
 
     #########
     # Row 1 #
@@ -232,7 +233,7 @@ def render_xls(context, **kwargs):
     # Row 7 #
     #########
     row_7_col_data = []
-    for entry in item.time_set.all():
+    for entry in entries:
         row_7_col_data.append(entry.quantity)
         row_7_col_data.append(entry.unit)
         row_7_col_data.append(entry.unit_price)
@@ -465,7 +466,7 @@ def render_xls(context, **kwargs):
     )
     sheet2.append([""])
     count = 1
-    for entry in item.time_set.all():
+    for entry in entries:
         sheet2.append(["Estimate %s—%s" % (str(count), entry.description)])
         sheet2["A" + str(sheet2.max_row)].font = bold
         sheet2.append([item.subject])
