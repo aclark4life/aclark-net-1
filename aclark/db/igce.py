@@ -452,25 +452,44 @@ def render_xls(context, **kwargs):
     sheet2.append(["Narrative:"])
     # Bold cell
     sheet2["A" + str(sheet2.max_row)].font = bold
+    ##########
+    # Row 21 #
+    ##########
     sheet2.append([""])
+    ##########
+    # Row 22 #
+    ##########
     sheet2.append(
         [
             "The government estimates the cost of the Confocal Laser Scanning Microscope with the features essential to the programs needs is $26730."
         ]
     )
+    ##########
+    # Row 23 #
+    ##########
     sheet2.append([""])
+    ##########
+    # Row 24 #
+    ##########
     sheet2.append(
         [
             "The estimate is based upon the comparison the published commercial price for a Confocal Laser Scanning Microscope of similar features and functionality from three (3) major manufacturers."
         ]
     )
+    ##########
+    # Row 25 #
+    ##########
     sheet2.append([""])
+    #############
+    # Row 26-34 #
+    #############
     count = 1
     for entry in entries:
         sheet2.append(["Estimate %s—%s" % (str(count), entry.description)])
         sheet2["A" + str(sheet2.max_row)].font = bold
         sheet2.append([item.subject])
         sheet2.append([entry.total_price])
+        sheet2["A" + str(sheet2.max_row)].number_format = FORMAT_CURRENCY_USD_SIMPLE
         count += 1
     sheet2["B2"].font = bold
     response = HttpResponse(content_type="xlsx")
