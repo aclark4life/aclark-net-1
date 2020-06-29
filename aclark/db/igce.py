@@ -459,11 +459,15 @@ def render_xls(context, **kwargs):
     ##########
     # Row 22 #
     ##########
-    sheet2.append(
-        [
-            "The government estimates the cost of the Confocal Laser Scanning Microscope with the features essential to the programs needs is $26730.\n\nThe estimate is based upon the comparison the published commercial price for a Confocal Laser Scanning Microscope of similar features and functionality from three (3) major manufacturers."
-        ]
-    )
+    notes = item.note.all()  # Get narrative from first related note title
+    if len(notes) > 0:
+        sheet2.append([notes[0].title])
+    else:
+        sheet2.append(
+            [
+                "The government estimates the cost of the Confocal Laser Scanning Microscope with the features essential to the programs needs is $26730.\n\nThe estimate is based upon the comparison the published commercial price for a Confocal Laser Scanning Microscope of similar features and functionality from three (3) major manufacturers."
+            ]
+        )
     ##########
     # Row 23 #
     ##########
