@@ -461,27 +461,15 @@ def render_xls(context, **kwargs):
     ##########
     sheet2.append(
         [
-            "The government estimates the cost of the Confocal Laser Scanning Microscope with the features essential to the programs needs is $26730."
+            "The government estimates the cost of the Confocal Laser Scanning Microscope with the features essential to the programs needs is $26730.\n\nThe estimate is based upon the comparison the published commercial price for a Confocal Laser Scanning Microscope of similar features and functionality from three (3) major manufacturers."
         ]
     )
     ##########
     # Row 23 #
     ##########
     sheet2.append([""])
-    ##########
-    # Row 24 #
-    ##########
-    sheet2.append(
-        [
-            "The estimate is based upon the comparison the published commercial price for a Confocal Laser Scanning Microscope of similar features and functionality from three (3) major manufacturers."
-        ]
-    )
-    ##########
-    # Row 25 #
-    ##########
-    sheet2.append([""])
     #############
-    # Row 26-34 #
+    # Row 24-31 #
     #############
     count = 1
     for entry in entries:
