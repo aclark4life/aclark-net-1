@@ -67,6 +67,7 @@ l18n==2018.5
 lxml==4.3.3
 matplotlib==3.2.2
 maxminddb==1.5.2
+mortgage==1.0.5
 numpy==1.16.3
 oauthlib==3.0.1
 odfpy==1.4.0
