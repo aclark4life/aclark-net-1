@@ -1,7 +1,22 @@
           <table class="table bg-light">
             <tbody>
               {% for key, value in fields.items %}
-              <tr><td valign="top"><strong>{{ key }}</strong></td><td>{{ value|default:''|safe }}</td></tr>
+              <tr>
+                <td valign="top">
+                  <strong>{{ key }}</strong>
+                </td>
+                <td>
+                {% if key == "estimate" and value %}
+                  <a style="text-decoration: none" href="{% url 'estimate_view' value.pk %}">{{ value|default:''|safe }}</a>
+                {% elif key == "invoice" and value %}
+                  <a style="text-decoration: none" href="{% url 'invoice_view' value.pk %}">{{ value|default:''|safe }}</a>
+                {% elif key == "project" and value %}
+                  <a style="text-decoration: none" href="{% url 'project_view' value.pk %}">{{ value|default:''|safe }}</a>
+                {% else %}
+                  {{ value|default:''|safe }}
+                {% endif %}
+                </td>
+              </tr>
               {% endfor %}
             </tbody>
           </table>
