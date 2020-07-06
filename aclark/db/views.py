@@ -727,7 +727,14 @@ def time_view(request, pk=None):
             pk=pk,
             request=request,
             report_model=Report,
-            include_fields=("date", "project", "hours", "description"),
+            include_fields=(
+                "date",
+                "project",
+                "invoice",
+                "estimate",
+                "hours",
+                "description",
+            ),
         )
         return render(request, "time_view.html", context)
 
