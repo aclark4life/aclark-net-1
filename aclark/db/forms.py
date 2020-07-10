@@ -41,6 +41,9 @@ class AdminProfileForm(forms.ModelForm):
             "published",
             "avatar_url",
             "notifications",
+            "principal",
+            "interest",
+            "term",
         )
         widgets = {"bio": forms.widgets.TextInput(attrs={"class": "tinymce"})}
 

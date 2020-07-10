@@ -298,6 +298,16 @@ class Profile(BaseModel):
     job_title = models.CharField(max_length=150, blank=True, null=True)
     twitter_username = models.CharField(max_length=150, blank=True, null=True)
     notifications = models.BooleanField(default=False)
+    # mortgage calculator
+    principal = models.DecimalField(
+        "Principal", default=1.0, blank=True, null=True, max_digits=12, decimal_places=6
+    )
+    interest = models.DecimalField(
+        "Interest", default=1.0, blank=True, null=True, max_digits=12, decimal_places=6
+    )
+    term = models.DecimalField(
+        "Term", default=1.0, blank=True, null=True, max_digits=12, decimal_places=6
+    )
 
     def __str__(self):
         if self.user:
