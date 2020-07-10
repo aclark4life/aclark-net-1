@@ -219,7 +219,13 @@ def company_view(request, pk=None):
     """
     """
 
-    context = get_page_items(model=Company, pk=pk, request=request, report_model=Report)
+    context = get_page_items(
+        model=Company,
+        pk=pk,
+        request=request,
+        report_model=Report,
+        include_fields=("published", "name", "address", "description", "url"),
+    )
     return render(request, "company_view.html", context)
 
 

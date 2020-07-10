@@ -168,6 +168,11 @@ def get_page_items(**kwargs):
             items = set_items("invoice", items=invoices, _items=items)
             items = set_items("project", items=projects, _items=items)
             items = set_items("estimate", items=estimates, _items=items)
+        elif model_name == "company":
+            item = get_object_or_404(model, pk=pk)
+            fields = get_fields(
+                item, include_fields=include_fields
+            )  # fields_items.html
         elif model_name == "contact":
             item = get_object_or_404(model, pk=pk)
             fields = get_fields(
