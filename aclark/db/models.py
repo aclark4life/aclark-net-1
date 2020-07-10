@@ -300,7 +300,12 @@ class Profile(BaseModel):
     notifications = models.BooleanField(default=False)
     # Mortgage calculator
     principal = models.DecimalField(
-        "Principal", default=400000.00, blank=True, null=True, max_digits=12, decimal_places=2
+        "Principal",
+        default=400000.00,
+        blank=True,
+        null=True,
+        max_digits=12,
+        decimal_places=2,
     )
     interest = models.DecimalField(
         "Interest", default=2.5, blank=True, null=True, max_digits=12, decimal_places=2

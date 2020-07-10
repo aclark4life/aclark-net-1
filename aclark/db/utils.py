@@ -3,6 +3,7 @@ from django.db.models import Sum
 from django.shortcuts import get_object_or_404
 from django.utils.text import slugify
 from .fields import get_fields
+from .mortgage import get_loan
 from .misc import set_items
 from .misc import get_setting
 from .page import paginate
@@ -142,6 +143,9 @@ def get_page_items(**kwargs):
     times = None
 
     doc_type = "Invoice"
+
+    # Mortgage loan
+    loan = {}
 
     company_name = "Company"
     site_config = None
@@ -354,5 +358,6 @@ def get_page_items(**kwargs):
     context["last_payment_date"] = last_payment_date
     context["company_name"] = company_name
     context["doc_type"] = doc_type
+    context["loan"] = loan
 
     return context
