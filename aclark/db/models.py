@@ -301,16 +301,16 @@ class Profile(BaseModel):
     # Mortgage calculator
     principal = models.DecimalField(
         "Principal",
-        default=400000.00,
+        default=300000.00,
         blank=True,
         null=True,
         max_digits=12,
         decimal_places=2,
     )
     interest = models.DecimalField(
-        "Interest", default=2.5, blank=True, null=True, max_digits=12, decimal_places=2
+        "Interest", default=2.5, blank=True, null=True, max_digits=12, decimal_places=3
     )
-    term = models.IntegerField("Term", blank=True, null=True)
+    term = models.IntegerField("Term", blank=True, null=True, default=15)
 
     def __str__(self):
         if self.user:
