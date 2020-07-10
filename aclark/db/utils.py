@@ -144,7 +144,7 @@ def get_page_items(**kwargs):
 
     doc_type = "Invoice"
 
-    # Mortgage loan
+    # Mortgage calculator
     loan = {}
 
     company_name = "Company"
@@ -266,6 +266,13 @@ def get_page_items(**kwargs):
             # Hours approved
             times = times.filter(invoice__isnull=False)
             hours_approved = get_total("hours", times=times)
+            # Mortgage calculator
+            loan_obj = get_loan(
+                item.profile.principal, item.profile.interest, item.profile.term
+            )
+            import pdb
+
+            pdb.set_trace()
         elif model_name == "note":
             item = get_object_or_404(model, pk=pk)
             fields = get_fields(

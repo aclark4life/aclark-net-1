@@ -1,7 +1,7 @@
 from mortgage import Loan
 
 
-def get_loan(principal, interest, rate):
+def get_loan(principal, interest, term):
     """
     """
 
