@@ -10,7 +10,8 @@ PROJECT = aclark
 APP = db
 .DEFAULT_GOAL=commit-push
 install: pygraphviz-install pip-install
-serve: django-serve
+serve:
+	export DEBUG=1; $(MAKE) django-serve
 virtualenv: python-virtualenv-3-8
 black:
 	black aclark/db/*.py
