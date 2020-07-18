@@ -231,8 +231,15 @@ class NoteForm(forms.ModelForm):
 
     class Meta:
         model = Note
-        fields = ("title", "text")
+        exclude = (
+            "due_date",
+            "active",
+            "hidden",
+            "tags",
+        )
         widgets = {"text": forms.widgets.TextInput(attrs={"class": "tinymce"})}
+
+    doc_type = forms.CharField(widget=forms.Select(choices=DOC_TYPES))
 
 
 class ProfileForm(forms.ModelForm):

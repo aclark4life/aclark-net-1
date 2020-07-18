@@ -473,7 +473,7 @@ def note_view(request, pk=None):
         request=request,
         report_model=Report,
         site_config_model=SiteConfiguration,
-        include_fields=("created", "updated", "text", "title"),
+        include_fields=("created", "updated", "text", "title", "doc_type"),
     )
     item = context["item"]
     if item.title:
