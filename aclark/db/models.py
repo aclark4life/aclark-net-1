@@ -266,6 +266,7 @@ class Note(BaseModel):
     title = models.CharField(max_length=300, blank=True, null=True)
     text = models.TextField(blank=True, null=True)
     doc_type = models.CharField(max_length=300, blank=True, null=True)
+    _note = models.ManyToManyField("Note", blank=True, limit_choices_to={"active": True})
 
     def __str__(self):
         if self.title:
