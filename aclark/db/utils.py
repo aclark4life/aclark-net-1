@@ -295,6 +295,7 @@ def get_page_items(**kwargs):
             # E-Mail
             context["message"] = item.text
             context["subject"] = item.title
+            context["notes"] = item._note.all()
         else:
             item = get_object_or_404(model, pk=pk)
             items = set_items(model_name, items=items)
