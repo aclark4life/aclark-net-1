@@ -524,7 +524,7 @@ class Time(BaseModel):
         on_delete=models.SET_NULL,
         limit_choices_to={"last_payment_date": None},
     )
-    date = models.DateField(default=timezone.now)
+    date = models.DateField(default=timezone.now, blank=True, null=True)
     hours = models.DecimalField(
         "Hours", default=1.0, blank=True, null=True, max_digits=12, decimal_places=2
     )
