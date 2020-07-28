@@ -70,16 +70,26 @@ def render_xls(context, **kwargs):
     sheet1 = workbook.active
     sheet1.title = "Invoice"
     for entry in item.time_set.all():
-        sheet1.append(
-            [
-                entry.date,
-                entry.task.name,
-                entry.description,
-                entry.hours,
-                entry.task.rate,
-            ]
-        )
-
+        if entry.task:
+            sheet1.append(
+                [
+                    entry.date,
+                    entry.task.name,
+                    entry.description,
+                    entry.hours,
+                    entry.task.rate,
+                ]
+            )
+        else:
+            sheet1.append(
+                [
+                    entry.date,
+                    "Task name",
+                    entry.description,
+                    entry.hours,
+                    entry.task.rate,
+                ]
+            )
     response = HttpResponse(content_type="xlsx")
     response["Content-Disposition"] = "attachment; filename=%s" % filename
     workbook.save(response)
