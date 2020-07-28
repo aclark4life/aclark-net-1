@@ -216,7 +216,8 @@ def set_ref(obj, request, **kwargs):
             obj.save()  # Need save here to set more attrs
             obj.project = invoice.project
             obj.save()  # Need save here to set more attrs
-            obj.task = invoice.project.task
+            if obj.task:
+                obj.task = invoice.project.task
         if query_project:
             project = get_object_or_404(project_model, pk=query_project)
             obj.project = project
