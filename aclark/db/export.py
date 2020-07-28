@@ -87,7 +87,7 @@ def render_xls(context, **kwargs):
                     "Task name",
                     entry.description,
                     entry.hours,
-                    entry.task.rate,
+                    "Task rate",
                 ]
             )
     response = HttpResponse(content_type="xlsx")
