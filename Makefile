@@ -28,6 +28,9 @@ flake:
 pygraphviz-install:
 	pip install --install-option="--include-path=/usr/local/include/" --install-option="--library-path=/usr/local/lib/" pygraphviz
 
+pygraphviz-install-win:
+	pip install --global-option=build_ext --global-option="-IC:\Program Files\Graphviz2.38\include" --global-option="-LC:\Program Files\Graphviz2.38\lib\release\lib" pygraphviz
+
 
 db-init:
 	-dropdb project_app
