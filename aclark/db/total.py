@@ -47,8 +47,7 @@ def set_total(times, **kwargs):
                 try:
                     amount = t.task.rate * t.hours
                 except TypeError:
-                    # Allow for None
-                    pass
+                    amount = None
         t.amount = "%.2f" % amount
         t.save()
         if estimate:
