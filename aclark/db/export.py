@@ -82,13 +82,7 @@ def render_xls(context, **kwargs):
             )
         else:
             sheet1.append(
-                [
-                    entry.date,
-                    "Task name",
-                    entry.description,
-                    entry.hours,
-                    "Task rate",
-                ]
+                [entry.date, "Task name", entry.description, entry.hours, "Task rate",]
             )
     response = HttpResponse(content_type="xlsx")
     response["Content-Disposition"] = "attachment; filename=%s" % filename

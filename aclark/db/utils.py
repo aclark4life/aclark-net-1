@@ -267,26 +267,30 @@ def get_page_items(**kwargs):
             times = times.filter(invoice__isnull=False)
             hours_approved = get_total("hours", times=times)
             # Mortgage calculator
-            loan_obj = get_loan(
-                item.profile.principal, item.profile.interest, item.profile.term
-            )
-            loan = {
-                "apr": loan_obj.apr,
-                "apy": loan_obj.apy,
-                "compounded": loan_obj.compounded,
-                "interest": loan_obj.interest,
-                "interest_to_principle": loan_obj.interest_to_principle,
-                "monthly_payment": loan_obj.monthly_payment,
-                "n_periods": loan_obj.n_periods,
-                "principal": loan_obj.principal,
-                "summarize": loan_obj.summarize,
-                "term": loan_obj.term,
-                "term_unit": loan_obj.term_unit,
-                "total_interest": loan_obj.total_interest,
-                "total_paid": loan_obj.total_paid,
-                "total_principal": loan_obj.total_principal,
-                "years_to_pay": loan_obj.years_to_pay,
-            }
+            try:
+                loan_obj = get_loan(
+                    item.profile.principal, item.profile.interest, item.profile.term
+                )
+                loan = {
+                    "apr": loan_obj.apr,
+                    "apy": loan_obj.apy,
+                    "compounded": loan_obj.compounded,
+                    "interest": loan_obj.interest,
+                    "interest_to_principle": loan_obj.interest_to_principle,
+                    "monthly_payment": loan_obj.monthly_payment,
+                    "n_periods": loan_obj.n_periods,
+                    "principal": loan_obj.principal,
+                    "summarize": loan_obj.summarize,
+                    "term": loan_obj.term,
+                    "term_unit": loan_obj.term_unit,
+                    "total_interest": loan_obj.total_interest,
+                    "total_paid": loan_obj.total_paid,
+                    "total_principal": loan_obj.total_principal,
+                    "years_to_pay": loan_obj.years_to_pay,
+                }
+            except AssertionError:
+                # Exception Value: Interest rate must be between zero and one
+                pass
         elif model_name == "note":
             item = get_object_or_404(model, pk=pk)
             fields = get_fields(
