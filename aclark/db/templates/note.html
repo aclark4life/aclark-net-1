@@ -12,7 +12,7 @@
     }
 </style>
 <div style="text-align: center">
-<h1>{{ company_name }}</h1>
+<h1>{{ company_name|default:'' }}</h1>
 <h2>{{ item.title }}</h2>
 </div>
 {{ item.text|safe }}
