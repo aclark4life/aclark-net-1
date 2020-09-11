@@ -181,6 +181,7 @@ class InvoiceForm(forms.ModelForm):
             "hidden",
             "subject",
             "po_number",
+            "ein",
             "sa_number",
             "start_date",
             "end_date",
