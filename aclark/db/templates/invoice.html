@@ -81,9 +81,15 @@
               {% if item.po_number %}
               <tr>
                 <!-- Left column -->
-                <td valign="middle" align="left" style="width: 16%" class="field-name border-right"><strong>{% if item.ein %}EIN No.{% endif %}<strong></td>
                 <td valign="middle" align="left" style="width: 16%" class="field-name border-right"><strong>{% if item.po_number %}Purchase Order No.{% endif %}<strong></td>
                 <td valign="middle" align="left" style="width: 50%" class="field-value"><strong>{% if item.po_number %}{{ item.po_number }}{% endif %}<strong></td>
+              </tr>
+              {% endif %}
+              {% if item.ein %}
+              <tr>
+                <!-- Left column -->
+                <td valign="middle" align="left" style="width: 16%" class="field-name border-right"><strong>{% if item.ein %}EIN No.{% endif %}<strong></td>
+                <td valign="middle" align="left" style="width: 50%" class="field-value"><strong>{% if item.ein %}{{ item.ein }}{% endif %}<strong></td>
               </tr>
               {% endif %}
             </table>
