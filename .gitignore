@@ -9,4 +9,4 @@ bin/
 lib/
 share/
 src/
-pyenv.cfg
+pyvenv.cfg
