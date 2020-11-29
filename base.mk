@@ -1,8 +1,13 @@
-# https://github.com/aclark4life/project-makefile
+# Project Makefile
+# ================
 #
-# The MIT License (MIT)
+# - https://github.com/aclark4life/project-makefile
 #
-# Copyright (c) 2016–2020 Alex Clark
+#
+# License
+# ------------------------------------------------------------------------------ 
+#
+# Copyright 2020 Jeffrey Alexander Clark
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -21,87 +26,141 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-
-#-------------------------------------------------------------------------------
-
-# Default Goal
+#
+#
+# Overview of concepts
+# ------------------------------------------------------------------------------ 
+#
+# Goal
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 # 
-# https://www.gnu.org/software/make/manual/html_node/Goals.html
-# https://www.gnu.org/software/make/manual/html_node/Special-Variables.html#Special-Variables
-# 
-# By default, the goal is the first target in the makefile (not counting targets
+# "By default, the goal is the first target in the makefile (not counting targets
 # that start with a period). Therefore, makefiles are usually written so that the
 # first target is for compiling the entire program or programs they describe. If
 # the first rule in the makefile has several targets, only the first target in the
 # rule becomes the default goal, not the whole list. You can manage the selection
 # of the default goal from within your makefile using the .DEFAULT_GOAL variable
-# (see Other Special Variables). 
-
-.DEFAULT_GOAL=usage
-
-#-------------------------------------------------------------------------------
-
-# Variables
-
-# A variable is a name defined in a makefile to represent a string of text, called
-# the variable's value. These values are substituted by explicit request into targets,
-# prerequisites, recipes, and other parts of the makefile.
+# (see Other Special Variables)."
+# 
+# - https://www.gnu.org/software/make/manual/html_node/Goals.html
 #
-# https://www.gnu.org/software/make/manual/html_node/Using-Variables.html
-
+# Default goal
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++   
+#  
+# "Sets the default goal to be used if no targets were specified on the command 
+# line (see Arguments to Specify the Goals). The .DEFAULT_GOAL variable allows
+# you to discover the current default goal, restart the default goal selection
+# algorithm by clearing its value, or to explicitly set the default goal."
+#
+# - https://www.gnu.org/software/make/manual/html_node/Special-Variables.html#Special-Variables
+#
+# Variables
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+#
+# "A variable is a name defined in a makefile to represent a string of text, called
+# the variable's value. These values are substituted by explicit request into targets,
+# prerequisites, recipes, and other parts of the makefile."
+#
+# - https://www.gnu.org/software/make/manual/html_node/Using-Variables.html
+#
 # Flavors
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+#
+# "The first flavor of variable is a recursively expanded variable. Variables of
+# this sort are defined by lines using ‘=’ (see Setting Variables) or by the
+# define directive (see Defining Multi-Line Variables). The value you specify
+# is installed verbatim; if it contains references to other variables, these
+# references are expanded whenever this variable is substituted (in the course
+# of expanding some other string). When this happens, it is called recursive expansion.
+#
+# To avoid all the problems and inconveniences of recursively expanded variables,
+# there is another flavor: simply expanded variables.
+#
+# Simply expanded variables are defined by lines using ‘:=’ or ‘::=’ (see Setting
+# Variables). Both forms are equivalent in GNU make; however only the ‘::=’ form
+# is described by the POSIX standard (support for ‘::=’ was added to the POSIX
+# standard in 2012, so older versions of make won’t accept this form either)."
+#
+# - https://www.gnu.org/software/make/manual/html_node/Flavors.html#Flavors
+#
+# Rules
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+#
+# "A rule appears in the makefile and says when and how to remake certain files,
+# called the rule's targets (most often only one per rule). It lists the other
+# files that are the prerequisites of the target, and the recipe to use to
+# create or update the target."
+#
+# - https://www.gnu.org/software/make/manual/html_node/Rules.html
+#
+# Overrides
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+#
+# "Sometimes it is useful to have a makefile that is mostly just like another makefile.
+# You can often use the ‘include’ directive to include one in the other, and add more
+# targets or variable definitions. However, it is invalid for two makefiles to give
+# different recipes for the same target. But there is another way."
+#
+# - https://www.gnu.org/software/make/manual/html_node/Overriding-Makefiles.html
+#
+# Includes
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+#
+# "The include directive tells make to suspend reading the current makefile and
+# read one or more other makefiles before continuing.
+# 
+# - https://www.gnu.org/software/make/manual/html_node/Include.html
+#
+#
+# Additional concepts
+# ------------------------------------------------------------------------------ 
+#
+# Alias
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#
+# A new target definition that only exists to create a shorter target 
+# name for another target that already exists.
+#
+# Multi-target Alias
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+# Like an Alias, but with multiple targets.
+#
+#
+# Variables
+# ------------------------------------------------------------------------------  
+#
+.DEFAULT_GOAL := usage
 
-# https://www.gnu.org/software/make/manual/html_node/Flavors.html#Flavors
+MESSAGE := Update
 
-COMMIT_MESSAGE = "Update"
-PROJECT = project
-APP = app
+PROJECT := project
+APP := app
+
 # https://stackoverflow.com/a/589260/185820
 TMPDIR := $(shell mktemp -d)
 RANDIR := $(shell openssl rand -base64 12 | sed 's/\///g')
 UNAME := $(shell uname)
+
 # http://unix.stackexchange.com/a/37316
-REMOTE_BRANCHES = `git branch -a | grep remote | grep -v HEAD | grep -v master`
+BRANCHES = `git branch -a | grep remote | grep -v HEAD | grep -v master`
 
-#-------------------------------------------------------------------------------
-
-# Additional Concepts for this Makefile
-#
-# "Alias" - A new target definition that only exists to create a shorter target 
-# name for another target that already exists.
-#
-# "Multi-target Alias" - Like an "Alias", but with multiple targets.
-#
-# "BBB" - For backwards compatibility. Via
-# https://docs.plone.org/appendices/glossary.html
-
-#-------------------------------------------------------------------------------
 
 # Rules
+# ------------------------------------------------------------------------------  
 #
-# A rule appears in the makefile and says when and how to remake certain files,
-# called the rule's targets (most often only one per rule). It lists the other
-# files that are the prerequisites of the target, and the recipe to use to
-# create or update the target. 
+# Django
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 #
-# https://www.gnu.org/software/make/manual/html_node/Rules.html
-
-##########
-# Django #
-##########
-
-django-init-app:
+django-start:
 	-mkdir -p $(PROJECT)/$(APP)/templates
 	-touch $(PROJECT)/$(APP)/templates/base.html
 	-django-admin startproject $(PROJECT) .
 	-django-admin startapp $(APP) $(PROJECT)/$(APP)
-django-graph:
-	python manage.py graph_models $(APP) -o graph_models_$(PROJECT)_$(APP).png 
 django-init: 
 	@$(MAKE) pip-install-django
 	@$(MAKE) pg-init
-	@$(MAKE) django-init-app
-	@$(MAKE) django-up-settings
+	@$(MAKE) django-start
+	@$(MAKE) django-config
 	git add $(PROJECT)
 	git add manage.py
 	@$(MAKE) commit-push
@@ -112,9 +171,9 @@ django-migrations-default:
 	git add $(PROJECT)/$(APP)/migrations/*.py
 django-serve-default:
 	python manage.py runserver 0.0.0.0:8000
-django-test:
+django-test-default:
 	python manage.py test
-django-up-settings:
+django-config:
 	echo "STATIC_ROOT = 'static'" >> $(PROJECT)/settings.py
 	echo "ALLOWED_HOSTS = ['*']" >> $(PROJECT)/settings.py
 	echo "AUTH_PASSWORD_VALIDATORS = [{'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator', }, { 'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator', },]" >> $(PROJECT)/settings.py
@@ -124,7 +183,7 @@ django-shell:
 django-static:
 	python manage.py collectstatic --noinput
 django-su:
-	python manage.py createsuperuser
+	python manage.py shell -c "from django.contrib.auth.models import User; User.objects.create_superuser('admin', '', 'admin')"
 django-loaddata-default:
 	python manage.py loaddata
 django-yapf:
@@ -135,6 +194,8 @@ django-wc:
 	-wc -l *.py
 	-wc -l $(PROJECT)/*.py
 	-wc -l $(PROJECT)/$(APP)/*.py
+django-graph:
+	python manage.py graph_models $(APP) -o graph_models_$(PROJECT)_$(APP).png 
 graph: django-graph
 migrate: django-migrate  # Alias
 migrations: django-migrations  # Alias
@@ -142,26 +203,10 @@ static: django-static  # Alias
 su: django-su  # Alias
 test: django-test  # Alias
 loaddata: django-loaddata  # Alias
-
-##########
-# Drupal #
-##########
-
-drupal-init-composer-8:
-	composer create-project drupal/recommended-project $(RANDIR) --no-interaction
-drupal-init-docksal-7:
-	git clone https://github.com/docksal/boilerplate-drupal7.git d7
-	cd d7; fin init
-drupal-init-docksal-8:
-	git clone https://github.com/docksal/boilerplate-drupal8.git d8
-	cd d8; fin init
-d7: drupal-init-docksal-7  # Alias
-d8: drupal-init-docksal-8  # Alias
-
-#######
-# Git #
-#######
-
+#
+# Git
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+#
 git-ignore:
 	echo ".Python\nbin/\ninclude/\nlib/\n.vagrant/\n" >> .gitignore
 	git add .gitignore
@@ -171,12 +216,12 @@ git-init:
 	hub create $(RANDDIR)
 	hub browse
 git-branches:
-	-for i in $(REMOTE_BRANCHES) ; do \
+	-for i in $(BRANCHES) ; do \
         git checkout -t $$i ; done
 git-prune:
 	git remote update origin --prune
 git-commit:
-	git commit -a -m $(COMMIT_MESSAGE)
+	git commit -a -m $(MESSAGE)
 git-commit-edit:
 	git commit -a
 git-push:
@@ -191,25 +236,24 @@ p: push  # Alias
 commit-push: git-commit git-push  # Multi-target Alias
 commit-push-up: git-commit git-push-up  # Multi-target Alias
 commit-edit: git-commit-edit git-push  # Multi-target Alias
-git-commit-auto-push: commit-push  # BBB
-git-commit-edit-push: commit-edit-push  # BBB
-
-########
-# Misc #
-########
-
+#
+# Misc
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+#
 rand:
 	@openssl rand -base64 12 | sed 's/\///g'
 r: rand  # Alias
-
+#
 readme:
 	echo "Creating README.rst"
 	@echo $(PROJECT) > README.rst
-	@echo ================================================================================ >> README.rst
+	@echo "================================================================================\n" >> README.rst
+	@echo $(APP) >> README.rst
+	@echo -------------------------------------------------------------------------------- >> README.rst
 	echo "Done."
 	git add README.rst
 	@$(MAKE) commit-push
-
+#
 review:
 ifeq ($(UNAME), Darwin)
 	@open -a $(EDITOR) `find $(PROJECT) -name \*.py | grep -v __init__.py | grep -v migrations`\
@@ -217,7 +261,7 @@ ifeq ($(UNAME), Darwin)
 else
 	@echo "Unsupported"
 endif
-
+#
 list-targets-default:
 	@$(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F:\
         '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}'\
@@ -225,52 +269,45 @@ list-targets-default:
         '{print "make "$$0}' | less  # http://stackoverflow.com/a/26339924
 help: list-targets  # Alias
 h: list-targets  # Alias
-
+pdf-default:
+	rst2pdf README.rst > README.pdf
+	git add README.pdf
+	$(MAKE) commit-push
+#
 usage:
 	@echo "Project Makefile"
 	@echo "Usage:\n"
 	@echo "\tmake <target>\n"
 	@echo "Help:\n"
 	@echo "\tmake help"
-
+#
 make:
 	git add base.mk
 	git add Makefile
-	@$(MAKE) commit-push-up
-
+	@$(MAKE) commit-push
+#
 deploy-default:
 	eb deploy
 d: deploy  # Alias
-
-#########
-# MySQL #
-#########
-
+#
+# MySQL
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+#
 my-init-default:
 	-mysqladmin -u root drop $(PROJECT)_$(APP)
 	-mysqladmin -u root create $(PROJECT)_$(APP)
-
-#########
-# Plone #
-#########
-
-plone-serve-default:
-	plone fg
-
-plone-install-default:
-	buildout
-
-#######
-# Pip #
-#######
-
+#
+# Pip
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+#
+PIP := pip --use-feature=2020-resolver
 pip-freeze-default:
-	pip freeze | sort > $(TMPDIR)/requirements.txt
+	$(PIP) freeze | sort > $(TMPDIR)/requirements.txt
 	mv -f $(TMPDIR)/requirements.txt .
-pip-install:
-	pip install -r requirements.txt
+pip-install-default:
+	$(PIP) install -r requirements.txt
 pip-install-test:
-	pip install -r requirements-test.txt
+	$(PIP) install -r requirements-test.txt
 pip-install-django:
 	@echo "Django\ndj-database-url\npsycopg2-binary\n" > requirements.txt
 	@$(MAKE) pip-install
@@ -281,24 +318,35 @@ pip-install-sphinx:
 	echo "Sphinx\n" > requirements.txt
 	$(MAKE) pip-install
 pip-upgrade-default:
-	cat requirements.txt | awk -F \= '{print $1}' > $(TMPDIR)/requirements.txt
+	cat requirements.txt | awk -F \= '{print $$1}' > $(TMPDIR)/requirements.txt
 	mv -f $(TMPDIR)/requirements.txt .
-	pip install -U -r requirements.txt
+	$(PIP) install -U -r requirements.txt
 	$(MAKE) pip-freeze
+pip-upgrade-pip:
+	$(PIP) install -U pip
+pip-init:
+	touch requirements.txt
+	git add requirements.txt
+	$(MAKE) commit-push
 freeze: pip-freeze  # Alias
-
-##############
-# PostgreSQL #
-##############
-
+install: pip-install  # Alias
+install-test: pip-install-test  # Alias
+pip-up: pip-upgrade  # Alias
+pip-up-pip: pip-upgrade-pip  # Alias
+req: pip-init-requirements  # Alias
+up-pip: pip-upgrade-pip  # Alias
+up: pip-upgrade  # Alias
+#
+# PostgreSQL
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+#
 pg-init-default:
 	-dropdb $(PROJECT)_$(APP)
 	-createdb $(PROJECT)_$(APP)
-
-##########
-# Python # 
-##########
-
+#
+# Python
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+#
 python-serve-default:
 	@echo "\n\tServing HTTP on http://0.0.0.0:8000\n"
 	python -m http.server
@@ -306,15 +354,15 @@ python-virtualenv-2-6-default:
 	virtualenv --python=python2.6 .
 python-virtualenv-2-7-default:
 	virtualenv --python=python2.7 .
-python-virtualenv-3-7-default:
-	virtualenv --python=python3.7 .
 python-virtualenv-3-8-default:
-	virtualenv --python=python3.8 .
-
-##########
-# Sphinx #
-##########
-
+	python3.8 -m venv .
+python-virtualenv-3-9-default:
+	python3.9 -m venv .
+virtualenv: python-virtualenv-3-8
+#
+# Sphinx
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+#
 sphinx-build-default:
 	sphinx-build -b html -d _build/doctrees . _build/html
 sphinx-init:
@@ -322,13 +370,12 @@ sphinx-init:
 	sphinx-quickstart -q -p $(PROJECT) -a $(USER) -v 0.0.1 $(RANDIR)
 	mv $(RANDIR)/* .
 	rmdir $(RANDIR)
-sphinx-serve:
+sphinx-serve-default:
 	cd _build/html;python -m http.server
-
-###########
-# Vagrant #
-###########
-
+#
+# Vagrant
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+#
 vagrant-init:
 	vagrant init ubuntu/trusty64
 	git add Vagrantfile
@@ -339,12 +386,9 @@ vagrant-up:
 vagrant: vagrant-init  # Alias
 vm: vagrant-init  # Alias
 vm-up: vagrant-up  # Alias
-
-#-------------------------------------------------------------------------------
-
-# Overrides
 #
-# https://www.gnu.org/software/make/manual/html_node/Overriding-Makefiles.html
+# Overrides
+# ------------------------------------------------------------------------------  
 #
 # https://stackoverflow.com/a/49804748
 %: %-default

@@ -29,3 +29,9 @@ Installation
     source bin/activate
     make install
     make serve
+
+
+Mailchimp
+---------
+
+- https://djangopy.org/package-of-week/how-to-integrate-mailchimp-on-django-to-increase-subscribers/
