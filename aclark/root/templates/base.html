@@ -280,72 +280,131 @@
       <div class="container">
         <div class="row">
           <div class="col-md-5">
-              <h6 class="text-uppercase">Blog</h6>
-              <ul class="list-unstyled list-spaced">
-                <li class="text-muted">
-                  <p>Alex Clark has been blogging since 2007 about a variety of technical and other topics. Read his blog to learn about Django, Pillow, Plone, Python, Open Source and more.</p>
-                </li>
-              </ul>
-              <a target="_blank" class="btn btn-transparent border-light btn-lg text-light mb-5" href="https://blog.aclark.net">View Blog</a>
+            <div class = "subscribe_form">
+              <p>Sign up for our newsletter to get latest updates</p>
+              <form id = "subscribe" form method = 'POST'>{% csrf_token %}
+                <input id = "email_id" type = "email" name = "email_id" placeholder="your@email.com">
+                <button type="submit" value = "Subscribe" id = "email_submit">Subscribe</button>
+              </form>
             </div>
-            <div class="col-md-2 ml-auto mb-5">
-              <ul class="list-unstyled list-spaced">
-                <li class="mb-2"><h6 class="text-uppercase"><a style="text-decoration: none" href="{% url 'about' %}">About</a></h6></li>
-                <li><a class="text-muted" style="text-decoration: none" href="{% url 'home' %}#mission">Mission</a></li>
-                <li><a class="text-muted" style="text-decoration: none" href="{% url 'home' %}#pillow">Pillow</a></li>
-                <li><a class="text-muted" style="text-decoration: none" href="{% url 'home' %}#technology">Technology</a></li>
-                <li><a class="text-muted" style="text-decoration: none" href="{% url 'testimonials' %}">Testimonials</a></li>
-                <li><a class="text-muted" style="text-decoration: none" href="{% url 'team' %}">Team</a></li>
-              </ul>
-            </div>
-            <div class="col-md-2 mb-5">
-              <ul class="list-unstyled list-spaced">
-                <li class="mb-2"><h6 class="text-uppercase"><a style="text-decoration: none" href="{% url 'services' %}">Services</a></h6></li>
-                <li><a class="text-muted" style="text-decoration: none" href="{% url 'services' %}#consulting">Consulting</a></li>
-                <li><a class="text-muted" style="text-decoration: none" href="{% url 'services' %}#software">Software</a></li>
-                <li><a class="text-muted" style="text-decoration: none" href="{% url 'services' %}#systems">Systems</a></li>
-              </ul>
-            </div>
-            <div class="col-md-2 mb-5">
-              <ul class="list-unstyled list-spaced">
-                <li class="mb-2"><h6 class="text-uppercase"><a style="text-decoration: none" href="{% url 'dashboard' %}">Staff</a></h6></li>
-                <li>{% if not request.user.is_anonymous %}<a class="text-muted" style="text-decoration: none" href="{% url 'dashboard' %}">Dashboard</a>{% else %}<a class="text-muted" style="text-decoration: none" href="{% url 'login' %}">Sign In</a>{% endif %}</li>
-                <li>{% if not request.user.is_anonymous %}<a class="text-muted" style="text-decoration: none" href="{% url 'user_view' request.user.id %}">Profile</a>{% endif %}</li>
-                <li>{% if request.user.is_staff %}<a class="text-muted" style="text-decoration: none" href="{% url 'admin:index' %}">Admin</a>{% endif %}
-                <li>{% if not request.user.is_anonymous %}<a class="text-muted" style="text-decoration: none" href="{% url 'logout' %}?next={% url 'home' %}">Sign out</a>{% endif %}</li>
-              </ul>
-            </div>
-            <span class="mx-auto text-muted">&copy; 2020 ACLARKNET LLC. All Rights Reserved.
-              <a class="text-muted" href="{% url 'contact' %}">Contact Us.</a>
-              <a target="_blank" href="https://facebook.com/aclarknet"><i class="fab fa-facebook"></i></a>
-              <a target="_blank" href="https://linkedin.com/company/aclarknetllc"><i class="fab fa-linkedin"></i></a>
-              <a target="_blank" href="https://twitter.com/aclarknet"><i class="fab fa-twitter"></i></a>
-            </span>
           </div>
+          <div class="col-md-2 ml-auto mb-5">
+            <ul class="list-unstyled list-spaced">
+              <li class="mb-2"><h6 class="text-uppercase"><a style="text-decoration: none" href="{% url 'about' %}">About</a></h6></li>
+              <li><a class="text-muted" style="text-decoration: none" href="{% url 'home' %}#mission">Mission</a></li>
+              <li><a class="text-muted" style="text-decoration: none" href="{% url 'home' %}#pillow">Pillow</a></li>
+              <li><a class="text-muted" style="text-decoration: none" href="{% url 'home' %}#technology">Technology</a></li>
+              <li><a class="text-muted" style="text-decoration: none" href="{% url 'testimonials' %}">Testimonials</a></li>
+              <li><a class="text-muted" style="text-decoration: none" href="{% url 'team' %}">Team</a></li>
+            </ul>
+          </div>
+          <div class="col-md-2 mb-5">
+            <ul class="list-unstyled list-spaced">
+              <li class="mb-2"><h6 class="text-uppercase"><a style="text-decoration: none" href="{% url 'services' %}">Services</a></h6></li>
+              <li><a class="text-muted" style="text-decoration: none" href="{% url 'services' %}#consulting">Consulting</a></li>
+              <li><a class="text-muted" style="text-decoration: none" href="{% url 'services' %}#software">Software</a></li>
+              <li><a class="text-muted" style="text-decoration: none" href="{% url 'services' %}#systems">Systems</a></li>
+            </ul>
+          </div>
+          <div class="col-md-2 mb-5">
+            <ul class="list-unstyled list-spaced">
+              <li class="mb-2"><h6 class="text-uppercase"><a style="text-decoration: none" href="{% url 'dashboard' %}">Staff</a></h6></li>
+              <li>{% if not request.user.is_anonymous %}<a class="text-muted" style="text-decoration: none" href="{% url 'dashboard' %}">Dashboard</a>{% else %}<a class="text-muted" style="text-decoration: none" href="{% url 'login' %}">Sign In</a>{% endif %}</li>
+              <li>{% if not request.user.is_anonymous %}<a class="text-muted" style="text-decoration: none" href="{% url 'user_view' request.user.id %}">Profile</a>{% endif %}</li>
+              <li>{% if request.user.is_staff %}<a class="text-muted" style="text-decoration: none" href="{% url 'admin:index' %}">Admin</a>{% endif %}
+              <li>{% if not request.user.is_anonymous %}<a class="text-muted" style="text-decoration: none" href="{% url 'logout' %}?next={% url 'home' %}">Sign out</a>{% endif %}</li>
+            </ul>
+          </div>
+          <span class="mx-auto text-muted">&copy; 2020 ACLARKNET LLC. All Rights Reserved.
+            <a class="text-muted" href="{% url 'contact' %}">Contact Us.</a>
+            <a target="_blank" href="https://facebook.com/aclarknet"><i class="fab fa-facebook"></i></a>
+            <a target="_blank" href="https://linkedin.com/company/aclarknetllc"><i class="fab fa-linkedin"></i></a>
+            <a target="_blank" href="https://twitter.com/aclarknet"><i class="fab fa-twitter"></i></a>
+          </span>
         </div>
       </div>
     </div>
+  </div>
   
+  <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+  <script src="{% static 'assets/js/popper.min.js' %}"></script>
+  <script src="{% static 'assets/js/toolkit.js' %}"></script>
+  <script src="{% static 'assets/js/application.js' %}"></script>
   
-    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
-    <script src="{% static 'assets/js/popper.min.js' %}"></script>
-    <script src="{% static 'assets/js/toolkit.js' %}"></script>
-    <script src="{% static 'assets/js/application.js' %}"></script>
+  {% render_bundle 'main' 'js' %}
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/js/all.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+  <script>
+  (function () {
+    'use strict'
+  
+    feather.replace()
+  
+  }())
+
+  // https://djangopy.org/package-of-week/how-to-integrate-mailchimp-on-django-to-increase-subscribers/
+
+  $('#subscribe').submit(function(e){
+        e.preventDefault();
+        var email_id = $("#email_id").val();
+        if(email_id){
+          var csrfmiddlewaretoken = csrftoken;
+          var email_data = {"email_id": email_id, 
+                            "csrfmiddlewaretoken" : csrfmiddlewaretoken};
+          $.ajax({
+            type : 'POST',
+            url :  '/subscribe/',
+            data : email_data,
+            success : function(response){
+              $('#email_id').val(''); 
+              if(response.status == "404"){
+                alert("This Email is already been subscribed!");
+              }
+              else{
+                alert("Thank you for Subscribing! Please Check your Email to Confirm the Subscription");
+              }
+            },
+            error: function(response) {
+              alert("Sorry Something went Wrong");
+              $('#email_id').val(''); 
+            }
+          });
+          return false;
+        }
+        else{
+          alert("Please provide correct email!");
+        }
+    });
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
     
-    {% render_bundle 'main' 'js' %}
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/js/all.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
-    <script>
-    (function () {
-      'use strict'
-    
-      feather.replace()
-    
-    }())
-    </script>
-    
+    function csrfSafeMethod(method) {
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        }
+    })
+  </script>
+  
 {% block script %}
 {% endblock %}
   
