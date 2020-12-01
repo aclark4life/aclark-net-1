@@ -1,3 +1,6 @@
-Django
-dj-database-url
---find-links=vendor/
+Django==3.1.4
+asgiref==3.3.1
+dj-database-url==0.5.0
+pygraphviz==1.6
+pytz==2020.4
+sqlparse==0.4.1
