@@ -36,4 +36,9 @@ db-init:
 	-dropdb project_app
 	createdb project_app
 
-freeze:
+pip-freeze:
+	$(PIP) freeze | sort > $(TMPDIR)/requirements.txt
+	mv -f $(TMPDIR)/requirements.txt .
+	echo "--find-links=vendor/" >> requirements.txt
+
+
