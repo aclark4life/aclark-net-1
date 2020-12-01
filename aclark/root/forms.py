@@ -1,6 +1,6 @@
 from django import forms
-from captcha.fields import ReCaptchaField
-from captcha.widgets import ReCaptchaV3
+# from captcha.fields import ReCaptchaField
+# from captcha.widgets import ReCaptchaV3
 
 
 class ContactForm(forms.Form):
@@ -17,4 +17,4 @@ class ContactForm(forms.Form):
         label="Please tell us which services you would like to learn more about",
         widget=forms.Textarea(attrs={"class": "message"}),
     )
-    captcha = ReCaptchaField(label="Protected by reCAPTCHA v3", widget=ReCaptchaV3)
+ #   captcha = ReCaptchaField(label="Protected by reCAPTCHA v3", widget=ReCaptchaV3)
