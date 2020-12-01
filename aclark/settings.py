@@ -164,3 +164,7 @@ AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID", "")
 AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY", "")
 
 AWS_STORAGE_BUCKET_NAME = "aclarknet"
+
+https://stackoverflow.com/a/35557243
+import mimetypes
+mimetypes.add_type("text/css", ".css", True)
