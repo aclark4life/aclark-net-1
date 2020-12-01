@@ -35,3 +35,5 @@ pygraphviz-install-win:
 db-init:
 	-dropdb project_app
 	createdb project_app
+
+freeze:
