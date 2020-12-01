@@ -14,7 +14,7 @@ from wagtail.documents import urls as wagtaildocs_urls
 from django.conf import settings
 from django.conf.urls.static import static
 
-from aclark.root.views import subscribe
+# from aclark.root.views import subscribe
 
 router = routers.DefaultRouter()
 router.register(r"clients", views_db.ClientViewSet)
@@ -34,7 +34,7 @@ urlpatterns = [
     url(r"^about/testimonials$", views_root.testimonials, name="testimonials"),
     url(r"^careers$", views_root.careers, name="careers"),
     url(r"^services$", views_root.services, name="services"),
-    url(r'^subscribe/', subscribe, name = "subscribe"),
+    # url(r'^subscribe/', subscribe, name = "subscribe"),
     re_path(r"^cms/", include(wagtailadmin_urls)),
     re_path(r"^documents/", include(wagtaildocs_urls)),
     re_path(r"^pages/", include(wagtail_urls)),

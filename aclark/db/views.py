@@ -47,7 +47,6 @@ from .export import render_xls
 from .igce import render_xls as render_xls_igce
 from .mail import mail_send
 from .misc import has_profile
-from .plot import get_plot
 from .serializers import ClientSerializer
 from .serializers import TestimonialSerializer
 from .edit import edit
@@ -528,14 +527,6 @@ def note_index(request, pk=None):
         search_fields=("text", "title"),
     )
     return render(request, "note_index.html", context)
-
-
-@staff_member_required
-def plot(request):
-    """
-    """
-
-    return get_plot(request)
 
 
 @staff_member_required
