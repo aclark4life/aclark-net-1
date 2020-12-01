@@ -6,7 +6,8 @@ if os.environ.get("DEBUG"):
 else:
     DEBUG = False
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 SECRET_KEY = "!qn8-$=&ov&jqb6phq3z+i)#dp0@brz()&9+yb2pr8rd%o)z+0"
 
@@ -95,9 +96,34 @@ USE_L10N = True
 
 USE_TZ = True
 
-STATIC_URL = "/static/"
 
-STATIC_ROOT = "static"
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/3.1/howto/static-files/
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
+
+STATICFILES_DIRS = [
+    os.path.join(PROJECT_DIR, 'static'),
+]
+
+# ManifestStaticFilesStorage is recommended in production, to prevent outdated
+# JavaScript / CSS assets being served from cache (e.g. after a Wagtail upgrade).
+# See https://docs.djangoproject.com/en/3.1/ref/contrib/staticfiles/#manifeststaticfilesstorage
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+
+
+
 
 ALLOWED_HOSTS = ["*"]
 
