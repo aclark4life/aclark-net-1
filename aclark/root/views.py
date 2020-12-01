@@ -93,8 +93,9 @@ def home(request):
     """
 
     context = {}
-    testimonials = requests.get(TESTIMONIAL_URL).json()
-    context["testimonial"] = random.choice(testimonials)
+    # testimonials = requests.get(TESTIMONIAL_URL).json()
+    # context["testimonial"] = random.choice(testimonials)
+    context["testimonial"] = "Appropriately incubate client-based products through progressive infrastructures. Intrinsicly build collaborative e-tailers for cross-platform manufactured products. Credibly repurpose equity invested users and cross-unit e-markets. Authoritatively impact."
     context["home_nav"] = True
     return render(request, "base.html", context)
 
