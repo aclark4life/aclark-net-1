@@ -144,7 +144,7 @@ DATABASES = {
                 os.environ.get("DB_PASS", ""),
                 os.environ.get("DB_HOST", "localhost"),
                 os.environ.get("DB_PORT", "5432"),
-                os.environ.get("DB_NAME", "project_app"),
+                os.environ.get("DB_NAME", "aclarknet"),
             ),
         )
     )
